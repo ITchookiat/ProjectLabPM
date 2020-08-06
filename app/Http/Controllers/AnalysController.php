@@ -332,6 +332,11 @@ class AnalysController extends Controller
       ]);
       $Buyerdb->save();
 
+      if ($request->get('incomeSP') != Null) {
+        $SetincomeSP = str_replace (",","",$request->get('incomeSP'));
+      }else {
+        $SetincomeSP = 0;
+      }
       $SettelSP = str_replace ("_","",$request->get('telSP'));
       $Sponsordb = new Sponsor([
         'Buyer_id' => $Buyerdb->id,
@@ -352,7 +357,7 @@ class AnalysController extends Controller
         'area_SP' => $request->get('areaSP'),
         'housestyle_SP' => $request->get('housestyleSP'),
         'career_SP' => $request->get('careerSP'),
-        'income_SP' => $request->get('incomeSP'),
+        'income_SP' => $SetincomeSP,
         'puchase_SP' => $request->get('puchaseSP'),
         'support_SP' => $request->get('supportSP'),
         'securities_SP' => $request->get('securitiesSP'),
@@ -882,7 +887,6 @@ class AnalysController extends Controller
             $cardetail->Totalpay1_car = $request->get('Totalpay1car');
             $cardetail->Totalpay2_car = $request->get('Totalpay2car');
             $cardetail->Insurance_key = $request->get('Insurancekey');
-            $cardetail->Salemethod_car = $request->get('Salemethod');
 
             // รูปภาพหน้าบัญชี
             if ($request->hasFile('Account_image')) {
@@ -1039,21 +1043,8 @@ class AnalysController extends Controller
             $cardetail->branchbrance_car = $request->get('branchbrancecar');
             $cardetail->branchAgent_car = $request->get('branchAgentcar');
             $cardetail->Note_car = $request->get('Notecar');
-            if($type == 8 or $type == 12){    //ปรับโครงสร้าง && มาตกราช่วยเหลือ
-              $cardetail->Dateduefirst_car = $request->get('Dateduefirstcar');
-            }
           $cardetail->update();
 
-          if ($request->get('tranPrice') != Null) {
-            $SettranPrice = str_replace (",","",$request->get('tranPrice'));
-          }else {
-            $SettranPrice = 0;
-          }
-          if ($request->get('otherPrice') != Null) {
-            $SetotherPrice = str_replace (",","",$request->get('otherPrice'));
-          }else {
-            $SetotherPrice = 0;
-          }
           if ($request->get('totalkPrice') != Null) {
             $SettotalkPrice = str_replace (",","",$request->get('totalkPrice'));
           }else {
@@ -1089,16 +1080,9 @@ class AnalysController extends Controller
             $expenses->act_Price = $SetactPrice;
             $expenses->closeAccount_Price = $SetcloseAccountPrice;
             $expenses->P2_Price = $SetP2Price;
-            $expenses->vat_Price = $request->get('vatPrice');
-            $expenses->tran_Price = $SettranPrice;
-            $expenses->other_Price = $SetotherPrice;
-            $expenses->evaluetion_Price = $request->get('evaluetionPrice');
             $expenses->totalk_Price = $SettotalkPrice;
             $expenses->balance_Price = $SetbalancePrice;
             $expenses->commit_Price = $SetcommitPrice;
-            $expenses->marketing_Price = $request->get('marketingPrice');
-            $expenses->duty_Price = $request->get('dutyPrice');
-            $expenses->insurance_Price = $request->get('insurancePrice');
             $expenses->note_Price = $request->get('notePrice');
           $expenses->update();
         }
