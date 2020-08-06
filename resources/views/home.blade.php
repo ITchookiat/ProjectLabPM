@@ -526,13 +526,17 @@
                           <input type="text" name="IDCardbuyer" class="form-control" placeholder="ป้อนเลขบัตร ปชช" maxlength="13"/>
                         </div>
                         <br><br>
+                        <label class="col-sm-5 col-form-label text-right">ประเภทเงินกู้ :</label>
+                        <div class="col-sm-7">
+                          <select id="TypeLeasing" name="TypeLeasing" class="form-control" required>
+                              <option value="" selected>--- เลือกประเภทเงินกู้ ---</option>
+                              <option value="PLoan">PLoan</option>
+                              <option value="Micro">Micro</option>
+                          </select>
+                        </div>
+                        <br><br>
                         <label class="col-sm-5 col-form-label text-right">ที่มาของลูกค้า :</label>
                         <div class="col-sm-7">
-                        <!-- <select id="TypeLeasing" name="TypeLeasing" class="form-control" required>
-                            <option value="" selected>--- เลือกประเภทสินเชื่อ ---</option>
-                            <option value="เช่าซื้อ">เช่าซื้อ</option>
-                            <option value="เงินกู้">เงินกู้</option>
-                        </select> -->
                         <select id="News" name="News" class="form-control" required>
                             <option value="" selected>--- เลือกแหล่งที่มา ---</option>
                             <option value="นายหน้าแนะนำ">นายหน้าแนะนำ</option>
@@ -562,7 +566,7 @@
                       <div class="form-group row mb-1">
                       <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
                         <div class="col-sm-7">
-                          <textarea class="form-control" name="Notecar" rows="5" placeholder="ป้อนหมายเหตุ..."></textarea>
+                          <textarea class="form-control" name="Notecar" rows="7" placeholder="ป้อนหมายเหตุ..."></textarea>
                         </div>
                       </div>
                     </div>

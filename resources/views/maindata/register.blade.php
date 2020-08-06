@@ -111,7 +111,7 @@
                               &nbsp;&nbsp;&nbsp;
                             <select name="position" class="form-control" style="width: 330px;">
                               <option selected disabled value="" >เลือกตำแหน่ง</option>
-                              <option value="ADMIN" > ADMIN</option>
+                              <option value="Admin" > Admin</option>
                               <option value="MANAGER" > MANAGER</option>
                               <option value="AUDIT" > AUDIT</option>
                               <option value="MASTER" > MASTER</option>
