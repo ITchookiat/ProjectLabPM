@@ -291,7 +291,10 @@ class AnalysController extends Controller
       }
 
       //สร้างเลขที่ สัญญา
-      if ($request->get('TypeContract') != NULL) {
+      if ($request->get('Contract_buyer') != NULL) {
+        $StrConn = $request->get('Contract_buyer');
+      }
+      elseif ($request->get('TypeContract') != NULL) {
         $SetDateConn = \Carbon\Carbon::parse($request->get('DateDue'))->format('Y') +543;
         $SubStr = substr($SetDateConn,2,3);
         $StrConn = $request->get('TypeContract').$SubStr.$request->get('BrachUser')."/";
