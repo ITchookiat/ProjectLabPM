@@ -223,7 +223,7 @@
                             <input type="checkbox" id="3" class="checkbox" name="TypeContract" value="P06-"> <!-- checked="checked"  -->
                               <label for="3" class="todo">
                                 <i class="fa fa-check"></i>
-                                <span class="text"><font color="red">PLoan &nbsp;&nbsp;</font></span>
+                                <span class="text"><font color="red">PLOAN &nbsp;&nbsp;</font></span>
                               </label>
                             </span>
                           </div>
@@ -235,7 +235,7 @@
                               <input type="checkbox" id="2" class="checkbox" name="TypeContract" value="P03-"> <!-- checked="checked"  -->
                               <label for="2" class="todo">
                                 <i class="fa fa-check"></i>
-                                <span class="text"><font color="red">Micro &nbsp;&nbsp;</font></span>
+                                <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>
                               </label>
                             </span>
                           </div>
@@ -247,7 +247,7 @@
                               <input type="checkbox" id="1" class="checkbox" name="doccomplete" value="{{ auth::user()->name }}"> <!-- checked="checked"  -->
                               <label for="1" class="todo">
                                 <i class="fa fa-check"></i>
-                                <span class="text"><font color="red">เอกสารครบ &nbsp;&nbsp;</font></span>
+                                <span class="text"><font color="red">RESTRICT RIGHTS &nbsp;&nbsp;</font></span>
                               </label>
                             </span>
                           </div>
@@ -287,7 +287,6 @@
                           <h5 class="text-center"><b>แบบฟอร์มรายละเอียดผู้เช่าซื้อ</b></h5>
                           <p></p>
                           <div>
-
                             <div class="row">
                               @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                 <div class="col-6">
@@ -298,27 +297,29 @@
                                     </div>
                                   </div>
                                 </div>
-                              @else
-                                <div class="col-6">
-                                  <div class="form-group row mb-1">
-                                    <label class="col-sm-3 col-form-label text-right"><font color="red">สาขา : </font></label>
-                                    <div class="col-sm-8">
-                                      <select name="BrachUser" class="form-control" required>
-                                        <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
-                                        <option value="20">ปัตตานี (20)</option>
-                                        <option value="21">ยะลา (21)</option>
-                                        <option value="22">นราธิวาส (22)</option>
-                                        <option value="23">สายบุรี (23)</option>
-                                        <option value="24">สุไหงโกลก (24)</option>
-                                        <option value="25">เบตง (25)</option>
-                                        <option value="26">โคกโพธิ์ (26)</option>
-                                        <option value="27">ระแงะ (27)</option>
-                                        <option value="28">บันนังสตา (28)</option>
-                                      </select>
-                                    </div>
+                              @endif
+                            </div>
+
+                            <div class="row">
+                              <div class="col-6">
+                                <div class="form-group row mb-1">
+                                  <label class="col-sm-3 col-form-label text-right"><font color="red">สาขา : </font></label>
+                                  <div class="col-sm-8">
+                                    <select name="BrachUser" class="form-control" required>
+                                      <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
+                                      <option value="20">ปัตตานี (20)</option>
+                                      <option value="21">ยะลา (21)</option>
+                                      <option value="22">นราธิวาส (22)</option>
+                                      <option value="23">สายบุรี (23)</option>
+                                      <option value="24">สุไหงโกลก (24)</option>
+                                      <option value="25">เบตง (25)</option>
+                                      <option value="26">โคกโพธิ์ (26)</option>
+                                      <option value="27">ระแงะ (27)</option>
+                                      <option value="28">บันนังสตา (28)</option>
+                                    </select>
                                   </div>
                                 </div>
-                              @endif
+                              </div>
                               <div class="col-6">
                                 <div class="form-group row mb-1">
                                   <label class="col-sm-3 col-form-label text-right"><font color="red">วันที่ทำสัญญา : </font></label>
@@ -1593,7 +1594,7 @@
                             <div class="col-5">
                               <div class="float-right form-inline">
                                 <!-- <label><font color="red">สาขา : </font></label> -->
-                                @if(Auth::user()->branch == 99)
+                                {{-- @if(Auth::user()->branch == 99)
                                     <input type="hidden" name="branchcar" class="form-control" value="Admin" readonly />
                                 @elseif(Auth::user()->branch == 01)
                                     <input type="hidden" name="branchcar" class="form-control" value="ปัตตานี" readonly />
@@ -1607,7 +1608,7 @@
                                     <input type="hidden" name="branchcar" class="form-control" value="โกลก" readonly />
                                 @elseif(Auth::user()->branch == 07)
                                     <input type="hidden" name="branchcar" class="form-control" value="เบตง" readonly />
-                                @endif
+                                @endif --}}
                               </div>
                             </div>
                           </div>

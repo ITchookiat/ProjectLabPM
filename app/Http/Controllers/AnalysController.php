@@ -359,6 +359,11 @@ class AnalysController extends Controller
       ]);
       $Sponsordb->save();
 
+      if ($request->get('incomeSP2') != Null) {
+        $SetincomeSP2 = str_replace (",","",$request->get('incomeSP2'));
+      }else {
+        $SetincomeSP2 = 0;
+      }
       $SettelSP2 = str_replace ("_","",$request->get('telSP2'));
       $Sponsor2db = new Sponsor2([
         'Buyer_id2' => $Buyerdb->id,
@@ -379,7 +384,7 @@ class AnalysController extends Controller
         'area_SP2' => $request->get('areaSP2'),
         'housestyle_SP2' => $request->get('housestyleSP2'),
         'career_SP2' => $request->get('careerSP2'),
-        'income_SP2' => $request->get('incomeSP2'),
+        'income_SP2' => $SetincomeSP2,
         'puchase_SP2' => $request->get('puchaseSP2'),
         'support_SP2' => $request->get('supportSP2'),
         'securities_SP2' => $request->get('securitiesSP2'),
@@ -405,8 +410,6 @@ class AnalysController extends Controller
       }     
 
       if ($request->patch_type == 1) {  //type จากหน้า create Buyers
-        $SetBranch = $request->get('branchcar');
-
         if($request->get('Dateduefirstcar') != null){
           $dateFirst = date_create($request->get('Dateduefirstcar'));
           $SetDatefirst = date_format($dateFirst, 'd-m-Y');
@@ -428,6 +431,26 @@ class AnalysController extends Controller
           Storage::makeDirectory($destination_path, 0777, true, true);
 
           $AccountImage->move($destination_path,$NameImage);
+        }
+
+        if ($request->get('BrachUser') == "20") {
+          $SetBranch = "ปัตตานี";
+        }elseif ($request->get('BrachUser') == "21") {
+          $SetBranch = "ยะลา";
+        }elseif ($request->get('BrachUser') == "22") {
+          $SetBranch = "นราธิวาส";
+        }elseif ($request->get('BrachUser') == "23") {
+          $SetBranch = "สายบุรี";
+        }elseif ($request->get('BrachUser') == "24") {
+          $SetBranch = "สุไหงโกลก";
+        }elseif ($request->get('BrachUser') == "25") {
+          $SetBranch = "เบตง";
+        }elseif ($request->get('BrachUser') == "26") {
+          $SetBranch = "โคกโพธิ์";
+        }elseif ($request->get('BrachUser') == "27") {
+          $SetBranch = "ระแงะ";
+        }elseif ($request->get('BrachUser') == "28") {
+          $SetBranch = "บันนังสตา";
         }
 
         $Cardetaildb = new Cardetail([
@@ -477,21 +500,11 @@ class AnalysController extends Controller
           'branchAgent_car' => $request->get('branchAgentcar'),
           'Note_car' => $request->get('Notecar'),
           'Insurance_key' => $request->get('Insurancekey'),
-          'Salemethod_car' => $request->get('Salemethod'),
           'AccountImage_car' => $NameImage,
         ]);
         $Cardetaildb ->save();
 
-        if ($request->get('tranPrice') != Null) {
-          $SettranPrice = str_replace (",","",$request->get('tranPrice'));
-        }else {
-          $SettranPrice = 0;
-        }
-        if ($request->get('otherPrice') != Null) {
-          $SetotherPrice = str_replace (",","",$request->get('otherPrice'));
-        }else {
-          $SetotherPrice = 0;
-        }
+
         if ($request->get('totalkPrice') != Null) {
           $SettotalkPrice = str_replace (",","",$request->get('totalkPrice'));
         }else {
@@ -528,20 +541,12 @@ class AnalysController extends Controller
           'act_Price' => $SetactPrice,
           'closeAccount_Price' => $SetcloseAccountPrice,
           'P2_Price' => $SetP2Price,
-          'vat_Price' => $request->get('vatPrice'),
-          'tran_Price' => $SettranPrice,
-          'other_Price' => $SetotherPrice,
-          'evaluetion_Price' => $request->get('evaluetionPrice'),
           'totalk_Price' => $SettotalkPrice,
           'balance_Price' => $SetbalancePrice,
           'commit_Price' => $SetcommitPrice,
-          'marketing_Price' => $request->get('marketingPrice'),
-          'duty_Price' => $request->get('dutyPrice'),
-          'insurance_Price' => $request->get('insurancePrice'),
           'note_Price' => $request->get('notePrice'),
         ]);
         $Expensesdb ->save();
-
         $type = 1;
       }
 
@@ -668,315 +673,16 @@ class AnalysController extends Controller
           ->where('buyers.id',$id)->first();
                   
         $GetDocComplete = $data->DocComplete_car;
-
-        $Gettype = $type;
-
-      }
-      elseif ($type == 4) {
-        $data = DB::table('buyers')
-                  ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
-                  ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
-                  ->leftJoin('homecardetails','buyers.id','=','homecardetails.Buyerhomecar_id')
-                  ->select('buyers.*','sponsors.*','sponsor2s.*','homecardetails.*','buyers.created_at AS createdBuyers_at')
-                  ->where('buyers.id',$id)->first();
-
-        $Gettype = $type;
-      }
-      elseif ($type == 8) {
-        $data = DB::table('buyers')
-                  ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
-                  ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
-                  ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                  ->leftJoin('expenses','Buyers.id','=','expenses.Buyerexpenses_id')
-                  ->leftJoin('upload_lat_longs','Buyers.id','=','upload_lat_longs.Use_id')
-                  ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','buyers.created_at AS createdBuyers_at')
-                  ->where('buyers.id',$id)->first();
-
-                  $GetDocComplete = $data->DocComplete_car;
-                  $Gettype = $type;
-                  $data = $data;
-      }
-      elseif ($type == 12) {
-        $data = DB::table('buyers')
-                  ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
-                  ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
-                  ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                  ->leftJoin('expenses','Buyers.id','=','expenses.Buyerexpenses_id')
-                  ->leftJoin('upload_lat_longs','Buyers.id','=','upload_lat_longs.Use_id')
-                  ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','buyers.created_at AS createdBuyers_at')
-                  ->where('buyers.id',$id)->first();
-
-                  $GetDocComplete = $data->DocComplete_car;
-                  $Gettype = $type;
-
-                  $data = $data;
+        $SubStr = substr($data->Contract_buyer,0,4);
       }
 
       $dataImage = DB::table('uploadfile_images')->where('Buyerfileimage_id',$data->id)->get();
-      // dd($dataImage);
-      
       $countImage = count($dataImage);
       $newDateDue = $data->Date_Due;
-      $Statusby = [
-        'โสด' => 'โสด',
-        'สมรส' => 'สมรส',
-        'หย่าร้าง' => 'หย่าร้าง',
-      ];
-      $Addby = [
-        'ตามทะเบียนบ้าน' => 'ตามทะเบียนบ้าน',
-      ];
-      $Houseby = [
-        'บ้านตึก 1 ชั้น' => 'บ้านตึก 1 ชั้น',
-        'บ้านตึก 2 ชั้น' => 'บ้านตึก 2 ชั้น',
-        'บ้านไม้ 1 ชั้น' => 'บ้านไม้ 1 ชั้น',
-        'บ้านไม้ 2 ชั้น' => 'บ้านไม้ 2 ชั้น',
-        'บ้านเดี่ยว' => 'บ้านเดี่ยว',
-        'แฟลต' => 'แฟลต',
-      ];
-      $Driverby = [
-        'มี' => 'มี',
-        'ไม่มี' => 'ไม่มี',
-      ];
-      $HouseStyleby = [
-        'ของตนเอง' => 'ของตนเอง',
-        'อาศัยบิดา-มารดา' => 'อาศัยบิดา-มารดา',
-        'อาศัยผู้อื่น' => 'อาศัยผู้อื่น',
-        'บ้านพักราชการ' => 'บ้านพักราชการ',
-        'บ้านเช่า' => 'บ้านเช่า',
-      ];
-      $Careerby = [
-        'ตำรวจ' => 'ตำรวจ',
-        'ทหาร' => 'ทหาร',
-        'ครู' => 'ครู',
-        'ข้าราชการอื่นๆ' => 'ข้าราชการอื่นๆ',
-        'ลูกจ้างเทศบาล' => 'ลูกจ้างเทศบาล',
-        'ลูกจ้างประจำ' => 'ลูกจ้างประจำ',
-        'สมาชิก อบต.' => 'สมาชิก อบต.',
-        'ลูกจ้างชั่วคราว' => 'ลูกจ้างชั่วคราว',
-        'รับจ้าง' => 'รับจ้าง',
-        'พนักงานบริษัทเอกชน' => 'พนักงานบริษัทเอกชน',
-        'อาชีพอิสระ' => 'อาชีพอิสระ',
-        'กำนัน' => 'กำนัน',
-        'ผู้ใหญ่บ้าน' => 'ผู้ใหญ่บ้าน',
-        'ผู้ช่วยผู้ใหญ่บ้าน' => 'ผู้ช่วยผู้ใหญ่บ้าน',
-        'นักการภารโรง' => 'นักการภารโรง',
-        'มอเตอร์ไซร์รับจ้าง' => 'มอเตอร์ไซร์รับจ้าง',
-        'ค้าขาย' => 'ค้าขาย',
-        'เจ้าของธุรกิจ' => 'เจ้าของธุรกิจ',
-        'เจ้าของอู่รถ' => 'เจ้าของอู่รถ',
-        'ให้เช่ารถบรรทุก' => 'ให้เช่ารถบรรทุก',
-        'ช่างตัดผม' => 'ช่างตัดผม',
-        'ชาวนา' => 'ชาวนา',
-        'ชาวไร่' => 'ชาวไร่',
-        'ชาวสวนยาง' => 'ชาวสวนยาง',
-        'แม่บ้าน' => 'แม่บ้าน',
-        'รับเหมาก่อสร้าง' => 'รับเหมาก่อสร้าง',
-        'ประมง' => 'ประมง',
-        'ทนายความ' => 'ทนายความ',
-        'พระ' => 'พระ',
-      ];
-      $Incomeby = [
-        '5,000 - 10,000' => '5,000 - 10,000',
-        '10,000 - 15,000' => '10,000 - 15,000',
-        '15,000 - 20,000' => '15,000 - 20,000',
-        'มากกว่า 20,000' => 'มากกว่า 20,000',
-      ];
-      $HisCarby = [
-        '0 คัน' => '0 คัน',
-        '1 คัน' => '1 คัน',
-        '2 คัน' => '2 คัน',
-        '3 คัน' => '3 คัน',
-        '4 คัน' => '4 คัน',
-        '5 คัน' => '5 คัน',
-        '6 คัน' => '6 คัน',
-        '7 คัน' => '7 คัน',
-        '8 คัน' => '8 คัน',
-        '9 คัน' => '9 คัน',
-        '10 คัน' => '10 คัน',
-        '11 คัน' => '11 คัน',
-        '12 คัน' => '12 คัน',
-        '13 คัน' => '13 คัน',
-        '14 คัน' => '14 คัน',
-        '15 คัน' => '15 คัน',
-        '16 คัน' => '16 คัน',
-        '17 คัน' => '17 คัน',
-        '18 คัน' => '18 คัน',
-        '19 คัน' => '19 คัน',
-        '20 คัน' => '20 คัน',
-      ];
-      $relationSPp = [
-        'พี่น้อง' => 'พี่น้อง',
-        'ญาติ' => 'ญาติ',
-        'เพื่อน' => 'เพื่อน',
-        'บิดา' => 'บิดา',
-        'มารดา' => 'มารดา',
-        'ตำบลเดี่ยวกัน' => 'ตำบลเดี่ยวกัน',
-        'จ้างค้ำ(ไม่รู้จักกัน)' => 'จ้างค้ำ(ไม่รู้จักกัน)',
-      ];
-      $objectivecar = [
-        'ลงทุนในธุรกิจ' => 'ลงทุนในธุรกิจ',
-        'ขยายกิจการ' => 'ขยายกิจการ',
-        'ซื้อรถยนต์' => 'ซื้อรถยนต์',
-        'ใช้หนี้นอกระบบ' => 'ใช้หนี้นอกระบบ',
-        'จ่ายค่าเทอม' => 'จ่ายค่าเทอม',
-        'ซื้อของใช้ภายในบ้าน' => 'ซื้อของใช้ภายในบ้าน',
-        'ซื้อวัว' => 'ซื้อวัว',
-        'ซื้อที่ดิน' => 'ซื้อที่ดิน',
-        'ซ่อมบ้าน' => 'ซ่อมบ้าน',
-        'ลดค่าธรรมเนียม' => 'ลดค่าธรรมเนียม',
-        'ลดดอกเบี้ย สูงสุด 100 %' => 'ลดดอกเบี้ย สูงสุด 100 %',
-        'พักชำระเงินต้น 3 เดือน' => 'พักชำระเงินต้น 3 เดือน',
-        'พักชำระหนี้ 3 เดือน' => 'พักชำระหนี้ 3 เดือน',
-        'ขยายระยะเวลาชำระหนี้' => 'ขยายระยะเวลาชำระหนี้',
-      ];
-      $Brandcarr = [
-        'ISUZU' => 'ISUZU',
-        'MITSUBISHI' => 'MITSUBISHI',
-        'TOYOTA' => 'TOYOTA',
-        'MAZDA' => 'MAZDA',
-        'FORD' => 'FORD',
-        'NISSAN' => 'NISSAN',
-        'HONDA' => 'HONDA',
-        'CHEVROLET' => 'CHEVROLET',
-        'MG' => 'MG',
-        'SUZUKI' => 'SUZUKI',
-      ];
-      $Interestcarr = [
-        '0.55' => '0.55',
-        '0.65' => '0.65',
-        '0.80' => '0.80',
-        '0.90' => '0.90',
-        '1.05' => '1.05',
-        '1.20' => '1.20',
-        '1.40' => '1.40',
-        '1.55' => '1.55',
-        '1.70' => '1.70',
-      ];
-      $Timeslackencarr = [
-        '12' => '12',
-        '18' => '18',
-        '24' => '24',
-        '30' => '30',
-        '36' => '36',
-        '42' => '42',
-        '48' => '48',
-        '54' => '54',
-        '60' => '60',
-        '66' => '66',
-        '72' => '72',
-        '78' => '78',
-        '84' => '84',
-      ];
-      $Insurancecarr = [
-        'แถม ป2+ 1ปี' => 'แถม ป2+ 1ปี',
-        'มี ป2+ อยู่แล้ว' => 'มี ป2+ อยู่แล้ว',
-        'ไม่แถม' => 'ไม่แถม',
-        'ไม่ซื้อ' => 'ไม่ซื้อ',
-        'ซื้อ ป2+ 1ปี' => 'ซื้อ ป2+ 1ปี',
-        'ซื้อ ป1 1ปี' => 'ซื้อ ป1 1ปี',
-        'มี ป1 อยู่แล้ว' => 'มี ป1 อยู่แล้ว',
-      ];
-      $statuscarr = [
-        'กส.ค้ำมีหลักทรัพย์' => 'กส.ค้ำมีหลักทรัพย์',
-        'กส.ค้ำไม่มีหลักทรัพย์' => 'กส.ค้ำไม่มีหลักทรัพย์',
-        'กส.ไม่ค้ำประกัน' => 'กส.ไม่ค้ำประกัน',
-        'ซข.ค้ำมีหลักทรัพย์' => 'ซข.ค้ำมีหลักทรัพย์',
-        'ซข.ค้ำไม่มีหลักทรัพย์' => 'ซข.ค้ำไม่มีหลักทรัพย์',
-        'ซข.ไม่ค้ำประกัน' => 'ซข.ไม่ค้ำประกัน',
-        'VIP.กรรมสิทธิ์' => 'VIP.กรรมสิทธิ์',
-        'VIP.ซื้อขาย' => 'VIP.ซื้อขาย',
-      ];
-      $evaluetionPricee = [
-        '1,000' => '1,000',
-        '1,500' => '1,500',
-        '2,000' => '2,000',
-        '2,500' => '2,500',
-      ];
-      $securitiesSPp = [
-        'โฉนด' => 'โฉนด',
-        'นส.3' => 'นส.3',
-        'นส.3 ก' => 'นส.3 ก',
-        'นส.4' => 'นส.4',
-        'นส.4 จ' => 'นส.4 จ',
-      ];
-      $Getinsurance = [
-        '0' => 'ลูกค้าโอนเอง',
-        '7700' => '7700',
-        '20000' => '20000',
-      ];
-      $Gettransfer = [
-        '0' => 'ลูกค้าโอนเอง',
-        '3950' => '3950',
-        '4950' => '4950',
-        '6950' => '6950',
-      ];
-      $Getinterest = [
-        '0.40' => '0.40',
-        '0.42' => '0.42',
-        '0.45' => '0.45',
-        '0.55' => '0.55',
-        '0.65' => '0.65',
-        '0.70' => '0.70',
-        '0.75' => '0.75',
-        '0.85' => '0.85',
-        '1.00' => '1.00',
-        '1.20' => '1.20',
-      ];
-      $GetSale = [
-        'มารูวัน หะยีเจะแม' => 'มารูวัน หะยีเจะแม',
-        'แวยูคิมสี อาแว' => 'แวยูคิมสี อาแว',
-        'อลิสา หิดาวรรณ' => 'อลิสา หิดาวรรณ',
-        'ธัญญ์วรา สีลาภเกื้อ' => 'ธัญญ์วรา สีลาภเกื้อ',
-        'ชูชาติ สังขวัตร' => 'ชูชาติ สังขวัตร',
-      ];
-      $GetypeHC = [
-        'รถเทิร์น' => 'รถเทิร์น',
-        'รถยึด' => 'รถยึด',
-        'รถฝากขาย' => 'รถฝากขาย',
-        'รถโมบายบริษัท' => 'รถโมบายบริษัท',
-      ];
-      $GetbaabHC = [
-        'ซข.ค้ำมีหลักทรัพย์' => 'ซข.ค้ำมีหลักทรัพย์',
-        'ซข.ค้ำไม่มีหลักทรัพย์' => 'ซข.ค้ำไม่มีหลักทรัพย์',
-        'ซข.ไม่ค้ำประกัน' => 'ซข.ไม่ค้ำประกัน',
-      ];
-      $GetguaranteeHC = [
-        'โฉนด' => 'โฉนด',
-        'ข้าราชการ' => 'ข้าราชการ',
-        'เจ้าบ้าน' => 'เจ้าบ้าน',
-        'บุคคลธรรมดา' => 'บุคคลธรรมดา',
-        'ไม่ค้ำ' => 'ไม่ค้ำ',
-      ];
-      $relationSP = [
-        'พี่น้อง' => 'พี่น้อง',
-        'ญาติ' => 'ญาติ',
-        'เพื่อน' => 'เพื่อน',
-        'บิดา' => 'บิดา',
-        'มารดา' => 'มารดา',
-        'บุตร' => 'บุตร',
-        'ตำบลเดี่ยวกัน' => 'ตำบลเดี่ยวกัน',
-        'จ้างค้ำ(ไม่รู้จักกัน)' => 'จ้างค้ำ(ไม่รู้จักกัน)',
-      ];
-      $GradeBuyer = [
-        'ลูกค้าเก่าผ่อนดี' => 'ลูกค้าเก่าผ่อนดี',
-        'ลูกค้ามีงานตาม' => 'ลูกค้ามีงานตาม',
-        'ลูกค้าใหม่' => 'ลูกค้าใหม่',
-        'ลูกค้าใหม่(ปิดธนาคาร)' => 'ลูกค้าใหม่(ปิดธนาคาร)',
-        'ปิดจัดใหม่(งานตาม)' => 'ปิดจัดใหม่(งานตาม)',
-        'ปิดจัดใหม่(ผ่อนดี)' => 'ปิดจัดใหม่(ผ่อนดี)',
-      ];
-      $Typecardetail = [
-        'รถกระบะ' => 'รถกระบะ',
-        'รถตอนเดียว' => 'รถตอนเดียว',
-        'รถเก๋ง/7ที่นั่ง' => 'รถเก๋ง/7ที่นั่ง',
-      ];
 
       if ($type == 1) {
         return view('Analysis.edit',
-            compact('data','id','dataImage','Statusby','Addby','Houseby','Driverby','HouseStyleby','Careerby','Incomeby',
-            'HisCarby','StatusSPp','relationSPp','addSPp','housestyleSPp','Brandcarr','Interestcarr','Timeslackencarr',
-            'Insurancecarr','statuscarr','newDateDue','evaluetionPricee','securitiesSPp','GetDocComplete','Getinsurance',
-            'Gettransfer','Getinterest','fdate','tdate','branch','status','type','Gettype','countImage','GradeBuyer','Typecardetail','objectivecar'));
+            compact('data','id','dataImage','newDateDue','GetDocComplete','fdate','tdate','branch','status','type','countImage','SubStr'));
       }
     }
 
@@ -989,11 +695,9 @@ class AnalysController extends Controller
      */
     public function update(Request $request, $id, $type)
     {
-      // dd($request);
+      dd($request);
       date_default_timezone_set('Asia/Bangkok');
-      $Currdate = date('2020-06-02');   //วันที่เช็ตค่า รูป
       $Getcardetail = Cardetail::where('Buyercar_id',$id)->first();
-      $Gethomecardetail = homecardetail::where('Buyerhomecar_id',$id)->first();
 
       $newDateDue = $request->DateDue;  //วันเริ่มทำสัญญา
       $SetPhonebuyer = str_replace ( "_","",$request->get('Phonebuyer'));
@@ -1034,10 +738,6 @@ class AnalysController extends Controller
         }elseif ($request->get('MASTER') != Null) {
             $newDateDue = $request->get('DateDue');
             $StatusApp = "รออนุมัติ";
-        }elseif ($request->get('approversHC') != Null) {
-          if ($Gethomecardetail->dateapp_HC == Null) {
-            $newDateDue = date('Y-m-d');
-          }
         }
       }
 
@@ -1158,10 +858,7 @@ class AnalysController extends Controller
           $Sponsor2db->save();
         }
 
-        if ($type == 4) {   //สินเชื่อ รถบ้าน
-
-        }
-        else {
+        if ($type == 1) {   //PLoan-Micro
           $cardetail = Cardetail::where('Buyercar_id',$id)->first();
             $cardetail->Brand_car = $request->get('Brandcar');
             $cardetail->Year_car = $request->get('Yearcar');
@@ -1192,16 +889,11 @@ class AnalysController extends Controller
               $AccountImage = $request->file('Account_image');
               $NameImage = $AccountImage->getClientOriginalName();
 
-              if(substr($user->created_at,0,10) < $Currdate){
-                $destination_path = public_path('/upload-image');
-                $AccountImage->move($destination_path,$NameImage);
-              }
-              else {
-                $destination_path = public_path().'/upload-image/'.$SetLicense;
-                Storage::makeDirectory($destination_path, 0777, true, true);
+              $destination_path = public_path().'/upload-image/'.$SetLicense;
+              Storage::makeDirectory($destination_path, 0777, true, true);
 
-                $AccountImage->move($destination_path,$NameImage);
-              }
+              $AccountImage->move($destination_path,$NameImage);
+              
 
               $cardetail->AccountImage_car = $NameImage;
             }
@@ -1411,139 +1103,121 @@ class AnalysController extends Controller
           $expenses->update();
         }
 
-      // รูปภาพประกอบ
-      if ($request->hasFile('file_image')) {
-        $image_array = $request->file('file_image');
-        $array_len = count($image_array);
+        // รูปภาพประกอบ
+        if ($request->hasFile('file_image')) {
+          $image_array = $request->file('file_image');
+          $array_len = count($image_array);
 
-        for ($i=0; $i < $array_len; $i++) {
-          $image_size = $image_array[$i]->getClientSize();
-          $image_lastname = $image_array[$i]->getClientOriginalExtension();
-          $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
+          for ($i=0; $i < $array_len; $i++) {
+            $image_size = $image_array[$i]->getClientSize();
+            $image_lastname = $image_array[$i]->getClientOriginalExtension();
+            $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          if(substr($user->created_at,0,10) < $Currdate){
-            $destination_path = public_path('/upload-image');
-            $image_array[$i]->move($destination_path,$image_new_name);
-          }
-          else{
             $path = public_path().'/upload-image/'.$SetLicense;
             Storage::makeDirectory($path, 0777, true, true);
             $image_array[$i]->move($path,$image_new_name);
-          }
 
-          $Uploaddb = new UploadfileImage([
-            'Buyerfileimage_id' => $id,
-            'Type_fileimage' => 1,
-            'Name_fileimage' => $image_new_name,
-            'Size_fileimage' => $image_size,
-          ]);
-          $Uploaddb ->save();
+            $Uploaddb = new UploadfileImage([
+              'Buyerfileimage_id' => $id,
+              'Type_fileimage' => 1,
+              'Name_fileimage' => $image_new_name,
+              'Size_fileimage' => $image_size,
+            ]);
+            $Uploaddb ->save();
+          }
         }
-      }
-      // รูปภาพ Checker ผู้เช่าซื้อ
-      if ($request->hasFile('image_checker_1')) {
-        $image_array = $request->file('image_checker_1');
-        $array_len = count($image_array);
+        // รูปภาพ Checker ผู้เช่าซื้อ
+        if ($request->hasFile('image_checker_1')) {
+          $image_array = $request->file('image_checker_1');
+          $array_len = count($image_array);
 
-        for ($i=0; $i < $array_len; $i++) {
-          $image_size = $image_array[$i]->getClientSize();
-          $image_lastname = $image_array[$i]->getClientOriginalExtension();
-          $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
+          for ($i=0; $i < $array_len; $i++) {
+            $image_size = $image_array[$i]->getClientSize();
+            $image_lastname = $image_array[$i]->getClientOriginalExtension();
+            $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          if(substr($user->created_at,0,10) < $Currdate){
-            $destination_path = public_path('/upload-image');
-            $image_array[$i]->move($destination_path,$image_new_name);
-          }
-          else{
             $path = public_path().'/upload-image/'.$SetLicense;
             Storage::makeDirectory($path, 0777, true, true);
             $image_array[$i]->move($path,$image_new_name);
-          }
 
-          $Uploaddb = new UploadfileImage([
-            'Buyerfileimage_id' => $id,
-            'Type_fileimage' => 2,
-            'Name_fileimage' => $image_new_name,
-            'Size_fileimage' => $image_size,
-          ]);
-          $Uploaddb ->save();
+            $Uploaddb = new UploadfileImage([
+              'Buyerfileimage_id' => $id,
+              'Type_fileimage' => 2,
+              'Name_fileimage' => $image_new_name,
+              'Size_fileimage' => $image_size,
+            ]);
+            $Uploaddb ->save();
+          }
         }
-      }
-      // รูปภาพ Checker ผู้ค่ำ
-      if ($request->hasFile('image_checker_2')) {
-        $image_array = $request->file('image_checker_2');
-        $array_len = count($image_array);
+        // รูปภาพ Checker ผู้ค่ำ
+        if ($request->hasFile('image_checker_2')) {
+          $image_array = $request->file('image_checker_2');
+          $array_len = count($image_array);
 
-        for ($i=0; $i < $array_len; $i++) {
-          $image_size = $image_array[$i]->getClientSize();
-          $image_lastname = $image_array[$i]->getClientOriginalExtension();
-          $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
+          for ($i=0; $i < $array_len; $i++) {
+            $image_size = $image_array[$i]->getClientSize();
+            $image_lastname = $image_array[$i]->getClientOriginalExtension();
+            $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          if(substr($user->created_at,0,10) < $Currdate){
-            $destination_path = public_path('/upload-image');
-            $image_array[$i]->move($destination_path,$image_new_name);
-          }
-          else{
             $path = public_path().'/upload-image/'.$SetLicense;
             Storage::makeDirectory($path, 0777, true, true);
             $image_array[$i]->move($path,$image_new_name);
+
+            $Uploaddb = new UploadfileImage([
+              'Buyerfileimage_id' => $id,
+              'Type_fileimage' => 3,
+              'Name_fileimage' => $image_new_name,
+              'Size_fileimage' => $image_size,
+            ]);
+            $Uploaddb ->save();
           }
-
-          $Uploaddb = new UploadfileImage([
-            'Buyerfileimage_id' => $id,
-            'Type_fileimage' => 3,
-            'Name_fileimage' => $image_new_name,
-            'Size_fileimage' => $image_size,
-          ]);
-          $Uploaddb ->save();
         }
-      }
-      // ตำแหน่งที่ตั้ง ผู้เช่าซื้อ ผู้ค้ำ
-      if($request->get('Buyer_latlong') != NULL){
-        $StrBuyerLatlong = $request->get('Buyer_latlong');
-      }else{
-        $StrBuyerLatlong = NULL;
-      }
+        // ตำแหน่งที่ตั้ง ผู้เช่าซื้อ ผู้ค้ำ
+        if($request->get('Buyer_latlong') != NULL){
+          $StrBuyerLatlong = $request->get('Buyer_latlong');
+        }else{
+          $StrBuyerLatlong = NULL;
+        }
 
-      if($request->get('Support_latlong') != NULL){
-        $StrSupporterlatLong = $request->get('Support_latlong');
-      }else{
-        $StrSupporterlatLong = NULL;
-      }
-      
-      $Location = upload_lat_long::where('Use_id',$id)->first();
-      if($Location != null){
-        $Location->Buyer_latlong = $StrBuyerLatlong;
-        $Location->Support_latlong = $StrSupporterlatLong;
-        $Location->Buyer_note = $request->get('BuyerNote');
-        $Location->Support_note = $request->get('SupportNote');
-        $Location->update();
-      }else{
-        $locationDB = new upload_lat_long([
-          'Use_id' => $user->id,
-          'Buyer_latlong' => $request->get('Buyer_latlong'),
-          'Support_latlong' => $request->get('Support_latlong'),
-          'Buyer_note' => $request->get('BuyerNote'),
-          'Support_note' => $request->get('SupportNote'),
-        ]);
-        $locationDB ->save();
-      }
+        if($request->get('Support_latlong') != NULL){
+          $StrSupporterlatLong = $request->get('Support_latlong');
+        }else{
+          $StrSupporterlatLong = NULL;
+        }
+        
+        $Location = upload_lat_long::where('Use_id',$id)->first();
+        if($Location != null){
+          $Location->Buyer_latlong = $StrBuyerLatlong;
+          $Location->Support_latlong = $StrSupporterlatLong;
+          $Location->Buyer_note = $request->get('BuyerNote');
+          $Location->Support_note = $request->get('SupportNote');
+          $Location->update();
+        }else{
+          $locationDB = new upload_lat_long([
+            'Use_id' => $user->id,
+            'Buyer_latlong' => $request->get('Buyer_latlong'),
+            'Support_latlong' => $request->get('Support_latlong'),
+            'Buyer_note' => $request->get('BuyerNote'),
+            'Support_note' => $request->get('SupportNote'),
+          ]);
+          $locationDB ->save();
+        }
 
-      $fdate = $request->fdate;
-      $tdate = $request->tdate;
-      $branch = $request->branch;
-      $status = $request->status;
+        $fdate = $request->fdate;
+        $tdate = $request->tdate;
+        $branch = $request->branch;
+        $status = $request->status;
 
-      if ($branch == "Null") {
-        $branch = Null;
-      }
-      if ($status == "Null") {
-        $status = Null;
-      }
+        if ($branch == "Null") {
+          $branch = Null;
+        }
+        if ($status == "Null") {
+          $status = Null;
+        }
 
-      if ($type == 1) {
-        return redirect()->Route('Analysis',$type)->with(['fdate' => $fdate,'tdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
-      }
+        if ($type == 1) {
+          return redirect()->Route('Analysis',$type)->with(['fdate' => $fdate,'tdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
+        }
     }
 
     /**
@@ -1558,69 +1232,34 @@ class AnalysController extends Controller
       $item2 = Sponsor::where('Buyer_id',$id);
       $item3 = Cardetail::where('Buyercar_id',$id);
       $item4 = Expenses::where('Buyerexpenses_id',$id);
-      $item6 = homecardetail::where('Buyerhomecar_id',$id);
       $item7 = Sponsor2::where('Buyer_id2',$id);
       $item8 = upload_lat_long::where('Use_id',$id);
 
       $item5 = UploadfileImage::where('Buyerfileimage_id','=',$id)->get();
       $countData = count($item5);
-
-      $Currdate = date('2020-06-02');
       $created_at = '';
 
-      if($type == 1 or $type == 8 or $type == 12){
+      if($type == 1){
         if($countData != 0){
           $dataold = Buyer::where('id','=',$id)->first();
           $datacarold = Cardetail::where('Buyercar_id',$id)->first();
           $created_at = substr($dataold->created_at,0,10);
           $path = $datacarold->License_car;
         }
-      }elseif($type == 4){
-        if($countData != 0){
-          $dataold = Buyer::where('id','=',$id)->first();
-          $datacarold = homecardetail::where('Buyerhomecar_id',$id)->first();
-          $created_at = substr($dataold->created_at,0,10);
-          $path = $datacarold->oldplate_HC;
-        }
       }
 
-      if($created_at < $Currdate){
-        foreach ($item5 as $key => $value) {
-          $itemID = $value->Buyerfileimage_id;
-          $itemPath = $value->Name_fileimage;
-          Storage::delete($itemPath);
-        }
-        if($type == 1){
-          $ImageAccount = Cardetail::where('Buyercar_id','=',$id)->get();
-          if ($ImageAccount != NULL) {
-            Storage::delete($ImageAccount[0]->AccountImage_car);
-          }
-        }elseif($type == 4){
-          $ImageAccount = homecardetail::where('Buyerhomecar_id','=',$id)->get();
-          if ($ImageAccount != NULL) {
-            Storage::delete($ImageAccount[0]->AccountImage_car);
-          }
-        }
-      }
-      else{
-        foreach ($item5 as $key => $value) {
-          $itemID = $value->Buyerfileimage_id;
-          $itemPath = public_path().'/upload-image/'.$path;
-          File::deleteDirectory($itemPath);
-        }
-        if($type == 1){
-          $ImageAccount = Cardetail::where('Buyercar_id','=',$id)->get();
-          if ($ImageAccount != NULL) {
-            File::delete($ImageAccount[0]->AccountImage_car);
-          }
-        }elseif($type == 4){
-          $ImageAccount = homecardetail::where('Buyerhomecar_id','=',$id)->get();
-          if ($ImageAccount != NULL) {
-            File::delete($ImageAccount[0]->AccountImage_car);
-          }
-        }
+      foreach ($item5 as $key => $value) {
+        $itemID = $value->Buyerfileimage_id;
+        $itemPath = public_path().'/upload-image/'.$path;
+        File::deleteDirectory($itemPath);
       }
 
+      if($type == 1){
+        $ImageAccount = Cardetail::where('Buyercar_id','=',$id)->get();
+        if ($ImageAccount != NULL) {
+          File::delete($ImageAccount[0]->AccountImage_car);
+        }
+      }
       if ($countData != 0) {
         $deleteItem = UploadfileImage::where('Buyerfileimage_id',$itemID);
         $deleteItem->Delete();
@@ -1630,7 +1269,6 @@ class AnalysController extends Controller
       $item2->Delete();
       $item3->Delete();
       $item4->Delete();
-      $item6->Delete();
       $item7->Delete();
       $item8->Delete();
 
@@ -1639,7 +1277,6 @@ class AnalysController extends Controller
 
     public function deleteImageAll($id,$path,Request $request)
     {
-      $Currdate = date('2020-06-02');
       $created_at = '';
       if ($request->type == 2) {
         $item = DB::table('uploadfile_images')
@@ -1682,21 +1319,13 @@ class AnalysController extends Controller
           $dataold = Buyer::where('id','=',$id)->first();
           $created_at = substr($dataold->created_at,0,10);
         }
-  
-        if($created_at < $Currdate){
-          foreach ($item as $key => $value) {
-            $itemID = $value->Buyerfileimage_id;
-            $itemPath = $value->Name_fileimage;
-            Storage::delete($itemPath);
-          }
+
+        foreach ($item as $key => $value) {
+          $itemID = $value->Buyerfileimage_id;
+          $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+          File::delete($itemPath);
         }
-        else{
-          foreach ($item as $key => $value) {
-            $itemID = $value->Buyerfileimage_id;
-            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
-            File::delete($itemPath);
-          }
-        }
+
         $deleteItem = UploadfileImage::where('Buyerfileimage_id',$itemID);
         $deleteItem->Delete();
       }
@@ -1737,7 +1366,6 @@ class AnalysController extends Controller
       $path = $path;
       $mainid = $request->mainid;
       $created_at = '';
-      $Currdate = date('2020-06-02');
 
       $item1 = UploadfileImage::where('fileimage_id',$id);
       $data = UploadfileImage::where('fileimage_id','=',$id)->get();
@@ -1746,18 +1374,12 @@ class AnalysController extends Controller
         $dataold = Buyer::where('id','=',$mainid)->first();
         $created_at = substr($dataold->created_at,0,10);
       }
-      if($created_at < $Currdate){
-        foreach ($data as $key => $value) {
-          $itemPath = $value->Name_fileimage;
-          Storage::delete($itemPath);
-        }
+
+      foreach ($data as $key => $value) {
+        $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+        File::delete($itemPath);
       }
-      else{
-        foreach ($data as $key => $value) {
-          $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
-          File::delete($itemPath);
-        }
-      }
+      
       $item1->Delete();
       return redirect()->Route('deleteImageEach',[$type,$mainid,$fdate,$tdate,$branch,$status,$path])->with(['success' => 'ลบรูปสำเร็จ']);
     }
