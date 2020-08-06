@@ -111,6 +111,19 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlsrv2' => [
+            'driver' => 'sqlsrv',
+            'url' => env('DATABASE_URL'),
+            'host' => env('DB_HOST_SECOND', ''),
+            'port' => env('DB_PORT', '1433'),
+            'database' => env('DB_DATABASE_SECOND', ''),
+            'username' => env('DB_USERNAME_SECOND', ''),
+            'password' => env('DB_PASSWORD_SECOND', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'prefix_indexes' => true,
+        ],
+
     ],
 
     /*

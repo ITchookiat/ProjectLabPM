@@ -83,6 +83,7 @@
                           <th class="text-center">ชื่อลูกค้า</th>
                           <th class="text-center">เบอร์ติดต่อ</th>
                           <th class="text-center">เลขบัตร ปชช</th>
+                          <th class="text-center">ประเภทเงินกู้</th>
                           <th class="text-center">ตัวเลือก</th>
                         </tr>
                       </thead>
@@ -105,10 +106,11 @@
                             <td class="text-center">{{$row->Name_buyer}}</td>
                             <td class="text-center">{{$row->Phone_buyer}}</td>
                             <td class="text-center">{{$row->IDCard_buyer}}</td>
+                            <td class="text-center">{{$row->Type_leasing}}</td>
                             <td class="text-center">
                               @if($row->Status_leasing == 1) 
                                 <a href="{{ route('DataCustomer.savestatus', [2, $row->Customer_id]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
-                                  <i class="far fa-edit"></i> จัดสินเชื่อ
+                                  <i class="far fa-edit"></i> จัดเงินกู้
                                 </a>
                               @else
                                 <a href="#" class="btn btn-success btn-sm" title="แก้ไขรายการ">

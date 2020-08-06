@@ -107,7 +107,7 @@
                           </a>
                           <a href="{{ route('DataCustomer',2) }}" class="nav-link {{ Request::is('DataCustomer/Home/2') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Report walk-in</p>
+                            <p>Report Walk-in</p>
                           </a>
                         </li>
                       @endif
@@ -254,7 +254,7 @@
                 <li class="nav-item">
                   <a href="{{ route('treasury', 1) }}" class="nav-link {{ Request::is('Treasury/Home/1') ? 'active' : '' }}">
                     <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Approving transfers</p>
+                    <p>Approving Transfers</p>
                   </a>
                 </li>
               </ul>
@@ -276,7 +276,7 @@
                 <li class="nav-item">
                   <a href="{{ route('Accounting', 1) }}" class="nav-link {{ Request::is('Account/Home/1') ? 'active' : '' }}">
                     <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Internal audit</p>
+                    <p>Internal Audit</p>
                   </a>
                   <a href="{{ route('Accounting', 3) }}" class="nav-link {{ Request::is('Account/Home/3') ? 'active' : '' }}">
                     <i class="far fa-dot-circle nav-icon"></i>
