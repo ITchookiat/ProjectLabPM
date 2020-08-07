@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Buyer extends Model
 {
   protected $table = 'buyers';
-  protected $fillable = ['Contract_buyer','Date_Due','Name_buyer','last_buyer','Nick_buyer','Status_buyer','Phone_buyer','Phone2_buyer',
+  protected $fillable = ['Contract_buyer','Flag','Date_Due','Name_buyer','last_buyer','Nick_buyer','Status_buyer','Phone_buyer','Phone2_buyer',
                         'Mate_buyer','Idcard_buyer','Address_buyer','AddN_buyer','StatusAdd_buyer','Workplace_buyer','House_buyer',
                         'Driver_buyer','HouseStyle_buyer','Career_buyer','Income_buyer','Purchase_buyer','Support_buyer',
                         'securities_buyer','deednumber_buyer','area_buyer','BeforeIncome_buyer','AfterIncome_buyer','Gradebuyer_car','Objective_car'];

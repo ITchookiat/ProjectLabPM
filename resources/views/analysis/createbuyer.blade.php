@@ -395,7 +395,7 @@
                             <div class="row">
                               <div class="col-6">
                                 <div class="form-group row mb-1">
-                                  <label class="col-sm-3 col-form-label text-right">เลขประชาชนผู้ซื้อ : </label>
+                                  <label class="col-sm-3 col-form-label text-right">เลขบัตรปชช.ผู้ซื้อ : </label>
                                   <div class="col-sm-8">
                                     <input type="text" name="Idcardbuyer" class="form-control" placeholder="ป้อนเลขประชาชนผู้ซื้อ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
                                   </div>
@@ -525,38 +525,7 @@
                                 <div class="form-group row mb-1">
                                   <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
                                   <div class="col-sm-8">
-                                    <select name="Careerbuyer" class="form-control">
-                                      <option value="" selected>--- อาชีพ ---</option>
-                                      <option value="ตำรวจ">ตำรวจ</option>
-                                      <option value="ทหาร">ทหาร</option>
-                                      <option value="ครู">ครู</option>
-                                      <option value="ข้าราชการอื่นๆ">ข้าราชการอื่นๆ</option>
-                                      <option value="ลูกจ้างเทศบาล">ลูกจ้างเทศบาล</option>
-                                      <option value="ลูกจ้างประจำ">ลูกจ้างประจำ</option>
-                                      <option value="สมาชิก อบต.">สมาชิก อบต.</option>
-                                      <option value="ลูกจ้างชั่วคราว">ลูกจ้างชั่วคราว</option>
-                                      <option value="รับจ้าง">รับจ้าง</option>
-                                      <option value="พนักงานบริษัทเอกชน">พนักงานบริษัทเอกชน</option>
-                                      <option value="อาชีพอิสระ">อาชีพอิสระ</option>
-                                      <option value="กำนัน">กำนัน</option>
-                                      <option value="ผู้ใหญ่บ้าน">ผู้ใหญ่บ้าน</option>
-                                      <option value="ผู้ช่วยผู้ใหญ่บ้าน">ผู้ช่วยผู้ใหญ่บ้าน</option>
-                                      <option value="นักการภารโรง">นักการภารโรง</option>
-                                      <option value="มอเตอร์ไซร์รับจ้าง">มอเตอร์ไซร์รับจ้าง</option>
-                                      <option value="ค้าขาย">ค้าขาย</option>
-                                      <option value="เจ้าของธุรกิจ">เจ้าของธุรกิจ</option>
-                                      <option value="เจ้าของอู่รถ">เจ้าของอู่รถ</option>
-                                      <option value="ให้เช่ารถบรรทุก">ให้เช่ารถบรรทุก</option>
-                                      <option value="ช่างตัดผม">ช่างตัดผม</option>
-                                      <option value="ชาวนา">ชาวนา</option>
-                                      <option value="ชาวไร่">ชาวไร่</option>
-                                      <option value="ชาวสวนยาง">ชาวสวนยาง</option>
-                                      <option value="แม่บ้าน">แม่บ้าน</option>
-                                      <option value="รับเหมาก่อสร้าง">รับเหมาก่อสร้าง</option>
-                                      <option value="ประมง">ประมง</option>
-                                      <option value="ทนายความ">ทนายความ</option>
-                                      <option value="พระ">พระ</option>
-                                    </select>
+                                    <input type="text" name="Careerbuyer" class="form-control" placeholder="อาชีพ"/>
                                   </div>
                                 </div>
                               </div>
@@ -567,13 +536,7 @@
                                 <div class="form-group row mb-1">
                                   <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                   <div class="col-sm-8">
-                                    <select name="Incomebuyer" class="form-control">
-                                      <option value="" selected>--- รายได้ ---</option>
-                                      <option value="5,000 - 10,000">5,000 - 10,000</option>
-                                      <option value="10,000 - 15,000">10,000 - 15,000</option>
-                                      <option value="15,000 - 20,000">15,000 - 20,000</option>
-                                      <option value="มากกว่า 20,000">มากกว่า 20,000</option>
-                                    </select>
+                                    <input type="text" name="Incomebuyer" class="form-control" placeholder="รายได้"/>
                                   </div>
                                 </div>
                               </div>
@@ -805,17 +768,17 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">คู่สมรส : </label>
+                                <label class="col-sm-3 col-form-label text-right">เลขบัตรปชช.ผู้ค่ำ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="mateSP" class="form-control" placeholder="คู่สมรส" />
+                                  <input type="text" name="idcardSP" class="form-control" placeholder="เลขบัตรประชาชนผู้ค่ำ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">เลขบัตรประชาชน : </label>
+                                <label class="col-sm-3 col-form-label text-right">คู่สมรส : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="idcardSP" class="form-control" placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
+                                  <input type="text" name="mateSP" class="form-control" placeholder="คู่สมรส" />
                                 </div>
                               </div>
                             </div>
@@ -935,38 +898,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
                                 <div class="col-sm-8">
-                                  <select name="careerSP" class="form-control">
-                                    <option value="" selected>--- อาชีพ ---</option>
-                                    <option value="ตำรวจ">ตำรวจ</option>
-                                    <option value="ทหาร">ทหาร</option>
-                                    <option value="ครู">ครู</option>
-                                    <option value="ข้าราชการอื่น">ข้าราชการอื่น</option>
-                                    <option value="ลูกจ้างเทศบาล">ลูกจ้างเทศบาล</option>
-                                    <option value="ลูกจ้างประจำ">ลูกจ้างประจำ</option>
-                                    <option value="สมาชิก อบต.">สมาชิก อบต.</option>
-                                    <option value="ลูกจ้างชั่วคราว">ลูกจ้างชั่วคราว</option>
-                                    <option value="รับจ้าง">รับจ้าง</option>
-                                    <option value="พนักงานบริษัทเอกชน">พนักงานบริษัทเอกชน</option>
-                                    <option value="อาชีพอิสระ">อาชีพอิสระ</option>
-                                    <option value="กำนัน">กำนัน</option>
-                                    <option value="ผู้ใหญ่บ้าน">ผู้ใหญ่บ้าน</option>
-                                    <option value="ผู้ช่วยผู้ใหญ่บ้าน">ผู้ช่วยผู้ใหญ่บ้าน</option>
-                                    <option value="นักการภารโรง">นักการภารโรง</option>
-                                    <option value="มอเตอร์ไซร์รับจ้าง">มอเตอร์ไซร์รับจ้าง</option>
-                                    <option value="ค้าขาย">ค้าขาย</option>
-                                    <option value="เจ้าของธุรกิจ">เจ้าของธุรกิจ</option>
-                                    <option value="เจ้าของอู่รถ">เจ้าของอู่รถ</option>
-                                    <option value="ให้เช่ารถบรรทุก">ให้เช่ารถบรรทุก</option>
-                                    <option value="ช่างตัดผม">ช่างตัดผม</option>
-                                    <option value="ชาวนา">ชาวนา</option>
-                                    <option value="ชาวไร่">ชาวไร่</option>
-                                    <option value="ชาวสวนยาง">ชาวสวนยาง</option>
-                                    <option value="แม่บ้าน">แม่บ้าน</option>
-                                    <option value="รับเหมาก่อสร้าง">รับเหมาก่อสร้าง</option>
-                                    <option value="ประมง">ประมง</option>
-                                    <option value="ทนายความ">ทนายความ</option>
-                                    <option value="พระ">พระ</option>
-                                  </select>
+                                  <input type="text" name="careerSP" class="form-control" placeholder="อาชีพ"/>
                                 </div>
                               </div>
                             </div>
@@ -977,13 +909,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                 <div class="col-sm-8">
-                                  <select name="incomeSP" class="form-control">
-                                    <option value="" selected>--- รายได้ ---</option>
-                                    <option value="5,000 - 10,000">5,000 - 10,000</option>
-                                    <option value="10,000 - 15,000">10,000 - 15,000</option>
-                                    <option value="15,000 - 20,000">15,000 - 20,000</option>
-                                    <option value="มากกว่า 20,000">มากกว่า 20,000</option>
-                                  </select>
+                                  <input type="text" name="incomeSP" class="form-control" placeholder="รายได้"/>
                                 </div>
                               </div>
                             </div>
@@ -1326,23 +1252,6 @@
                             </div>
                           </div>
 
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right"></label>
-                                <div class="col-sm-8">
-                                  <span class="todo-wrap">
-                                    <input type="checkbox" id="2" name="Salemethod" value="on"/>
-                                    <label for="2" class="todo">
-                                      <i class="fa fa-check"></i>
-                                      กรรมสิทธิ์ในแบบซื้อขาย
-                                    </label>
-                                  </span>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
                           <hr />
                           <div class="row">
                             <div class="col-6">
@@ -1620,10 +1529,10 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">เปอร์เซ็นต์ค่าคอม : </label>
+                                <label class="col-sm-3 col-form-label text-right">ซื้อ ป2+/ป1 : </label>
                                 <div class="col-sm-8">
-                                  <input type="hidden" id="tempTopcar" name="tempTopcar" class="form-control" placeholder="รวมยอดจัด" oninput="balance()" readonly/>
-                                  <input type="text" name="vatPrice" class="form-control" placeholder="เปอร์เซ็นต์ค่าคอม" />
+                                  <input type="text" id="P2Price" name="P2Price" class="form-control" value="0" placeholder="ซื้อ ป2+" oninput="balance();"/>
+                                  <input type="hidden" id="P2PriceOri" name="P2PriceOri" class="form-control" value="0" placeholder="ซื้อ ป2+" onchange="calculate();balance();"/>
                                 </div>
                               </div>
                             </div>
@@ -1640,30 +1549,10 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ซื้อ ป2+/ป1 : </label>
+                                <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="P2Price" name="P2Price" class="form-control" value="0" placeholder="ซื้อ ป2+" oninput="balance();"/>
-                                  <input type="hidden" id="P2PriceOri" name="P2PriceOri" class="form-control" value="0" placeholder="ซื้อ ป2+" onchange="calculate();balance();"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <hr />
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่าใช้จ่ายขนส่ง : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="tranPrice" name="tranPrice" class="form-control" value="0" placeholder="ค่าใช้จ่ายขนส่ง" oninput="balance()"/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">อื่นๆ : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="otherPrice" name="otherPrice" class="form-control" value="0" placeholder="อื่นๆ" oninput="balance()"/>
+                                  <input type="text" id="totalkPrice" name="totalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance();" readonly/>
+                                  <input type="hidden" id="temptotalkPrice" name="temptotalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance();"/>
                                 </div>
                               </div>
                             </div>
@@ -1703,52 +1592,6 @@
 
                             });
                           </script>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่าประเมิน : </label>
-                                <div class="col-sm-8">
-                                  <input id="evaluetionPrice" name="evaluetionPrice" class="form-control" value="0" readonly oninput="balance();"/>
-                                  <!-- <select id="evaluetionPrice" name="evaluetionPrice" class="form-control" oninput="balance()">
-                                    <option value="" selected>--- ค่าประเมิน ---</option>
-                                    <option value="1,000">1,000</option>
-                                    <option value="1,500">1,500</option>
-                                    <option value="2,000">2,000</option>
-                                    <option value="2,500">2,500</option>
-                                  </select> -->
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">อากร : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="dutyPrice" name="dutyPrice" class="form-control" placeholder="1,500" value="1,500" readonly oninput="balance()"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่าการตลาด : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="marketingPrice" name="marketingPrice" class="form-control"  placeholder="1,500" value="1,500" readonly oninput="balance()"/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">รวม คชจ. : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance();" readonly/>
-                                  <input type="hidden" id="temptotalkPrice" name="temptotalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance();"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
                           <hr>
                           <div class="row">
