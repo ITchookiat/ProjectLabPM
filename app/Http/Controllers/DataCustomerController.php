@@ -98,8 +98,10 @@ class DataCustomerController extends Controller
         ////////////////////////////////////
         if($data->Type_leasing == 'PLoan'){
             $Settype = 'P03-';
+            $Flag = 'N';
         }elseif($data->Type_leasing == 'Micro'){
             $Settype = 'P06-';
+            $Flag = 'D';
         }
 
         ////////////////////////////////////
@@ -121,12 +123,22 @@ class DataCustomerController extends Controller
         elseif($data->Branch_car == 'เบตง'){
             $SetContract = $Settype.$SetYear.'25'.'/';
         }
+        elseif($data->Branch_car == 'โคกโพธิ์'){
+            $SetContract = $Settype.$SetYear.'26'.'/';
+        }
+        elseif($data->Branch_car == 'ระแงะ'){
+            $SetContract = $Settype.$SetYear.'27'.'/';
+        }
+        elseif($data->Branch_car == 'บังนังสตา'){
+            $SetContract = $Settype.$SetYear.'28'.'/';
+        }
         else{
             $SetContract = $Settype.$SetYear.'00'.'/';
         }
 
         $Buyerdb = new Buyer([
             'Contract_buyer' => $SetContract,
+            'Flag' => $Flag,
             'Date_Due' => $DateDue,
             'Name_buyer' => $Name_buyer,
             'last_buyer' => $last_buyer,

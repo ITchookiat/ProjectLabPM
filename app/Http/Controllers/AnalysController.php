@@ -695,7 +695,6 @@ class AnalysController extends Controller
      */
     public function update(Request $request, $id, $type)
     {
-      dd($request);
       date_default_timezone_set('Asia/Bangkok');
       $Getcardetail = Cardetail::where('Buyercar_id',$id)->first();
 
