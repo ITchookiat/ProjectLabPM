@@ -91,13 +91,15 @@
                         @foreach($data as $key => $row)
                           <tr>
                             <td class="text-center">
-                              <form method="post" class="delete_form" action="{{ action('DataCustomerController@destroy',[$row->Customer_id]) }}" style="display:inline;">
-                              {{csrf_field()}}
-                                <input type="hidden" name="_method" value="DELETE" />
-                                <button type="submit" data-name="" class="delete-modal btn-danger btn-xs AlertForm" title="ลบรายการ">
-                                  <i class="far fa-trash-alt"></i>
-                                </button>
-                              </form>
+                              @if($row->Status_leasing == 1 or auth::user()->type == "Admin")
+                                <form method="post" class="delete_form" action="{{ action('DataCustomerController@destroy',[$row->Customer_id]) }}" style="display:inline;">
+                                {{csrf_field()}}
+                                  <input type="hidden" name="_method" value="DELETE" />
+                                  <button type="submit" data-name="" class="delete-modal btn-danger btn-xs AlertForm" title="ลบรายการ">
+                                    <i class="far fa-trash-alt"></i>
+                                  </button>
+                                </form>
+                              @endif
                             </td>
                             <td class="text-center">{{$key+1}}</td>
                             <td class="text-center">{{DateThai(substr($row->created_at,0,10))}}</td>

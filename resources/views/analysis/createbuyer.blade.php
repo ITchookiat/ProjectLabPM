@@ -232,7 +232,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                              <input type="checkbox" id="2" class="checkbox" name="TypeContract" value="P03-"> <!-- checked="checked"  -->
+                              <input type="checkbox" id="4" class="checkbox" name="TypeContract" value="P03-"> <!-- checked="checked"  -->
                               <label for="2" class="todo">
                                 <i class="fa fa-check"></i>
                                 <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>
@@ -1054,7 +1054,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">กลุ่มปีรถยนต์ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Groupyearcar" name="Groupyearcar" class="form-control" onchange="calculate();"/>
+                                  <input type="text" id="Groupyearcar" name="Groupyearcar" class="form-control" placeholder="กลุ่มปีรถยนต์" onchange="calculate();"/>
                                 </div>
                               </div>
                             </div>
@@ -1104,18 +1104,58 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ยอดจัด : </label>
+                                <label class="col-sm-3 col-form-label text-right">เงินต้น : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Topcar" name="Topcar" class="form-control" maxlength="9" placeholder="กรอกยอดจัด" oninput="calculate();balance();percent();" />
-                                  <input type="hidden" id="TopcarOri" name="TopcarOri" class="form-control" placeholder="กรอกยอดจัด" oninput="balance();" />
+                                  <input type="text" id="Topcar" name="Topcar" class="form-control" maxlength="9" placeholder="ป้อนเงินต้น" oninput="calculate2()" />
+                                  <input type="hidden" id="Topcarfee" name="Topcarfee" class="form-control" placeholder="ป้อนยอดจัด" oninput="calculate2()" />
                                 </div>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label>
+                                <div class="col-sm-8">
+                                  <input type="text" id="Totalfee" name="Totalfee" class="form-control" placeholder="-" readonly/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
+                                <div class="col-sm-7">
+                                  <input type="text" id="Processfee" name="Processfee" class="form-control" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2()"/>
+                                </div>
+                                <label class="col-sm-1 col-form-label text-left">% </label>
                               </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ชำระต่องวด : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Paycar" name="Paycar" class="form-control" readonly onchange="calculate()" />
+                                  <input type="text" id="Paycar" name="Paycar" class="form-control" placeholder="-" readonly/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/ปี : </label>
+                                <div class="col-sm-7">
+                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();"/>
+                                </div>
+                                <label class="col-sm-1 col-form-label text-left">% </label>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ยอดรวมทั้งสัญญา : </label>
+                                <div class="col-sm-8">
+                                  <input type="text" id="Totalpay1car" name="Totalpay1car" class="form-control" placeholder="-" readonly />
                                 </div>
                               </div>
                             </div>
@@ -1126,8 +1166,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ระยะเวลาผ่อน : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Year" class="form-control" readonly />
-                                  <select id="Timeslackencar" name="Timeslackencar" class="form-control" style="display:none;" onchange="calculate();">
+                                  <select id="Timeslackencar" name="Timeslackencar" class="form-control" oninput="calculate();calculate2();">
                                     <option value="" selected>--- ระยะเวลาผ่อน ---</option>
                                     <option value="12">12</option>
                                     <option value="18">18</option>
@@ -1136,73 +1175,26 @@
                                     <option value="36">36</option>
                                     <option value="42">42</option>
                                     <option value="48">48</option>
-                                    <option value="54">54</option>
+                                    <!--<option value="54">54</option>
                                     <option value="60">60</option>
                                     <option value="66">66</option>
                                     <option value="72">72</option>
                                     <option value="78">78</option>
-                                    <option value="84">84</option>
+                                    <option value="84">84</option> -->
                                   </select>
                                 </div>
                               </div>
                             </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ภาษี/ระยะเวลาผ่อน : </label>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Taxcar" name="Taxcar" class="form-control" readonly />
-                                </div>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Taxpaycar" name="Taxpaycar" class="form-control" readonly />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/ปี : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control" placeholder="ดอกเบี้ย" readonly onchange="calculate();"/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่างวด/ระยะเวลาผ่อน : </label>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Paymemtcar" name="Paymemtcar" class="form-control" readonly />
-                                </div>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Timepaymentcar" name="Timepaymentcar" class="form-control" readonly />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">VAT : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="Vatcar" name="Vatcar" class="form-control" value="7 %" readonly onchange="calculate()"/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
+                            <!-- <div class="col-6">
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ยอดผ่อนชำระทั้งหมด : </label>
-                                <div class="col-sm-4">
+                                <div class="col-sm-8">
                                   <input type="text" id="Totalpay1car" name="Totalpay1car" class="form-control" readonly />
                                 </div>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Totalpay2car" name="Totalpay2car" class="form-control" readonly />
-                                </div>
                               </div>
-                            </div>
+                            </div> -->
                           </div>
-
+                          <hr>
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-1">
@@ -1213,6 +1205,7 @@
                                     <option value="แถม ป2+ 1ปี">แถม ป2+ 1ปี</option>
                                     <option value="มี ป2+ อยู่แล้ว">มี ป2+ อยู่แล้ว</option>
                                     <option value="ไม่แถม">ไม่แถม</option>
+                                    <option value="ไม่ซื้อ">ไม่ซื้อ</option>
                                     <option value="ซื้อ ป2+ 1ปี">ซื้อ ป2+ 1ปี</option>
                                     <option value="ซื้อ ป1 1ปี">ซื้อ ป1 1ปี</option>
                                     <option value="มี ป1 อยู่แล้ว">มี ป1 อยู่แล้ว</option>
@@ -1324,7 +1317,7 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1" id="ShowCom">
+                              <div class="form-group row mb-1" id="ShowCom" style="display:none;">
                                 <label class="col-sm-3 col-form-label text-right">ค่าคอม : </label>
                                 <div class="col-sm-8">
                                   <input type="text" id="Commissioncar" name="Commissioncar" class="form-control" placeholder="ค่าคอม" oninput="commission();"/>

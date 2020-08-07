@@ -558,6 +558,9 @@
                                 <option value="สายบุรี" {{ (auth::user()->branch == 05) ? 'selected' : '' }}>สายบุรี</option>
                                 <option value="โกลก" {{ (auth::user()->branch == 06) ? 'selected' : '' }}>โกลก</option>
                                 <option value="เบตง" {{ (auth::user()->branch == 07) ? 'selected' : '' }}>เบตง</option>
+                                <option value="โคกโพธิ์" {{ (auth::user()->branch == 26) ? 'selected' : '' }}>โคกโพธิ์</option>
+                                <option value="ระแงะ" {{ (auth::user()->branch == 27) ? 'selected' : '' }}>ระแงะ</option>
+                                <option value="บังนังสตา" {{ (auth::user()->branch == 28) ? 'selected' : '' }}>บังนังสตา</option>
                           </select>
                         </div>
                       </div>
