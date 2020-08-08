@@ -469,22 +469,19 @@
                                       <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
                                     </select>
                                   @else
-                                    @if($GetDocComplete != Null)
-                                      <input type="text" name="BrachUser" class="form-control" value="{{ $data->branch_car }}" readonly/>
-                                    @else
-                                      <select name="BrachUser" class="form-control" required>
-                                        <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
-                                        <option value="20" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
-                                        <option value="21" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
-                                        <option value="22" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
-                                        <option value="23" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
-                                        <option value="24" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก</option>
-                                        <option value="25" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง</option>
-                                        <option value="26" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
-                                        <option value="27" {{ ($data->branch_car === 'ระแงะ') ? 'selected' : '' }}>ระแงะ</option>
-                                        <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
-                                      </select>
-                                    @endif
+                                    <input type="text" name="BrachUser" class="form-control" value="{{ $data->branch_car }}" readonly/>
+                                    {{-- <select name="BrachUser" class="form-control" required>
+                                      <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
+                                      <option value="20" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
+                                      <option value="21" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
+                                      <option value="22" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
+                                      <option value="23" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
+                                      <option value="24" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก</option>
+                                      <option value="25" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง</option>
+                                      <option value="26" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
+                                      <option value="27" {{ ($data->branch_car === 'ระแงะ') ? 'selected' : '' }}>ระแงะ</option>
+                                      <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
+                                    </select> --}}
                                   @endif
                                   </div>
                                 </div>
