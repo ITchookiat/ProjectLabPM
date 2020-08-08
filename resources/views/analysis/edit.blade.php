@@ -255,7 +255,7 @@
                          <div class="float-left form-inline">
                           <i class="fas fa-grip-vertical"></i>
                           <span class="todo-wrap">
-                            <input type="checkbox" id="11" class="checkbox" name="TypeContract" value="P06-" {{ ($SubStr === "P06-") ? 'checked' : '' }}>
+                            <input type="checkbox" id="11" class="checkbox" name="TypeContract" value="P03-" {{ ($SubStr === "P03-") ? 'checked' : '' }}>
                             <label for="11" class="todo">
                               <i class="fa fa-check"></i>
                               <span class="text"><font color="red">PLOAN &nbsp;&nbsp;</font></span>
@@ -267,7 +267,7 @@
                         <div class="float-left form-inline">
                           <i class="fas fa-grip-vertical"></i>
                           <span class="todo-wrap">
-                            <input type="checkbox" id="10" class="checkbox" name="TypeContract" value="P03-" {{ ($SubStr === "P03-") ? 'checked' : '' }}>
+                            <input type="checkbox" id="10" class="checkbox" name="TypeContract" value="P06-" {{ ($SubStr === "P06-") ? 'checked' : '' }}>
                             <label for="10" class="todo">
                               <i class="fa fa-check"></i>
                               <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>
