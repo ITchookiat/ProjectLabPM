@@ -63,9 +63,11 @@ class DataCustomerController extends Controller
             'Top_car' => $SetTopcar,
             'Year_car' => $request->get('Yearcar'),
             'Name_buyer' => $request->get('Namebuyer'),
+            'Last_buyer' => $request->get('Lastbuyer'),
             'Phone_buyer' => $request->get('Phonebuyer'),
             'IDCard_buyer' => $request->get('IDCardbuyer'),
             'Name_agent' => $request->get('Nameagent'),
+            'Last_agent' => $request->get('Lastagent'),
             'Phone_agent' => $request->get('Phoneagent'),
             'Resource_news' => $request->get('News'),
             'Branch_car' => $request->get('branchcar'),
@@ -81,16 +83,7 @@ class DataCustomerController extends Controller
     {
         $data = Data_customer::find($id);
           $data->Status_leasing = $value;
-        $data->update();
 
-        if($data->Name_buyer != Null){
-            $SetStr = explode(" ",$data->Name_buyer);
-            $Name_buyer = $SetStr[0];
-            $last_buyer = $SetStr[1];
-        }else{
-            $Name_buyer = '';
-            $last_buyer = '';
-        }
         $DateDue = date('Y-m-d');
         $Year = date('Y') + 543;
         $SetYear = substr($Year,2,3);
@@ -140,8 +133,8 @@ class DataCustomerController extends Controller
             'Contract_buyer' => $SetContract,
             'Flag' => $Flag,
             'Date_Due' => $DateDue,
-            'Name_buyer' => $Name_buyer,
-            'last_buyer' => $last_buyer,
+            'Name_buyer' => $data->Name_buyer,
+            'last_buyer' => $data->Last_buyer,
             'Phone_buyer' => $data->Phone_buyer,
             'Idcard_buyer' => $data->IDCard_buyer,
           ]);
@@ -161,7 +154,7 @@ class DataCustomerController extends Controller
             'Typecardetails' => $data->Typecardetails,
             'License_car' => $data->License_car,
             'Top_car' => $data->Top_car,
-            'Commission_car' => $data->Name_agent,
+            'Agentcar' => $data->Name_agent,
             'Tellagent_car' => $data->Phone_agent,
             'StatusApp_car' => 'รออนุมัติ',
             'DocComplete_car' => $request->get('doccomplete'),
@@ -172,6 +165,8 @@ class DataCustomerController extends Controller
             'Buyerexpenses_id' => $Buyerdb->id,
           ]);
           $Expensesdb ->save();
+
+          $data->update();
           return redirect()->back()->with('success','บันทึกเรียบร้อยแล้ว');
     }
 
@@ -217,6 +212,9 @@ class DataCustomerController extends Controller
      */
     public function destroy($id)
     {
-        dd($id);
+        // dd($id);
+        $item1 = Data_customer::find($id);
+        $item1->Delete();
+        return redirect()->back()->with('success','ลบข้อมูลเรียบร้อยแล้ว');
     }
 }

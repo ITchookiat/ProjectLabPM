@@ -43,13 +43,28 @@
           <div class="col-12 table-responsive">
             <div class="card">
               <div class="card-header">
-                <h4 class="">
-                  @if($type == 1)
-                    ลูกค้า walk-in (Customer walk-in)
-                  @elseif($type == 2)
-                    รายงาน walk-in (Report Customer walk-in)
-                  @endif
-                </h4>
+                <div class="row">
+                  <div class="col-6">
+                    <div class="form-inline">
+                      <h4>
+                        @if($type == 1)
+                          ลูกค้า walk-in (Customer walk-in)
+                        @elseif($type == 2)
+                          รายงาน walk-in (Report Customer walk-in)
+                        @endif
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="col-6">
+                    <div class="card-tools d-inline float-right">
+                      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                        <a class="btn bg-warning btn-sm" data-toggle="modal" data-target="#modal-walkin" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
+                          <span class="fas fa-users"></span> Add New
+                        </a>
+                      @endif
+                    </div>
+                  </div>
+                </div>
               </div>
               <div class="card-body text-sm">
                 <div class="col-md-12">
@@ -105,9 +120,9 @@
                             <td class="text-center">{{DateThai(substr($row->created_at,0,10))}}</td>
                             <td class="text-center">{{$row->License_car}}</td>
                             <td class="text-center">{{number_format($row->Top_car,2)}}</td>
-                            <td class="text-center">{{$row->Name_buyer}}</td>
-                            <td class="text-center">{{$row->Phone_buyer}}</td>
-                            <td class="text-center">{{$row->IDCard_buyer}}</td>
+                            <td class="text-center">{{($row->Name_buyer != Null) ? $row->Name_buyer : '-'}}   {{$row->Last_buyer}}</td>
+                            <td class="text-center">{{($row->Phone_buyer != Null) ? $row->Phone_buyer : '-'}}</td>
+                            <td class="text-center">{{($row->IDCard_buyer != Null) ? $row->IDCard_buyer : '-'}}</td>
                             <td class="text-center">{{$row->Type_leasing}}</td>
                             <td class="text-center">
                               @if($row->Status_leasing == 1) 
@@ -281,36 +296,221 @@
     setInterval(blinker, 1500);
   </script>
 
-<script type="text/javascript">
-  $(document).ready(function () {
-    bsCustomFileInput.init();
-  });
-</script>
+  <script type="text/javascript">
+    $(document).ready(function () {
+      bsCustomFileInput.init();
+    });
+  </script>
 
-<script type="text/javascript">
-	$(document).ready(function(e) {
-	increaseNotify();
-    setInterval(increaseNotify, 3000);
-  });
-  function increaseNotify(){ // โหลดตัวเลขทั้งหมดที่ถูกส่งมาแสดง
-    $.ajax({
-      url: "increase.php",
-      type: 'GET',
-      success: function(obj) {
-        var obj = JSON.parse(obj);
-        $(".badge_number").text(obj.badge_number);
-      }
-    });
-  }
-  function decreaseNotify(){ // ลบตัวเลข badge number
-    $.ajax({
-      url: "decrease.php",
-      type: 'GET',
-      success: function(obj) {
-        
-      }
-    });
-  }
-</script>
+  <!-- Walkin modal -->
+  <form name="form2" action="{{ route('MasterDataCustomer.store') }}" method="post" enctype="multipart/form-data">
+    @csrf
+      <div class="modal fade" id="modal-walkin" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="border-radius: 30px 30px 30px 30px;">
+              <div class="modal-header bg-warning" style="border-radius: 30px 30px 30px 30px;">
+                <div class="col text-center">
+                  <h5 class="modal-title"><i class="fas fa-users"></i> ลูกค้า WALK IN</h5>
+                </div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">x</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                        <label class="col-sm-5 col-form-label text-right"><font color="red">*** ป้ายทะเบียน :</font> </label>
+                        <div class="col-sm-7">
+                          <input type="text" name="Licensecar" class="form-control" placeholder="ป้อนป้ายทะเบียน" required/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-4 col-form-label text-right">ยี่ห้อรถ : </label>
+                        <div class="col-sm-7">
+                          <select name="Brandcar" class="form-control">
+                            <option value="" selected>--- ยี่ห้อ ---</option>
+                            <option value="ISUZU">ISUZU</option>
+                            <option value="MITSUBISHI">MITSUBISHI</option>
+                            <option value="TOYOTA">TOYOTA</option>
+                            <option value="MAZDA">MAZDA</option>
+                            <option value="FORD">FORD</option>
+                            <option value="NISSAN">NISSAN</option>
+                            <option value="HONDA">HONDA</option>
+                            <option value="CHEVROLET">CHEVROLET</option>
+                            <option value="MG">MG</option>
+                            <option value="SUZUKI">SUZUKI</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-5 col-form-label text-right">รุ่นรถ : </label>
+                        <div class="col-sm-7">
+                          <input type="text" name="Modelcar" class="form-control" placeholder="ป้อนรุ่นรถ" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-4 col-form-label text-right">ประเภทรถ : </label>
+                        <div class="col-sm-7">
+                          <select id="Typecardetail" name="Typecardetail" class="form-control">
+                            <option value="" selected>--- ประเภทรถ ---</option>
+                            <option value="รถกระบะ">รถกระบะ</option>
+                            <option value="รถตอนเดียว">รถตอนเดียว</option>
+                            <option value="รถเก๋ง/7ที่นั่ง">รถเก๋ง/7ที่นั่ง</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-5 col-form-label text-right"><font color="red"> ยอดจัด : </font> </label>
+                        <div class="col-sm-7">
+                          <input type="text" id="topcar" name="Topcar" class="form-control" placeholder="ป้อนยอดจัด" oninput="addcomma();" maxlength="9" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-4 col-form-label text-right">ปีรถ : </label>
+                        <div class="col-sm-7">
+                          <select id="Yearcar" name="Yearcar" class="form-control">
+                            <option value="" selected>--- เลือกปี ---</option>
+                              @php
+                                  $Year = date('Y');
+                              @endphp
+                              @for ($i = 0; $i < 20; $i++)
+                                <option value="{{ $Year }}">{{ $Year }}</option>
+                                @php
+                                    $Year -= 1;
+                                @endphp
+                              @endfor
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-5 col-form-label text-right">ชื่อลูกค้า :</label>
+                        <div class="col-sm-4">
+                          <input type="text" name="Namebuyer" class="form-control" placeholder="ป้อนชื่อ"/>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="Lastbuyer" class="form-control" placeholder="นามสกุล"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-4 col-form-label text-right">ชื่อนายหน้า :</label>
+                        <div class="col-sm-7">
+                          <input type="text" name="Nameagent" class="form-control" placeholder="ป้อนชื่อนายหน้า"/>
+                        </div>
+                        <!-- <div class="col-sm-3">
+                          <input type="text" name="Lastagent" class="form-control" placeholder="ป้อนสกุล"/>
+                        </div> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-5 col-form-label text-right">เบอร์ลูกค้า :</label>
+                        <div class="col-sm-7">
+                          <input type="text" name="Phonebuyer" class="form-control" placeholder="ป้อนเบอร์ลูกค้า"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-4 col-form-label text-right">เบอร์นายหน้า :</label>
+                        <div class="col-sm-7">
+                          <input type="text" name="Phoneagent" class="form-control" placeholder="ป้อนเบอร์นายหน้า"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-5 col-form-label text-right">เลขบัตร ปชช :</label>
+                        <div class="col-sm-7">
+                          <input type="text" name="IDCardbuyer" class="form-control" placeholder="ป้อนเลขบัตร ปชช" maxlength="13"/>
+                        </div>
+                        <br><br>
+                        <label class="col-sm-5 col-form-label text-right">ประเภทเงินกู้ :</label>
+                        <div class="col-sm-7">
+                          <select id="TypeLeasing" name="TypeLeasing" class="form-control" required>
+                              <option value="" selected>--- เลือกประเภทเงินกู้ ---</option>
+                              <option value="PLoan">PLoan</option>
+                              <option value="Micro">Micro</option>
+                          </select>
+                        </div>
+                        <br><br>
+                        <label class="col-sm-5 col-form-label text-right">ที่มาของลูกค้า :</label>
+                        <div class="col-sm-7">
+                        <select id="News" name="News" class="form-control" required>
+                            <option value="" selected>--- เลือกแหล่งที่มา ---</option>
+                            <option value="นายหน้าแนะนำ">นายหน้าแนะนำ</option>
+                            <option value="Facebook">Facebook</option>
+                            <option value="Line">Line</option>
+                            <option value="ป้ายโฆษณา">ป้ายโฆษณา</option>
+                            <option value="วิทยุ">วิทยุ</option>
+                            <option value="เพื่อนแนะนำ">เพื่อนแนะนำ</option>
+                          </select>
+                        </div>
+                        <br><br>
+                        <label class="col-sm-5 col-form-label text-right">สาขา :</label>
+                        <div class="col-sm-7">
+                          <select id="branchcar" name="branchcar" class="form-control" required>
+                                <option value="" selected>--- เลือกสาขา ---</option>
+                                <option value="ปัตตานี" {{ (auth::user()->branch == 01) ? 'selected' : '' }}>ปัตตานี</option>
+                                <option value="ยะลา" {{ (auth::user()->branch == 03) ? 'selected' : '' }}>ยะลา</option>
+                                <option value="นราธิวาส" {{ (auth::user()->branch == 04) ? 'selected' : '' }}>นราธิวาส</option>
+                                <option value="สายบุรี" {{ (auth::user()->branch == 05) ? 'selected' : '' }}>สายบุรี</option>
+                                <option value="โกลก" {{ (auth::user()->branch == 06) ? 'selected' : '' }}>โกลก</option>
+                                <option value="เบตง" {{ (auth::user()->branch == 07) ? 'selected' : '' }}>เบตง</option>
+                                <option value="โคกโพธิ์" {{ (auth::user()->branch == 26) ? 'selected' : '' }}>โคกโพธิ์</option>
+                                <option value="ระแงะ" {{ (auth::user()->branch == 27) ? 'selected' : '' }}>ระแงะ</option>
+                                <option value="บังนังสตา" {{ (auth::user()->branch == 28) ? 'selected' : '' }}>บังนังสตา</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group row mb-1">
+                      <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
+                        <div class="col-sm-7">
+                          <textarea class="form-control" name="Notecar" rows="7" placeholder="ป้อนหมายเหตุ..."></textarea>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+              <div style="text-align: center;">
+                  <button type="submit" class="btn btn-success text-center" style="border-radius: 50px;">บันทึก</button>
+                  <button type="button" class="btn btn-danger" style="border-radius: 50px;" data-dismiss="modal">ยกเลิก</button>
+              </div>
+              <br>
+            </div>
+            <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+  </form>
+
 
 @endsection

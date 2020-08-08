@@ -133,17 +133,18 @@
 
           var fee = (Setfee/100)/1;
           var capital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
-          var interest = (Setinterest/100)/1;
+          var interest = ((Setinterest/100)/1) * 12;
           var process = (parseFloat(capital) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
           var total_pay = Math.ceil(process/10)*10;
           var total_sum = total_pay * Timelack;
+          var profit = total_sum - capital;
         
             document.form1.Topcar.value = addCommas(Topcar);
             document.form1.Totalfee.value = addCommas(capital.toFixed(2));
           if(Timelack != ''){
             document.form1.Paycar.value = addCommas(total_pay.toFixed(2));
             document.form1.Totalpay1car.value = addCommas(total_sum.toFixed(2));
-            // document.form1.Topcarfee.value = addCommas(fee);
+            document.form1.Profit.value = addCommas(profit.toFixed(2));
           }
     }
 
