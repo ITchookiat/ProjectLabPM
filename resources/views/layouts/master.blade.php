@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>ชูเกียรติลิสซิ่ง</title>
+  <title>ชูเกียรติลิสซิ่ง Ploan-Micro</title>
   <link rel="icon" href="{{ asset('dist/img/leasingLogo.png') }}" type="image/ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -361,7 +361,7 @@
 
 </head>
 
-<body  class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse" style="height: auto;">
+<body  class="sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed sidebar-collapse nav-yellow" style="height: auto;">
   <!-- Site wrapper -->
   <div class="wrapper">
 

@@ -486,8 +486,11 @@
                     <div class="col-6">
                       <div class="form-group row mb-1">
                       <label class="col-sm-5 col-form-label text-right">ชื่อลูกค้า :</label>
-                        <div class="col-sm-7">
-                          <input type="text" name="Namebuyer" class="form-control" placeholder="ป้อนชื่อลูกค้า"/>
+                        <div class="col-sm-4">
+                          <input type="text" name="Namebuyer" class="form-control" placeholder="ป้อนชื่อ"/>
+                        </div>
+                        <div class="col-sm-3">
+                          <input type="text" name="Lastbuyer" class="form-control" placeholder="นามสกุล"/>
                         </div>
                       </div>
                     </div>
@@ -497,6 +500,9 @@
                         <div class="col-sm-7">
                           <input type="text" name="Nameagent" class="form-control" placeholder="ป้อนชื่อนายหน้า"/>
                         </div>
+                        <!-- <div class="col-sm-3">
+                          <input type="text" name="Lastagent" class="form-control" placeholder="ป้อนสกุล"/>
+                        </div> -->
                       </div>
                     </div>
                   </div>

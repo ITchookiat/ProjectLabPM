@@ -1921,7 +1921,7 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/ปี : </label>
+                                <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/เดือน : </label>
                                 <div class="col-sm-7">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <input type="text" id="Interestcar" name="Interestcar" value="{{$data->Interest_car}}" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();"/>
@@ -1938,9 +1938,9 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ยอดรวมทั้งสัญญา : </label>
+                                <label class="col-sm-3 col-form-label text-right">กำไรจากดอกเบี้ย : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Totalpay1car" name="Totalpay1car"  value="{{$data->Totalpay1_car}}" class="form-control" placeholder="-" readonly />
+                                  <input type="text" id="Profit" name="Taxcar"  value="{{$data->Tax_car}}" class="form-control" placeholder="-" readonly />
                                 </div>
                               </div>
                             </div>
@@ -1986,6 +1986,14 @@
                                       </select>
                                     @endif
                                   @endif
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ยอดรวมทั้งสัญญา : </label>
+                                <div class="col-sm-8">
+                                  <input type="text" id="Totalpay1car" name="Totalpay1car"  value="{{$data->Totalpay1_car}}" class="form-control" placeholder="-" readonly />
                                 </div>
                               </div>
                             </div>
