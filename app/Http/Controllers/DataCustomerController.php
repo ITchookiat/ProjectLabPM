@@ -83,6 +83,8 @@ class DataCustomerController extends Controller
           $data->Status_leasing = $value;
         $data->update();
 
+        $Name_buyer = NULl;
+        $last_buyer = NULL;
         if($data->Name_buyer != Null){
             $SetStr = explode(" ",$data->Name_buyer);
             $Name_buyer = $SetStr[0];

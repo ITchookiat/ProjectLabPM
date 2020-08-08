@@ -220,7 +220,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                            <input type="checkbox" id="3" class="checkbox" name="TypeContract" value="P06-"> <!-- checked="checked"  -->
+                            <input type="checkbox" id="3" class="checkbox" name="TypeContract" value="P03-">
                               <label for="3" class="todo">
                                 <i class="fa fa-check"></i>
                                 <span class="text"><font color="red">PLOAN &nbsp;&nbsp;</font></span>
@@ -232,8 +232,8 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                              <input type="checkbox" id="4" class="checkbox" name="TypeContract" value="P03-"> <!-- checked="checked"  -->
-                              <label for="2" class="todo">
+                              <input type="checkbox" id="4" class="checkbox" name="TypeContract" value="P06-">
+                              <label for="4" class="todo">
                                 <i class="fa fa-check"></i>
                                 <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>
                               </label>
@@ -1175,12 +1175,12 @@
                                     <option value="36">36</option>
                                     <option value="42">42</option>
                                     <option value="48">48</option>
-                                    <!--<option value="54">54</option>
+                                    <option value="54">54</option>
                                     <option value="60">60</option>
                                     <option value="66">66</option>
                                     <option value="72">72</option>
-                                    <option value="78">78</option>
-                                    <option value="84">84</option> -->
+                                    {{-- <option value="78">78</option>
+                                    <option value="84">84</option> --}}
                                   </select>
                                 </div>
                               </div>
