@@ -83,10 +83,7 @@ class DataCustomerController extends Controller
     {
         $data = Data_customer::find($id);
           $data->Status_leasing = $value;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-=======
         $data->update();
 
         $Name_buyer = NULl;
@@ -99,10 +96,7 @@ class DataCustomerController extends Controller
             $Name_buyer = '';
             $last_buyer = '';
         }
->>>>>>> ae0154b1a7d5dd3cc0cbeebfcf6aca50620816a5
-=======
-      
->>>>>>> 38b264dda0f9dfdb117364d8e1f76092b1662147
+
         $DateDue = date('Y-m-d');
         $Year = date('Y') + 543;
         $SetYear = substr($Year,2,3);
