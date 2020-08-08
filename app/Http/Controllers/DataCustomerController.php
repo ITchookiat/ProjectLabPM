@@ -83,7 +83,7 @@ class DataCustomerController extends Controller
     {
         $data = Data_customer::find($id);
           $data->Status_leasing = $value;
-
+      
         $DateDue = date('Y-m-d');
         $Year = date('Y') + 543;
         $SetYear = substr($Year,2,3);
