@@ -469,19 +469,43 @@
                                       <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
                                     </select>
                                   @else
-                                    <input type="text" name="BrachUser" class="form-control" value="{{ $data->branch_car }}" readonly/>
-                                    {{-- <select name="BrachUser" class="form-control" required>
-                                      <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
-                                      <option value="20" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
-                                      <option value="21" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
-                                      <option value="22" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
-                                      <option value="23" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
-                                      <option value="24" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก</option>
-                                      <option value="25" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง</option>
-                                      <option value="26" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
-                                      <option value="27" {{ ($data->branch_car === 'ระแงะ') ? 'selected' : '' }}>ระแงะ</option>
-                                      <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
-                                    </select> --}}
+                                    @if($GetDocComplete != Null)
+                                      {{-- @php
+                                        if ($data->branch_car == "ปัตตานี") {
+                                          $SetBranch = "20";
+                                        }elseif ($data->branch_car == "ยะลา") {
+                                          $SetBranch = "21";
+                                        }elseif ($data->branch_car == "นราธิวาส") {
+                                          $SetBranch = "22";
+                                        }elseif ($data->branch_car == "สายบุรี") {
+                                          $SetBranch = "23";
+                                        }elseif ($data->branch_car == "สุไหงโกลก") {
+                                          $SetBranch = "24";
+                                        }elseif ($data->branch_car == "เบตง") {
+                                          $SetBranch = "25";
+                                        }elseif ($data->branch_car == "โคกโพธิ์") {
+                                          $SetBranch = "26";
+                                        }elseif ($data->branch_car == "ระแงะ") {
+                                          $SetBranch = "27";
+                                        }elseif ($data->branch_car == "บันนังสตา") {
+                                          $SetBranch = "28";
+                                        }
+                                      @endphp --}}
+                                      <input type="text" name="BrachUser" class="form-control" value="{{ $data->branch_car }}" readonly/>
+                                    @else
+                                      <select name="BrachUser" class="form-control" required>
+                                        <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
+                                        <option value="20" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
+                                        <option value="21" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
+                                        <option value="22" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
+                                        <option value="23" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
+                                        <option value="24" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก</option>
+                                        <option value="25" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง</option>
+                                        <option value="26" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
+                                        <option value="27" {{ ($data->branch_car === 'ระแงะ') ? 'selected' : '' }}>ระแงะ</option>
+                                        <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
+                                      </select>
+                                    @endif
                                   @endif
                                   </div>
                                 </div>
@@ -1871,9 +1895,8 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
                                   @else
-                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" readonly/>
                                   @endif
-                                  <input type="hidden" id="TopcarOri" name="TopcarOri" class="form-control"  placeholder="กรอกยอดจัด" />
                                 </div>
                               </div>
                             </div>

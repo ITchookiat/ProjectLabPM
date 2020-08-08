@@ -57,11 +57,9 @@
                   </div>
                   <div class="col-6">
                     <div class="card-tools d-inline float-right">
-                      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                        <a class="btn bg-warning btn-sm" data-toggle="modal" data-target="#modal-walkin" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
-                          <span class="fas fa-users"></span> Add New
-                        </a>
-                      @endif
+                      <a class="btn bg-warning btn-sm" data-toggle="modal" data-target="#modal-walkin" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
+                        <span class="fas fa-users"></span> Add New
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -92,13 +90,14 @@
                         <tr>
                           <th class="text-center" style="width:10px;"></th>
                           <th class="text-center">ลำดับ</th>
-                          <th class="text-center">วันที่ walkin</th>
-                          <th class="text-center">ป้ายทะเบียน</th>
+                          <th class="text-center">วันที่</th>
+                          <th class="text-left">ป้ายทะเบียน</th>
                           <th class="text-center">ยอดจัด</th>
-                          <th class="text-center">ชื่อลูกค้า</th>
-                          <th class="text-center">เบอร์ติดต่อ</th>
-                          <th class="text-center">เลขบัตร ปชช</th>
+                          <th class="text-left">ชื่อลูกค้า</th>
+                          <th class="text-left">เบอร์ติดต่อ</th>
+                          <th class="text-left">เลขบัตร ปชช</th>
                           <th class="text-center">ประเภทเงินกู้</th>
+                          <th class="text-center">เข้าสาขา</th>
                           <th class="text-center">ตัวเลือก</th>
                         </tr>
                       </thead>
@@ -118,12 +117,13 @@
                             </td>
                             <td class="text-center">{{$key+1}}</td>
                             <td class="text-center">{{DateThai(substr($row->created_at,0,10))}}</td>
-                            <td class="text-center">{{$row->License_car}}</td>
-                            <td class="text-center">{{number_format($row->Top_car,2)}}</td>
-                            <td class="text-center">{{($row->Name_buyer != Null) ? $row->Name_buyer : '-'}}   {{$row->Last_buyer}}</td>
-                            <td class="text-center">{{($row->Phone_buyer != Null) ? $row->Phone_buyer : '-'}}</td>
-                            <td class="text-center">{{($row->IDCard_buyer != Null) ? $row->IDCard_buyer : '-'}}</td>
+                            <td class="text-left">{{$row->License_car}}</td>
+                            <td class="text-right">{{number_format($row->Top_car,2)}}</td>
+                            <td class="text-left">{{($row->Name_buyer != Null) ? $row->Name_buyer : '-'}}   {{$row->Last_buyer}}</td>
+                            <td class="text-left">{{($row->Phone_buyer != Null) ? $row->Phone_buyer : '-'}}</td>
+                            <td class="text-left">{{($row->IDCard_buyer != Null) ? $row->IDCard_buyer : '-'}}</td>
                             <td class="text-center">{{$row->Type_leasing}}</td>
+                            <td class="text-center">{{$row->Branch_car }}</td>
                             <td class="text-center">
                               @if($row->Status_leasing == 1) 
                                 <a href="{{ route('DataCustomer.savestatus', [2, $row->Customer_id]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
@@ -511,6 +511,25 @@
           <!-- /.modal-dialog -->
       </div>
   </form>
+
+  <script>
+    function addCommas(nStr){
+      nStr += '';
+      x = nStr.split('.');
+      x1 = x[0];
+      x2 = x.length > 1 ? '.' + x[1] : '';
+      var rgx = /(\d+)(\d{3})/;
+      while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+        }
+      return x1 + x2;
+    }
+    function addcomma(){
+      var num11 = document.getElementById('topcar').value;
+      var num1 = num11.replace(",","");
+      document.form2.topcar.value = addCommas(num1);
+    }
+  </script>
 
 
 @endsection

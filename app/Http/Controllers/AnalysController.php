@@ -738,7 +738,7 @@ class AnalysController extends Controller
       }
 
       $GetYear = substr(date('Y')+543, 2,4);  //ดึงปี พ.ศ.
-      $NewContract = $request->get('TypeContract').$GetYear.$request->get('BrachUser')."/";
+      $NewContract = $request->get('TypeContract').$GetYear.$NumBranch."/";
 
       $SetPhonebuyer = str_replace ( "_","",$request->get('Phonebuyer'));
       if ($request->get('Topcar') != Null) {
