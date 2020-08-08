@@ -1869,12 +1869,12 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ยอดจัด : </label>
+                                <label class="col-sm-3 col-form-label text-right">เงินต้น : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="กรอกยอดจัด" oninput="calculate();balance();percent();" />
+                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
                                   @else
-                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="กรอกยอดจัด" oninput="calculate();balance();percent();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                   <input type="hidden" id="TopcarOri" name="TopcarOri" class="form-control"  placeholder="กรอกยอดจัด" />
                                 </div>
@@ -1882,9 +1882,65 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label>
+                                <div class="col-sm-8">
+                                  <input type="text" id="Totalfee" name="Paymemtcar" class="form-control" value="{{$data->Paymemt_car}}" placeholder="-" readonly/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
+                                <div class="col-sm-7">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" id="Processfee" name="Vatcar" class="form-control" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
+                                  @else
+                                    @if($GetDocComplete != Null)
+                                      <input type="text" id="Processfee" name="Vatcar" class="form-control" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();" readonly/>
+                                    @else
+                                      <input type="text" id="Processfee" name="Vatcar" class="form-control" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
+                                    @endif
+                                  @endif
+                                </div>
+                                <label class="col-sm-1 col-form-label text-left">% </label>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ชำระต่องวด : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Paycar" name="Paycar" value="{{$data->Pay_car}}" class="form-control"  readonly onchange="calculate()" />
+                                  <input type="text" id="Paycar" name="Paycar"  value="{{$data->Pay_car}}" class="form-control" placeholder="-" readonly/>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/ปี : </label>
+                                <div class="col-sm-7">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" id="Interestcar" name="Interestcar" value="{{$data->Interest_car}}" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();"/>
+                                  @else
+                                    @if($GetDocComplete != Null)
+                                      <input type="text" id="Interestcar" name="Interestcar" value="{{$data->Interest_car}}" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();" readonly/>
+                                    @else
+                                      <input type="text" id="Interestcar" name="Interestcar" value="{{$data->Interest_car}}" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();"/>
+                                    @endif
+                                  @endif
+                                </div>
+                                <label class="col-sm-1 col-form-label text-left">% </label>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row mb-1">
+                                <label class="col-sm-3 col-form-label text-right">ยอดรวมทั้งสัญญา : </label>
+                                <div class="col-sm-8">
+                                  <input type="text" id="Totalpay1car" name="Totalpay1car"  value="{{$data->Totalpay1_car}}" class="form-control" placeholder="-" readonly />
                                 </div>
                               </div>
                             </div>
@@ -1896,7 +1952,7 @@
                                 <label class="col-sm-3 col-form-label text-right">ระยะเวลาผ่อน : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <select id="Timeslackencar" name="Timeslackencar" class="form-control"  onchange="calculate();">
+                                    <select id="Timeslackencar" name="Timeslackencar" class="form-control"  oninput="calculate();calculate2();balance2();">
                                       <option value="" selected>--- ระยะเวลาผ่อน ---</option>
                                       <option value="12" {{ ($data->Timeslacken_car === '12') ? 'selected' : '' }}>12</option>
                                       <option value="18" {{ ($data->Timeslacken_car === '18') ? 'selected' : '' }}>18</option>
@@ -1909,14 +1965,12 @@
                                       <option value="60" {{ ($data->Timeslacken_car === '60') ? 'selected' : '' }}>60</option>
                                       <option value="66" {{ ($data->Timeslacken_car === '66') ? 'selected' : '' }}>66</option>
                                       <option value="72" {{ ($data->Timeslacken_car === '72') ? 'selected' : '' }}>72</option>
-                                      <option value="78" {{ ($data->Timeslacken_car === '78') ? 'selected' : '' }}>78</option>
-                                      <option value="84" {{ ($data->Timeslacken_car === '84') ? 'selected' : '' }}>84</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
                                       <input type="text" id="Timeslackencar" name="Timeslackencar" value="{{$data->Timeslacken_car}}" class="form-control"  placeholder="ระยะเวลาผ่อน" readonly />
                                     @else
-                                      <select id="Timeslackencar" name="Timeslackencar" class="form-control"  onchange="calculate();">
+                                      <select id="Timeslackencar" name="Timeslackencar" class="form-control"  oninput="calculate();calculate2();balance2();">
                                         <option value="" selected>--- ระยะเวลาผ่อน ---</option>
                                         <option value="12" {{ ($data->Timeslacken_car === '12') ? 'selected' : '' }}>12</option>
                                         <option value="18" {{ ($data->Timeslacken_car === '18') ? 'selected' : '' }}>18</option>
@@ -1929,71 +1983,14 @@
                                         <option value="60" {{ ($data->Timeslacken_car === '60') ? 'selected' : '' }}>60</option>
                                         <option value="66" {{ ($data->Timeslacken_car === '66') ? 'selected' : '' }}>66</option>
                                         <option value="72" {{ ($data->Timeslacken_car === '72') ? 'selected' : '' }}>72</option>
-                                        <option value="78" {{ ($data->Timeslacken_car === '78') ? 'selected' : '' }}>78</option>
-                                        <option value="84" {{ ($data->Timeslacken_car === '84') ? 'selected' : '' }}>84</option>
                                       </select>
                                     @endif
                                   @endif
                                 </div>
                               </div>
                             </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ภาษี/ระยะเวลาผ่อน : </label>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Taxcar" name="Taxcar" value="{{$data->Tax_car}}" class="form-control" readonly />
-                                </div>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Taxpaycar" name="Taxpaycar" value="{{$data->Taxpay_car}}" class="form-control" readonly />
-                                </div>
-                              </div>
-                            </div>
                           </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/ปี : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control"  value="{{$data->Interest_car}}" placeholder="ดอกเบี้ย" readonly onchange="calculate();"/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่างวด/ระยะเวลาผ่อน : </label>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Paymemtcar" name="Paymemtcar" value="{{$data->Paymemt_car}}" class="form-control" readonly />
-                                </div>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Timepaymentcar" name="Timepaymentcar" value="{{$data->Timepayment_car}}" class="form-control" readonly />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">VAT : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="Vatcar" name="Vatcar" value="{{$data->Vat_car}}" class="form-control"  placeholder="7 %" value="7 %" readonly onchange="calculate()"/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ยอดผ่อนชำระทั้งหมด : </label>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Totalpay1car" name="Totalpay1car" value="{{$data->Totalpay1_car}}" class="form-control" readonly />
-                                </div>
-                                <div class="col-sm-4">
-                                  <input type="text" id="Totalpay2car" name="Totalpay2car" value="{{$data->Totalpay2_car}}" class="form-control" readonly />
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
+                          <hr>
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-1">
@@ -2503,9 +2500,9 @@
                                 <label class="col-sm-3 col-form-label text-right">พรบ. : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="actPrice" name="actPrice" value="{{number_format($data->act_Price)}}" class="form-control" placeholder="พรบ." onchange="balance();"/>
+                                    <input type="text" id="actPrice" name="actPrice" value="{{number_format($data->act_Price)}}" class="form-control" placeholder="พรบ." oninput="balance2();"/>
                                   @else
-                                    <input type="text" id="actPrice" name="actPrice" value="{{number_format($data->act_Price)}}" class="form-control" placeholder="พรบ." onchange="balance();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="actPrice" name="actPrice" value="{{number_format($data->act_Price)}}" class="form-control" placeholder="พรบ." oninput="balance2();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
                               </div>
@@ -2515,11 +2512,10 @@
                                 <label class="col-sm-3 col-form-label text-right">ซื้อ ป2+/ป1 : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="P2Price" name="P2Price" value="{{number_format($data->P2_Price)}}" class="form-control" placeholder="ซื้อ ป2+" onchange="balance();"/>
+                                    <input type="text" id="P2Price" name="P2Price" value="{{number_format($data->P2_Price)}}" class="form-control" placeholder="ซื้อ ป2+" oninput="balance2();"/>
                                   @else
-                                    <input type="text" id="P2Price" name="P2Price" value="{{number_format($data->P2_Price)}}" class="form-control" placeholder="ซื้อ ป2+" onchange="balance();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="P2Price" name="P2Price" value="{{number_format($data->P2_Price)}}" class="form-control" placeholder="ซื้อ ป2+" oninput="balance2();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
-                                  <input type="hidden" id="P2PriceOri" name="P2PriceOri" class="form-control" value="{{number_format($data->P2_Price)}}" placeholder="ซื้อ ป2+" onchange="calculate();" readonly/>
                                 </div>
                               </div>
                             </div>
@@ -2531,19 +2527,18 @@
                                 <label class="col-sm-3 col-form-label text-right">ยอดปิดบัญชี : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="closeAccountPrice" name="closeAccountPrice" value="{{number_format($data->closeAccount_Price)}}" class="form-control" placeholder="ยอดปิดบัญชี" onchange="balance()"/>
+                                    <input type="text" id="closeAccountPrice" name="closeAccountPrice" value="{{number_format($data->closeAccount_Price)}}" class="form-control" placeholder="ยอดปิดบัญชี" oninput="balance2()"/>
                                   @else
-                                    <input type="text" id="closeAccountPrice" name="closeAccountPrice" value="{{number_format($data->closeAccount_Price)}}" class="form-control" placeholder="ยอดปิดบัญชี" onchange="balance()" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="closeAccountPrice" name="closeAccountPrice" value="{{number_format($data->closeAccount_Price)}}" class="form-control" placeholder="ยอดปิดบัญชี" oninput="balance2()" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
+                                <label class="col-sm-3 col-form-label text-right">รวมค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{number_format($data->totalk_Price, 2)}}" class="form-control" placeholder="รวม คชจ." onchange="balance();" readonly/>
-                                  <input type="hidden" id="temptotalkPrice" name="temptotalkPrice" value="{{number_format($data->totalk_Price, 2)}}" class="form-control" placeholder="รวม คชจ." onchange="balance();" readonly/>
+                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{number_format($data->totalk_Price, 2)}}" class="form-control" placeholder="รวมค่าดำเนินการ" oninput="balance2();" readonly/>
                                 </div>
                               </div>
                             </div>

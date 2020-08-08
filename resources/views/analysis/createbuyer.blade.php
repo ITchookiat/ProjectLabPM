@@ -1106,8 +1106,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">เงินต้น : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Topcar" name="Topcar" class="form-control" maxlength="9" placeholder="ป้อนเงินต้น" oninput="calculate2()" />
-                                  <input type="hidden" id="Topcarfee" name="Topcarfee" class="form-control" placeholder="ป้อนยอดจัด" oninput="calculate2()" />
+                                  <input type="text" id="Topcar" name="Topcar" class="form-control" maxlength="9" placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
                                 </div>
                               </div>
                             </div>
@@ -1115,7 +1114,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Totalfee" name="Totalfee" class="form-control" placeholder="-" readonly/>
+                                  <input type="text" id="Totalfee" name="Paymemtcar" class="form-control" placeholder="-" readonly oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
@@ -1126,7 +1125,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
                                 <div class="col-sm-7">
-                                  <input type="text" id="Processfee" name="Processfee" class="form-control" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2()"/>
+                                  <input type="text" id="Processfee" name="Vatcar" class="form-control" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
                                 </div>
                                 <label class="col-sm-1 col-form-label text-left">% </label>
                               </div>
@@ -1146,7 +1145,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/ปี : </label>
                                 <div class="col-sm-7">
-                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();"/>
+                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();"/>
                                 </div>
                                 <label class="col-sm-1 col-form-label text-left">% </label>
                               </div>
@@ -1166,7 +1165,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ระยะเวลาผ่อน : </label>
                                 <div class="col-sm-8">
-                                  <select id="Timeslackencar" name="Timeslackencar" class="form-control" oninput="calculate();calculate2();">
+                                  <select id="Timeslackencar" name="Timeslackencar" class="form-control" oninput="calculate();calculate2();balance2();">
                                     <option value="" selected>--- ระยะเวลาผ่อน ---</option>
                                     <option value="12">12</option>
                                     <option value="18">18</option>
@@ -1523,7 +1522,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">พรบ. : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="actPrice" name="actPrice" class="form-control" value="0" placeholder="พรบ." oninput="balance()"/>
+                                  <input type="text" id="actPrice" name="actPrice" class="form-control" value="0" placeholder="พรบ." oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
@@ -1531,8 +1530,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ซื้อ ป2+/ป1 : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="P2Price" name="P2Price" class="form-control" value="0" placeholder="ซื้อ ป2+" oninput="balance();"/>
-                                  <input type="hidden" id="P2PriceOri" name="P2PriceOri" class="form-control" value="0" placeholder="ซื้อ ป2+" onchange="calculate();balance();"/>
+                                  <input type="text" id="P2Price" name="P2Price" class="form-control" value="0" placeholder="ซื้อ ป2+" oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
@@ -1543,16 +1541,15 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ยอดปิดบัญชี : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="closeAccountPrice" name="closeAccountPrice" class="form-control" value="0" placeholder="ยอดปิดบัญชี" oninput="balance()"/>
+                                  <input type="text" id="closeAccountPrice" name="closeAccountPrice" class="form-control" value="0" placeholder="ยอดปิดบัญชี" oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
+                                <label class="col-sm-3 col-form-label text-right">รวมค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance();" readonly/>
-                                  <input type="hidden" id="temptotalkPrice" name="temptotalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance();"/>
+                                  <input type="text" id="totalkPrice" name="totalkPrice" class="form-control" placeholder="รวม คชจ." onchange="balance2();" readonly/>
                                 </div>
                               </div>
                             </div>
