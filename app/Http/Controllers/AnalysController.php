@@ -715,7 +715,28 @@ class AnalysController extends Controller
     {
       date_default_timezone_set('Asia/Bangkok');
       $Getcardetail = Cardetail::where('Buyercar_id',$id)->first();
+
       //สร้างเลขที่สัญญา
+      if ($request->get('BrachUser') == "20" or $request->get('BrachUser') == "ปัตตานี") {
+        $NumBranch = "20";
+      }elseif ($request->get('BrachUser') == "21" or $request->get('BrachUser') == "ยะลา") {
+        $NumBranch = "21";
+      }elseif ($request->get('BrachUser') == "22" or $request->get('BrachUser') == "นราธิวาส") {
+        $NumBranch = "22";
+      }elseif ($request->get('BrachUser') == "23" or $request->get('BrachUser') == "สายบุรี") {
+        $NumBranch = "23";
+      }elseif ($request->get('BrachUser') == "24" or $request->get('BrachUser') == "สุไหงโกลก") {
+        $NumBranch = "24";
+      }elseif ($request->get('BrachUser') == "25" or $request->get('BrachUser') == "เบตง") {
+        $NumBranch = "25";
+      }elseif ($request->get('BrachUser') == "26" or $request->get('BrachUser') == "โคกโพธิ์") {
+        $NumBranch = "26";
+      }elseif ($request->get('BrachUser') == "27" or $request->get('BrachUser') == "ระแงะ") {
+        $NumBranch = "27";
+      }elseif ($request->get('BrachUser') == "28" or $request->get('BrachUser') == "บันนังสตา") {
+        $NumBranch = "28";
+      }
+
       $GetYear = substr(date('Y')+543, 2,4);  //ดึงปี พ.ศ.
       $NewContract = $request->get('TypeContract').$GetYear.$request->get('BrachUser')."/";
 
