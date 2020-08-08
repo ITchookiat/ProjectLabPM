@@ -175,65 +175,35 @@
           }
     }
 
-    function balance(){
-          var num11 = document.getElementById('tranPrice').value;
-          var num1 = num11.replace(",","");
-          var num22 = document.getElementById('otherPrice').value;
-          var num2 = num22.replace(",","");
-          var num33 = document.getElementById('evaluetionPrice').value;
-          var num3 = num33.replace(",","");
-          if(num33 == ''){
-          var num3 = 0;
-          }
-          var num44 = document.getElementById('dutyPrice').value;
-          var num4 = num44.replace(",","");
-          var num55 = document.getElementById('marketingPrice').value;
-          var num5 = num55.replace(",","");
-          var num66 = document.getElementById('actPrice').value;
-          var num6 = num66.replace(",","");
-          var num77 = document.getElementById('closeAccountPrice').value;
-          var num7 = num77.replace(",","");
-          var num88 = document.getElementById('P2Price').value;
-          var num8 = num88.replace(",","");
-          var temp = document.getElementById('Topcar').value;
-          var toptemp = temp.replace(",","");
-          var ori = document.getElementById('Topcar').value;
-          var Topori = ori.replace(",","");
+    function balance2(){
+          var Settopcar = document.getElementById('Topcar').value;
+          var Topcar = Settopcar.replace(",","");
+          var Setfee = document.getElementById('Processfee').value;
+          var SetactPrice = document.getElementById('actPrice').value;
+          var actPrice = SetactPrice.replace(",","");
+          var SetcloseAccountPrice = document.getElementById('closeAccountPrice').value;
+          var closeAccountPrice = SetcloseAccountPrice.replace(",","");
+          var SetP2Price = document.getElementById('P2Price').value;
+          var P2Price = SetP2Price.replace(",","");
+            var fee = (Setfee/100)/1;
+            var capital = parseFloat(Topcar)*parseFloat(fee);
+            var Totalcapital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
+            var TotalPrice = parseFloat(capital) + parseFloat(actPrice) + parseFloat(closeAccountPrice) + parseFloat(P2Price);
+            var TotalBalance = parseFloat(Totalcapital) - parseFloat(TotalPrice);
+            console.log(Totalfee);
+            console.log(TotalPrice);
+            console.log(TotalBalance);
 
-          if(num8 > 6500){
-          var tempresult = parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4)+parseFloat(num5)+parseFloat(num6)+parseFloat(num8);
-          }else{
-          var tempresult = parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4)+parseFloat(num5)+parseFloat(num6)+parseFloat(num8);
+          if(Totalfee != ''){
+            document.form1.actPrice.value = addCommas(actPrice);
+            document.form1.P2Price.value = addCommas(P2Price);
+            document.form1.closeAccountPrice.value = addCommas(closeAccountPrice);
+            document.form1.totalkPrice.value = addCommas(TotalPrice.toFixed(2));
+            document.form1.balancePrice.value = addCommas(TotalBalance.toFixed(2));
           }
-
-          if(num8 > 6500){
-          var result = parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4)+parseFloat(num5)+parseFloat(num6)+parseFloat(num7)+parseFloat(num8);
-          }else {
-          var result = parseFloat(num1)+parseFloat(num2)+parseFloat(num3)+parseFloat(num4)+parseFloat(num5)+parseFloat(num6)+parseFloat(num7)+parseFloat(num8);
-          }
-
-          if(num88 == 0){
-          var TotalBalance = parseFloat(toptemp)-result;
-          }
-          else if(num8 > 6500){
-          var TotalBalance = parseFloat(toptemp)-result;
-          }
-          else{
-          var TotalBalance = parseFloat(toptemp)-result;
-          }
-
-          if(!isNaN(result)){
-          document.form1.totalkPrice.value = addCommas(tempresult);
-          document.form1.temptotalkPrice.value = addCommas(result);
-          document.form1.tranPrice.value = addCommas(num1);
-          document.form1.otherPrice.value = addCommas(num2);
-          document.form1.evaluetionPrice.value = addCommas(num3);
-          document.form1.dutyPrice.value = addCommas(num4);
-          document.form1.marketingPrice.value = addCommas(num5);
-          document.form1.actPrice.value = addCommas(num6);
-          document.form1.closeAccountPrice.value = addCommas(num7);
-          document.form1.balancePrice.value = addCommas(TotalBalance);
-          document.form1.P2Price.value = addCommas(num8);
+          else if(actPrice != '' || closeAccountPrice != '' || P2Price != '')
+          {
+            document.form1.totalkPrice.value = addCommas(TotalPrice.toFixed(2));
           }
     }
 
