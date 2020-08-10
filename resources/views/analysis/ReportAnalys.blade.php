@@ -21,7 +21,7 @@
     @if($type == 8)
       <h3 class="card-title p-3" align="center">แบบฟอร์มขออนุมัติปรับโครงสร้างหนี้</h3>
     @else
-      <h3 class="card-title p-3" align="center">แบบฟอร์มขออนุมัติเช่าซื้อรถยนต์</h3>
+      <h3 class="card-title p-3" align="center">แบบฟอร์มขออนุมัติเงินกู้</h3>
     @endif
     <hr>
 
@@ -230,39 +230,39 @@
           <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Model_car}}</b></th>
         </tr>
         <tr>
-          <th align="right" width="120px"> ยอดจัด &nbsp;</th>
+          <th align="right" width="120px"> เงินต้น &nbsp;</th>
           <th align="right" width="120px" style="background-color: yellow;"> <b>{{number_format($dataReport->Top_car)}} &nbsp;</b></th>
-          <th align="right" width="120px"> ดอกเบี้ย/ปี &nbsp;</th>
+          <th align="right" width="120px"> ดอกเบี้ย/เดือน &nbsp;</th>
           <th class="text-center" width="180px" style="background-color: yellow;"> <b>{{$dataReport->Interest_car}} &nbsp;</b></th>
         </tr>
         <tr>
-          <th align="right" width="120px"> VAT &nbsp;</th>
-          <th align="right" width="120px"> <b>{{$dataReport->Vat_car}}</b></th>
+          <th align="right" width="120px"> ค่าดำเนินการ &nbsp;</th>
+          <th align="right" width="120px"> <b>{{$dataReport->Vat_car}}</b> %</th>
           <th align="right" width="120px"> ระยะเวลาผ่อน &nbsp;</th>
           <th class="text-center" width="180px" style="background-color: yellow;">
             <b>{{$dataReport->Timeslacken_car}} งวด </b>
            </th>
         </tr>
         <tr>
-          <th align="right" width="120px"> ชำระต่องวด &nbsp;</th>
-          <th align="right" width="120px"> <b>{{$dataReport->Pay_car}} &nbsp;</b></th>
+          <th align="right" width="120px"> เงินต้น + ค่าดำเนินการ&nbsp;</th>
+          <th align="right" width="120px"> <b>{{$dataReport->Paymemt_car}} &nbsp;</b></th>
         </tr>
         <tr>
-          <th align="right" width="120px"> ค่างวด x ระยะเวลาผ่อน &nbsp;</th>
-          <th align="right" width="120px"> <b>{{$dataReport->Paymemt_car}} &nbsp;</b></th>
+          <th align="right" width="120px"> ชำระต่องวด &nbsp;</th>
+          <th align="right" width="120px"> <b>{{$dataReport->Pay_car}} &nbsp;</b></th>
           <th align="right" width="120px"> <b>{{$dataReport->Timepayment_car}} &nbsp;</b></th>
           <th align="right" width="85px"> ประเภทรถ &nbsp;</th>
           <th width="95px" style="background-color: yellow;"> <b>{{$dataReport->Typecardetails}} &nbsp;</b></th>
         </tr>
         <tr>
-          <th align="right" width="120px"> ภาษี x ระยะเวลาผ่อน &nbsp;</th>
+          <th align="right" width="120px"> กำไรจากดอกเบี้ย &nbsp;</th>
           <th align="right" width="120px"> <b>{{$dataReport->Tax_car}} &nbsp;</b> </th>
           <th align="right" width="120px"> <b>{{$dataReport->Taxpay_car}} &nbsp;</b></th>
           <th align="right" width="85px"> กลุ่มปีรถยนต์ &nbsp;</th>
           <th width="95px" style="background-color: yellow;"> <b>{{$dataReport->Groupyear_car}} &nbsp;</b></th>
         </tr>
         <tr>
-          <th align="right" width="120px"> ยอดผ่อนชำระทั้งหมด &nbsp;</th>
+          <th align="right" width="120px"> ยอดผ่อนชำระทั้งสัญญา &nbsp;</th>
           <th align="right" width="120px"> <b>{{$dataReport->Totalpay1_car}} &nbsp;</b></th>
           <th align="right" width="120px"> <b>{{$dataReport->Totalpay2_car}} &nbsp;</b></th>
           <th align="right" width="85px"> ราคากลาง &nbsp;</th>
@@ -276,7 +276,7 @@
         </tr>
           @if($dataReport->Totalpay1_car != null)
             @php 
-              $intersetAll = (str_replace(",","",$dataReport->Totalpay1_car) - str_replace(",","",$dataReport->Top_car)) - str_replace(",","",$dataReport->Taxpay_car);
+              $intersetAll = (str_replace(",","",$dataReport->Totalpay1_car) - str_replace(",","",$dataReport->Top_car));
             @endphp
           @else 
             @php 
