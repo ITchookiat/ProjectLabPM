@@ -8,7 +8,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
-    <title>ชูเกียรติลิสซิ่ง Ploan-Micro</title>
+    <title>ชูเกียรติเงินกู้ Ploan-Micro</title>
     <link rel="icon" href="{{ asset('dist/img/leasingLogo2.png') }}" type="image/ico" />
 
     <!-- Scripts -->
