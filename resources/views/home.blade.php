@@ -34,7 +34,7 @@
           </div>
 
           <div align="center">
-            <img class="img-responsive" src="{{ asset('dist/img/leasing02.png') }}" alt="User Image" style = "width: 43%">
+            <img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 43%">
           </div>
 
           <div class="row">
