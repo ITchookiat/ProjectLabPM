@@ -9,7 +9,7 @@
 
     <!-- <title>{{ config('app.name', 'Laravel') }}</title> -->
     <title>ชูเกียรติเงินกู้ Ploan-Micro</title>
-    <link rel="icon" href="{{ asset('dist/img/ploan.jpg') }}" type="image/ico" />
+    <link rel="icon" href="{{ asset('dist/img/leasing03.png') }}" type="image/ico" />
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
