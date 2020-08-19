@@ -582,6 +582,8 @@
                   </div>
               </div>
 
+              <input type="text" name="Nameuser" value="{{auth::user()->name}}"/>
+
               <div style="text-align: center;">
                   <button type="submit" class="btn btn-success text-center" style="border-radius: 50px;">บันทึก</button>
                   <button type="button" class="btn btn-danger" style="border-radius: 50px;" data-dismiss="modal">ยกเลิก</button>

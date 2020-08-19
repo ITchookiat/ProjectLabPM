@@ -287,6 +287,28 @@
             @endif
           </li>
 
+          @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก ประกันภัย")
+          <li class="nav-item has-treeview {{ Request::is('Insure/*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fa fa-gg-circle"></i>
+              <span id="ShowData"></span>
+              <p>
+                แผนกประกันภัย
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+              <ul class="nav nav-treeview" style="margin-left: 15px;">
+                <li class="nav-item">
+                  <a href="{{ route('Insure', 1) }}" class="nav-link {{ Request::is('Insure/Home/1') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>สต็อกรถใช้งานบริษัท</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
+          @endif
+
           {{-- <li class="nav-header">Documents Part</li>
 
           <li class="nav-item has-treeview {{ Request::is('Document/*') ? 'menu-open' : '' }}">
