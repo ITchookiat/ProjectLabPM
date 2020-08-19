@@ -1792,7 +1792,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ป้ายเดิม : </label>
                                 <div class="col-sm-8">
-                                  @if(auth::user()->type == 1)
+                                  @if(auth::user()->type == "Admin")
                                     <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control"  placeholder="ป้ายเดิม"/>
                                   @else
                                     <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control"  readonly/>

@@ -72,6 +72,7 @@ class DataCustomerController extends Controller
             'Resource_news' => $request->get('News'),
             'Branch_car' => $request->get('branchcar'),
             'Note_car' => $request->get('Notecar'),
+            'Name_user' => $request->get('Nameuser'),
             'Type_leasing' => $request->get('TypeLeasing'),
             'Status_leasing' => 1,
           ]);
@@ -86,16 +87,16 @@ class DataCustomerController extends Controller
 
         $data->update();
 
-        $Name_buyer = NULl;
-        $last_buyer = NULL;
-        if($data->Name_buyer != Null){
-            $SetStr = explode(" ",$data->Name_buyer);
-            $Name_buyer = $SetStr[0];
-            $last_buyer = $SetStr[1];
-        }else{
-            $Name_buyer = '';
-            $last_buyer = '';
-        }
+        // $Name_buyer = NULl;
+        // $last_buyer = NULL;
+        // if($data->Name_buyer != Null){
+        //     $SetStr = explode(" ",$data->Name_buyer);
+        //     $Name_buyer = $SetStr[0];
+        //     $last_buyer = $SetStr[1];
+        // }else{
+        //     $Name_buyer = '';
+        //     $last_buyer = '';
+        // }
 
         $DateDue = date('Y-m-d');
         $Year = date('Y') + 543;
@@ -150,6 +151,7 @@ class DataCustomerController extends Controller
             'last_buyer' => $data->Last_buyer,
             'Phone_buyer' => $data->Phone_buyer,
             'Idcard_buyer' => $data->IDCard_buyer,
+            'Walkin_id' => $data->Customer_id,
           ]);
           $Buyerdb->save();
           $Sponsordb = new Sponsor([
@@ -169,6 +171,7 @@ class DataCustomerController extends Controller
             'Top_car' => $data->Top_car,
             'Agentcar' => $data->Name_agent,
             'Tellagent_car' => $data->Phone_agent,
+            'Loanofficer_car' => $data->Name_user,
             'StatusApp_car' => 'รออนุมัติ',
             'DocComplete_car' => $request->get('doccomplete'),
             'branch_car' => $data->Branch_car,

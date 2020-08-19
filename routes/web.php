@@ -71,6 +71,12 @@ Route::group(['middleware' => 'auth'], function()
     //------------------งานบัญชี----------------------//
     Route::get('/Account/Home/{type}', 'AccountController@index')->name('Accounting');
 
+    //------------------งานประกันภัย----------------------//
+    route::resource('MasterDataCustomer','DataCustomerController');
+    Route::get('/Insure/Home/{type}', 'InsureController@index')->name('Insure');
+    Route::post('/Insure/save/{type}', 'InsureController@store');
+    Route::delete('/Insure/delete/{id}', 'InsureController@destroy');
+
     //------------------งานทะเบียน--------------------//
     Route::get('/regcar/view/{type}', 'RegcarController@index')->name('regcar');
     Route::get('/regcar/create/{type}', 'RegcarController@create')->name('regcar.create');
@@ -86,7 +92,7 @@ Route::group(['middleware' => 'auth'], function()
     Route::post('/Document/create/{type}', 'DocumentController@store')->name('document.store');
     Route::get('/Document/download/{file}', 'DocumentController@download');
     Route::get('/Document/preview/{id}/{type}', 'DocumentController@edit');
-    Route::delete('/Document/delete/{id}/{type}', 'DocumentController@destroy');
+    Route::delete('/Document/delete/{id}', 'DocumentController@destroy');
 
     //---------------- logout --------------------//
     Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
