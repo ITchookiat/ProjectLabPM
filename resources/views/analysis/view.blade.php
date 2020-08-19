@@ -63,12 +63,12 @@
                         <li class="nav-item">
                           <a class="nav-link active" id="Tab-Main-1" href="{{ route('Analysis', 1) }}" >หน้าหลัก</a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                           <a class="nav-link" id="Tab-sub-1" href="{{ route('Analysis', 2) }}" >แบบฟอร์มผู้เช่าซื้อ</a>
-                        </li>
+                        </li> --}}
                       @endif
 
-                      <li class="nav-item">
+                      {{-- <li class="nav-item">
                         <a class="nav-link" href="#">แบบฟอร์มผู้ค้ำ</a>
                       </li>
                       <li class="nav-item">
@@ -81,7 +81,7 @@
                         <li class="nav-item">
                           <a class="nav-link" href="#">Checker</a>
                         </li>
-                      @endif
+                      @endif --}}
                     </ul>
                   </div>
                   
@@ -146,12 +146,13 @@
                               <tr>
                                 <th class="text-center">สาขา</th>
                                 <th class="text-left">เลขที่สัญญา</th>
+                                <th class="text-left">แบบ</th>
                                 <th class="text-left">ยีห้อ</th>
                                 <th class="text-left">ทะเบียน</th>
                                 <th class="text-left">ปี</th>
                                 <th class="text-center">ยอดจัด</th>
-                                <th class="text-center">เอกสาร/แก้ไข</th>
-                                <th class="text-center" style="width: 250px">สถานะ</th>
+                                <th class="text-center"></th>
+                                <th class="text-left" style="width: 250px">สถานะ</th>
                                 <th class="text-center" style="width: 100px"></th>
                               </tr>
                             </thead>
@@ -160,6 +161,7 @@
                                 <tr>
                                   <td class="text-center"> {{ $row->branch_car}} </td>
                                   <td class="text-left"> {{ $row->Contract_buyer}} </td>
+                                  <td class="text-left"> {{ $row->status_car}} </td>
                                   <td class="text-left"> {{ $row->Brand_car}} </td>
                                   <td class="text-left"> {{ $row->License_car}} </td>
                                   <td class="text-left"> {{ $row->Year_car}} </td>
@@ -171,23 +173,19 @@
                                     @endif
                                   </td>
                                   <td class="text-center">
-                                    <label class="con">
-                                    @if ( $row->DocComplete_car != Null)
-                                      <input type="checkbox" class="checkbox" name="Checkcar" id="" checked="checked" disabled>
-                                    @else
-                                      <input type="checkbox" class="checkbox" name="Checkcar" id="" disabled>
-                                    @endif
-                                    <span class="checkmark"></span>
-                                    </label>
+                                    <div class="float-right form-inline">
+                                      @if ( $row->DocComplete_car != Null)
+                                        <h5><span class="badge badge-danger">
+                                          <i class="fas fa-clipboard-check"></i>
+                                        </span></h5>&nbsp;
+                                      @endif
 
-                                    <label class="con2">
-                                    @if ( $row->tran_Price != 0)
-                                      <input type="checkbox" class="checkbox" name="Checkcar" id="" checked="checked" disabled>
-                                    @else
-                                      <input type="checkbox" class="checkbox" name="Checkcar" id="" disabled>
-                                    @endif
-                                    <span class="checkmark"></span>
-                                    </label>
+                                      @if ( $row->tran_Price != 0)
+                                        <h5><span class="badge badge-info">
+                                            <i class="fas fa-spell-check"></i>
+                                        </span></h5>
+                                      @endif
+                                    </div>
                                   </td>
                                   <td class="text-left">
                                     @if ( $row->Check_car != Null)
