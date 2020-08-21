@@ -582,7 +582,7 @@
                   </div>
               </div>
 
-              <input type="text" name="Nameuser" value="{{auth::user()->name}}"/>
+              <input type="hidden" name="Nameuser" value="{{auth::user()->name}}"/>
 
               <div style="text-align: center;">
                   <button type="submit" class="btn btn-success text-center" style="border-radius: 50px;">บันทึก</button>

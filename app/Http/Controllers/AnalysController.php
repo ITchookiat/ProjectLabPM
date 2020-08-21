@@ -752,16 +752,6 @@ class AnalysController extends Controller
       }else {
         $SetCommissioncar = 0;
       }
-      if ($request->get('Incomebuyer') != Null) {
-        $SetIncomebuyer = str_replace (",","",$request->get('Incomebuyer'));
-      }else {
-        $SetIncomebuyer = 0;
-      }
-      if ($request->get('incomeSP') != Null) {
-        $SetincomeSP = str_replace (",","",$request->get('incomeSP'));
-      }else {
-        $SetincomeSP = 0;
-      }
       $SetLicense = "";
       if ($request->get('Licensecar') != NULL) {
         $SetLicense = $request->get('Licensecar');
@@ -837,7 +827,7 @@ class AnalysController extends Controller
         $user->Driver_buyer = $request->get('Driverbuyer');
         $user->HouseStyle_buyer = $request->get('HouseStylebuyer');
         $user->Career_buyer = $request->get('Careerbuyer');
-        $user->Income_buyer = $SetIncomebuyer;
+        $user->Income_buyer = $request->get('Incomebuyer');
         $user->Purchase_buyer = $request->get('Purchasebuyer');
         $user->Support_buyer = $request->get('Supportbuyer');
         $user->securities_buyer = $request->get('securitiesbuyer');
@@ -868,7 +858,7 @@ class AnalysController extends Controller
         $sponsor->area_SP = $request->get('areaSP');
         $sponsor->housestyle_SP = $request->get('housestyleSP');
         $sponsor->career_SP = $request->get('careerSP');
-        $sponsor->income_SP = $SetincomeSP;
+        $sponsor->income_SP = $request->get('incomeSP');
         $sponsor->puchase_SP = $request->get('puchaseSP');
         $sponsor->support_SP = $request->get('supportSP');
         $sponsor->securities_SP = $request->get('securitiesSP');
