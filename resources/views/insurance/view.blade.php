@@ -56,7 +56,7 @@
                   <div class="col-4">
                     <div class="card-tools d-inline float-right">
                       @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                        <a class="btn bg-warning btn-sm" data-toggle="modal" data-target="#modal-newcar" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
+                        <a class="btn bg-success btn-sm" data-toggle="modal" data-target="#modal-newcar" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
                           <span class="fas fa-plus"></span> เพิ่มใหม่
                         </a>
                       @endif
@@ -91,34 +91,121 @@
                         <tr>
                           <th class="text-center">ลำดับ</th>
                           <th class="text-center">แจ้งเตือน</th>
-                          <th class="text-center">วันที่</th>
+                          <th class="text-center">วันที่คีย์</th>
                           <th class="text-center">ป้ายทะเบียน</th>
                           <th class="text-center">ยี่ห้อรถ</th>
                           <th class="text-center">รุ่นรถ</th>
                           <th class="text-center">เลขตัวถัง</th>
+                          <th class="text-center">หมายเหตุ</th>
                           <th class="text-center">ตัวเลือก</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach($data as $key => $row)
                         <tr>
-                          <td class="text-center">{{$key+1}}</td>
-                          <td class="text-center">
-                          
+                          <td class="text-center" style="vertical-align: text-top;">{{$key+1}}</td>
+                          <td class="text-center" style="vertical-align: text-top;">
+                            <div class="form-inline">
+                              <!-- แจ้งเตือนทะเบียน -->
+                              @if($row->Register_expire != null)
+                                  @php
+                                      date_default_timezone_set('Asia/Bangkok');
+                                      $ifdate = date('Y-m-d');
+                                  @endphp
+                                  @if($ifdate < $row->Register_expire)
+                                    @php
+                                      $Cldate = date_create($row->Register_expire);
+                                      $nowCldate = date_create($ifdate);
+                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                      $duration = $ClDateDiff->format("%a วัน")
+                                    @endphp
+                                    @if($duration <= 30)
+                                      <p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">ทะเบียน ({{$duration}})</label></span></p>
+                                    @endif
+                                  @else
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
+                                  @endif
+                              @endif
+                              <!-- แจ้งเตือนประกัน -->
+                              @if($row->Insure_expire != null)
+                                  @php
+                                      date_default_timezone_set('Asia/Bangkok');
+                                      $ifdate = date('Y-m-d');
+                                  @endphp
+                                  @if($ifdate < $row->Insure_expire)
+                                    @php
+                                      $Cldate = date_create($row->Insure_expire);
+                                      $nowCldate = date_create($ifdate);
+                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                      $duration = $ClDateDiff->format("%a วัน")
+                                    @endphp
+                                    @if($duration <= 30)
+                                      &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">ประกัน ({{$duration}})</label></span></p>
+                                    @endif
+                                  @else
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
+                                  @endif
+                              @endif
+                              <!-- แจ้งเตือน พรบ -->
+                              @if($row->Act_expire != null)
+                                  @php
+                                      date_default_timezone_set('Asia/Bangkok');
+                                      $ifdate = date('Y-m-d');
+                                  @endphp
+                                  @if($ifdate < $row->Act_expire)
+                                    @php
+                                      $Cldate = date_create($row->Act_expire);
+                                      $nowCldate = date_create($ifdate);
+                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                      $duration = $ClDateDiff->format("%a วัน")
+                                    @endphp
+                                    @if($duration <= 30)
+                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">พรบ. ({{$duration}})</label></span></p>
+                                    @endif
+                                  @else
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
+                                  @endif
+                              @endif
+                              <!-- แจ้งเตือนเช็คระยะ -->
+                              @if($row->Check_car != null)
+                                  @php
+                                      date_default_timezone_set('Asia/Bangkok');
+                                      $ifdate = date('Y-m-d');
+                                  @endphp
+                                  @if($ifdate < $row->Check_car)
+                                    @php
+                                      $Cldate = date_create($row->Check_car);
+                                      $nowCldate = date_create($ifdate);
+                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                      $duration = $ClDateDiff->format("%a วัน")
+                                    @endphp
+                                    @if($duration <= 30)
+                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะ ({{$duration}})</label></span></p>
+                                    @endif
+                                  @else
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
+                                  @endif
+                              @endif
+                            </div>
                           </td>
-                          <td class="text-center">{{DateThai($row->Date_useradd)}}</td>
-                          <td class="text-center">{{$row->Number_register}}</td>
-                          <td class="text-center">{{$row->Brand_car}}</td>
-                          <td class="text-center">{{$row->Version_car}}</td>
-                          <td class="text-center">{{$row->Engno_car}}</td>
-                          <td class="text-right">
-                            <a href="#" class="btn btn-info btn-sm" title="แก้ไขรายการ">
+                          <td class="text-center" style="vertical-align: text-top;">{{DateThai($row->Date_useradd)}}</td>
+                          <td class="text-center" style="vertical-align: text-top;">{{$row->Number_register}}</td>
+                          <td class="text-center" style="vertical-align: text-top;">{{$row->Brand_car}}</td>
+                          <td class="text-center" style="vertical-align: text-top;">{{$row->Version_car}}</td>
+                          <td class="text-center" style="vertical-align: text-top;">{{$row->Engno_car}}</td>
+                          <td class="text-left" style="vertical-align: text-top;"> {{$row->Note_car}}</td>
+                          <td class="text-center" style="vertical-align: text-top;">
+                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" title="ดูรายการ"
+                              data-backdrop="static" data-keyboard="false"
+                              data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{1}}">
                               <i class="far fa-eye"></i>
-                            </a>
-                            <a href="#" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
+                            </button>
+                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-edit" title="แก้ไขรายการ"
+                              data-backdrop="static" data-keyboard="false"
+                              data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{2}}">
                               <i class="far fa-edit"></i>
-                            </a>
-                            <form method="post" class="delete_form" action="{{ action('InsureController@destroy',[$row->insure_id]) }}" style="display:inline;">
+                            </button>
+                            <form method="post" class="delete_form" action="{{ route('MasterInsure.destroy',[$row->Insure_id]) }}" style="display:inline;">
                               {{csrf_field()}}
                               <input type="hidden" name="_method" value="DELETE" />
                               <button type="submit" data-name="{{ $row->Number_register }}" class="delete-modal btn btn-danger btn-sm AlertForm" title="ลบรายการ">
@@ -163,16 +250,6 @@
 
   <script>
     $(function () {
-      $("#modal-preview").on("show.bs.modal", function (e) {
-        var link = $(e.relatedTarget).data("link");
-        $("#modal-preview .modal-body").load(link, function(){
-        });
-      });
-    });
-  </script>
-
-  <script>
-    $(function () {
       $("#table1").DataTable({
         "responsive": true,
         "autoWidth": false,
@@ -185,27 +262,31 @@
     });
   </script>
 
-  <script>
-    function blinker() {
-      $('.prem').fadeOut(1500);
-      $('.prem').fadeIn(1500);
-    }
-    setInterval(blinker, 1500);
-  </script>
-
-  <script type="text/javascript">
-    $(document).ready(function () {
-      bsCustomFileInput.init();
+<script>
+  $(function () {
+    $("#modal-view").on("show.bs.modal", function (e) {
+      var link = $(e.relatedTarget).data("link");
+      $("#modal-view .modal-content").load(link, function(){
+      });
     });
-  </script>
+
+    $("#modal-edit").on("show.bs.modal", function (e) {
+      var link = $(e.relatedTarget).data("link");
+      $("#modal-edit .modal-content").load(link, function(){
+      });
+    });
+
+  });
+</script>
 
   <!-- Add new car modal -->
-  <form name="form2" action="{{ action('InsureController@store',[$type]) }}" method="post" enctype="multipart/form-data">
+  <form name="form2" action="{{ route('MasterInsure.store',[$row->Insure_id]) }}" method="post" enctype="multipart/form-data">
     @csrf
+      <input type="hidden" name="type" value="1"/>
       <div class="modal fade" id="modal-newcar" aria-hidden="true" style="display: none;">
           <div class="modal-dialog modal-lg">
             <div class="modal-content" style="border-radius: 30px 30px 30px 30px;">
-              <div class="modal-header bg-warning" style="border-radius: 30px 30px 30px 30px;">
+              <div class="modal-header bg-success" style="border-radius: 30px 30px 0px 0px;">
                 <div class="col text-center">
                   <h5 class="modal-title"><i class="fas fa-plus"></i> เพิ่มรายการใหม่</h5>
                 </div>
@@ -229,16 +310,16 @@
                         <div class="col-sm-7">
                           <select name="Brandcar" class="form-control">
                             <option value="" selected>--- ยี่ห้อ ---</option>
-                            <!-- <option value="ISUZU">ISUZU</option> -->
-                            <!-- <option value="MITSUBISHI">MITSUBISHI</option> -->
-                            <!-- <option value="TOYOTA">TOYOTA</option> -->
                             <option value="MAZDA">MAZDA</option>
                             <option value="FORD">FORD</option>
-                            <!-- <option value="NISSAN">NISSAN</option> -->
-                            <!-- <option value="HONDA">HONDA</option> -->
-                            <!-- <option value="CHEVROLET">CHEVROLET</option> -->
-                            <!-- <option value="MG">MG</option> -->
-                            <!-- <option value="SUZUKI">SUZUKI</option> -->
+                            <option value="ISUZU">ISUZU</option>
+                            <option value="MITSUBISHI">MITSUBISHI</option>
+                            <option value="TOYOTA">TOYOTA</option>
+                            <option value="NISSAN">NISSAN</option>
+                            <option value="HONDA">HONDA</option>
+                            <option value="CHEVROLET">CHEVROLET</option>
+                            <option value="MG">MG</option>
+                            <!-- <!-- <option value="SUZUKI">SUZUKI</option> -->
                           </select>
                         </div>
                       </div>
@@ -348,6 +429,24 @@
           <!-- /.modal-dialog -->
       </div>
   </form>
+
+  <!-- Pop up ดูรายละเอียด -->
+  <div class="modal fade" id="modal-view">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="border-radius: 30px 30px 30px 30px;">
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- Pop up แก้ไข -->
+  <div class="modal fade" id="modal-edit">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content" style="border-radius: 30px 30px 30px 30px;">
+        
+      </div>
+    </div>
+  </div>
 
 
 @endsection

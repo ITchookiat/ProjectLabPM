@@ -72,10 +72,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/Account/Home/{type}', 'AccountController@index')->name('Accounting');
 
     //------------------งานประกันภัย----------------------//
-    route::resource('MasterDataCustomer','DataCustomerController');
+    route::resource('MasterInsure','InsureController');
     Route::get('/Insure/Home/{type}', 'InsureController@index')->name('Insure');
-    Route::post('/Insure/save/{type}', 'InsureController@store');
-    Route::delete('/Insure/delete/{id}', 'InsureController@destroy');
 
     //------------------งานทะเบียน--------------------//
     Route::get('/regcar/view/{type}', 'RegcarController@index')->name('regcar');

@@ -19,9 +19,8 @@ class InsureController extends Controller
         return view('insurance.view', compact('data','type','newfdate','newtdate'));
     }
 
-    public function store(Request $request, $type)
+    public function store(Request $request)
     {
-        // dd($request,$type);
         $Data_insureDB = new Data_insure([
             'Number_register' => $request->get('Registercar'),
             'Brand_car' => $request->get('Brandcar'),
@@ -38,7 +37,37 @@ class InsureController extends Controller
             'Date_useradd' => date('Y-m-d'),
           ]);
           $Data_insureDB->save();
+          $type = $request->type;
         return redirect()->Route('Insure',$type)->with('success','บันทึกข้อมูลเรียบร้อย');
+    }
+
+    public function edit(Request $request, $id)
+    {
+        $data = DB::table('data_insures')
+              ->where('Insure_id','=', $id)
+              ->orderBY('created_at', 'DESC')
+              ->first();
+        $type = $request->type;
+        return view('insurance.edit',compact('data','type'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = Data_insure::find($id);
+            $user->Number_register = $request->get('Registercar');
+            $user->Brand_car = $request->get('Brandcar');
+            $user->Year_car = $request->get('Yearcar');
+            $user->Version_car = $request->get('Versioncar');
+            $user->Engno_car = $request->get('Engnocar');
+            $user->Type_car = $request->get('Typecar');
+            $user->Register_expire = $request->get('RegisterExpire');
+            $user->Insure_expire = $request->get('InsureExpire');
+            $user->Act_expire = $request->get('ActExpire');
+            $user->Check_car = $request->get('Checkcar');
+            $user->Note_car = $request->get('Notecar');
+        $user->update();
+        $type = $request->type;
+        return redirect()->back()->with('success','อัพเดทข้อมูลเรียบร้อย');
     }
 
     public function destroy(Request $request,$id)
