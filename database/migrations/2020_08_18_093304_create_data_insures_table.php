@@ -14,7 +14,7 @@ class CreateDataInsuresTable extends Migration
     public function up()
     {
         Schema::create('data_insures', function (Blueprint $table) {
-            $table->bigIncrements('insure_id');
+            $table->bigIncrements('Insure_id');
             $table->string('Number_register')->nullable();
             $table->string('Brand_car')->nullable();
             $table->string('Year_car')->nullable();
