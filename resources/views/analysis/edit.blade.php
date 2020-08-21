@@ -841,9 +841,9 @@
                                   <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                   <div class="col-sm-8">
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ number_format($data->Income_buyer,0) }}" class="form-control"  placeholder="เลือกรายได้" oninput="income();"/>
+                                      <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ $data->Income_buyer }}" class="form-control"  placeholder="เลือกรายได้" />
                                     @else
-                                      <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ number_format($data->Income_buyer,0) }}" class="form-control"  placeholder="เลือกรายได้" oninput="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                      <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ $data->Income_buyer }}" class="form-control"  placeholder="เลือกรายได้"  {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                     @endif
                                   </div>
                                 </div>
@@ -1554,9 +1554,9 @@
                                 <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="incomeSP" name="incomeSP" value="{{ number_format($data->income_SP,0) }}" class="form-control" placeholder="รายได้" oninput="income();"/>
+                                    <input type="text" id="incomeSP" name="incomeSP" value="{{ $data->income_SP }}" class="form-control" placeholder="รายได้" />
                                   @else
-                                    <input type="text" id="incomeSP" name="incomeSP" value="{{ number_format($data->income_SP,0) }}" class="form-control" placeholder="รายได้" oninput="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="incomeSP" name="incomeSP" value="{{ $data->income_SP }}" class="form-control" placeholder="รายได้"  {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
                               </div>
