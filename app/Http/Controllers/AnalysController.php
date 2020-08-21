@@ -752,6 +752,16 @@ class AnalysController extends Controller
       }else {
         $SetCommissioncar = 0;
       }
+      if ($request->get('Incomebuyer') != Null) {
+        $SetIncomebuyer = str_replace (",","",$request->get('Incomebuyer'));
+      }else {
+        $SetIncomebuyer = 0;
+      }
+      if ($request->get('incomeSP') != Null) {
+        $SetincomeSP = str_replace (",","",$request->get('incomeSP'));
+      }else {
+        $SetincomeSP = 0;
+      }
       $SetLicense = "";
       if ($request->get('Licensecar') != NULL) {
         $SetLicense = $request->get('Licensecar');
@@ -762,7 +772,9 @@ class AnalysController extends Controller
       $newDateDue = $request->get('DateDue');
       if ($SetTopcar > 250000) {
         if ($request->get('MANAGER') != Null) {
-          $newDateDue = date('Y-m-d');
+          if ($Getcardetail->Date_Appcar == Null) {
+            $newDateDue = date('Y-m-d');
+          }
           $StatusApp = "อนุมัติ";
           if ($request->get('TypeContract') == "P03-") {
             $SetFlag = "Y";
@@ -780,7 +792,9 @@ class AnalysController extends Controller
         }
       }else {
         if ($request->get('AUDIT') != Null) {
-          $newDateDue = date('Y-m-d');
+          if ($Getcardetail->Date_Appcar == Null) {
+            $newDateDue = date('Y-m-d');
+          }
           $StatusApp = "อนุมัติ";
           if ($request->get('TypeContract') == "P03-") {
             $SetFlag = "Y";
@@ -823,7 +837,7 @@ class AnalysController extends Controller
         $user->Driver_buyer = $request->get('Driverbuyer');
         $user->HouseStyle_buyer = $request->get('HouseStylebuyer');
         $user->Career_buyer = $request->get('Careerbuyer');
-        $user->Income_buyer = $request->get('Incomebuyer');
+        $user->Income_buyer = $SetIncomebuyer;
         $user->Purchase_buyer = $request->get('Purchasebuyer');
         $user->Support_buyer = $request->get('Supportbuyer');
         $user->securities_buyer = $request->get('securitiesbuyer');
@@ -854,7 +868,7 @@ class AnalysController extends Controller
         $sponsor->area_SP = $request->get('areaSP');
         $sponsor->housestyle_SP = $request->get('housestyleSP');
         $sponsor->career_SP = $request->get('careerSP');
-        $sponsor->income_SP = $request->get('incomeSP');
+        $sponsor->income_SP = $SetincomeSP;
         $sponsor->puchase_SP = $request->get('puchaseSP');
         $sponsor->support_SP = $request->get('supportSP');
         $sponsor->securities_SP = $request->get('securitiesSP');
@@ -973,39 +987,41 @@ class AnalysController extends Controller
 
           // สถานะ อนุมัติสัญญา
           if ($StatusApp == "อนุมัติ") {
-            $Date = date('d-m-Y', strtotime('+1 month'));
-            $SetDate = \Carbon\Carbon::parse($Date)->format('Y')+543 ."-". \Carbon\Carbon::parse($Date)->format('m')."-". \Carbon\Carbon::parse($Date)->format('d');
-            $datedueBF = date_create($SetDate);
-            $DateDue = date_format($datedueBF, 'd-m-Y');
+            if ($cardetail->StatusApp_car == "รออนุมัติ") {
+              $Date = date('d-m-Y', strtotime('+1 month'));
+              $SetDate = \Carbon\Carbon::parse($Date)->format('Y')+543 ."-". \Carbon\Carbon::parse($Date)->format('m')."-". \Carbon\Carbon::parse($Date)->format('d');
+              $datedueBF = date_create($SetDate);
+              $DateDue = date_format($datedueBF, 'd-m-Y');
 
-            if ($request->get('TypeContract') == "P03-") {
-              $connect = DB::table('Buyers')
-                  ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                  ->where('buyers.Flag', '=' ,'Y')
-                  ->where('cardetails.Branch_car' ,$cardetail->branch_car)
-                  ->orderBy('Contract_buyer', 'desc')->limit(1)
-                  ->first();
-            }elseif ($request->get('TypeContract') == "P06-") {
-              $connect = DB::table('Buyers')
-                  ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                  ->where('buyers.Flag', '=' ,'E')
-                  ->where('cardetails.Branch_car' ,$cardetail->branch_car)
-                  ->orderBy('Contract_buyer', 'desc')->limit(1)
-                  ->first();
+              if ($request->get('TypeContract') == "P03-") {
+                $connect = DB::table('Buyers')
+                    ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                    ->where('buyers.Flag', '=' ,'Y')
+                    ->where('cardetails.Branch_car' ,$cardetail->branch_car)
+                    ->orderBy('Contract_buyer', 'desc')->limit(1)
+                    ->first();
+              }elseif ($request->get('TypeContract') == "P06-") {
+                $connect = DB::table('Buyers')
+                    ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                    ->where('buyers.Flag', '=' ,'E')
+                    ->where('cardetails.Branch_car' ,$cardetail->branch_car)
+                    ->orderBy('Contract_buyer', 'desc')->limit(1)
+                    ->first();
+              }
+              
+              $cont = $connect->Contract_buyer;
+              $SetStr = explode("/",$cont);
+              $StrNum = $SetStr[1] + 1;
+              
+              $num = "1000";
+              $SubStr = substr($num.$StrNum, -4);
+              $StrConn = $SetStr[0]."/".$SubStr;
+
+              $GetIdConn = Buyer::where('id',$id)->first();
+                $GetIdConn->Contract_buyer = $StrConn;
+                $GetIdConn->Flag = $SetFlag;
+              $GetIdConn->update();
             }
-            
-            $cont = $connect->Contract_buyer;
-            $SetStr = explode("/",$cont);
-            $StrNum = $SetStr[1] + 1;
-            
-            $num = "1000";
-            $SubStr = substr($num.$StrNum, -4);
-            $StrConn = $SetStr[0]."/".$SubStr;
-
-            $GetIdConn = Buyer::where('id',$id)->first();
-              $GetIdConn->Contract_buyer = $StrConn;
-              $GetIdConn->Flag = $SetFlag;
-            $GetIdConn->update();
           }
           else { //รออนุมัติ
               $DateDue = NULL;      //วันดิวงวดแรก

@@ -2883,7 +2883,6 @@
                                       @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                         <select name="statusSP2" class="form-control">
                                           <option value="" selected>--- สถานะ ---</option>
-                                          <option value="" selected>--- สถานะ ---</option>
                                           <option value="โสด" {{ ($data->status_SP2 === 'โสด') ? 'selected' : '' }}>โสด</option>
                                           <option value="สมรส" {{ ($data->status_SP2 === 'สมรส') ? 'selected' : '' }}>สมรส</option>
                                           <option value="หย่าร้าง" {{ ($data->status_SP2 === 'หย่าร้าง') ? 'selected' : '' }}>หย่าร้าง</option>
@@ -2893,7 +2892,6 @@
                                           <input type="text" name="statusSP2" value="{{$data->status_SP2}}" class="form-control" placeholder="เลือกสถานะ" readonly/>
                                         @else
                                           <select name="statusSP2" class="form-control">
-                                            <option value="" selected>--- สถานะ ---</option>
                                             <option value="" selected>--- สถานะ ---</option>
                                             <option value="โสด" {{ ($data->status_SP2 === 'โสด') ? 'selected' : '' }}>โสด</option>
                                             <option value="สมรส" {{ ($data->status_SP2 === 'สมรส') ? 'selected' : '' }}>สมรส</option>
