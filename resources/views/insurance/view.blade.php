@@ -123,7 +123,7 @@
                   <hr>
                   
                 @if($type == 1)
-                  @if($data != null)
+                  @if($countData != 0)
                     <div class="float-right form-inline" id="grpChkBox">
                       <p><input type="checkbox" name="no" class="round" checked/> ลำดับ</p>&nbsp;&nbsp;
                       <!-- <p><input type="checkbox" name="datekey" class="round"/> วันที่คีย์</p>&nbsp;&nbsp; -->
@@ -153,118 +153,118 @@
                       </thead>
                       <tbody>
                         @foreach($data as $key => $row)
-                        <tr>
-                          <td class="text-center alert">
-                            <div class="form-inline">
-                              <!-- แจ้งเตือนทะเบียน -->
-                              @if($row->Register_expire != null)
-                                  @php
-                                      date_default_timezone_set('Asia/Bangkok');
-                                      $ifdate = date('Y-m-d');
-                                  @endphp
-                                  @if($ifdate < $row->Register_expire)
+                          <tr>
+                            <td class="text-center alert">
+                              <div class="form-inline">
+                                <!-- แจ้งเตือนทะเบียน -->
+                                @if($row->Register_expire != null)
                                     @php
-                                      $Cldate = date_create($row->Register_expire);
-                                      $nowCldate = date_create($ifdate);
-                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
-                                      $duration = $ClDateDiff->format("%a วัน")
+                                        date_default_timezone_set('Asia/Bangkok');
+                                        $ifdate = date('Y-m-d');
                                     @endphp
-                                    @if($duration <= 30)
-                                      <p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ทะเบียน ({{$duration}})</label></span></p>
+                                    @if($ifdate < $row->Register_expire)
+                                      @php
+                                        $Cldate = date_create($row->Register_expire);
+                                        $nowCldate = date_create($ifdate);
+                                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                        $duration = $ClDateDiff->format("%a วัน")
+                                      @endphp
+                                      @if($duration <= 30)
+                                        <p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ทะเบียน ({{$duration}})</label></span></p>
+                                      @endif
+                                    @else
+                                    &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
                                     @endif
-                                  @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
-                                  @endif
-                              @endif
-                              <!-- แจ้งเตือนประกัน -->
-                              @if($row->Insure_expire != null)
-                                  @php
-                                      date_default_timezone_set('Asia/Bangkok');
-                                      $ifdate = date('Y-m-d');
-                                  @endphp
-                                  @if($ifdate < $row->Insure_expire)
+                                @endif
+                                <!-- แจ้งเตือนประกัน -->
+                                @if($row->Insure_expire != null)
                                     @php
-                                      $Cldate = date_create($row->Insure_expire);
-                                      $nowCldate = date_create($ifdate);
-                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
-                                      $duration = $ClDateDiff->format("%a วัน")
+                                        date_default_timezone_set('Asia/Bangkok');
+                                        $ifdate = date('Y-m-d');
                                     @endphp
-                                    @if($duration <= 30)
-                                      &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ประกัน ({{$duration}})</label></span></p>
+                                    @if($ifdate < $row->Insure_expire)
+                                      @php
+                                        $Cldate = date_create($row->Insure_expire);
+                                        $nowCldate = date_create($ifdate);
+                                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                        $duration = $ClDateDiff->format("%a วัน")
+                                      @endphp
+                                      @if($duration <= 30)
+                                        &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ประกัน ({{$duration}})</label></span></p>
+                                      @endif
+                                    @else
+                                    &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
                                     @endif
-                                  @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
-                                  @endif
-                              @endif
-                              <!-- แจ้งเตือน พรบ -->
-                              @if($row->Act_expire != null)
-                                  @php
-                                      date_default_timezone_set('Asia/Bangkok');
-                                      $ifdate = date('Y-m-d');
-                                  @endphp
-                                  @if($ifdate < $row->Act_expire)
+                                @endif
+                                <!-- แจ้งเตือน พรบ -->
+                                @if($row->Act_expire != null)
                                     @php
-                                      $Cldate = date_create($row->Act_expire);
-                                      $nowCldate = date_create($ifdate);
-                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
-                                      $duration = $ClDateDiff->format("%a วัน")
+                                        date_default_timezone_set('Asia/Bangkok');
+                                        $ifdate = date('Y-m-d');
                                     @endphp
-                                    @if($duration <= 30)
-                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">พรบ. ({{$duration}})</label></span></p>
+                                    @if($ifdate < $row->Act_expire)
+                                      @php
+                                        $Cldate = date_create($row->Act_expire);
+                                        $nowCldate = date_create($ifdate);
+                                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                        $duration = $ClDateDiff->format("%a วัน")
+                                      @endphp
+                                      @if($duration <= 30)
+                                      &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">พรบ. ({{$duration}})</label></span></p>
+                                      @endif
+                                    @else
+                                    &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
                                     @endif
-                                  @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
-                                  @endif
-                              @endif
-                              <!-- แจ้งเตือนเช็คระยะ -->
-                              @if($row->Check_car != null)
-                                  @php
-                                      date_default_timezone_set('Asia/Bangkok');
-                                      $ifdate = date('Y-m-d');
-                                  @endphp
-                                  @if($ifdate < $row->Check_car)
+                                @endif
+                                <!-- แจ้งเตือนเช็คระยะ -->
+                                @if($row->Check_car != null)
                                     @php
-                                      $Cldate = date_create($row->Check_car);
-                                      $nowCldate = date_create($ifdate);
-                                      $ClDateDiff = date_diff($Cldate,$nowCldate);
-                                      $duration = $ClDateDiff->format("%a วัน")
+                                        date_default_timezone_set('Asia/Bangkok');
+                                        $ifdate = date('Y-m-d');
                                     @endphp
-                                    @if($duration <= 30)
-                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">เช็คระยะ ({{$duration}})</label></span></p>
+                                    @if($ifdate < $row->Check_car)
+                                      @php
+                                        $Cldate = date_create($row->Check_car);
+                                        $nowCldate = date_create($ifdate);
+                                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                                        $duration = $ClDateDiff->format("%a วัน")
+                                      @endphp
+                                      @if($duration <= 30)
+                                      &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">เช็คระยะ ({{$duration}})</label></span></p>
+                                      @endif
+                                    @else
+                                    &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
                                     @endif
-                                  @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
-                                  @endif
-                              @endif
-                            </div>
-                          </td>
-                          <td class="text-center no">{{$key+1}}</td>
-                          <td class="text-center datekey">{{DateThai($row->Date_useradd)}}</td>
-                          <td class="text-center register">{{$row->Number_register}}</td>
-                          <td class="text-center brand">{{$row->Brand_car}}</td>
-                          <td class="text-center version">{{$row->Version_car}}</td>
-                          <td class="text-center engno">{{$row->Engno_car}}</td>
-                          <td class="text-left note"> {{$row->Note_car}}</td>
-                          <td class="text-center act">
-                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" title="ดูรายการ"
-                              data-backdrop="static" data-keyboard="false"
-                              data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{1}}">
-                              <i class="far fa-eye"></i>
-                            </button>
-                            <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-edit" title="แก้ไขรายการ"
-                              data-backdrop="static" data-keyboard="false"
-                              data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{2}}">
-                              <i class="far fa-edit"></i>
-                            </button>
-                            <form method="post" class="delete_form" action="{{ route('MasterInsure.destroy',[$row->Insure_id]) }}" style="display:inline;">
-                              {{csrf_field()}}
-                              <input type="hidden" name="_method" value="DELETE" />
-                              <button type="submit" data-name="{{ $row->Number_register }}" class="delete-modal btn btn-danger btn-sm AlertForm" title="ลบรายการ">
-                                <i class="far fa-trash-alt"></i>
+                                @endif
+                              </div>
+                            </td>
+                            <td class="text-center no">{{$key+1}}</td>
+                            <td class="text-center datekey">{{DateThai($row->Date_useradd)}}</td>
+                            <td class="text-center register">{{$row->Number_register}}</td>
+                            <td class="text-center brand">{{$row->Brand_car}}</td>
+                            <td class="text-center version">{{$row->Version_car}}</td>
+                            <td class="text-center engno">{{$row->Engno_car}}</td>
+                            <td class="text-left note"> {{$row->Note_car}}</td>
+                            <td class="text-center act">
+                              <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" title="ดูรายการ"
+                                data-backdrop="static" data-keyboard="false"
+                                data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{1}}">
+                                <i class="far fa-eye"></i>
                               </button>
-                            </form>
-                          </td>
-                        </tr>
+                              <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#modal-edit" title="แก้ไขรายการ"
+                                data-backdrop="static" data-keyboard="false"
+                                data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{2}}">
+                                <i class="far fa-edit"></i>
+                              </button>
+                              <form method="post" class="delete_form" action="{{ route('MasterInsure.destroy',[$row->Insure_id]) }}" style="display:inline;">
+                                {{csrf_field()}}
+                                <input type="hidden" name="_method" value="DELETE" />
+                                <button type="submit" data-name="{{ $row->Number_register }}" class="delete-modal btn btn-danger btn-sm AlertForm" title="ลบรายการ">
+                                  <i class="far fa-trash-alt"></i>
+                                </button>
+                              </form>
+                            </td>
+                          </tr>
                         @endforeach
                       </tbody>
                     </table>
