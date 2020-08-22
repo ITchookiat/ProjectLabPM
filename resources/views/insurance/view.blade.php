@@ -171,7 +171,7 @@
                                       <p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ทะเบียน ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
                                   @endif
                               @endif
                               <!-- แจ้งเตือนประกัน -->
@@ -191,7 +191,7 @@
                                       &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ประกัน ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
                                   @endif
                               @endif
                               <!-- แจ้งเตือน พรบ -->
@@ -211,7 +211,7 @@
                                     &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">พรบ. ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
                                   @endif
                               @endif
                               <!-- แจ้งเตือนเช็คระยะ -->
@@ -231,7 +231,7 @@
                                     &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">เช็คระยะ ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
                                   @endif
                               @endif
                             </div>
@@ -389,9 +389,8 @@
                         <div class="col-sm-7">
                           <select id="Typecar" name="Typecar" class="form-control">
                             <option value="" selected>--- ประเภทรถ ---</option>
-                            <option value="รถกระบะ">รถกระบะ</option>
-                            <option value="รถตอนเดียว">รถตอนเดียว</option>
-                            <option value="รถเก๋ง/7ที่นั่ง">รถเก๋ง/7ที่นั่ง</option>
+                            <option value="รถใช้งาน">รถใช้งาน</option>
+                            <option value="รถ Demo">รถ Demo</option>
                           </select>
                         </div>
                       </div>

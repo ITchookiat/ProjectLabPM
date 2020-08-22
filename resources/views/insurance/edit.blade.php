@@ -265,9 +265,8 @@
                 <div class="col-sm-7">
                   <select id="Typecar" name="Typecar" class="form-control">
                     <option value="" selected>--- ประเภทรถ ---</option>
-                    <option value="รถกระบะ" {{ ($data->Type_car === 'รถกระบะ') ? 'selected' : '' }}>รถกระบะ</option>
-                    <option value="รถตอนเดียว" {{ ($data->Type_car === 'รถตอนเดียว') ? 'selected' : '' }}>รถตอนเดียว</option>
-                    <option value="รถเก๋ง/7ที่นั่ง" {{ ($data->Type_car === 'รถเก๋ง/7ที่นั่ง') ? 'selected' : '' }}>รถเก๋ง/7ที่นั่ง</option>
+                    <option value="รถใช้งาน" {{ ($data->Type_car === 'รถใช้งาน') ? 'selected' : '' }}>รถใช้งาน</option>
+                    <option value="รถ Demo" {{ ($data->Type_car === 'รถ Demo') ? 'selected' : '' }}>รถ Demo</option>
                   </select>
                 </div>
               </div>
