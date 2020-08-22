@@ -85,7 +85,7 @@ class InsureController extends Controller
     {
         $item1 = Data_insure::find($id);
         $item1->Delete();
-        return redirect()->Route('Insure',$type)->with('success','ลบข้อมูลเรียบร้อย');
+        return redirect()->back()->with('success','ลบข้อมูลเรียบร้อย');
     }
 
 }
