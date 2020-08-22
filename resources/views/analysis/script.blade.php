@@ -135,7 +135,7 @@
           var capital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
           var interest = ((Setinterest/100)/1) * 12;
           var process = (parseFloat(capital) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
-          var total_pay = Math.ceil(process/10)*10;
+          var total_pay = Math.round(process/10)*10;
           var total_sum = total_pay * Timelack;
           var profit = total_sum - capital;
         
@@ -210,7 +210,7 @@
 
     function percent(){
       var num11 = document.getElementById('Midpricecar').value;
-      var num1 = num11.replace(",","").replace(",","");
+      var num1 = num11.replace(",","");
       var num22 = document.getElementById('Topcar').value;
       var num2 = num22.replace(",","");
       var percentt = (num2/num1) * 100;

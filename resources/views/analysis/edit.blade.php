@@ -1895,7 +1895,11 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
                                   @else
-                                    <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" readonly/>
+                                    @if($GetDocComplete != Null)
+                                      <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" readonly/>
+                                    @else
+                                      <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();"/>
+                                    @endif
                                   @endif
                                 </div>
                               </div>
