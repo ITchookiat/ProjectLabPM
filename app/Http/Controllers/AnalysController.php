@@ -40,24 +40,47 @@ class AnalysController extends Controller
         $newtdate = '';
         $branch = '';
         $status = '';
+        $typeCon = '';
 
         if ($request->has('Fromdate')) {
           $newfdate = $request->get('Fromdate');
-        }
-        if ($request->has('Todate')) {
-          $newtdate = $request->get('Todate');
-        }
-        if ($request->has('branch')) {
-          $branch = $request->get('branch');
-        }
-        if ($request->has('status')) {
-          $status = $request->get('status');
-        }
-        if ($request->has('Contno')) {
-          $contno = $request->get('Contno');
+        }elseif (session()->has('fdate')) {
+          $newfdate = session('fdate');
         }
 
-        if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
+        if ($request->has('Todate')) {
+          $newtdate = $request->get('Todate');
+        }elseif (session()->has('tdate')) {
+          $newtdate = session('tdate');
+        }
+
+        if ($request->has('branch')) {
+          $branch = $request->get('branch');
+        }elseif (session()->has('branch')) {
+          $branch = session('branch');
+        }
+
+        if ($request->has('status')) {
+          $status = $request->get('status');
+        }elseif (session()->has('status')) {
+          $status = session('status');
+        }
+
+        if ($request->has('Contno')) {
+          $contno = $request->get('Contno');
+        }elseif (session()->has('Contno')) {
+          $contno = session('Contno');
+        }
+
+        if ($request->has('TypeContract')) {
+          $typeCon = $request->get('TypeContract');
+        }elseif (session()->has('typeCon')) {
+          $typeCon = session('typeCon');
+        }
+
+        // dd($request->get('TypeContract'));
+
+        if ($newfdate == false and $newtdate == false) {
           $data = DB::table('buyers')
               ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
               ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
@@ -69,7 +92,7 @@ class AnalysController extends Controller
               ->get();
         }else {
           $data = DB::table('buyers')
-            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+              ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
               ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
               ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
               ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
@@ -81,17 +104,19 @@ class AnalysController extends Controller
               ->when(!empty($status), function($q) use($status){
                 return $q->where('cardetails.StatusApp_car','=',$status);
               })
+              ->when(!empty($typeCon), function($q) use($typeCon){
+                return $q->where('buyers.Type_Con','=',$typeCon);
+              })
               ->when(!empty($contno), function($q) use($contno){
                 return $q->where('buyers.Contract_buyer','=',$contno);
               })
-              ->where('buyers.Contract_buyer','not like', '22%')
-              ->where('buyers.Contract_buyer','not like', '33%')
               ->orderBy('buyers.Contract_buyer', 'ASC')
               ->get();
 
         }
 
         // dd($data);
+
         $type = $request->type;
         $newfdate = \Carbon\Carbon::parse($newfdate)->format('Y') ."-". \Carbon\Carbon::parse($newfdate)->format('m')."-". \Carbon\Carbon::parse($newfdate)->format('d');
         $newtdate = \Carbon\Carbon::parse($newtdate)->format('Y') ."-". \Carbon\Carbon::parse($newtdate)->format('m')."-". \Carbon\Carbon::parse($newtdate)->format('d');
@@ -118,7 +143,7 @@ class AnalysController extends Controller
             $SumCommitprice = 0;
         }
 
-        return view('analysis.view', compact('type', 'data','branch','newfdate','newtdate','status','Setdate','SumTopcar','SumCommissioncar','SumCommitprice','contno','SetStrConn','SetStr1','SetStr2'));
+        return view('analysis.view', compact('type', 'data','branch','newfdate','newtdate','status','typeCon','Setdate','SumTopcar','SumCommissioncar','SumCommitprice','contno','SetStrConn','SetStr1','SetStr2'));
       }
       elseif ($request->type == 2){ //เพิ่มสินเชื่อ
         return view('analysis.createbuyer');
@@ -295,27 +320,28 @@ class AnalysController extends Controller
       if ($request->get('Contract_buyer') != NULL) {
         $StrConn = $request->get('Contract_buyer');
 
-        if ($request->get('TypeContract') == "P03-") {
+        if ($request->get('TypeContract') == "P03") {
           $SetFlag = "Y"; //สถานะเริ่มต้นของ PLoan
-        }elseif ($request->get('TypeContract') == "P06-") {
+        }elseif ($request->get('TypeContract') == "P06") {
           $SetFlag = "E"; //สถานะเริ่มต้นของ Micro
         }
       }
-      elseif ($request->get('TypeContract') != NULL) {
-        $SetDateConn = \Carbon\Carbon::parse($request->get('DateDue'))->format('Y') +543;
-        $SubStr = substr($SetDateConn,2,3);
-        $StrConn = $request->get('TypeContract').$SubStr.$request->get('BrachUser')."/";
+      // elseif ($request->get('TypeContract') != NULL) {
+      //   $SetDateConn = \Carbon\Carbon::parse($request->get('DateDue'))->format('Y') +543;
+      //   $SubStr = substr($SetDateConn,2,3);
+      //   $StrConn = $request->get('TypeContract').$SubStr.$request->get('BrachUser')."/";
 
-        if ($request->get('TypeContract') == "P03-") {
-          $SetFlag = "N"; //สถานะเริ่มต้นของ PLoan
-        }elseif ($request->get('TypeContract') == "P06-") {
-          $SetFlag = "D"; //สถานะเริ่มต้นของ Micro
-        }
-      }
+      //   if ($request->get('TypeContract') == "P03") {
+      //     $SetFlag = "N"; //สถานะเริ่มต้นของ PLoan
+      //   }elseif ($request->get('TypeContract') == "P06") {
+      //     $SetFlag = "D"; //สถานะเริ่มต้นของ Micro
+      //   }
+      // }
 
       $Buyerdb = new Buyer([
         'Contract_buyer' => $StrConn,
         'Flag' => $SetFlag,
+        'Type_Con' => $request->get('TypeContract'),
         'Date_Due' => $request->get('DateDue'),
         'Name_buyer' => $request->get('Namebuyer'),
         'last_buyer' => $request->get('lastbuyer'),
@@ -692,7 +718,7 @@ class AnalysController extends Controller
           ->where('buyers.id',$id)->first();
                   
         $GetDocComplete = $data->DocComplete_car;
-        $SubStr = substr($data->Contract_buyer,0,4);
+        $SubStr = substr($data->Contract_buyer,0,3);
       }
 
       $dataImage = DB::table('uploadfile_images')->where('Buyerfileimage_id',$data->id)->get();
@@ -739,9 +765,10 @@ class AnalysController extends Controller
       }
 
       $GetYear = substr(date('Y')+543, 2,4);  //ดึงปี พ.ศ.
-      $NewContract = $request->get('TypeContract').$GetYear.$NumBranch."/";
+      $NewContract = $request->get('TypeContract').'-'.$GetYear.$NumBranch."/";
 
-      $SetPhonebuyer = str_replace ( "_","",$request->get('Phonebuyer'));
+      
+
       if ($request->get('Topcar') != Null) {
         $SetTopcar = str_replace (",","",$request->get('Topcar'));
       }else {
@@ -766,17 +793,17 @@ class AnalysController extends Controller
             $newDateDue = date('Y-m-d');
           }
           $StatusApp = "อนุมัติ";
-          if ($request->get('TypeContract') == "P03-") {
+          if ($request->get('TypeContract') == "P03") {
             $SetFlag = "Y";
-          }elseif ($request->get('TypeContract') == "P06-") {
+          }elseif ($request->get('TypeContract') == "P06") {
             $SetFlag = "E";
           }
         }else {
           $newDateDue = $request->get('DateDue');
           $StatusApp = "รออนุมัติ";
-          if ($request->get('TypeContract') == "P03-") {
+          if ($request->get('TypeContract') == "P03") {
             $SetFlag = "N";
-          }elseif ($request->get('TypeContract') == "P06-") {
+          }elseif ($request->get('TypeContract') == "P06") {
             $SetFlag = "D";
           }
         }
@@ -786,17 +813,17 @@ class AnalysController extends Controller
             $newDateDue = date('Y-m-d');
           }
           $StatusApp = "อนุมัติ";
-          if ($request->get('TypeContract') == "P03-") {
+          if ($request->get('TypeContract') == "P03") {
             $SetFlag = "Y";
-          }elseif ($request->get('TypeContract') == "P06-") {
+          }elseif ($request->get('TypeContract') == "P06") {
             $SetFlag = "E";
           }
         }elseif ($request->get('MASTER') != Null) {
           $newDateDue = $request->get('DateDue');
           $StatusApp = "รออนุมัติ";
-          if ($request->get('TypeContract') == "P03-") {
+          if ($request->get('TypeContract') == "P03") {
             $SetFlag = "N";
-          }elseif ($request->get('TypeContract') == "P06-") {
+          }elseif ($request->get('TypeContract') == "P06") {
             $SetFlag = "D";
           }
         }
@@ -810,12 +837,13 @@ class AnalysController extends Controller
 
       $user = Buyer::find($id);
         $user->Contract_buyer = $NewContract;
+        $user->Type_Con = $request->get('TypeContract');
         $user->Date_Due = $newDateDue;
         $user->Name_buyer = $request->get('Namebuyer');
         $user->last_buyer = $request->get('lastbuyer');
         $user->Nick_buyer = $request->get('Nickbuyer');
         $user->Status_buyer = $request->get('Statusbuyer');
-        $user->Phone_buyer = $SetPhonebuyer;
+        $user->Phone_buyer = $request->get('Phonebuyer');
         $user->Phone2_buyer = $request->get('Phone2buyer');
         $user->Mate_buyer = $request->get('Matebuyer');
         $user->Idcard_buyer = $request->get('Idcardbuyer');
@@ -983,14 +1011,14 @@ class AnalysController extends Controller
               $datedueBF = date_create($SetDate);
               $DateDue = date_format($datedueBF, 'd-m-Y');
 
-              if ($request->get('TypeContract') == "P03-") {
+              if ($request->get('TypeContract') == "P03") {
                 $connect = DB::table('Buyers')
                     ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                     ->where('buyers.Flag', '=' ,'Y')
                     ->where('cardetails.Branch_car' ,$cardetail->branch_car)
                     ->orderBy('Contract_buyer', 'desc')->limit(1)
                     ->first();
-              }elseif ($request->get('TypeContract') == "P06-") {
+              }elseif ($request->get('TypeContract') == "P06") {
                 $connect = DB::table('Buyers')
                     ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                     ->where('buyers.Flag', '=' ,'E')
@@ -1006,7 +1034,7 @@ class AnalysController extends Controller
               $num = "1000";
               $SubStr = substr($num.$StrNum, -4);
               $StrConn = $SetStr[0]."/".$SubStr;
-
+              
               $GetIdConn = Buyer::where('id',$id)->first();
                 $GetIdConn->Contract_buyer = $StrConn;
                 $GetIdConn->Flag = $SetFlag;
@@ -1258,8 +1286,10 @@ class AnalysController extends Controller
       }  
 
       $item9 = Data_customer::where('Customer_id',$item1->Walkin_id)->first();
-        $item9->Status_leasing = 1;
-      $item9->update();
+        if ($item9 != NULL) {
+          $item9->Status_leasing = 1;
+          $item9->update();
+        }
 
       $item1->Delete();
       $item2->Delete();

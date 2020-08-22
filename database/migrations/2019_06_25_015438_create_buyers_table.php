@@ -17,6 +17,7 @@ class CreateBuyersTable extends Migration
             $table->bigIncrements('id');
             $table->string('Contract_buyer')->nullable();
             $table->string('Flag')->nullable();
+            $table->string('Type_Con')->nullable();
             $table->date('Date_Due')->nullable();
             $table->string('Name_buyer')->nullable();
             $table->string('last_buyer')->nullable();

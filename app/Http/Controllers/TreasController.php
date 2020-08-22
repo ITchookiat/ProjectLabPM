@@ -31,28 +31,28 @@ class TreasController extends Controller
 
             if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
                 $data = DB::table('buyers')
-                        ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                        ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-                        ->where('cardetails.Date_Appcar', $date)
-                        ->where('buyers.Contract_buyer','not like', '22%')
-                        ->where('buyers.Contract_buyer','not like', '33%')
-                        ->where('cardetails.Approvers_car','<>','')
-                        ->orderBy('buyers.Contract_buyer', 'ASC')
-                        ->get();
+                    ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                    ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+                    ->where('cardetails.Date_Appcar', $date)
+                    ->where('buyers.Contract_buyer','not like', '22%')
+                    ->where('buyers.Contract_buyer','not like', '33%')
+                    ->where('cardetails.Approvers_car','<>','')
+                    ->orderBy('buyers.Contract_buyer', 'ASC')
+                    ->get();
 
             }
             else {
                 $data = DB::table('buyers')
-                        ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                        ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-                        ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
-                            return $q->whereBetween('cardetails.Date_Appcar',[$newfdate,$newtdate]);
-                        })
-                        ->where('buyers.Contract_buyer','not like', '22%')
-                        ->where('buyers.Contract_buyer','not like', '33%')
-                        ->where('cardetails.Approvers_car','<>','')
-                        ->orderBy('buyers.Contract_buyer', 'ASC')
-                        ->get();
+                    ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                    ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+                    ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+                        return $q->whereBetween('cardetails.Date_Appcar',[$newfdate,$newtdate]);
+                    })
+                    ->where('buyers.Contract_buyer','not like', '22%')
+                    ->where('buyers.Contract_buyer','not like', '33%')
+                    ->where('cardetails.Approvers_car','<>','')
+                    ->orderBy('buyers.Contract_buyer', 'ASC')
+                    ->get();
             }
             return view('treasury.view', compact('data','newfdate','newtdate'));
         }

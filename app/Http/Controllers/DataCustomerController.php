@@ -50,6 +50,7 @@ class DataCustomerController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         if ($request->get('Topcar') != Null) {
             $SetTopcar = str_replace (",","",$request->get('Topcar'));
         }else {
@@ -91,48 +92,50 @@ class DataCustomerController extends Controller
 
         ////////////////////////////////////
         if($data->Type_leasing == 'PLoan'){
-            $Settype = 'P03-';
+            $Settype = 'P03';
             $Flag = 'N';
         }elseif($data->Type_leasing == 'Micro'){
-            $Settype = 'P06-';
+            $Settype = 'P06';
             $Flag = 'D';
+
         }
 
         ////////////////////////////////////
         if($data->Branch_car == 'ปัตตานี'){
-            $SetContract = $Settype.$SetYear.'20'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'20'.'/';
         }
         elseif($data->Branch_car == 'ยะลา'){
-            $SetContract = $Settype.$SetYear.'21'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'21'.'/';
         }
         elseif($data->Branch_car == 'นราธิวาส'){
-            $SetContract = $Settype.$SetYear.'22'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'22'.'/';
         }
         elseif($data->Branch_car == 'สายบุรี'){
-            $SetContract = $Settype.$SetYear.'23'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'23'.'/';
         }
         elseif($data->Branch_car == 'โกลก'){
-            $SetContract = $Settype.$SetYear.'24'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'24'.'/';
         }
         elseif($data->Branch_car == 'เบตง'){
-            $SetContract = $Settype.$SetYear.'25'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'25'.'/';
         }
         elseif($data->Branch_car == 'โคกโพธิ์'){
-            $SetContract = $Settype.$SetYear.'26'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'26'.'/';
         }
         elseif($data->Branch_car == 'ระแงะ'){
-            $SetContract = $Settype.$SetYear.'27'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'27'.'/';
         }
         elseif($data->Branch_car == 'บังนังสตา'){
-            $SetContract = $Settype.$SetYear.'28'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'28'.'/';
         }
         else{
-            $SetContract = $Settype.$SetYear.'00'.'/';
+            $SetContract = $Settype.'-'.$SetYear.'00'.'/';
         }
 
         $Buyerdb = new Buyer([
             'Contract_buyer' => $SetContract,
             'Flag' => $Flag,
+            'Type_Con' => $Settype,
             'Date_Due' => $DateDue,
             'Name_buyer' => $data->Name_buyer,
             'last_buyer' => $data->Last_buyer,
@@ -141,14 +144,18 @@ class DataCustomerController extends Controller
             'Walkin_id' => $data->Customer_id,
           ]);
           $Buyerdb->save();
+
           $Sponsordb = new Sponsor([
             'Buyer_id' => $Buyerdb->id,
           ]);
           $Sponsordb->save();
+
           $Sponsor2db = new Sponsor2([
             'Buyer_id2' => $Buyerdb->id,
           ]);
+
           $Sponsor2db->save();
+
           $Cardetaildb = new Cardetail([
             'Buyercar_id' => $Buyerdb->id,
             'Brand_car' => $data->Brand_car,
@@ -164,6 +171,7 @@ class DataCustomerController extends Controller
             'branch_car' => $data->Branch_car,
           ]);
           $Cardetaildb ->save();
+
           $Expensesdb = new Expenses([
             'Buyerexpenses_id' => $Buyerdb->id,
           ]);
