@@ -121,19 +121,21 @@
                     </div>
                   </form>
                   <hr>
-                  <div class="float-right form-inline" id="grpChkBox">
-                    <p><input type="checkbox" name="no" class="round" checked/> ลำดับ</p>&nbsp;&nbsp;
-                    <!-- <p><input type="checkbox" name="datekey" class="round"/> วันที่คีย์</p>&nbsp;&nbsp; -->
-                    <!-- <p><input type="checkbox" name="alert" class="round"/> แจ้งเตือน</p>&nbsp;&nbsp; -->
-                    <!-- <p><input type="checkbox" name="register" class="round"/> ป้ายทะเบียน</p>&nbsp;&nbsp; -->
-                    <!-- <p><input type="checkbox" name="brand" class="round"/> ยี่ห้อรถ</p>&nbsp;&nbsp; -->
-                    <p><input type="checkbox" name="version" class="round"/> รุ่นรถ</p>&nbsp;&nbsp;
-                    <p><input type="checkbox" name="engno" class="round"/> เลขตัวถัง</p>&nbsp;&nbsp;
-                    <!-- <p><input type="checkbox" name="note" class="round"/> หมายเหตุ</p>&nbsp;&nbsp;&nbsp; -->
-                    <p><input type="checkbox" name="act" class="round" checked/> ตัวเลือก</p>&nbsp;&nbsp;&nbsp;
-                  </div>
                   
                 @if($type == 1)
+                  @if($data != null)
+                    <div class="float-right form-inline" id="grpChkBox">
+                      <p><input type="checkbox" name="no" class="round" checked/> ลำดับ</p>&nbsp;&nbsp;
+                      <!-- <p><input type="checkbox" name="datekey" class="round"/> วันที่คีย์</p>&nbsp;&nbsp; -->
+                      <!-- <p><input type="checkbox" name="alert" class="round"/> แจ้งเตือน</p>&nbsp;&nbsp; -->
+                      <!-- <p><input type="checkbox" name="register" class="round"/> ป้ายทะเบียน</p>&nbsp;&nbsp; -->
+                      <!-- <p><input type="checkbox" name="brand" class="round"/> ยี่ห้อรถ</p>&nbsp;&nbsp; -->
+                      <p><input type="checkbox" name="version" class="round"/> รุ่นรถ</p>&nbsp;&nbsp;
+                      <p><input type="checkbox" name="engno" class="round"/> เลขตัวถัง</p>&nbsp;&nbsp;
+                      <!-- <p><input type="checkbox" name="note" class="round"/> หมายเหตุ</p>&nbsp;&nbsp;&nbsp; -->
+                      <p><input type="checkbox" name="act" class="round" checked/> ตัวเลือก</p>&nbsp;&nbsp;&nbsp;
+                    </div>
+                  @endif
                   <div class="table-responsive">
                     <table class="table table-striped table-valign-middle table-bordered" id="table1">
                       <thead>
