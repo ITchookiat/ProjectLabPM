@@ -83,7 +83,8 @@ class InsureController extends Controller
 
     public function destroy(Request $request,$id)
     {
-        dd($id);
+        $item1 = Data_insure::find($id);
+        $item1->Delete();
         return redirect()->Route('Insure',$type)->with('success','ลบข้อมูลเรียบร้อย');
     }
 
