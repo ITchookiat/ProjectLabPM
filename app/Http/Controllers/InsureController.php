@@ -26,8 +26,9 @@ class InsureController extends Controller
                 })
               ->orderBY('created_at', 'DESC')
               ->get();
+        $countData = count($data);
  
-        return view('insurance.view', compact('data','type','newfdate','newtdate'));
+        return view('insurance.view', compact('data','type','newfdate','newtdate','countData'));
     }
 
     public function store(Request $request)
