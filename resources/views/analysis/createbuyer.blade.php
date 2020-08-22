@@ -220,7 +220,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                            <input type="checkbox" id="3" class="checkbox" name="TypeContract" value="P03-">
+                            <input type="checkbox" id="3" class="checkbox" name="TypeContract" value="P03">
                               <label for="3" class="todo">
                                 <i class="fa fa-check"></i>
                                 <span class="text"><font color="red">PLOAN &nbsp;&nbsp;</font></span>
@@ -232,7 +232,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                              <input type="checkbox" id="4" class="checkbox" name="TypeContract" value="P06-">
+                              <input type="checkbox" id="4" class="checkbox" name="TypeContract" value="P06">
                               <label for="4" class="todo">
                                 <i class="fa fa-check"></i>
                                 <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>

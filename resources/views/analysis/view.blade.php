@@ -33,7 +33,7 @@
                 <h4 class="">
                   @if($type == 1)
                     รายการสินเชื่อ (PLoan-Micro)
-                    @if(auth::user()->type == 1 or auth::user()->type == 2 or auth::user()->branch == 41)
+                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก การเงินใน")
                       <button class="btn btn-gray float-right">
                         ค่าคอม: <font color="red">{{ number_format($SumCommitprice) }}</font> บาท
                       </button>
@@ -63,9 +63,11 @@
                         <li class="nav-item">
                           <a class="nav-link active" id="Tab-Main-1" href="{{ route('Analysis', 1) }}" >หน้าหลัก</a>
                         </li>
-                        {{-- <li class="nav-item">
-                          <a class="nav-link" id="Tab-sub-1" href="{{ route('Analysis', 2) }}" >แบบฟอร์มผู้เช่าซื้อ</a>
-                        </li> --}}
+                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                          <li class="nav-item">
+                            <a class="nav-link" id="Tab-sub-1" href="{{ route('Analysis', 2) }}" >แบบฟอร์มผู้เช่าซื้อ</a>
+                          </li>
+                        @endif
                       @endif
 
                       {{-- <li class="nav-item">
@@ -89,18 +91,13 @@
                     <div class="col-md-12">
                       <form method="get" action="{{ route('Analysis',1) }}">
                         <p></p>
-                        <div class="row">
+                        <div class="row mb-0">
                           <div class="col-md-12">
                             <div class="float-right form-inline">
                               @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                <label>เลขที่สัญญา : </label>
-                                <input type="type" name="Contno" value="{{$contno}}" maxlength="12" class="form-control"/>
-                                  <a target="_blank" href="{{ action('ReportAnalysController@ReportDueDate', $type) }}" class="btn bg-primary btn-app">
-                                    <span class="fas fa-print"></span> ปริ้นรายการ
-                                  </a>
-                              @else
-                                <label>เลขที่สัญญา : </label>
-                                <input type="type" name="Contno" value="{{$contno}}" maxlength="12" class="form-control"/>
+                                <a target="_blank" href="{{ action('ReportAnalysController@ReportDueDate', $type) }}" class="btn bg-primary btn-app">
+                                  <span class="fas fa-print"></span> ปริ้นรายการ
+                                </a>
                               @endif
 
                               <button type="submit" class="btn bg-warning btn-app">
@@ -109,18 +106,31 @@
                             </div>
                           </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-1">
                           <div class="col-md-12">
                             <div class="float-right form-inline">
-                              <label>จากวันที่ : </label>
+                              @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                <label class="mr-sm-2">เลขที่สัญญา : </label>
+                                <input type="type" name="Contno" value="{{$contno}}" maxlength="12" class="form-control"/>
+                              @else
+                                <label class="mr-sm-2">เลขที่สัญญา : </label>
+                                <input type="type" name="Contno" value="{{$contno}}" maxlength="12" class="form-control"/>
+                              @endif
+
+                              <label class="mr-sm-2">จากวันที่ : </label>
                               <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control" />
 
-                              <label>ถึงวันที่ : </label>
+                              <label class="mr-sm-2">ถึงวันที่ : </label>
                               <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
-
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row mb-0">
+                          <div class="col-md-12">
+                            <div class="float-right form-inline">
                               <label for="text" class="mr-sm-2">สาขา : </label>
                               <select name="branch" class="form-control">
-                                <option selected value="">---เลือกสาขา---</option>
+                                <option selected value="">----------เลือกสาขา--------</option>
                                 <option value="ปัตตานี" {{ ($branch == 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</otion>
                                 <option value="ยะลา" {{ ($branch == 'ยะลา') ? 'selected' : '' }}>ยะลา</otion>
                                 <option value="นราธิวาส" {{ ($branch == 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</otion>
@@ -129,18 +139,29 @@
                                 <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง</otion>
                               </select>
 
+                              <label for="text" class="mr-sm-2">&nbsp;&nbsp;&nbsp;สัญญา : </label>
+                              <select name="TypeContract" class="form-control">
+                                <option selected value="">-----เลือกสัญญา-----</option>
+                                <option value="P03" {{ ($typeCon == 'P03') ? 'selected' : '' }}>PLoan (P03)</otion>
+                                <option value="P06" {{ ($typeCon == 'P06') ? 'selected' : '' }}>Micro (P06)</otion>
+                              </select>
+
                               <label for="text" class="mr-sm-2">สถานะ : </label>
                               <select name="status" class="form-control">
-                                <option selected value="">---สถานะ---</option>
+                                <option selected value="">---------สถานะ--------</option>
                                 <option value="อนุมัติ"{{ ($status == 'อนุมัติ') ? 'selected' : '' }}>อนุมัติ</otion>
                                 <option value="รออนุมัติ"{{ ($status == 'รออนุมัติ') ? 'selected' : '' }}>รออนุมัติ</otion>
                               </select>
                             </div>
                           </div>
                         </div>
+
+
                       </form>
+                    </div>
+                    <hr>
+                    <div class="col-md-12">
                       <div class="table-responsive">
-                        <hr>
                         <table class="table table-striped table-valign-middle" id="table1">
                             <thead>
                               <tr>
@@ -160,7 +181,14 @@
                               @foreach($data as $row)
                                 <tr>
                                   <td class="text-center"> {{ $row->branch_car}} </td>
-                                  <td class="text-left"> {{ $row->Contract_buyer}} </td>
+                                  <td class="text-left"> 
+                                    {{ $row->Contract_buyer}} 
+                                    @if ($row->Flag == "N" or $row->Flag == "Y")
+                                      <span class="badge bg-danger prem">PLoan</span>
+                                    @elseif($row->Flag == "D" or $row->Flag == "E")
+                                      <span class="badge bg-info prem">Micro</span>
+                                    @endif
+                                  </td>
                                   <td class="text-left"> {{ $row->status_car}} </td>
                                   <td class="text-left"> {{ $row->Brand_car}} </td>
                                   <td class="text-left"> {{ $row->License_car}} </td>
@@ -234,16 +262,16 @@
 
                                     {{-- แก้ไข / ดูรายการ --}}
                                     @if(auth::user()->type == "Admin")
-                                      <a href="{{ action('AnalysController@edit',[$type,$row->id,$newfdate,$newtdate,$branch,$status]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
+                                      <a href="{{ action('AnalysController@edit',[$type,$row->id,$newfdate,$newtdate,$branch,$status,$typeCon]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
                                         <i class="far fa-edit"></i>
                                       </a>
                                     @elseif(auth::user()->position == "MANAGER" or auth::user()->position == "AUDIT" or auth::user()->position == "MASTER" or auth::user()->position == "STAFF")
                                       @if($row->StatusApp_car == 'อนุมัติ')
-                                        <a href="{{ action('AnalysController@edit',[$type,$row->id,$newfdate,$newtdate,$branch,$status]) }}" class="btn btn-success btn-sm" title="ดูรายการ">
+                                        <a href="{{ action('AnalysController@edit',[$type,$row->id,$newfdate,$newtdate,$branch,$status,$typeCon]) }}" class="btn btn-success btn-sm" title="ดูรายการ">
                                           <i class="fas fa-eye"></i>
                                         </a>
                                       @else
-                                        <a href="{{ action('AnalysController@edit',[$type,$row->id,$newfdate,$newtdate,$branch,$status]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
+                                        <a href="{{ action('AnalysController@edit',[$type,$row->id,$newfdate,$newtdate,$branch,$status,$typeCon]) }}" class="btn btn-warning btn-sm" title="แก้ไขรายการ">
                                           <i class="far fa-edit"></i>
                                         </a>
                                       @endif
@@ -368,7 +396,7 @@
         "responsive": true,
         "autoWidth": false,
         "ordering": true,
-        "lengthChange": false,
+        "lengthChange": true,
         "order": [[ 1, "asc" ]],
       });
     });
@@ -376,10 +404,10 @@
 
   <script>
     function blinker() {
-    $('.prem').fadeOut(1500);
-    $('.prem').fadeIn(1500);
+    $('.prem').fadeOut(2000);
+    $('.prem').fadeIn(2000);
     }
-    setInterval(blinker, 1500);
+    setInterval(blinker, 2000);
   </script>
 
 @endsection
