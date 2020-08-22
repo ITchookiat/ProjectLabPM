@@ -13,9 +13,20 @@ class InsureController extends Controller
         // dump($type);
         $newfdate = '';
         $newtdate = '';
+        if ($request->has('Fromdate')) {
+            $newfdate = $request->get('Fromdate');
+        }
+        if ($request->has('Todate')) {
+        $newtdate = $request->get('Todate');
+        }
+
         $data = DB::table('data_insures')
+              ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+                return $q->whereBetween('Date_useradd',[$newfdate,$newtdate]);
+                })
               ->orderBY('created_at', 'DESC')
               ->get();
+ 
         return view('insurance.view', compact('data','type','newfdate','newtdate'));
     }
 

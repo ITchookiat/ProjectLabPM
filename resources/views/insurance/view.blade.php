@@ -27,7 +27,40 @@
     span:hover {
       color: blue;
     }
+    .round {
+        width: 0.9em;
+        height: 0.9em;
+        background-color: white;
+        border-radius: 50%;
+        /* vertical-align: middle; */
+        border: 1px solid #000;
+        -webkit-appearance: none;
+        outline: none;
+        cursor: pointer;
+    }
+    .round:checked {
+        background-color: green;
+    }
+    .version,.engno{
+      display: none;
+    }
   </style>
+
+  <script>
+      $(function () {
+          var $chk = $("#grpChkBox input:checkbox"); 
+          var $tbl = $("#table1");
+          var $tblhead = $("#table1 th");
+
+          // $chk.prop('checked', false); 
+
+          $chk.click(function () {
+              var colToHide = $tblhead.filter("." + $(this).attr("name"));
+              var index = $(colToHide).index();
+              $tbl.find('tr :nth-child(' + (index + 1) + ')').toggle();
+          });
+      });
+  </script>
 
   <!-- Main content -->
   <section class="content">
@@ -55,7 +88,7 @@
                   </div>
                   <div class="col-4">
                     <div class="card-tools d-inline float-right">
-                      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก ประกันภัย")
                         <a class="btn bg-success btn-sm" data-toggle="modal" data-target="#modal-newcar" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
                           <span class="fas fa-plus"></span> เพิ่มใหม่
                         </a>
@@ -79,32 +112,47 @@
                           <button type="submit" class="btn bg-warning btn-app">
                             <span class="fas fa-search"></span> Search
                           </button>
+
+                          <button type="button" class="btn bg-primary btn-app">
+                            <span class="fas fa-print"></span> Print
+                          </button>
                         </div>
                       </div>
                     </div>
                   </form>
                   <hr>
+                  <div class="float-right form-inline" id="grpChkBox">
+                    <p><input type="checkbox" name="no" class="round" checked/> ลำดับ</p>&nbsp;&nbsp;
+                    <!-- <p><input type="checkbox" name="datekey" class="round"/> วันที่คีย์</p>&nbsp;&nbsp; -->
+                    <!-- <p><input type="checkbox" name="alert" class="round"/> แจ้งเตือน</p>&nbsp;&nbsp; -->
+                    <!-- <p><input type="checkbox" name="register" class="round"/> ป้ายทะเบียน</p>&nbsp;&nbsp; -->
+                    <!-- <p><input type="checkbox" name="brand" class="round"/> ยี่ห้อรถ</p>&nbsp;&nbsp; -->
+                    <p><input type="checkbox" name="version" class="round"/> รุ่นรถ</p>&nbsp;&nbsp;
+                    <p><input type="checkbox" name="engno" class="round"/> เลขตัวถัง</p>&nbsp;&nbsp;
+                    <!-- <p><input type="checkbox" name="note" class="round"/> หมายเหตุ</p>&nbsp;&nbsp;&nbsp; -->
+                    <p><input type="checkbox" name="act" class="round" checked/> ตัวเลือก</p>&nbsp;&nbsp;&nbsp;
+                  </div>
+                  
                 @if($type == 1)
                   <div class="table-responsive">
                     <table class="table table-striped table-valign-middle table-bordered" id="table1">
                       <thead>
                         <tr>
-                          <th class="text-center">ลำดับ</th>
-                          <th class="text-center">แจ้งเตือน</th>
-                          <th class="text-center">วันที่คีย์</th>
-                          <th class="text-center">ป้ายทะเบียน</th>
-                          <th class="text-center">ยี่ห้อรถ</th>
-                          <th class="text-center">รุ่นรถ</th>
-                          <th class="text-center">เลขตัวถัง</th>
-                          <th class="text-center">หมายเหตุ</th>
-                          <th class="text-center">ตัวเลือก</th>
+                          <th class="text-center alert">การแจ้งเตือน</th>
+                          <th class="text-center no">ลำดับ</th>
+                          <th class="text-center datekey">วันที่คีย์</th>
+                          <th class="text-center register">ป้ายทะเบียน</th>
+                          <th class="text-center brand">ยี่ห้อรถ</th>
+                          <th class="text-center version">รุ่นรถ</th>
+                          <th class="text-center engno">เลขตัวถัง</th>
+                          <th class="text-center note">หมายเหตุ</th>
+                          <th class="text-center act">ตัวเลือก</th>
                         </tr>
                       </thead>
                       <tbody>
                         @foreach($data as $key => $row)
                         <tr>
-                          <td class="text-center" style="vertical-align: text-top;">{{$key+1}}</td>
-                          <td class="text-center" style="vertical-align: text-top;">
+                          <td class="text-center alert">
                             <div class="form-inline">
                               <!-- แจ้งเตือนทะเบียน -->
                               @if($row->Register_expire != null)
@@ -120,10 +168,10 @@
                                       $duration = $ClDateDiff->format("%a วัน")
                                     @endphp
                                     @if($duration <= 30)
-                                      <p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">ทะเบียน ({{$duration}})</label></span></p>
+                                      <p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ทะเบียน ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">ทะเบียนหมดอายุ</label></span></p>
                                   @endif
                               @endif
                               <!-- แจ้งเตือนประกัน -->
@@ -140,10 +188,10 @@
                                       $duration = $ClDateDiff->format("%a วัน")
                                     @endphp
                                     @if($duration <= 30)
-                                      &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">ประกัน ({{$duration}})</label></span></p>
+                                      &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">ประกัน ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">ประกันหมดอายุ</label></span></p>
                                   @endif
                               @endif
                               <!-- แจ้งเตือน พรบ -->
@@ -160,10 +208,10 @@
                                       $duration = $ClDateDiff->format("%a วัน")
                                     @endphp
                                     @if($duration <= 30)
-                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">พรบ. ({{$duration}})</label></span></p>
+                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">พรบ. ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">พรบ.หมดอายุ</label></span></p>
                                   @endif
                               @endif
                               <!-- แจ้งเตือนเช็คระยะ -->
@@ -180,21 +228,22 @@
                                       $duration = $ClDateDiff->format("%a วัน")
                                     @endphp
                                     @if($duration <= 30)
-                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะ ({{$duration}})</label></span></p>
+                                    &nbsp;<p><span class="btn btn-warning btn-xs"><label class="prem text-red" style="font-size:12px;">เช็คระยะ ({{$duration}})</label></span></p>
                                     @endif
                                   @else
-                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
+                                  &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem text-red" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
                                   @endif
                               @endif
                             </div>
                           </td>
-                          <td class="text-center" style="vertical-align: text-top;">{{DateThai($row->Date_useradd)}}</td>
-                          <td class="text-center" style="vertical-align: text-top;">{{$row->Number_register}}</td>
-                          <td class="text-center" style="vertical-align: text-top;">{{$row->Brand_car}}</td>
-                          <td class="text-center" style="vertical-align: text-top;">{{$row->Version_car}}</td>
-                          <td class="text-center" style="vertical-align: text-top;">{{$row->Engno_car}}</td>
-                          <td class="text-left" style="vertical-align: text-top;"> {{$row->Note_car}}</td>
-                          <td class="text-center" style="vertical-align: text-top;">
+                          <td class="text-center no">{{$key+1}}</td>
+                          <td class="text-center datekey">{{DateThai($row->Date_useradd)}}</td>
+                          <td class="text-center register">{{$row->Number_register}}</td>
+                          <td class="text-center brand">{{$row->Brand_car}}</td>
+                          <td class="text-center version">{{$row->Version_car}}</td>
+                          <td class="text-center engno">{{$row->Engno_car}}</td>
+                          <td class="text-left note"> {{$row->Note_car}}</td>
+                          <td class="text-center act">
                             <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" title="ดูรายการ"
                               data-backdrop="static" data-keyboard="false"
                               data-link="{{ route('MasterInsure.edit',[$row->Insure_id]) }}?type={{1}}">
@@ -253,7 +302,7 @@
       $("#table1").DataTable({
         "responsive": true,
         "autoWidth": false,
-        "ordering": false,
+        "ordering": true,
         "paging": true,
         "lengthChange": false,
         "searching": true,
@@ -280,7 +329,7 @@
 </script>
 
   <!-- Add new car modal -->
-  <form name="form2" action="{{ route('MasterInsure.store',[$row->Insure_id]) }}" method="post" enctype="multipart/form-data">
+  <form name="form2" action="{{ route('MasterInsure.store') }}" method="post" enctype="multipart/form-data">
     @csrf
       <input type="hidden" name="type" value="1"/>
       <div class="modal fade" id="modal-newcar" aria-hidden="true" style="display: none;">

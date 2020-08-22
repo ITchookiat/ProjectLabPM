@@ -95,6 +95,7 @@
                               <option value="แผนก การเงินนอก" {{ ($user->type === 'แผนก การเงินนอก') ? 'selected' : '' }}>แผนก การเงินนอก</option>
                               <option value="แผนก การเงินใน" {{ ($user->type === 'แผนก การเงินใน') ? 'selected' : '' }}>แผนก การเงินใน</option>
                               <option value="แผนก บัญชี" {{ ($user->type === 'แผนก บัญชี') ? 'selected' : '' }}>แผนก บัญชี</option>
+                              <option value="แผนก ประกันภัย" {{ ($user->type === 'แผนก ประกันภัย') ? 'selected' : '' }}>แผนก ประกันภัย</option>
                             </select>
                           </div>
                         </div>
