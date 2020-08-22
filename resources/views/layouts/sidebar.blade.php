@@ -249,7 +249,7 @@
               </p>
             </a>
 
-            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก การเงินใน")
+            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก การเงินใน" or auth::user()->type == "แผนก วิเคราะห์")
               <ul class="nav nav-treeview" style="margin-left: 15px;">
                 <li class="nav-item">
                   <a href="{{ route('treasury', 1) }}" class="nav-link {{ Request::is('Treasury/Home/1') ? 'active' : '' }}">

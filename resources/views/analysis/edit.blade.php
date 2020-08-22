@@ -210,18 +210,18 @@
                         @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                           @if(auth::user()->type == "Admin")
                             <button type="submit" class="delete-modal btn btn-success">
-                              <i class="fas fa-save"></i> อัพเดท
+                              <i class="fas fa-save"></i> Update
                             </button>
                             <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
-                              <i class="far fa-window-close"></i> ยกเลิก
+                              <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
                             @if($data->StatusApp_car != 'อนุมัติ')
                               <button type="submit" class="delete-modal btn btn-success">
-                                <i class="fas fa-save"></i> อัพเดท
+                                <i class="fas fa-save"></i> Update
                               </button>
                               <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
-                                <i class="far fa-window-close"></i> ยกเลิก
+                                <i class="far fa-window-close"></i> Close
                               </a>
                             @else
                               <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
@@ -232,14 +232,14 @@
                         @else
                           @if($data->StatusApp_car != 'อนุมัติ')
                             <button type="submit" class="delete-modal btn btn-success">
-                              <i class="fas fa-save"></i> อัพเดท
+                              <i class="fas fa-save"></i> Update
                             </button>
                             <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
-                              <i class="far fa-window-close"></i> ยกเลิก
+                              <i class="far fa-window-close"></i> Close
                             </a>
                           @else
                             <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
-                              <i class="fas fa-undo"></i> ย้อนกลับ
+                              <i class="fas fa-undo"></i> Back
                             </a>
                           @endif
                         @endif
