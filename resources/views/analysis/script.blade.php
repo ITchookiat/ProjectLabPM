@@ -135,7 +135,7 @@
           var capital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
           var interest = ((Setinterest/100)/1) * 12;
           var process = (parseFloat(capital) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
-          var total_pay = Math.round(process/10)*10;
+          var total_pay = Math.ceil(process/10)*10;
           var total_sum = total_pay * Timelack;
           var profit = total_sum - capital;
         
