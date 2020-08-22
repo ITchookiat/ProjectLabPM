@@ -259,6 +259,9 @@
                                     @if($status == "")
                                       @php $status = 'Null'; @endphp
                                     @endif
+                                    @if($typeCon == "")
+                                      @php $typeCon = 'Null'; @endphp
+                                    @endif
 
                                     {{-- แก้ไข / ดูรายการ --}}
                                     @if(auth::user()->type == "Admin")

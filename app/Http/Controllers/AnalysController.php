@@ -705,7 +705,7 @@ class AnalysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($type,$id,$fdate,$tdate,$branch,$status,Request $request)
+    public function edit($type,$id,$fdate,$tdate,$branch,$status,$typeCon,Request $request)
     {
       if ($type == 1) {
         $data = DB::table('buyers')
