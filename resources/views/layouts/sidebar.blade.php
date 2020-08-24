@@ -280,7 +280,7 @@
                   </a>
                   <a href="{{ route('Accounting', 3) }}" class="nav-link {{ Request::is('Account/Home/3') ? 'active' : '' }}">
                     <i class="far fa-dot-circle nav-icon"></i>
-                    <p>Report Credit</p>
+                    <p>Report PLoan-Micro</p>
                   </a>
                 </li>
               </ul>

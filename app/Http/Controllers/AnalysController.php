@@ -86,8 +86,6 @@ class AnalysController extends Controller
               ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
               ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
               ->where('cardetails.Date_Appcar','=',Null)
-              ->where('buyers.Contract_buyer','not like', '22%')
-              ->where('buyers.Contract_buyer','not like', '33%')
               ->orderBy('buyers.Contract_buyer', 'ASC')
               ->get();
         }else {
@@ -126,8 +124,6 @@ class AnalysController extends Controller
           ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
           ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
           ->whereBetween('buyers.Date_Due',[$newfdate,$newtdate])
-          ->where('buyers.Contract_buyer','not like', '22%')
-          ->where('buyers.Contract_buyer','not like', '33%')
           ->get();
         $count = count($topcar);
 
@@ -153,8 +149,6 @@ class AnalysController extends Controller
         ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
         ->select('cardetails.Agent_car', DB::raw('count(*) as total'))
         ->where('cardetails.Agent_car','<>',Null)
-        ->where('buyers.Contract_buyer','not like', '22%')
-        ->where('buyers.Contract_buyer','not like', '33%')
         ->groupBy('cardetails.Agent_car')
         ->get();
 
@@ -162,8 +156,6 @@ class AnalysController extends Controller
         ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
         ->select('cardetails.Year_car', DB::raw('count(*) as total'))
         ->where('cardetails.Year_car','<>',Null)
-        ->where('buyers.Contract_buyer','not like', '22%')
-        ->where('buyers.Contract_buyer','not like', '33%')
         ->groupBy('cardetails.Year_car')
         ->get();
 
@@ -171,8 +163,6 @@ class AnalysController extends Controller
         ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
         ->select('cardetails.status_car', DB::raw('count(*) as total'))
         ->where('cardetails.status_car','<>',Null)
-        ->where('buyers.Contract_buyer','not like', '22%')
-        ->where('buyers.Contract_buyer','not like', '33%')
         ->groupBy('cardetails.status_car')
         ->get();
 
@@ -180,8 +170,6 @@ class AnalysController extends Controller
         ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
         ->select('cardetails.branch_car', DB::raw('count(*) as total'))
         ->where('cardetails.branch_car','<>',Null)
-        ->where('buyers.Contract_buyer','not like', '22%')
-        ->where('buyers.Contract_buyer','not like', '33%')
         ->groupBy('cardetails.branch_car')
         ->get();
 
@@ -218,8 +206,6 @@ class AnalysController extends Controller
             ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
             ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
             ->where('cardetails.Approvers_car','!=',Null)
-            ->where('buyers.Contract_buyer','not like', '22%')
-            ->where('buyers.Contract_buyer','not like', '33%')
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
         }else {
@@ -243,8 +229,6 @@ class AnalysController extends Controller
             ->when(!empty($branch), function($q) use($branch){
               return $q->where('cardetails.branch_car',$branch);
             })
-            ->where('buyers.Contract_buyer','not like', '22%')
-            ->where('buyers.Contract_buyer','not like', '33%')
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
         }
@@ -740,6 +724,7 @@ class AnalysController extends Controller
      */
     public function update(Request $request, $id, $type)
     {
+      // dd($request);
       date_default_timezone_set('Asia/Bangkok');
       $Getcardetail = Cardetail::where('Buyercar_id',$id)->first();
 
