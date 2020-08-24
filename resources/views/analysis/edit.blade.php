@@ -1936,7 +1936,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ชำระต่องวด : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Paycar" name="Paycar"  value="{{$data->Pay_car}}" class="form-control" placeholder="-" readonly/>
+                                  <input type="text" id="Paycar" name="Paycar"  value="{{$data->Pay_car}}" class="form-control" placeholder="-"/>
                                 </div>
                               </div>
                             </div>
@@ -1964,7 +1964,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">กำไรจากดอกเบี้ย : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Profit" name="Taxcar"  value="{{$data->Tax_car}}" class="form-control" placeholder="-" readonly />
+                                  <input type="text" id="Profit" name="Taxcar"  value="{{$data->Tax_car}}" class="form-control" placeholder="-" />
                                 </div>
                               </div>
                             </div>
@@ -2017,7 +2017,7 @@
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ยอดรวมทั้งสัญญา : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Totalpay1car" name="Totalpay1car"  value="{{$data->Totalpay1_car}}" class="form-control" placeholder="-" readonly />
+                                  <input type="text" id="Totalpay1car" name="Totalpay1car"  value="{{$data->Totalpay1_car}}" class="form-control" placeholder="-" />
                                 </div>
                               </div>
                             </div>

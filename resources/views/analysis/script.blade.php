@@ -135,16 +135,26 @@
           var capital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
           var interest = ((Setinterest/100)/1) * 12;
           var process = (parseFloat(capital) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
-          var total_pay = Math.ceil(process/10)*10;
+
           var total_sum = total_pay * Timelack;
           var profit = total_sum - capital;
-        
+
+          var str = process.toString();
+          var setstring = str.split(".", 1);
+          var pay = parseInt(setstring);
+          var total_pay = Math.round(pay/10)*10;
+          var total_sum = total_pay * Timelack;
+          var profit = total_sum - capital;
+
+          // var total_pay_ori = test+".00";
             document.form1.Topcar.value = addCommas(Topcar);
             document.form1.Totalfee.value = addCommas(capital.toFixed(2));
+
           if(Timelack != ''){
             document.form1.Paycar.value = addCommas(total_pay.toFixed(2));
             document.form1.Totalpay1car.value = addCommas(total_sum.toFixed(2));
             document.form1.Profit.value = addCommas(profit.toFixed(2));
+
           }
     }
 
@@ -191,9 +201,6 @@
             var Totalcapital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
             var TotalPrice = parseFloat(capital) + parseFloat(actPrice) + parseFloat(closeAccountPrice) + parseFloat(P2Price);
             var TotalBalance = parseFloat(Totalcapital) - parseFloat(TotalPrice);
-            console.log(Totalfee);
-            console.log(TotalPrice);
-            console.log(TotalBalance);
 
           if(Totalfee != ''){
             document.form1.actPrice.value = addCommas(actPrice);
