@@ -202,6 +202,16 @@
             </div>
           </div>
         </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group row mb-1">
+            <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" value="{{$data->Note_car}}" readonly/>
+              </div>
+            </div>
+          </div>
+        </div>
         <br>
       </div>
    @endif
@@ -347,5 +357,5 @@
           </div>
         </div>
       </form>
-    @endif
+   @endif
   </section>
