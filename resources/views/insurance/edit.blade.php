@@ -4,7 +4,7 @@
       $strMonth= date("n",strtotime($strDate));
       $strDay= date("d",strtotime($strDate));
       //$strMonthCut = Array("" , "ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค.");
-      $strMonthCut = Array("" , "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฟษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฟศจิกายน","ธันวาคม");
+      $strMonthCut = Array("" , "มกราคม","กุมภาพันธ์","มีนาคม","เมษายน","พฤษภาคม","มิถุนายน","กรกฎาคม","สิงหาคม","กันยายน","ตุลาคม","พฤศจิกายน","ธันวาคม");
       $strMonthThai=$strMonthCut[$strMonth];
       return "$strDay $strMonthThai $strYear";
       //return "$strDay-$strMonthThai-$strYear";
@@ -90,6 +90,35 @@
           <div class="col-md-6">
             <div class="card card-dark">
               <div class="card-header">
+                <h5 class="card-title"><i class="far fa-clock text-green"></i> วันที่เช็คระยะ</h5>
+              </div>
+              <div class="card-body text-center">
+                @if($data->Check_car != null)
+                  {{DateThai($data->Check_car)}}
+                    @php
+                        date_default_timezone_set('Asia/Bangkok');
+                        $ifdate = date('Y-m-d');
+                    @endphp
+                    @if($ifdate < $data->Check_car)
+                      @php
+                        $Cldate = date_create($data->Check_car);
+                        $nowCldate = date_create($ifdate);
+                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                      @endphp
+                      <p style="color:red;font-size:14px;">( เหลือ @if($ClDateDiff->y != 0) {{$ClDateDiff->y}} ปี @endif @if($ClDateDiff->m != 0){{$ClDateDiff->m}} เดือน @endif {{$ClDateDiff->d}} วัน )</p>
+                    @else
+                      <p class="prem" style="color:red;font-size:14px;"> หมดอายุแล้ว </p>
+                    @endif
+                @else
+                  <p style="color:red;font-size:7px;"> !!! </p>
+                  <p style="color:red;font-size:14px;"> ไม่ได้ระบุวันที่ </p>
+                @endif
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card card-dark">
+              <div class="card-header">
                 <h5 class="card-title"><i class="far fa-clock text-yellow"></i> วันหมดอายุ พรบ.</h5>
               </div>
               <div class="card-body text-center">
@@ -117,35 +146,6 @@
             </div>
           </div>
 
-          <div class="col-md-6">
-            <div class="card card-dark">
-              <div class="card-header">
-                <h5 class="card-title"><i class="far fa-clock text-green"></i> วันที่เช็คระยะ</h5>
-              </div>
-              <div class="card-body text-center">
-                @if($data->Check_car != null)
-                  {{DateThai($data->Check_car)}}
-                    @php
-                        date_default_timezone_set('Asia/Bangkok');
-                        $ifdate = date('Y-m-d');
-                    @endphp
-                    @if($ifdate < $data->Check_car)
-                      @php
-                        $Cldate = date_create($data->Check_car);
-                        $nowCldate = date_create($ifdate);
-                        $ClDateDiff = date_diff($Cldate,$nowCldate);
-                      @endphp
-                      <p style="color:red;font-size:14px;">( เหลือ @if($ClDateDiff->y != 0) {{$ClDateDiff->y}} ปี @endif @if($ClDateDiff->m != 0){{$ClDateDiff->m}} เดือน @endif {{$ClDateDiff->d}} วัน )</p>
-                    @else
-                      <p class="prem" style="color:red;font-size:14px;"> หมดอายุแล้ว </p>
-                    @endif
-                @else
-                  <p style="color:red;font-size:7px;"> !!! </p>
-                  <p style="color:red;font-size:14px;"> ไม่ได้ระบุวันที่ </p>
-                @endif
-              </div>
-            </div>
-          </div>
         </div>
         <br>
         <div class="row">
