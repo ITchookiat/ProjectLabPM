@@ -38,7 +38,6 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('/Analysis/Report/{id}/{type}', 'ReportAnalysController@ReportPDFIndex');
     Route::get('/Analysis/ReportDueDate/{type}', 'ReportAnalysController@ReportDueDate');
-    Route::get('/Analysis/ReportHomecar/{id}/{type}', 'ReportAnalysController@ReportHomecar');
 
     Route::get('/ExportExcel/{type}', 'ExcelController@excel');
 

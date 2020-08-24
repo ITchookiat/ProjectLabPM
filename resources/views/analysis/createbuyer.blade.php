@@ -1232,11 +1232,7 @@
                                     <option value="กส.ค้ำมีหลักทรัพย์">กส.ค้ำมีหลักทรัพย์</option>
                                     <option value="กส.ค้ำไม่มีหลักทรัพย์">กส.ค้ำไม่มีหลักทรัพย์</option>
                                     <option value="กส.ไม่ค้ำประกัน">กส.ไม่ค้ำประกัน</option>
-                                    <option value="ซข.ค้ำมีหลักทรัพย์">ซข.ค้ำมีหลักทรัพย์</option>
-                                    <option value="ซข.ค้ำไม่มีหลักทรัพย์">ซข.ค้ำไม่มีหลักทรัพย์</option>
-                                    <option value="ซข.ไม่ค้ำประกัน">ซข.ไม่ค้ำประกัน</option>
                                     <option value="VIP.กรรมสิทธิ์">VIP (กรรมสิทธิ์)</option>
-                                    <option value="VIP.ซื้อขาย">VIP (ซื้อขาย)</option>
                                   </select>
                                 </div>
                               </div>
