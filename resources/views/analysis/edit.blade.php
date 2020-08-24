@@ -210,18 +210,18 @@
                         @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                           @if(auth::user()->type == "Admin")
                             <button type="submit" class="delete-modal btn btn-success">
-                              <i class="fas fa-save"></i> อัพเดท
+                              <i class="fas fa-save"></i> Update
                             </button>
                             <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
-                              <i class="far fa-window-close"></i> ยกเลิก
+                              <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
                             @if($data->StatusApp_car != 'อนุมัติ')
                               <button type="submit" class="delete-modal btn btn-success">
-                                <i class="fas fa-save"></i> อัพเดท
+                                <i class="fas fa-save"></i> Update
                               </button>
                               <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
-                                <i class="far fa-window-close"></i> ยกเลิก
+                                <i class="far fa-window-close"></i> Close
                               </a>
                             @else
                               <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
@@ -232,14 +232,14 @@
                         @else
                           @if($data->StatusApp_car != 'อนุมัติ')
                             <button type="submit" class="delete-modal btn btn-success">
-                              <i class="fas fa-save"></i> อัพเดท
+                              <i class="fas fa-save"></i> Update
                             </button>
                             <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
-                              <i class="far fa-window-close"></i> ยกเลิก
+                              <i class="far fa-window-close"></i> Close
                             </a>
                           @else
                             <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
-                              <i class="fas fa-undo"></i> ย้อนกลับ
+                              <i class="fas fa-undo"></i> Back
                             </a>
                           @endif
                         @endif
@@ -387,8 +387,8 @@
                             @if(auth::user()->position == "STAFF")
                               @if($data->DocComplete_car != NULL)
                                 <input type="hidden" name="doccomplete" value="{{ $data->DocComplete_car }}">
-                              @else
-                                <input type="hidden" name="doccomplete" value="{{ auth::user()->name }}">
+                              {{-- @else
+                                <input type="hidden" name="doccomplete" value="{{ auth::user()->name }}"> --}}
                               @endif
                             @endif
                           </div>  
@@ -2082,12 +2082,8 @@
                                       <option value="" selected>--- เลือกแบบ ---</option>
                                       <option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>
                                       <option value="กส.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำไม่มีหลักทรัพย์</option>
-                                      <option value="ส.ไม่ค้ำประกัน" {{ ($data->status_car === 'ส.ไม่ค้ำประกัน') ? 'selected' : '' }}>ส.ไม่ค้ำประกัน</option>
-                                      <option value="ซข.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'ซข.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>ซข.ค้ำมีหลักทรัพย์</option>
-                                      <option value="ซข.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'ซข.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>ซข.ค้ำไม่มีหลักทรัพย์</option>
-                                      <option value="ซข.ไม่ค้ำประกัน" {{ ($data->status_car === 'ซข.ไม่ค้ำประกัน') ? 'selected' : '' }}>ซข.ไม่ค้ำประกัน</option>
+                                      <option value="กส.ไม่ค้ำประกัน" {{ ($data->status_car === 'กส.ไม่ค้ำประกัน') ? 'selected' : '' }}>กส.ไม่ค้ำประกัน</option>
                                       <option value="VIP.กรรมสิทธิ์" {{ ($data->status_car === 'VIP.กรรมสิทธิ์') ? 'selected' : '' }}>VIP.กรรมสิทธิ์</option>
-                                      <option value="VIP.ซื้อขาย" {{ ($data->status_car === 'VIP.ซื้อขาย') ? 'selected' : '' }}>VIP.ซื้อขาย</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -2097,12 +2093,8 @@
                                         <option value="" selected>--- เลือกแบบ ---</option>
                                         <option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>
                                         <option value="กส.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำไม่มีหลักทรัพย์</option>
-                                        <option value="ส.ไม่ค้ำประกัน" {{ ($data->status_car === 'ส.ไม่ค้ำประกัน') ? 'selected' : '' }}>ส.ไม่ค้ำประกัน</option>
-                                        <option value="ซข.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'ซข.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>ซข.ค้ำมีหลักทรัพย์</option>
-                                        <option value="ซข.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'ซข.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>ซข.ค้ำไม่มีหลักทรัพย์</option>
-                                        <option value="ซข.ไม่ค้ำประกัน" {{ ($data->status_car === 'ซข.ไม่ค้ำประกัน') ? 'selected' : '' }}>ซข.ไม่ค้ำประกัน</option>
+                                        <option value="กส.ไม่ค้ำประกัน" {{ ($data->status_car === 'กส.ไม่ค้ำประกัน') ? 'selected' : '' }}>กส.ไม่ค้ำประกัน</option>
                                         <option value="VIP.กรรมสิทธิ์" {{ ($data->status_car === 'VIP.กรรมสิทธิ์') ? 'selected' : '' }}>VIP.กรรมสิทธิ์</option>
-                                        <option value="VIP.ซื้อขาย" {{ ($data->status_car === 'VIP.ซื้อขาย') ? 'selected' : '' }}>VIP.ซื้อขาย</option>
                                       </select>
                                     @endif
                                   @endif
