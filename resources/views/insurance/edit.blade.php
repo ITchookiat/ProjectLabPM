@@ -90,36 +90,6 @@
           <div class="col-md-6">
             <div class="card card-dark">
               <div class="card-header">
-                <h5 class="card-title"><i class="far fa-clock text-yellow"></i> วันหมดอายุ พรบ.</h5>
-              </div>
-              <div class="card-body text-center">
-                @if($data->Act_expire != null)
-                  {{DateThai($data->Act_expire)}}
-                    @php
-                        date_default_timezone_set('Asia/Bangkok');
-                        $ifdate = date('Y-m-d');
-                    @endphp
-                    @if($ifdate < $data->Act_expire)
-                      @php
-                        $Cldate = date_create($data->Act_expire);
-                        $nowCldate = date_create($ifdate);
-                        $ClDateDiff = date_diff($Cldate,$nowCldate);
-                      @endphp
-                      <p style="color:red;font-size:14px;">( เหลือ @if($ClDateDiff->y != 0) {{$ClDateDiff->y}} ปี @endif @if($ClDateDiff->m != 0){{$ClDateDiff->m}} เดือน @endif {{$ClDateDiff->d}} วัน )</p>
-                    @else
-                      <p class="prem" style="color:red;font-size:14px;"> หมดอายุแล้ว </p>
-                    @endif
-                @else
-                  <p style="color:red;font-size:7px;"> !!! </p>
-                  <p style="color:red;font-size:14px;"> ไม่ได้ระบุวันที่ </p>
-                @endif
-              </div>
-            </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="card card-dark">
-              <div class="card-header">
                 <h5 class="card-title"><i class="far fa-clock text-green"></i> วันที่เช็คระยะ</h5>
               </div>
               <div class="card-body text-center">
@@ -146,6 +116,36 @@
               </div>
             </div>
           </div>
+          <div class="col-md-6">
+            <div class="card card-dark">
+              <div class="card-header">
+                <h5 class="card-title"><i class="far fa-clock text-yellow"></i> วันหมดอายุ พรบ.</h5>
+              </div>
+              <div class="card-body text-center">
+                @if($data->Act_expire != null)
+                  {{DateThai($data->Act_expire)}}
+                    @php
+                        date_default_timezone_set('Asia/Bangkok');
+                        $ifdate = date('Y-m-d');
+                    @endphp
+                    @if($ifdate < $data->Act_expire)
+                      @php
+                        $Cldate = date_create($data->Act_expire);
+                        $nowCldate = date_create($ifdate);
+                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                      @endphp
+                      <p style="color:red;font-size:14px;">( เหลือ @if($ClDateDiff->y != 0) {{$ClDateDiff->y}} ปี @endif @if($ClDateDiff->m != 0){{$ClDateDiff->m}} เดือน @endif {{$ClDateDiff->d}} วัน )</p>
+                    @else
+                      <p class="prem" style="color:red;font-size:14px;"> หมดอายุแล้ว </p>
+                    @endif
+                @else
+                  <p style="color:red;font-size:7px;"> !!! </p>
+                  <p style="color:red;font-size:14px;"> ไม่ได้ระบุวันที่ </p>
+                @endif
+              </div>
+            </div>
+          </div>
+          
         </div>
         <br>
         <div class="row">
