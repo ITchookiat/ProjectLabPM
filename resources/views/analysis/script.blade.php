@@ -142,15 +142,21 @@
           var str = process.toString();
           var setstring = str.split(".", 1);
           var pay = parseInt(setstring);
-          var total_pay = Math.round(pay/10)*10;
+          var total_pay = Math.ceil(pay/10)*10;
           var total_sum = total_pay * Timelack;
           var profit = total_sum - capital;
 
           // var total_pay_ori = test+".00";
+          // var total_pay_ori = process;
+          // var total_pay_new = Math.ceil(process/10)*10;
+
             document.form1.Topcar.value = addCommas(Topcar);
             document.form1.Totalfee.value = addCommas(capital.toFixed(2));
 
           if(Timelack != ''){
+            // document.form1.Paycar_ori.value = addCommas(total_pay_ori.toFixed(3));
+            // document.form1.Paycar_new.value = addCommas(total_pay_new.toFixed(2));
+
             document.form1.Paycar.value = addCommas(total_pay.toFixed(2));
             document.form1.Totalpay1car.value = addCommas(total_sum.toFixed(2));
             document.form1.Profit.value = addCommas(profit.toFixed(2));

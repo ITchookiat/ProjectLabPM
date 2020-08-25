@@ -11,7 +11,7 @@
     }
   @endphp
   <section class="content">
-   @if($type == 1)
+   @if($type == 1) {{--หน้าดูรายละเอียด--}}
       <div class="modal-header bg-info" style="border-radius: 30px 30px 0px 0px;">
         <div class="col text-center">
           <h5 class="modal-title"><i class="fas fa-car"></i> {{$data->Number_register}}</h5>
@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body">
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card card-dark">
               <div class="card-header">
                 <h5 class="card-title"><i class="far fa-clock text-red"></i> วันหมดอายุทะเบียน</h5>
@@ -51,7 +51,7 @@
               </div>
             </div>
           </div>
-          <div class="col-md-6">
+          <div class="col-md-4">
             <div class="card card-dark">
               <div class="card-header">
                 <h5 class="card-title"><i class="far fa-clock text-blue"></i> วันหมดอายุประกัน</h5>
@@ -86,8 +86,37 @@
               </div>
             </div>
           </div>
+          <div class="col-md-4">
+            <div class="card card-dark">
+              <div class="card-header">
+                <h5 class="card-title"><i class="far fa-clock text-yellow"></i> วันหมดอายุ พรบ.</h5>
+              </div>
+              <div class="card-body text-center">
+                @if($data->Act_expire != null)
+                  {{DateThai($data->Act_expire)}}
+                    @php
+                        date_default_timezone_set('Asia/Bangkok');
+                        $ifdate = date('Y-m-d');
+                    @endphp
+                    @if($ifdate < $data->Act_expire)
+                      @php
+                        $Cldate = date_create($data->Act_expire);
+                        $nowCldate = date_create($ifdate);
+                        $ClDateDiff = date_diff($Cldate,$nowCldate);
+                      @endphp
+                      <p style="color:red;font-size:14px;">( เหลือ @if($ClDateDiff->y != 0) {{$ClDateDiff->y}} ปี @endif @if($ClDateDiff->m != 0){{$ClDateDiff->m}} เดือน @endif {{$ClDateDiff->d}} วัน )</p>
+                    @else
+                      <p class="prem" style="color:red;font-size:14px;"> หมดอายุแล้ว </p>
+                    @endif
+                @else
+                  <p style="color:red;font-size:7px;"> !!! </p>
+                  <p style="color:red;font-size:14px;"> ไม่ได้ระบุวันที่ </p>
+                @endif
+              </div>
+            </div>
+          </div>
 
-          <div class="col-md-6">
+          <!-- <div class="col-md-6">
             <div class="card card-dark">
               <div class="card-header">
                 <h5 class="card-title"><i class="far fa-clock text-green"></i> วันที่เช็คระยะ</h5>
@@ -144,7 +173,7 @@
                 @endif
               </div>
             </div>
-          </div>
+          </div> -->
 
         </div>
         <br>
@@ -159,25 +188,7 @@
           </div>
           <div class="col-6">
             <div class="form-group row mb-1">
-            <label class="col-sm-4 col-form-label text-right">ยี่ห้อรถ : </label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Brand_car}}" readonly/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-6">
-            <div class="form-group row mb-1">
-            <label class="col-sm-4 col-form-label text-right">รุ่นรถ : </label>
-              <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Version_car}}" readonly/>
-              </div>
-            </div>
-          </div>
-          <div class="col-6">
-            <div class="form-group row mb-1">
-            <label class="col-sm-4 col-form-label text-right">ประเภทรถ : </label>
+              <label class="col-sm-4 col-form-label text-right">ประเภทรถ : </label>
               <div class="col-sm-7">
                 <input type="text" class="form-control" value="{{$data->Type_car}}" readonly/>
               </div>
@@ -187,17 +198,17 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group row mb-1">
-            <label class="col-sm-4 col-form-label text-right">เลขตัวถัง :</label>
+            <label class="col-sm-4 col-form-label text-right">ยี่ห้อรถ : </label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Engno_car}}" readonly/>
+                <input type="text" class="form-control" value="{{$data->Brand_car}}" readonly/>
               </div>
             </div>
           </div>
           <div class="col-6">
             <div class="form-group row mb-1">
-            <label class="col-sm-4 col-form-label text-right">ปีรถ : </label>
+              <label class="col-sm-4 col-form-label text-right">บริษัทประกัน : </label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Year_car}}" readonly/>
+                <input type="text" class="form-control" value="{{$data->Companyinsure_car}}" readonly/>
               </div>
             </div>
           </div>
@@ -205,17 +216,48 @@
         <div class="row">
           <div class="col-6">
             <div class="form-group row mb-1">
-            <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
+              <label class="col-sm-4 col-form-label text-right">รุ่นรถ : </label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Note_car}}" readonly/>
+                <input type="text" class="form-control" value="{{$data->Version_car}}" readonly/>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group row mb-1">
+              <label class="col-sm-4 col-form-label text-right">สถานที่ซ่อม : </label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" value="{{$data->Placerepair_car}}" readonly/>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group row mb-1">
+              <label class="col-sm-4 col-form-label text-right">ปีรถ : </label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" value="{{$data->Year_car}}" readonly/>
+              </div>
+            </div>
+            <div class="form-group row mb-1">
+             <label class="col-sm-4 col-form-label text-right">เลขตัวถัง :</label>
+              <div class="col-sm-7">
+                <input type="text" class="form-control" value="{{$data->Engno_car}}" readonly/>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="form-group row mb-1">
+              <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
+              <div class="col-sm-7">
+              <textarea class="form-control" name="Notecar" rows="3" placeholder="ป้อนหมายเหตุ..." readonly>{{$data->Note_car}}</textarea>
               </div>
             </div>
           </div>
         </div>
         <br>
       </div>
-   @endif
-   @if($type == 2)
+   @elseif($type == 2) {{--หน้าแก้ไข--}}
       <form name="form1" action="{{ route('MasterInsure.update',[$data->Insure_id]) }}" method="post" id="formimage" enctype="multipart/form-data">
           @csrf
           @method('put')
@@ -247,14 +289,14 @@
                     <option value="" selected>--- ยี่ห้อ ---</option>
                     <option value="MAZDA" {{ ($data->Brand_car === 'MAZDA') ? 'selected' : '' }}>MAZDA</option>
                     <option value="FORD" {{ ($data->Brand_car === 'FORD') ? 'selected' : '' }}>FORD</option>
-                    <option value="ISUZU" {{ ($data->Brand_car === 'ISUZU') ? 'selected' : '' }}>ISUZU</option>
+                    <!-- <option value="ISUZU" {{ ($data->Brand_car === 'ISUZU') ? 'selected' : '' }}>ISUZU</option>
                     <option value="MITSUBISHI" {{ ($data->Brand_car === 'MITSUBISHI') ? 'selected' : '' }}>MITSUBISHI</option>
                     <option value="TOYOTA" {{ ($data->Brand_car === 'TOYOTA') ? 'selected' : '' }}>TOYOTA</option>
                     <option value="NISSAN" {{ ($data->Brand_car === 'NISSAN') ? 'selected' : '' }}>NISSAN</option>
                     <option value="HONDA" {{ ($data->Brand_car === 'HONDA') ? 'selected' : '' }}>HONDA</option>
                     <option value="CHEVROLET" {{ ($data->Brand_car === 'CHEVROLET') ? 'selected' : '' }}>CHEVROLET</option>
                     <option value="MG" {{ ($data->Brand_car === 'MG') ? 'selected' : '' }}>MG</option>
-                    <option value="SUZUKI" {{ ($data->Brand_car === 'SUZUKI') ? 'selected' : '' }}>SUZUKI</option>
+                    <option value="SUZUKI" {{ ($data->Brand_car === 'SUZUKI') ? 'selected' : '' }}>SUZUKI</option> -->
                   </select>
                 </div>
               </div>
@@ -333,18 +375,34 @@
                   <input type="date" name="ActExpire" value="{{$data->Act_expire}}" class="form-control"/>
                 </div>
               </div>
-              <div class="form-group row mb-1">
+              <!-- <div class="form-group row mb-1">
               <label class="col-sm-5 col-form-label text-right">วันที่เช็คระยะ :</label>
                 <div class="col-sm-7">
                   <input type="date" name="Checkcar" value="{{$data->Check_car}}" class="form-control"/>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="col-6">
-            <div class="form-group row mb-1">
+              <div class="form-group row mb-1">
+                <label class="col-sm-4 col-form-label text-right">บริษัทประกัน :</label>
+                <div class="col-sm-7">
+                  <input type="text" name="InsureCompany" value="{{$data->Companyinsure_car}}" class="form-control" placeholder="ป้อนบริษัทประกัน"/>
+                </div>
+              </div>
+              <div class="form-group row mb-1">
+                <label class="col-sm-4 col-form-label text-right">สถานที่ซ่อม :</label>
+                <div class="col-sm-7">
+                  <select id="RepairPlace" name="RepairPlace" class="form-control">
+                    <option value="" selected>--- เลือกสถานที่ซ่อม ---</option>
+                    <option value="ซ่อมอู่" {{ ($data->Placerepair_car === 'ซ่อมอู่') ? 'selected' : '' }}>ซ่อมอู่</option>
+                    <option value="ซ่อมห้าง" {{ ($data->Placerepair_car === 'ซ่อมห้าง') ? 'selected' : '' }}>ซ่อมห้าง</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group row mb-1">
               <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
                 <div class="col-sm-7">
-                  <textarea class="form-control" name="Notecar" rows="6" placeholder="ป้อนหมายเหตุ...">{{$data->Note_car}}</textarea>
+                  <textarea class="form-control" name="Notecar" rows="2" placeholder="ป้อนหมายเหตุ...">{{$data->Note_car}}</textarea>
                 </div>
               </div>
             </div>
