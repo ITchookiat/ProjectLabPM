@@ -25,6 +25,8 @@ class CreateDataInsuresTable extends Migration
             $table->string('Insure_expire')->nullable();
             $table->string('Act_expire')->nullable();
             $table->string('Check_car')->nullable();
+            $table->string('Companyinsure_car')->nullable();
+            $table->string('Placerepair_car')->nullable();
             $table->string('Note_car')->nullable();
             $table->string('Name_user')->nullable();
             $table->string('Date_useradd')->nullable();

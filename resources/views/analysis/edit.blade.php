@@ -1938,6 +1938,12 @@
                                 <div class="col-sm-8">
                                   <input type="text" id="Paycar" name="Paycar"  value="{{$data->Pay_car}}" class="form-control" placeholder="-"/>
                                 </div>
+                                <!-- <div class="col-sm-2">
+                                  <input type="text" id="Paycar_ori" name="Paycar_ori" class="form-control" placeholder="-"/>
+                                </div>
+                                <div class="col-sm-2">
+                                  <input type="text" id="Paycar_new" name="Paycar_new" class="form-control" placeholder="-"/>
+                                </div> -->
                               </div>
                             </div>
                           </div>

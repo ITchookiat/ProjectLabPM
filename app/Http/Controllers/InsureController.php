@@ -44,6 +44,8 @@ class InsureController extends Controller
             'Insure_expire' => $request->get('InsureExpire'),
             'Act_expire' => $request->get('ActExpire'),
             'Check_car' => $request->get('Checkcar'),
+            'Companyinsure_car' => $request->get('InsureCompany'),
+            'Placerepair_car' => $request->get('RepairPlace'),
             'Note_car' => $request->get('Notecar'),
             'Name_user' => $request->get('NameUser'),
             'Date_useradd' => date('Y-m-d'),
@@ -76,6 +78,8 @@ class InsureController extends Controller
             $user->Insure_expire = $request->get('InsureExpire');
             $user->Act_expire = $request->get('ActExpire');
             $user->Check_car = $request->get('Checkcar');
+            $user->Companyinsure_car = $request->get('InsureCompany');
+            $user->Placerepair_car = $request->get('RepairPlace');
             $user->Note_car = $request->get('Notecar');
         $user->update();
         $type = $request->type;

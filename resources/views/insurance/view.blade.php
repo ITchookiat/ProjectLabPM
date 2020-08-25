@@ -363,14 +363,14 @@
                             <option value="" selected>--- ยี่ห้อ ---</option>
                             <option value="MAZDA">MAZDA</option>
                             <option value="FORD">FORD</option>
-                            <option value="ISUZU">ISUZU</option>
+                            <!-- <option value="ISUZU">ISUZU</option>
                             <option value="MITSUBISHI">MITSUBISHI</option>
                             <option value="TOYOTA">TOYOTA</option>
                             <option value="NISSAN">NISSAN</option>
                             <option value="HONDA">HONDA</option>
                             <option value="CHEVROLET">CHEVROLET</option>
                             <option value="MG">MG</option>
-                            <!-- <!-- <option value="SUZUKI">SUZUKI</option> -->
+                            <option value="SUZUKI">SUZUKI</option> -->
                           </select>
                         </div>
                       </div>
@@ -390,7 +390,7 @@
                       <label class="col-sm-4 col-form-label text-right">ประเภทรถ : </label>
                         <div class="col-sm-7">
                           <select id="Typecar" name="Typecar" class="form-control">
-                            <option value="" selected>--- ประเภทรถ ---</option>
+                            <option value="" selected>--- เลือกประเภทรถ ---</option>
                             <option value="รถใช้งาน">รถใช้งาน</option>
                             <option value="รถ Demo">รถ Demo</option>
                           </select>
@@ -448,18 +448,34 @@
                           <input type="date" name="ActExpire" class="form-control"/>
                         </div>
                       </div>
-                      <div class="form-group row mb-1">
+                      <!-- <div class="form-group row mb-1">
                       <label class="col-sm-5 col-form-label text-right">วันที่เช็คระยะ :</label>
                         <div class="col-sm-7">
                           <input type="date" name="Checkcar" class="form-control"/>
                         </div>
-                      </div>
+                      </div> -->
                     </div>
                     <div class="col-6">
-                    <div class="form-group row mb-1">
-                      <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
+                      <div class="form-group row mb-1">
+                        <label class="col-sm-4 col-form-label text-right">บริษัทประกัน :</label>
                         <div class="col-sm-7">
-                          <textarea class="form-control" name="Notecar" rows="6" placeholder="ป้อนหมายเหตุ..."></textarea>
+                          <input type="text" name="InsureCompany" class="form-control" placeholder="ป้อนบริษัทประกัน"/>
+                        </div>
+                      </div>
+                      <div class="form-group row mb-1">
+                        <label class="col-sm-4 col-form-label text-right">สถานที่ซ่อม :</label>
+                        <div class="col-sm-7">
+                          <select id="RepairPlace" name="RepairPlace" class="form-control">
+                            <option value="" selected>--- เลือกสถานที่ซ่อม ---</option>
+                            <option value="ซ่อมอู่">ซ่อมอู่</option>
+                            <option value="ซ่อมห้าง">ซ่อมห้าง</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="form-group row mb-1">
+                        <label class="col-sm-4 col-form-label text-right">หมายเหตุ :</label>
+                        <div class="col-sm-7">
+                          <textarea class="form-control" name="Notecar" rows="2" placeholder="ป้อนหมายเหตุ..."></textarea>
                         </div>
                       </div>
                     </div>
