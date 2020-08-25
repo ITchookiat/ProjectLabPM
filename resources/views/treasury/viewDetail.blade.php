@@ -276,7 +276,11 @@
           </div>
         </div>
       @elseif ($GetType == 2)
-        <form name="form1" action="{{ route('treasury.updateAnalysis' ,[1, $data->id]) }}" method="get" id="formimage" enctype="multipart/form-data">
+        <form name="form1" action="{{ route('MasterTreasury.update' ,[$data->id]) }}" method="post" id="formimage" enctype="multipart/form-data">
+          @csrf
+          @method('put')
+          <input type="hidden" name="type" value="1" />
+
           <div class="row">
             <div class="col-12">
               <div class="form-inline">
@@ -466,6 +470,7 @@
               </div>
             @endif
           </div>
+          <input type="hidden" name="_method" value="PATCH"/>
         </form>
 
       @endif

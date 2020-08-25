@@ -18,8 +18,8 @@
 
 <!-- ส่วนหัว -->
   @if($type == 3)
-    <label align="right">ปริ้นวันที่ : <u>{{ date('d-m-Y') }}</u></label>
-    <h1 align="center" style="font-weight: bold;line-height:1px;"><b>รายงานอนุมัติการโอนเงิน</b></h1>
+    <label align="right">พิมพ์ : <u>{{ date('d-m-Y') }}</u></label>
+    <h1 align="center" style="font-weight: bold;line-height:1px;"><b>รายงานอนุมัติการโอนเงิน PLoan-Micro</b></h1>
     <h3 align="center" style="font-weight: bold;line-height:10px;"><b>จากวันที่ {{DateThai($newfdate)}} ถึงวันที่ {{DateThai($newtdate)}}</b></h3>
     <hr>
   @endif
@@ -28,7 +28,33 @@
   @if($type == 3)
     <body>
       <br>
-      <table border="1">
+      <table border="0">
+          <tr align="center" style="line-height: 200%;font-weight:bold;">
+            <th style="width: 400px">
+              <table border="1">
+                <tr align="center" style="background-color: yellow;line-height: 300%;font-weight:bold;">
+                  <th style="width: 400px"><h3>PLoan (P03)</h3></th>
+                </tr>
+                <tr>
+                  <th style="width: 50px">ลำดับ</th>
+                  <th style="width: 70px">เลขที่สัญญา</th>
+                  <th style="width: 50px">ยอด</th>
+                  <th style="width: 50px">สาขา</th>
+                </tr>
+                
+              </table>
+            </th>
+            <th style="width: 400px">
+              <table border="1">
+                <tr align="center" style="background-color: yellow;line-height: 300%;font-weight:bold;">
+                  <th style="width: 400px"><h3>Micro (P06)</h3></th>
+                </tr>
+              </table>
+            </th>
+          </tr>
+      </table>
+
+      {{-- <table border="1">
           <tr align="center" style="background-color: yellow;line-height: 200%;font-weight:bold;">
             <th style="width: 25px">ลำดับ</th>
             <th style="width: 50px">เลขที่สัญญา</th>
@@ -38,7 +64,7 @@
             <th style="width: 160px">ผู้โอน</th>
           </tr>
           @foreach($dataReport as $key => $row)
-          {{-- <tr style="line-height: 200%;">
+          <tr style="line-height: 200%;">
             <td align="center" style="width: 25px"> {{$key+1}}</td>
             <td align="center" style="width: 50px"> {{DateThai($row->Date_asset)}}</td>
             <td align="center" style="width: 50px"> {{$row->Contract_legis}}</td>
@@ -55,9 +81,9 @@
                 @endif
               @endforeach
             </td>
-          </tr> --}}
+          </tr>
           @endforeach
-      </table>
+      </table> --}}
     </body>
   @endif
 
