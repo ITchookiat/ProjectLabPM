@@ -132,6 +132,7 @@
                       <!-- <p><input type="checkbox" name="brand" class="round"/> ยี่ห้อรถ</p>&nbsp;&nbsp; -->
                       <p><input type="checkbox" name="version" class="round"/> รุ่นรถ</p>&nbsp;&nbsp;
                       <p><input type="checkbox" name="engno" class="round"/> เลขตัวถัง</p>&nbsp;&nbsp;
+                      <!-- <p><input type="checkbox" name="company" class="round"/> บริษัทประกัน</p>&nbsp;&nbsp; -->
                       <!-- <p><input type="checkbox" name="note" class="round"/> หมายเหตุ</p>&nbsp;&nbsp;&nbsp; -->
                       <p><input type="checkbox" name="act" class="round" checked/> ตัวเลือก</p>&nbsp;&nbsp;&nbsp;
                     </div>
@@ -147,6 +148,7 @@
                           <th class="text-center brand">ยี่ห้อรถ</th>
                           <th class="text-center version">รุ่นรถ</th>
                           <th class="text-center engno">เลขตัวถัง</th>
+                          <th class="text-center company">บริษัทประกัน</th>
                           <th class="text-center note">หมายเหตุ</th>
                           <th class="text-center act">ตัวเลือก</th>
                         </tr>
@@ -217,7 +219,7 @@
                                     @endif
                                 @endif
                                 <!-- แจ้งเตือนเช็คระยะ -->
-                                @if($row->Check_car != null)
+                                {{-- @if($row->Check_car != null)
                                     @php
                                         date_default_timezone_set('Asia/Bangkok');
                                         $ifdate = date('Y-m-d');
@@ -235,7 +237,7 @@
                                     @else
                                     &nbsp;<p><span class="btn btn-danger btn-xs"><label class="prem" style="font-size:12px;">เช็คระยะหมดอายุ</label></span></p>
                                     @endif
-                                @endif
+                                @endif --}}
                               </div>
                             </td>
                             <td class="text-center no">{{$key+1}}</td>
@@ -244,6 +246,7 @@
                             <td class="text-center brand">{{$row->Brand_car}}</td>
                             <td class="text-center version">{{$row->Version_car}}</td>
                             <td class="text-center engno">{{$row->Engno_car}}</td>
+                            <td class="text-left company"> {{$row->Companyinsure_car}}</td>
                             <td class="text-left note"> {{$row->Note_car}}</td>
                             <td class="text-center act">
                               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" title="ดูรายการ"
