@@ -52,10 +52,10 @@
                       <br><br><br><p></p>
                       <div class="float-right form-inline">
                         <label>จากวันที่ : </label>
-                        <input type="date" name="Fromdate" value="{{ date('Y-m-d') }}" class="form-control" />
+                        <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}"  class="form-control" />
 
                         <label>ถึงวันที่ : </label>
-                        <input type="date" name="Todate" value="{{ date('Y-m-d') }}" class="form-control" />
+                        <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
                       </div>
                     </form>
                     <br><br>
@@ -83,8 +83,9 @@
                               <tr>
                                 <th class="text-center">ลำดับ</th>
                                 <th class="text-center">เลขที่สัญญา</th>
+                                <th class="text-right">สาขา</th>
                                 <th class="text-left">ชื่อ-สกุล</th>
-                                <th class="text-left">ยอด</th>
+                                <th class="text-right">ยอด</th>
                                 <th class="text-right"></th>
                               </tr>
                             </thead>
@@ -93,8 +94,9 @@
                                 <tr>
                                   <td class="text-center"> {{$key+1}} </td>
                                   <td class="text-center"> {{$row->Contract_buyer}}</td>
+                                  <td class="text-right"> {{ $row->branch_car }} </td>
                                   <td class="text-left"> {{$row->Name_buyer}} {{$row->last_buyer}}</td>
-                                  <td class="text-left"> {{ number_format($row->Top_car,2) }} </td>
+                                  <td class="text-right"> {{ number_format($row->Top_car,2) }} </td>
                                   <td class="text-right">
                                     <a class="btn btn-success btn-sm" title="{{ $row->Approvers_car }}">
                                       <i class="fas fa-check-square"></i>
@@ -129,8 +131,9 @@
                               <tr>
                                 <th class="text-center">ลำดับ</th>
                                 <th class="text-center">เลขที่สัญญา</th>
+                                <th class="text-right">สาขา</th>
                                 <th class="text-left">ชื่อ-สกุล</th>
-                                <th class="text-left">ยอด</th>
+                                <th class="text-right">ยอด</th>
                                 <th class="text-right"></th>
                               </tr>
                             </thead>
@@ -140,8 +143,9 @@
                                 <tr>
                                   <td class="text-center"> {{$key+1}} </td>
                                   <td class="text-center"> {{$row->Contract_buyer}}</td>
+                                  <td class="text-right"> {{ $row->branch_car }} </td>
                                   <td class="text-left"> {{$row->Name_buyer}} {{$row->last_buyer}}</td>
-                                  <td class="text-left"> {{ number_format($row->Top_car,2) }} </td>
+                                  <td class="text-right"> {{ number_format($row->Top_car,2) }} </td>
                                   <td class="text-right">
                                     <a target="_blank" href="{{ action('ReportAnalysController@ReportPDFIndex',[$row->id, 1]) }}" class="btn btn-info btn-sm" title="พิมพ์">
                                       <i class="fas fa-print"></i>
