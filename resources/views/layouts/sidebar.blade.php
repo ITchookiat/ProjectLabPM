@@ -150,7 +150,7 @@
               </p>
             </a>
 
-            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก บัญชี" or auth::user()->type == "แผนก จัดไฟแนนท์")
+            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก บัญชี" or auth::user()->type == "แผนก วิเคราะห์")
               <ul class="nav nav-treeview" style="margin-left: 15px;">
                 <li class="nav-item">
                   <a href="{{ route('Accounting', 1) }}" class="nav-link {{ Request::is('Account/Home/1') ? 'active' : '' }}">
