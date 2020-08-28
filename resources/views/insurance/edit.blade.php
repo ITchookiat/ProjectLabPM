@@ -190,7 +190,7 @@
             <div class="form-group row mb-1">
               <label class="col-sm-4 col-form-label text-right">ประเภทรถ : </label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Type_car}}" readonly/>
+                <input type="text" class="form-control" value="{{($data->Type_car != null)?$data->Type_car:'-'}}" readonly/>
               </div>
             </div>
           </div>
@@ -208,7 +208,7 @@
             <div class="form-group row mb-1">
               <label class="col-sm-4 col-form-label text-right">บริษัทประกัน : </label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Companyinsure_car}}" readonly/>
+                <input type="text" class="form-control" value="{{($data->Companyinsure_car != null)?$data->Companyinsure_car:'-'}}" readonly/>
               </div>
             </div>
           </div>
@@ -226,7 +226,7 @@
             <div class="form-group row mb-1">
               <label class="col-sm-4 col-form-label text-right">สถานที่ซ่อม : </label>
               <div class="col-sm-7">
-                <input type="text" class="form-control" value="{{$data->Placerepair_car}}" readonly/>
+                <input type="text" class="form-control" value="{{($data->Placerepair_car != null)?$data->Placerepair_car:'-'}}" readonly/>
               </div>
             </div>
           </div>
@@ -289,14 +289,14 @@
                     <option value="" selected>--- ยี่ห้อ ---</option>
                     <option value="MAZDA" {{ ($data->Brand_car === 'MAZDA') ? 'selected' : '' }}>MAZDA</option>
                     <option value="FORD" {{ ($data->Brand_car === 'FORD') ? 'selected' : '' }}>FORD</option>
-                    <!-- <option value="ISUZU" {{ ($data->Brand_car === 'ISUZU') ? 'selected' : '' }}>ISUZU</option>
-                    <option value="MITSUBISHI" {{ ($data->Brand_car === 'MITSUBISHI') ? 'selected' : '' }}>MITSUBISHI</option>
-                    <option value="TOYOTA" {{ ($data->Brand_car === 'TOYOTA') ? 'selected' : '' }}>TOYOTA</option>
-                    <option value="NISSAN" {{ ($data->Brand_car === 'NISSAN') ? 'selected' : '' }}>NISSAN</option>
+                    <!-- <option value="ISUZU" {{ ($data->Brand_car === 'ISUZU') ? 'selected' : '' }}>ISUZU</option> -->
+                    <!-- <option value="MITSUBISHI" {{ ($data->Brand_car === 'MITSUBISHI') ? 'selected' : '' }}>MITSUBISHI</option> -->
+                    <!-- <option value="TOYOTA" {{ ($data->Brand_car === 'TOYOTA') ? 'selected' : '' }}>TOYOTA</option> -->
+                    <!-- <option value="NISSAN" {{ ($data->Brand_car === 'NISSAN') ? 'selected' : '' }}>NISSAN</option> -->
                     <option value="HONDA" {{ ($data->Brand_car === 'HONDA') ? 'selected' : '' }}>HONDA</option>
-                    <option value="CHEVROLET" {{ ($data->Brand_car === 'CHEVROLET') ? 'selected' : '' }}>CHEVROLET</option>
-                    <option value="MG" {{ ($data->Brand_car === 'MG') ? 'selected' : '' }}>MG</option>
-                    <option value="SUZUKI" {{ ($data->Brand_car === 'SUZUKI') ? 'selected' : '' }}>SUZUKI</option> -->
+                    <!-- <option value="CHEVROLET" {{ ($data->Brand_car === 'CHEVROLET') ? 'selected' : '' }}>CHEVROLET</option> -->
+                    <!-- <option value="MG" {{ ($data->Brand_car === 'MG') ? 'selected' : '' }}>MG</option> -->
+                    <!-- <option value="SUZUKI" {{ ($data->Brand_car === 'SUZUKI') ? 'selected' : '' }}>SUZUKI</option> -->
                   </select>
                 </div>
               </div>

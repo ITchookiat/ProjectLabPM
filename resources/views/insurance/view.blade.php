@@ -103,12 +103,6 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="float-right form-inline">
-                          <label>จากวันที่ : </label>
-                          <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control" />
-
-                          <label>ถึงวันที่ : </label>
-                          <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
-
                           <button type="submit" class="btn bg-warning btn-app">
                             <span class="fas fa-search"></span> Search
                           </button>
@@ -119,10 +113,22 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="float-right form-inline">
+                          <label>จากวันที่ : </label>
+                          <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control" />
+
+                          <label>ถึงวันที่ : </label>
+                          <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
+                        </div>
+                      </div>
+                    </div>
                   </form>
                   <hr>
                   
                 @if($type == 1)
+                {{--
                   @if($countData != 0)
                     <div class="float-right form-inline" id="grpChkBox">
                       <p><input type="checkbox" name="no" class="round" checked/> ลำดับ</p>&nbsp;&nbsp;
@@ -137,6 +143,7 @@
                       <p><input type="checkbox" name="act" class="round" checked/> ตัวเลือก</p>&nbsp;&nbsp;&nbsp;
                     </div>
                   @endif
+                --}}
                   <div class="table-responsive">
                     <table class="table table-striped table-valign-middle table-bordered" id="table1">
                       <thead>
@@ -149,7 +156,7 @@
                           <th class="text-center version">รุ่นรถ</th>
                           <th class="text-center engno">เลขตัวถัง</th>
                           <th class="text-center company">บริษัทประกัน</th>
-                          <th class="text-center note">หมายเหตุ</th>
+                          <th class="text-center note" style="width:150px">หมายเหตุ</th>
                           <th class="text-center act">ตัวเลือก</th>
                         </tr>
                       </thead>
@@ -309,7 +316,7 @@
         "ordering": true,
         "paging": true,
         "lengthChange": false,
-        "pageLength": 50,
+        "pageLength": 5,
         "searching": true,
         "order": [[ 1, "asc" ]],
       });
@@ -366,14 +373,14 @@
                             <option value="" selected>--- ยี่ห้อ ---</option>
                             <option value="MAZDA">MAZDA</option>
                             <option value="FORD">FORD</option>
-                            <!-- <option value="ISUZU">ISUZU</option>
-                            <option value="MITSUBISHI">MITSUBISHI</option>
-                            <option value="TOYOTA">TOYOTA</option>
-                            <option value="NISSAN">NISSAN</option>
+                            <!-- <option value="ISUZU">ISUZU</option> -->
+                            <!-- <option value="MITSUBISHI">MITSUBISHI</option> -->
+                            <!-- <option value="TOYOTA">TOYOTA</option> -->
+                            <!-- <option value="NISSAN">NISSAN</option> -->
                             <option value="HONDA">HONDA</option>
-                            <option value="CHEVROLET">CHEVROLET</option>
-                            <option value="MG">MG</option>
-                            <option value="SUZUKI">SUZUKI</option> -->
+                            <!-- <option value="CHEVROLET">CHEVROLET</option> -->
+                            <!-- <option value="MG">MG</option> -->
+                            <!-- <option value="SUZUKI">SUZUKI</option> -->
                           </select>
                         </div>
                       </div>
