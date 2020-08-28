@@ -36,6 +36,24 @@
               <div class="card-header">
                 <h4 class="">
                   รายการอนุมัติโอนเงิน (Approving transfers)
+                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก การเงินใน")
+                    <button class="btn btn-gray float-right">
+                      ค่าคอม: <font color="red">{{ number_format($SumCommitprice) }}</font> บาท
+                    </button>
+                    <button class="btn btn-warning btn-xs float-right"></button>
+                    <button class="btn btn-gray float-right">
+                      ยอดจัด: <font color="red">{{ number_format($SumTopcar) }}</font> บาท
+                    </button>
+                    <button class="btn btn-warning btn-xs float-right"></button>
+                    <button class="btn btn-gray float-right">
+                        <i class="fa fa-calendar"></i>
+                      @php
+                        $dateStart = substr($newfdate, 8, 9);
+                        $dateEnd = substr($newtdate, 8, 9);
+                      @endphp
+                        วันที่ {{ $dateStart }} ถึง {{ $dateEnd }}
+                    </button>
+                  @endif
                 </h4>
               </div>
               <div class="card-body text-sm">
@@ -49,8 +67,8 @@
                           </button>
                           <ul class="dropdown-menu" role="menu">
                             <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-6" data-link="{{ route('treasury', 2) }}"> รายงานอนุมัติประจำวัน</a></li>
-                            <li class="dropdown-divider"></li>
-                            <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-7" data-link="{{ route('treasury', 3) }}"> รายงานโอนเงินประจำวัน</a></li>
+                            {{-- <li class="dropdown-divider"></li>
+                            <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-7" data-link="{{ route('treasury', 3) }}"> รายงานโอนเงินประจำวัน</a></li> --}}
                           </ul>
                         </div>
                         <button type="submit" class="btn bg-warning btn-app">

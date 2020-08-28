@@ -29,17 +29,14 @@ class TreasController extends Controller
                 $newtdate = $request->get('Todate');
             }
 
-            if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
+            if ($newfdate == false and $newtdate == false) {
                 $data = DB::table('buyers')
                     ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                     ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
                     ->where('cardetails.Date_Appcar', $date)
-                    ->where('buyers.Contract_buyer','not like', '22%')
-                    ->where('buyers.Contract_buyer','not like', '33%')
                     ->where('cardetails.Approvers_car','<>','')
                     ->orderBy('buyers.Contract_buyer', 'ASC')
                     ->get();
-
             }
             else {
                 $data = DB::table('buyers')
@@ -48,13 +45,38 @@ class TreasController extends Controller
                     ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
                         return $q->whereBetween('cardetails.Date_Appcar',[$newfdate,$newtdate]);
                     })
-                    ->where('buyers.Contract_buyer','not like', '22%')
-                    ->where('buyers.Contract_buyer','not like', '33%')
                     ->where('cardetails.Approvers_car','<>','')
                     ->orderBy('buyers.Contract_buyer', 'ASC')
                     ->get();
             }
-            return view('treasury.view', compact('data','newfdate','newtdate'));
+            
+            if ($newfdate == false and $newtdate == false) {
+                $newfdate = date('Y-m-d');
+                $newtdate = date('Y-m-d');
+            }
+
+            $topcar = DB::table('buyers')
+            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
+            ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+            ->whereBetween('buyers.Date_Due',[$newfdate,$newtdate])
+            ->get();
+            // dd($topcar);
+            $count = count($topcar);
+  
+            if($count != 0){
+                for ($i=0; $i < $count; $i++) {
+                @$SumTopcar += $topcar[$i]->Top_car; //รวมยอดจัดวันปัจจุบัน
+                @$SumCommissioncar += $topcar[$i]->Commission_car; //รวมค่าคอมก่อนหักวันปัจจุบัน
+                @$SumCommitprice += $topcar[$i]->commit_Price; //รวมค่าคอมหลังหักวันปัจจุบัน
+                }
+            }else{
+                $SumTopcar = 0;
+                $SumCommissioncar = 0;
+                $SumCommitprice = 0;
+            }
+
+            return view('treasury.view', compact('data','newfdate','newtdate','SumTopcar','SumCommissioncar','SumCommitprice'));
         }
         elseif ($request->type == 2) {
             $type = $request->type;
@@ -119,9 +141,9 @@ class TreasController extends Controller
         }
     }
 
-    public function updateAnalysis(Request $request, $type, $id)
+    public function update(Request $request, $id)
     {
-        if ($type == 1) {
+        if ($request->type == 1) {
             if ($request->has('checkAccount') != NULL) {
                 $user = Cardetail::find($id);
                     $user->UserCheckAc_car = $request->get('checkAccount');
@@ -159,8 +181,6 @@ class TreasController extends Controller
                     ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
                         return $q->whereBetween('cardetails.Date_Appcar',[$newfdate,$newtdate]);
                     })
-                    ->where('buyers.Contract_buyer','not like', '22%')
-                    ->where('buyers.Contract_buyer','not like', '33%')
                     ->where('cardetails.Approvers_car','<>','')
                     ->orderBy('buyers.Contract_buyer', 'ASC')
                     ->get();
@@ -188,12 +208,12 @@ class TreasController extends Controller
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
 
-            dd('ยังไม่เปิดให้ใช้งาน');
+            // dd($dataReport);
 
             $view = \View::make('treasury.reportTreas' ,compact('dataReport','type','newfdate','newtdate'));
             $html = $view->render();
             $pdf = new PDF();
-            $pdf::SetTitle('รายงานแผนกการเงิน');
+            $pdf::SetTitle('รายงานการโอนเงิน');
             $pdf::AddPage('L', 'A4');
             $pdf::SetMargins(5, 5, 5, 0);
             $pdf::SetFont('freeserif', '', 8, '', true);

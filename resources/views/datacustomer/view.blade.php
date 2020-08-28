@@ -152,7 +152,7 @@
                           <tr>
                             <td class="text-center">
                               @if($row->Status_leasing == 1 or auth::user()->type == "Admin")
-                                <form method="post" class="delete_form" action="{{ action('DataCustomerController@destroy',[$row->Customer_id]) }}" style="display:inline;">
+                                <form method="post" class="delete_form" action="{{ route('MasterDataCustomer.destroy',[$row->Customer_id]) }}" style="display:inline;">
                                 {{csrf_field()}}
                                   <input type="hidden" name="_method" value="DELETE" />
                                   <button type="submit" data-name="" class="delete-modal btn-danger btn-xs AlertForm" title="ลบรายการ">

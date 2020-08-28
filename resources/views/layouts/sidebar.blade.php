@@ -117,127 +117,6 @@
             @endif
           </li>
 
-          {{-- <li class="nav-item has-treeview {{ Request::is('Precipitate/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/8') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/9') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/10') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/11') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/8/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/deleteImageEach/8/*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon far fa-handshake"></i>
-              <p>
-                แผนกเร่งรัด
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-
-            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก เร่งรัด")
-              <ul class="nav nav-treeview">
-                <li class="nav-item has-treeview {{ Request::is('Precipitate/Home/3') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/1') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/4') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/5') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/11') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/6') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/8') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/9') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/10') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/11') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/8/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/deleteImageEach/8/*') ? 'menu-open' : '' }}">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-window-restore text-red nav-icon"></i>
-                    <p>
-                      ระบบ
-                      <i class="right fas fa-angle-left"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview" style="margin-left: 15px;">
-                    <li class="nav-item">
-                      <a href="{{ route('Precipitate',3) }}" class="nav-link {{ Request::is('Precipitate/Home/3') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>ระบบแจ้งเตือนติดตาม</p>
-                      </a>
-                      <a href="{{ route('Precipitate',1) }}" class="nav-link {{ Request::is('Precipitate/Home/1') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>ระบบปล่อยงาน</p>
-                      </a>
-                      <a href="{{ route('Precipitate',5) }}" class="nav-link {{ Request::is('Precipitate/Home/5') ? 'active' : '' }} {{ Request::is('Precipitate/Home/6') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>ระบบสต็อกรถเร่งรัด</p>
-                      </a>
-                      <a href="{{ route('Analysis',8) }}" class="nav-link {{ Request::is('Analysis/Home/8') ? 'active' : '' }} {{ Request::is('Analysis/Home/9') ? 'active' : '' }} {{ Request::is('Analysis/edit/8/*/*/*/*/*') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>ระบบปรับโครงสร้างหนี้</p>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-
-              <ul class="nav nav-treeview">
-                <li class="nav-item has-treeview {{ Request::is('Precipitate/Home/2') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/7') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/8') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/9') ? 'menu-open' : '' }} {{ Request::is('Precipitate/Home/10') ? 'menu-open' : '' }}">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-window-restore text-red nav-icon"></i>
-                    <p>
-                      รายงาน
-                      <i class="right fas fa-angle-left"></i>
-                    </p>
-                  </a>
-                  <ul class="nav nav-treeview" style="margin-left: 15px;">
-                    <li class="nav-item">
-                      <a href="{{ route('Precipitate',2) }}" class="nav-link {{ Request::is('Precipitate/Home/2') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>รายงาน แยกตามทีม</p>
-                      </a>
-                      <a href="{{ route('Precipitate',7) }}" class="nav-link {{ Request::is('Precipitate/Home/7') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>รายงาน งานประจำวัน</p>
-                      </a>
-                      <a href="{{ route('Precipitate',8) }}" class="nav-link {{ Request::is('Precipitate/Home/8') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>รายงาน รับชำระค่าติดตาม</p>
-                      </a>
-                      <a href="{{ route('Precipitate',9) }}" class="nav-link {{ Request::is('Precipitate/Home/9') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>รายงาน ใบรับฝาก</p>
-                      </a>
-                      <a href="{{ route('Precipitate',10) }}" class="nav-link {{ Request::is('Precipitate/Home/10') ? 'active' : '' }}">
-                        <i class="far fa-dot-circle nav-icon"></i>
-                        <p>รายงาน หนังสือขอยืนยัน</p>
-                      </a>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            @endif
-          </li> --}}
-
-          {{-- <li class="nav-item has-treeview {{ Request::is('Legislation/*') ? 'menu-open' : '' }} {{ Request::is('Legislation/edit/*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fas fa-gavel"></i>
-              <p>
-                แผนกกฏหมาย
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
-
-            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก กฏหมาย" or auth::user()->type == "แผนก เร่งรัด" or auth::user()->type == "แผนก การเงินนอก")
-              <ul class="nav nav-treeview" style="margin-left: 15px;">
-                <li class="nav-item">
-                  <a href="{{ route('legislation',1) }}" class="nav-link {{ Request::is('Legislation/Home/1') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>รายชื่อส่งฟ้อง</p>
-                  </a>
-                  <a href="{{ route('legislation',6) }}" class="nav-link {{ Request::is('Legislation/Home/6') ? 'active' : '' }} {{ Request::is('Legislation/edit/*/6') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>ลูกหนี้เตรียมฟ้อง</p>
-                  </a>
-                  <a href="{{ route('legislation',2) }}" class="nav-link {{ Request::is('Legislation/Home/2') ? 'active' : '' }} {{ Request::is('Legislation/edit/*/2') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>ลูกหนี้ฟ้อง</p>
-                  </a>
-                  <a href="{{ route('legislation',8) }}" class="nav-link {{ Request::is('Legislation/Home/8') ? 'active' : '' }} {{ Request::is('Legislation/edit/*/8') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>ลูกหนี้สืบทรัพย์</p>
-                  </a>
-                  <a href="{{ route('legislation',7) }}" class="nav-link {{ Request::is('Legislation/Home/7') ? 'active' : '' }} {{ Request::is('Legislation/edit/*/4') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>ลูกหนี้ประนอมหนี้</p>
-                  </a>
-                  <a href="{{ route('legislation',10) }}" class="nav-link {{ Request::is('Legislation/Home/10') ? 'active' : '' }} {{ Request::is('Legislation/edit/*/10') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>ลูกหนี้ของกลาง</p>
-                  </a>
-                </li>
-              </ul>
-            @endif
-          </li> --}}
-
           <li class="nav-item has-treeview {{ Request::is('Treasury/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link active">
               <span id="ShowData"></span>
@@ -271,7 +150,7 @@
               </p>
             </a>
 
-            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก บัญชี")
+            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก บัญชี" or auth::user()->type == "แผนก วิเคราะห์")
               <ul class="nav nav-treeview" style="margin-left: 15px;">
                 <li class="nav-item">
                   <a href="{{ route('Accounting', 1) }}" class="nav-link {{ Request::is('Account/Home/1') ? 'active' : '' }}">

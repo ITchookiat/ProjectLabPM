@@ -41,30 +41,10 @@ Route::group(['middleware' => 'auth'], function()
 
     Route::get('/ExportExcel/{type}', 'ExcelController@excel');
 
-    //------------------งานกฏหมาย--------------------//
-    Route::post('/Legislation/store/{id}/{type}', 'LegislationController@store')->name('legislation.store');
-    Route::get('/Legislation/Savestore/{Str1}/{Str2}/{Realty}/{type}', 'LegislationController@Savestore')->name('legislation.Savestore');
-    Route::get('/Legislation/Home/{type}', 'LegislationController@index')->name('legislation');
-    Route::get('/Legislation/edit/{id}/{type}', 'LegislationController@edit')->name('legislation.edit');
-    Route::patch('/Legislation/update/{id}/{type}', 'LegislationController@update')->name('legislation.update');
-    Route::delete('/Legislation/delete/{id}/{type}', 'LegislationController@destroy')->name('legislation.destroy');
-    Route::get('/Updateanalysis/{id}/{type}', 'LegislationController@updateLegislation');
-    Route::get('/Legislation/deleteImageAll/{id}', 'LegislationController@deleteImageAll');
-    Route::get('/Legislation/Report/{id}/{type}', 'LegislationController@ReportReceipt')->name('legislation.report');
-
-    //------------------งานเร่งรัด----------------------//
-    route::resource('MasterPrecipitate','PrecController');
-    Route::get('/Precipitate/Home/{type}', 'PrecController@index')->name('Precipitate');
-    Route::get('/Precipitate/ReportPrecDue/{Str1}/{Str2}', 'PrecController@ReportPrecDue');
-    Route::get('/PrecipitateExcel', 'PrecController@excel');
-    Route::get('/Precipitate/edit/{id}/{type}', 'PrecController@edit')->name('Precipitate.edit');
-    Route::patch('/Precipitate/update/{id}/{type}', 'PrecController@update')->name('Precipitate.update');
-    Route::delete('/Precipitate/delete/{id}/{type}', 'PrecController@destroy')->name('Precipitate.destroy');
-
     //------------------งานการเงิน---------------------//
+    route::resource('MasterTreasury','TreasController');
     Route::get('/Treasury/Home/{type}', 'TreasController@index')->name('treasury');
     Route::get('/Treasury/SearchData/{type}/{id}', 'TreasController@SearchData')->name('SearchData');
-    Route::get('/Treasury/update/{type}/{id}', 'TreasController@updateAnalysis')->name('treasury.updateAnalysis');
     Route::get('/Treasury/ReportDueDate/{type}', 'TreasController@ReportDueDate')->name('treasury.ReportDueDate');
 
     //------------------งานบัญชี----------------------//
@@ -82,7 +62,6 @@ Route::group(['middleware' => 'auth'], function()
     route::resource('MasterDataCustomer','DataCustomerController');
     Route::get('/DataCustomer/Home/{type}', 'DataCustomerController@index')->name('DataCustomer');
     Route::get('/DataCustomer/Savestatus/{value}/{id}', 'DataCustomerController@savestatus')->name('DataCustomer.savestatus');
-    Route::delete('/DataCustomer/delete/{id}', 'DataCustomerController@destroy');
 
     //------------------LOCKER เอกสาร---------------------//
     Route::get('/Document/Home/{type}', 'DocumentController@index')->name('document');

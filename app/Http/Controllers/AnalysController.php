@@ -78,7 +78,7 @@ class AnalysController extends Controller
           $typeCon = session('typeCon');
         }
 
-        // dd($request->get('TypeContract'));
+        // dd($newfdate == false and $newtdate == false);
 
         if ($newfdate == false and $newtdate == false) {
           $data = DB::table('buyers')
@@ -110,14 +110,12 @@ class AnalysController extends Controller
               })
               ->orderBy('buyers.Contract_buyer', 'ASC')
               ->get();
-
         }
-
-        // dd($data);
 
         $type = $request->type;
         $newfdate = \Carbon\Carbon::parse($newfdate)->format('Y') ."-". \Carbon\Carbon::parse($newfdate)->format('m')."-". \Carbon\Carbon::parse($newfdate)->format('d');
         $newtdate = \Carbon\Carbon::parse($newtdate)->format('Y') ."-". \Carbon\Carbon::parse($newtdate)->format('m')."-". \Carbon\Carbon::parse($newtdate)->format('d');
+        // dd($newfdate);
 
         $topcar = DB::table('buyers')
           ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
