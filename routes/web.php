@@ -75,8 +75,8 @@ Route::group(['middleware' => 'auth'], function()
     Route::get('/Insure/Home/{type}', 'InsureController@index')->name('Insure');
 
     //------------------งานทะเบียน--------------------//
-    Route::get('/regcar/view/{type}', 'RegcarController@index')->name('regcar');
-    Route::get('/regcar/create/{type}', 'RegcarController@create')->name('regcar.create');
+    route::resource('MasterRegis','RegisController');
+    Route::get('/Regis/Home/{type}', 'RegisController@index')->name('Regis');
 
     //------------------ลูกค้า walkin------------------//
     route::resource('MasterDataCustomer','DataCustomerController');

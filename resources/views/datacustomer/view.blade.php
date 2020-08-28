@@ -70,19 +70,65 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="float-right form-inline">
-                          <label>จากวันที่ : </label>
-                          <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control" />
-
-                          <label>ถึงวันที่ : </label>
-                          <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
-
+                          <div class="btn-group">
+                            <button type="button" class="btn bg-primary btn-app" data-toggle="dropdown">
+                              <span class="fas fa-print"></span> Print
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                              <li>
+                                <a target="_blank" class="dropdown-item" href="{{ route('MasterDataCustomer.show',[0]) }}?Fromdate={{$newfdate}}&Todate={{$newtdate}}&Status={{$status}}&Type={{1}}&Typelab={{$TypeLab}}"> 
+                                  <i class="fas fa-file-pdf text-red"></i> Print PDF
+                                </a>
+                              </li>
+                              <li class="dropdown-divider"></li>
+                              <li>
+                                <a target="_blank" class="dropdown-item" href="{{ route('MasterDataCustomer.show',[0]) }}?Fromdate={{$newfdate}}&Todate={{$newtdate}}&Status={{$status}}&Type={{2}}&Typelab={{$TypeLab}}"> 
+                                  <i class="fas fa-file-excel text-green"></i> Print Excel
+                                </a>
+                              </li>
+                            </ul>
+                          </div>
                           <button type="submit" class="btn bg-warning btn-app">
                             <span class="fas fa-search"></span> Search
                           </button>
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="float-right form-inline">
+                          <label>จากวันที่ : </label>
+                          <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control" />
+
+                          <label>ถึงวันที่ : </label>
+                          <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
+                       
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="float-right form-inline">
+
+                          <label>ประเภทเงินกู้ : </label>
+                          <select name="Typelab" class="form-control">
+                            <option selected value="">--- เลือกประเภท ----</option>
+                            <option value="PLoan"{{ ($TypeLab == 'PLoan') ? 'selected' : '' }}>PLoan</otion>
+                            <option value="Micro"{{ ($TypeLab == 'Micro') ? 'selected' : '' }}>Micro</otion>
+                          </select>
+
+                          <label>สถานะ : </label>
+                          <select name="Status" class="form-control">
+                            <option selected value="">----- เลือกสถานะ ----</option>
+                            <option value="ลูกค้าสอบถาม"{{ ($status == '1') ? 'selected' : '' }}>ลูกค้าสอบถาม</otion>
+                            <option value="ลูกค้าจัดสินเชื่อ"{{ ($status == '2') ? 'selected' : '' }}>ลูกค้าจัดสินเชื่อ</otion>
+                          </select>
+
+                        </div>
+                      </div>
+                    </div>
                   </form>
+                  <hr>
                 @if($type == 1)
                   <div class="table-responsive">
                     <table class="table table-striped table-valign-middle" id="table1">

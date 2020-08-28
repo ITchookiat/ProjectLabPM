@@ -309,6 +309,28 @@
           </li>
           @endif
 
+          @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก ทะเบียน")
+          <li class="nav-item has-treeview {{ Request::is('Regis/*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fab fa-buffer"></i>
+              <span id="ShowData"></span>
+              <p>
+                แผนกทะเบียน
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+
+              <ul class="nav nav-treeview" style="margin-left: 15px;">
+                <li class="nav-item">
+                  <a href="{{ route('Regis', 1) }}" class="nav-link {{ Request::is('Regis/Home/1') ? 'active' : '' }}">
+                    <i class="far fa-dot-circle nav-icon"></i>
+                    <p>รายการเบิกค่าใช้จ่าย</p>
+                  </a>
+                </li>
+              </ul>
+          </li>
+          @endif
+
           {{-- <li class="nav-header">Documents Part</li>
 
           <li class="nav-item has-treeview {{ Request::is('Document/*') ? 'menu-open' : '' }}">
