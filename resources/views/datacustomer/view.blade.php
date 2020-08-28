@@ -76,13 +76,13 @@
                             </button>
                             <ul class="dropdown-menu" role="menu">
                               <li>
-                                <a target="_blank" class="dropdown-item" href="{{ route('MasterDataCustomer.show',[0]) }}?Fromdate={{$newfdate}}&Todate={{$newtdate}}&Status={{$status}}&Type={{1}}&Typelab={{$TypeLab}}"> 
+                                <a target="_blank" class="dropdown-item" href="{{ route('MasterDataCustomer.show',[0]) }}?Fromdate={{$newfdate}}&Todate={{$newtdate}}&Status={{$status}}&Type={{1}}&Typelab={{$typeLab}}"> 
                                   <i class="fas fa-file-pdf text-red"></i> Print PDF
                                 </a>
                               </li>
                               <li class="dropdown-divider"></li>
                               <li>
-                                <a target="_blank" class="dropdown-item" href="{{ route('MasterDataCustomer.show',[0]) }}?Fromdate={{$newfdate}}&Todate={{$newtdate}}&Status={{$status}}&Type={{2}}&Typelab={{$TypeLab}}"> 
+                                <a target="_blank" class="dropdown-item" href="{{ route('MasterDataCustomer.show',[0]) }}?Fromdate={{$newfdate}}&Todate={{$newtdate}}&Status={{$status}}&Type={{2}}&Typelab={{$typeLab}}"> 
                                   <i class="fas fa-file-excel text-green"></i> Print Excel
                                 </a>
                               </li>
@@ -113,8 +113,8 @@
                           <label>ประเภทเงินกู้ : </label>
                           <select name="Typelab" class="form-control">
                             <option selected value="">--- เลือกประเภท ----</option>
-                            <option value="PLoan"{{ ($TypeLab == 'PLoan') ? 'selected' : '' }}>PLoan</otion>
-                            <option value="Micro"{{ ($TypeLab == 'Micro') ? 'selected' : '' }}>Micro</otion>
+                            <option value="PLoan"{{ ($typeLab == 'PLoan') ? 'selected' : '' }}>PLoan</otion>
+                            <option value="Micro"{{ ($typeLab == 'Micro') ? 'selected' : '' }}>Micro</otion>
                           </select>
 
                           <label>สถานะ : </label>

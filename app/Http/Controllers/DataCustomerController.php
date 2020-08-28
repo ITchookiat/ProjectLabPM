@@ -31,7 +31,7 @@ class DataCustomerController extends Controller
         $newfdate = '';
         $newtdate = '';
         $status = '';
-        $TypeLab = '';
+        $typeLab = '';
         if ($request->has('Fromdate')) {
             $newfdate = $request->get('Fromdate');
         }
@@ -47,7 +47,7 @@ class DataCustomerController extends Controller
             }
         }
         if ($request->has('Typelab')) {
-            $TypeLab = $request->get('Typelab');
+            $typeLab = $request->get('Typelab');
         }
         if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
             $data = DB::table('data_customers')
@@ -63,14 +63,14 @@ class DataCustomerController extends Controller
             ->when(!empty($status), function($q) use ($status) {
                 return $q->where('Status_leasing','=', $status);
             })
-            ->when(!empty($TypeLab), function($q) use ($TypeLab) {
-                return $q->where('Type_leasing','=', $TypeLab);
+            ->when(!empty($typeLab), function($q) use ($typeLab) {
+                return $q->where('Type_leasing','=', $typeLab);
             })
-            ->orderBY('created_at', 'DESC')
+            ->orderBY('created_at', 'ASC')
             ->get();
             }
         $newtdate = $request->get('Todate');
-        return view('datacustomer.view', compact('data','type','newfdate','newtdate','status','TypeLab'));
+        return view('datacustomer.view', compact('data','type','newfdate','newtdate','status','typeLab'));
     }
 
     /**
@@ -234,7 +234,7 @@ class DataCustomerController extends Controller
         $newfdate = '';
         $newtdate = '';
         $status = '';
-        $TypeLab = '';
+        $typeLab = '';
         if ($request->has('Fromdate')) {
             $newfdate = $request->get('Fromdate');
         }
@@ -245,15 +245,16 @@ class DataCustomerController extends Controller
         if ($request->has('Status')) {
             $status = $request->get('Status');
         }
-        if ($request->has('TypeLab')) {
-            $TypeLab = $request->get('Typelab');
+        if ($request->has('Typelab')) {
+            $typeLab = $request->get('Typelab');
         }
 
         if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
             $data = DB::table('data_customers')
             ->where('created_at','>', $datenow)
-            ->orderBY('created_at', 'DESC')
+            ->orderBY('created_at', 'ASC')
             ->get();
+            dd($typeLab);
         }else{
             $data = DB::table('data_customers')
             ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
@@ -262,8 +263,8 @@ class DataCustomerController extends Controller
             ->when(!empty($status), function($q) use ($status) {
                 return $q->where('Status_leasing','=', $status);
             })
-            ->when(!empty($TypeLab), function($q) use ($TypeLab) {
-                return $q->where('Type_leasing','=', $TypeLab);
+            ->when(!empty($typeLab), function($q) use ($typeLab) {
+                return $q->where('Type_leasing','=', $typeLab);
             })
             ->orderBY('created_at', 'ASC')
             ->get();
@@ -273,7 +274,7 @@ class DataCustomerController extends Controller
         if($request->Type == 1){ //PDF
             $SetTopic = "WalkinPDFReport ".$datenow;
 
-            $view = \View::make('datacustomer.reportWalkin' ,compact('data','type','newfdate','newtdate','status','datenow','TypeLab'));
+            $view = \View::make('datacustomer.reportWalkin' ,compact('data','type','newfdate','newtdate','status','datenow','typeLab'));
             $html = $view->render();
             $pdf = new PDF();
             $pdf::SetTitle('รายงานลูกค้า Walk in');
