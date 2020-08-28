@@ -315,7 +315,7 @@
         "autoWidth": false,
         "ordering": true,
         "paging": true,
-        "lengthChange": false,
+        "lengthChange": true,
         "pageLength": 5,
         "searching": true,
         "order": [[ 1, "asc" ]],
