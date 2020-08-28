@@ -44,14 +44,14 @@
           <th width="70px" align="center" style="background-color: #FFFF00;"><b>วันที่</b></th>
           <th width="50px" align="center" style="background-color: #FFFF00;"><b>สาขา</b></th>
           <th width="75px" align="center" style="background-color: #FFFF00;"><b>ทะเบียน</b></th>
-          <th width="70px" align="center" style="background-color: #FFFF00;"><b>ยี่ห้อรถ</b></th>
+          <th width="65px" align="center" style="background-color: #FFFF00;"><b>ยี่ห้อรถ</b></th>
           <!-- <th width="35px" align="center" style="background-color: #FFFF00;"><b>ปีรถ</b></th> -->
           <th width="70px" align="center" style="background-color: #FFFF00;"><b>ยอดจัด</b></th>
           <th width="140px" align="center" style="background-color: #FFFF00;"><b>ชื่อ-สกุล</b></th>
           <th width="70px" align="center" style="background-color: #FFFF00;"><b>เบอร์ติดต่อ</b></th>
           <th width="80px" align="center" style="background-color: #FFFF00;"><b>แหล่งที่มา</b></th>
           <th width="70px" align="center" style="background-color: #33FF00;"><b>ประเภทเงินกู้</b></th>
-          <th width="70px" align="center" style="background-color: #33FF00;"><b>ประเภท</b></th>
+          <th width="75px" align="center" style="background-color: #33FF00;"><b>ประเภท</b></th>
         </tr>
       </thead>
       <tbody>
@@ -70,14 +70,14 @@
             <td width="70px">{{DateThai(substr($value->created_at,0,10))}}</td>
             <td width="50px">{{$value->Branch_car}}</td>
             <td width="75px">{{$value->License_car}}</td>
-            <td width="70px">{{($value->Brand_car != null)?$value->Brand_car: '-'}}</td>
+            <td width="65px">{{($value->Brand_car != null)?$value->Brand_car: '-'}}</td>
             <!-- <td width="35px">{{($value->Year_car != null)?$value->Year_car: '-'}}</td> -->
             <td width="70px" align="right">{{number_format($value->Top_car,0)}} &nbsp;</td>
             <td width="140px" align="left"> {{$value->Name_buyer}}&nbsp;{{$value->Last_buyer}}</td>
             <td width="70px">{{substr(($value->Phone_buyer != null)?$value->Phone_buyer: '-',0,11)}}</td>
             <td width="80px" align="left"> {{$value->Resource_news}}</td>
             <td width="70px" align="center"> {{$value->Type_leasing}}</td>
-            <td width="70px" align="left">
+            <td width="75px" align="left">
                 @if($value->Status_leasing == '1')
                     ลูกค้าสอบถาม
                 @elseif($value->Status_leasing == '2')
@@ -89,9 +89,9 @@
         <br>
         <tr align="center" style="background-color: #BEBEBE; line-height:150%;">
             <td width="100px">รวม {{$countlist}} ราย</td>
-            <td width="195px" align="right">รวมยอดจัด &nbsp;</td>
+            <td width="190px" align="right">รวมยอดจัด &nbsp;</td>
             <td width="70px" align="right">{{number_format($sumtopcar,0)}} &nbsp;</td>
-            <td width="430px" align="left">&nbsp;บาท</td>
+            <td width="435px" align="left">&nbsp;บาท</td>
         </tr>
       </tbody>
     </table>
