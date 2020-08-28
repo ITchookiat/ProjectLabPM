@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Data_customer;
 use DB;
+use PDF;
+use Exporter;
 
 use App\Buyer;
 use App\Sponsor;
@@ -24,12 +26,51 @@ class DataCustomerController extends Controller
     public function index(Request $request, $type)
     {
         // dd($type);
+        $datenow = date('Y-m-d');
+        // $datenow = date('Y-m-d', strtotime('-1 days'));
         $newfdate = '';
         $newtdate = '';
-        $data = DB::table('data_customers')
-              ->orderBY('created_at', 'DESC')
-              ->get();
-        return view('datacustomer.view', compact('data','type','newfdate','newtdate'));
+        $status = '';
+        $TypeLab = '';
+        if ($request->has('Fromdate')) {
+            $newfdate = $request->get('Fromdate');
+        }
+        if ($request->has('Todate')) {
+            $tdate = \Carbon\Carbon::parse($request->get('Todate'));
+            $newtdate = $tdate->addDay();
+        }
+        if ($request->has('Status')) {
+            if($request->get('Status') == 'ลูกค้าสอบถาม'){
+                $status = 1;
+            }elseif($request->get('Status') == 'ลูกค้าจัดสินเชื่อ'){
+                $status = 2;
+            }
+        }
+        if ($request->has('Typelab')) {
+            $TypeLab = $request->get('Typelab');
+        }
+        if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
+            $data = DB::table('data_customers')
+            // ->where('created_at','like', $datenow.'%')
+            ->where('created_at','>', $datenow)
+            ->orderBY('created_at', 'DESC')
+            ->get();
+        }else {
+            $data = DB::table('data_customers')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+                return $q->whereBetween('created_at',[$newfdate,$newtdate]);
+            })
+            ->when(!empty($status), function($q) use ($status) {
+                return $q->where('Status_leasing','=', $status);
+            })
+            ->when(!empty($TypeLab), function($q) use ($TypeLab) {
+                return $q->where('Type_leasing','=', $TypeLab);
+            })
+            ->orderBY('created_at', 'DESC')
+            ->get();
+            }
+        $newtdate = $request->get('Todate');
+        return view('datacustomer.view', compact('data','type','newfdate','newtdate','status','TypeLab'));
     }
 
     /**
@@ -187,9 +228,103 @@ class DataCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$id)
     {
-        //
+        $datenow = date('Y-m-d');
+        $newfdate = '';
+        $newtdate = '';
+        $status = '';
+        $TypeLab = '';
+        if ($request->has('Fromdate')) {
+            $newfdate = $request->get('Fromdate');
+        }
+        if ($request->has('Todate')) {
+            $tdate = \Carbon\Carbon::parse($request->get('Todate'));
+            $newtdate = $tdate->addDay();
+        }
+        if ($request->has('Status')) {
+            $status = $request->get('Status');
+        }
+        if ($request->has('TypeLab')) {
+            $TypeLab = $request->get('Typelab');
+        }
+
+        if ($request->has('Fromdate') == false and $request->has('Todate') == false) {
+            $data = DB::table('data_customers')
+            ->where('created_at','>', $datenow)
+            ->orderBY('created_at', 'DESC')
+            ->get();
+        }else{
+            $data = DB::table('data_customers')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+                return $q->whereBetween('created_at',[$newfdate,$newtdate]);
+            })
+            ->when(!empty($status), function($q) use ($status) {
+                return $q->where('Status_leasing','=', $status);
+            })
+            ->when(!empty($TypeLab), function($q) use ($TypeLab) {
+                return $q->where('Type_leasing','=', $TypeLab);
+            })
+            ->orderBY('created_at', 'ASC')
+            ->get();
+        }
+        $newtdate = $request->get('Todate');
+
+        if($request->Type == 1){ //PDF
+            $SetTopic = "WalkinPDFReport ".$datenow;
+
+            $view = \View::make('datacustomer.reportWalkin' ,compact('data','type','newfdate','newtdate','status','datenow','TypeLab'));
+            $html = $view->render();
+            $pdf = new PDF();
+            $pdf::SetTitle('รายงานลูกค้า Walk in');
+            $pdf::AddPage('L', 'A4');
+            $pdf::SetMargins(10, 5, 10);
+            $pdf::SetFont('thsarabunpsk', '', 16, '', true);
+            $pdf::SetAutoPageBreak(TRUE, 21);
+            $pdf::WriteHTML($html,true,false,true,false,'');
+            $pdf::Output($SetTopic.'.pdf');
+                
+        }
+        elseif($request->Type == 2){ //Excel
+            $data_array[] = array('ลำดับ','วันที่','สาขา','ทะเบียน','ยี่ห้อ','รุ่น','ประเภทรถ','ปี', 'ยอดจัด', 'ชื่อ-สกุล ลูกค้า','เบอร์ลูกค้า','เลขบัตรประชาชน', 'ชื่อ-สกุล นายหน้า', 'เบอร์นายหน้า', 'หมายเหตุ', 'ที่มาลูกค้า','ประเภทเงินกู้','ประเภทลูกค้า','เจ้าหน้าที่ผู้คีย์');
+
+            foreach($data as $key => $row){
+                $date = date_create(substr($row->created_at,0,10));
+                $Date_Due = date_format($date, 'd-m-Y');
+
+                if($row->Status_leasing == 1){
+                    $status = 'ลูกค้าสอบถาม';
+                }elseif($row->Status_leasing == 2){
+                    $status = 'ลูกค้าจัดสินเชื่อ';
+                }
+
+                $data_array[] = array(
+                'ลำดับ' => $key+1,
+                'วันที่' => $Date_Due,
+                'สาขา' => $row->Branch_car,
+                'ทะเบียน' => $row->License_car,
+                'ยี่ห้อ' => $row->Brand_car,
+                'รุ่น' => $row->Model_car,
+                'ประเภทรถ' => $row->Typecardetails,
+                'ปี' => $row->Year_car,
+                'ยอดจัด' => number_format($row->Top_car,2),
+                'ชื่อ-สกุล ลูกค้า' => $row->Name_buyer.' '.$row->Last_buyer,
+                'เบอร์ลูกค้า' => $row->Phone_buyer,
+                'เลขบัตรประชาชน' => $row->IDCard_buyer,
+                'ชื่อ-สกุล นายหน้า' => $row->Name_agent,
+                'เบอร์นายหน้า' => $row->Phone_agent,
+                'หมายเหตุ' => $row->Note_car,
+                'ที่มาลูกค้า' => $row->Resource_news,
+                'ประเภทเงินกู้' => $row->Type_leasing,
+                'ประเภทลูกค้า' => $status,
+                'เจ้าหน้าที่ผู้คีย์' => $row->Name_user,
+                );
+            }
+            $data_array = collect($data_array);
+            $excel = Exporter::make('Excel');
+            $excel->load($data_array);
+            return $excel->stream('CustomerWalkin.xlsx');
+        }
     }
 
     /**

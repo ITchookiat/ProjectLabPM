@@ -54,6 +54,10 @@ Route::group(['middleware' => 'auth'], function()
     route::resource('MasterInsure','InsureController');
     Route::get('/Insure/Home/{type}', 'InsureController@index')->name('Insure');
 
+    //------------------งานทะเบียน--------------------//
+    route::resource('MasterRegis','RegisController');
+    Route::get('/Regis/Home/{type}', 'RegisController@index')->name('Regis');
+
     //------------------ลูกค้า walkin------------------//
     route::resource('MasterDataCustomer','DataCustomerController');
     Route::get('/DataCustomer/Home/{type}', 'DataCustomerController@index')->name('DataCustomer');
