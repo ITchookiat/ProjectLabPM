@@ -148,7 +148,7 @@
                         <tr>
                           <th class="text-center alert">การแจ้งเตือน</th>
                           <th class="text-center no">ลำดับ</th>
-                          <th class="text-center datekey">วันที่คีย์</th>
+                          <!-- <th class="text-center datekey">วันที่คีย์</th> -->
                           <th class="text-center register">ป้ายทะเบียน</th>
                           <th class="text-center brand">ยี่ห้อรถ</th>
                           <th class="text-center version">รุ่นรถ</th>
