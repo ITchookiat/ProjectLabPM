@@ -129,10 +129,11 @@
         var Topcar = Settopcar.replace(",","");
         var Setinterest = document.getElementById('Interestcar').value;
         var Setfee = document.getElementById('Processfee').value;
+        var fee = Setfee.replace(",","");
         var Timelack = document.getElementById('Timeslackencar').value;
 
-          var fee = (Setfee/100)/1;
-          var capital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
+          // var fee = (Setfee/100)/1;
+          var capital = parseFloat(Topcar) + parseFloat(fee);
           var interest = ((Setinterest/100)/1) * 12;
           var process = (parseFloat(capital) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
 
@@ -151,6 +152,7 @@
           // var total_pay_new = Math.ceil(process/10)*10;
 
             document.form1.Topcar.value = addCommas(Topcar);
+            document.form1.Processfee.value = addCommas(fee);
             document.form1.Totalfee.value = addCommas(capital.toFixed(2));
 
           if(Timelack != ''){
@@ -196,15 +198,16 @@
           var Settopcar = document.getElementById('Topcar').value;
           var Topcar = Settopcar.replace(",","");
           var Setfee = document.getElementById('Processfee').value;
+          var fee = Setfee.replace(",","");
           var SetactPrice = document.getElementById('actPrice').value;
           var actPrice = SetactPrice.replace(",","");
           var SetcloseAccountPrice = document.getElementById('closeAccountPrice').value;
           var closeAccountPrice = SetcloseAccountPrice.replace(",","");
           var SetP2Price = document.getElementById('P2Price').value;
           var P2Price = SetP2Price.replace(",","");
-            var fee = (Setfee/100)/1;
-            var capital = parseFloat(Topcar)*parseFloat(fee);
-            var Totalcapital = parseFloat(Topcar) + (parseFloat(Topcar)*parseFloat(fee));
+            // var fee = (Setfee/100)/1;
+            var capital = parseFloat(fee);
+            var Totalcapital = parseFloat(Topcar) + parseFloat(fee);
             var TotalPrice = parseFloat(capital) + parseFloat(actPrice) + parseFloat(closeAccountPrice) + parseFloat(P2Price);
             var TotalBalance = parseFloat(Totalcapital) - parseFloat(TotalPrice) - parseFloat(capital) ;
 
@@ -214,6 +217,10 @@
             document.form1.closeAccountPrice.value = addCommas(closeAccountPrice);
             document.form1.totalkPrice.value = addCommas(capital.toFixed(2));
             document.form1.balancePrice.value = addCommas(TotalBalance.toFixed(2));
+          }
+          else if(actPrice != '' || closeAccountPrice != '' || P2Price != '')
+          {
+            document.form1.totalkPrice.value = addCommas(TotalPrice.toFixed(2));
           }
     }
 

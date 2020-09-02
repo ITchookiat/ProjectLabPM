@@ -1918,7 +1918,7 @@
                             <div class="col-6">
                               <div class="form-group row mb-1">
                                 <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
-                                <div class="col-sm-7">
+                                <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <input type="text" id="Processfee" name="Vatcar" class="form-control" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
                                   @else
@@ -1929,7 +1929,6 @@
                                     @endif
                                   @endif
                                 </div>
-                                <label class="col-sm-1 col-form-label text-left">% </label>
                               </div>
                             </div>
                             <div class="col-6">
@@ -2162,41 +2161,6 @@
                                     }
                                     $('#Commissioncar').val(addCommas(ResultPrice.toFixed(2)));
                                 }
-                            });
-                          </script>
-
-                          <!-- สคริปค่าประเมิณ -->
-                          <script>
-                            $('#Topcar').change(function(){
-                              var Settopcar = document.getElementById('Topcar').value;
-                              var Topcar = Settopcar.replace(",","");
-                              if(Topcar <= 50000){
-                                var evaluetion = 1000;
-                              }else if(Topcar > 50000 && Topcar <= 100000){
-                                var evaluetion = 1500;
-                              }else if(Topcar > 100000 && Topcar <= 250000){
-                                var evaluetion = 2000;
-                              }else{
-                                var evaluetion = 2500;
-                              }
-                              var totalPrice = parseFloat(evaluetion) + parseFloat(1500) + parseFloat(1500);
-                              var balancePrice = parseFloat(Topcar) - parseFloat(totalPrice);
-                              $("#evaluetionPrice").val(addCommas(evaluetion));
-                              $("#totalkPrice").val(addCommas(totalPrice));
-                              $("#balancePrice").val(addCommas(balancePrice.toFixed(2)));
-
-                            });
-                          </script>
-
-                          <script>
-                            $('#Gradebuyer').change(function(){
-                              var value = document.getElementById('Gradebuyer').value;
-                              if(value == 'ปิดจัดใหม่(งานตาม)' || value == 'ปิดจัดใหม่(ผ่อนดี)'){
-                                $('#Commissioncar').attr('readonly', true);
-                              }else{
-                                $('#Commissioncar').attr('readonly', false);
-                              }
-
                             });
                           </script>
 
