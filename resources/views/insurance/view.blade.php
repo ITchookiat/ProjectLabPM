@@ -128,7 +128,6 @@
                   <hr>
                   
                 @if($type == 1)
-                {{--
                   @if($countData != 0)
                     <div class="float-right form-inline" id="grpChkBox">
                       <p><input type="checkbox" name="no" class="round" checked/> ลำดับ</p>&nbsp;&nbsp;
@@ -142,8 +141,7 @@
                       <!-- <p><input type="checkbox" name="note" class="round"/> หมายเหตุ</p>&nbsp;&nbsp;&nbsp; -->
                       <p><input type="checkbox" name="act" class="round" checked/> ตัวเลือก</p>&nbsp;&nbsp;&nbsp;
                     </div>
-                  @endif
-                --}}
+                  @endif              
                   <div class="table-responsive">
                     <table class="table table-striped table-valign-middle table-bordered" id="table1">
                       <thead>
@@ -248,7 +246,7 @@
                               </div>
                             </td>
                             <td class="text-center no">{{$key+1}}</td>
-                            <td class="text-center datekey">{{DateThai($row->Date_useradd)}}</td>
+                            <!-- <td class="text-center datekey">{{DateThai($row->Date_useradd)}}</td> -->
                             <td class="text-center register">{{$row->Number_register}}</td>
                             <td class="text-center brand">{{$row->Brand_car}}</td>
                             <td class="text-center version">{{$row->Version_car}}</td>
