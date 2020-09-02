@@ -237,7 +237,7 @@
         </tr>
         <tr>
           <th align="right" width="120px"> ค่าดำเนินการ &nbsp;</th>
-          <th align="right" width="120px"> <b>{{$dataReport->Vat_car}}</b> %</th>
+          <th align="right" width="120px"> <b>{{$dataReport->Vat_car}} &nbsp;</b></th>
           <th align="right" width="120px"> ระยะเวลาผ่อน &nbsp;</th>
           <th class="text-center" width="180px" style="background-color: yellow;">
             <b>{{$dataReport->Timeslacken_car}} งวด </b>
