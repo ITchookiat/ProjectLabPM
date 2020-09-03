@@ -145,7 +145,7 @@
           var pay = parseInt(setstring);
           var total_pay = Math.ceil(pay/10)*10;
           var total_sum = total_pay * Timelack;
-          var profit = total_sum - capital;
+          var profit = total_sum - Topcar;
 
           // var total_pay_ori = test+".00";
           // var total_pay_ori = process;

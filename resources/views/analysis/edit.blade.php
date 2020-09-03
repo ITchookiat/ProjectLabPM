@@ -1906,9 +1906,9 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-1">
-                                <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label>
+                                <!-- <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label> -->
                                 <div class="col-sm-8">
-                                  <input type="text" id="Totalfee" name="Paymemtcar" class="form-control" value="{{$data->Paymemt_car}}" placeholder="-" readonly/>
+                                  <input type="hidden" id="Totalfee" name="Paymemtcar" class="form-control" value="{{$data->Paymemt_car}}" placeholder="-" readonly/>
                                 </div>
                               </div>
                             </div>
