@@ -135,10 +135,10 @@
           // var fee = (Setfee/100)/1;
           var capital = parseFloat(Topcar) + parseFloat(fee);
           var interest = ((Setinterest/100)/1) * 12;
-          var process = (parseFloat(capital) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
+          var process = (parseFloat(Topcar) + (parseFloat(capital) * parseFloat(interest) * (Timelack / 12))) / Timelack;
 
-          var total_sum = total_pay * Timelack;
-          var profit = total_sum - capital;
+          // var total_sum = total_pay * Timelack;
+          // var profit = total_sum - capital;
 
           var str = process.toString();
           var setstring = str.split(".", 1);
