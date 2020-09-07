@@ -275,8 +275,9 @@
                         <div class="col-sm-7">
                           <select id="TypeLeasing" name="TypeLeasing" class="form-control" required>
                               <option value="" selected>--- เลือกประเภทเงินกู้ ---</option>
-                              <option value="PLoan">PLoan</option>
-                              <option value="Micro">Micro</option>
+                              <option value="P03">P03 - สัญญาเงินกู้รถยนต์</option>
+                              <option value="P06">P06 - สัญญาเงินกู้ส่วนบุคคล</option>
+                              <option value="P07">P07 - สัญญาเงินกู้พนักงาน</option>
                           </select>
                         </div>
                         <br><br>
@@ -297,15 +298,15 @@
                         <div class="col-sm-7">
                           <select id="branchcar" name="branchcar" class="form-control" required>
                                 <option value="" selected>--- เลือกสาขา ---</option>
-                                <option value="ปัตตานี" {{ (auth::user()->branch == 01) ? 'selected' : '' }}>ปัตตานี</option>
-                                <option value="ยะลา" {{ (auth::user()->branch == 03) ? 'selected' : '' }}>ยะลา</option>
-                                <option value="นราธิวาส" {{ (auth::user()->branch == 04) ? 'selected' : '' }}>นราธิวาส</option>
-                                <option value="สายบุรี" {{ (auth::user()->branch == 05) ? 'selected' : '' }}>สายบุรี</option>
-                                <option value="โกลก" {{ (auth::user()->branch == 06) ? 'selected' : '' }}>โกลก</option>
-                                <option value="เบตง" {{ (auth::user()->branch == 07) ? 'selected' : '' }}>เบตง</option>
-                                <option value="โคกโพธิ์" {{ (auth::user()->branch == 26) ? 'selected' : '' }}>โคกโพธิ์</option>
-                                <option value="ระแงะ" {{ (auth::user()->branch == 27) ? 'selected' : '' }}>ระแงะ</option>
-                                <option value="บังนังสตา" {{ (auth::user()->branch == 28) ? 'selected' : '' }}>บังนังสตา</option>
+                                <option value="ปัตตานี" {{ (auth::user()->branch == 01) ? 'selected' : '' }}>ปัตตานี(50)</option>
+                                <option value="ยะลา" {{ (auth::user()->branch == 03) ? 'selected' : '' }}>ยะลา(51)</option>
+                                <option value="นราธิวาส" {{ (auth::user()->branch == 04) ? 'selected' : '' }}>นราธิวาส(52)</option>
+                                <option value="สายบุรี" {{ (auth::user()->branch == 05) ? 'selected' : '' }}>สายบุรี(53)</option>
+                                <option value="โกลก" {{ (auth::user()->branch == 06) ? 'selected' : '' }}>โกลก(54)</option>
+                                <option value="เบตง" {{ (auth::user()->branch == 07) ? 'selected' : '' }}>เบตง(55)</option>
+                                <option value="โคกโพธิ์" {{ (auth::user()->branch == 26) ? 'selected' : '' }}>โคกโพธิ์(56)</option>
+                                <option value="ตันหยงมัส" {{ (auth::user()->branch == 27) ? 'selected' : '' }}>ตันหยงมัส(57)</option>
+                                <option value="บังนังสตา" {{ (auth::user()->branch == 28) ? 'selected' : '' }}>บังนังสตา(58)</option>
                           </select>
                         </div>
                       </div>

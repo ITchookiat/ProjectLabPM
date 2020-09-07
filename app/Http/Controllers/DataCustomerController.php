@@ -132,51 +132,50 @@ class DataCustomerController extends Controller
         $SetYear = substr($Year,2,3);
 
         ////////////////////////////////////
-        if($data->Type_leasing == 'PLoan'){
-            $Settype = 'P03';
+        if($data->Type_leasing == 'P03'){
             $Flag = 'N';
-        }elseif($data->Type_leasing == 'Micro'){
-            $Settype = 'P06';
+        }elseif($data->Type_leasing == 'P06'){
             $Flag = 'D';
-
+        }elseif($data->Type_leasing == 'P07'){
+            $Flag = 'D';
         }
 
         ////////////////////////////////////
         if($data->Branch_car == 'ปัตตานี'){
-            $SetContract = $Settype.'-'.$SetYear.'20'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'50'.'/';
         }
         elseif($data->Branch_car == 'ยะลา'){
-            $SetContract = $Settype.'-'.$SetYear.'21'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'51'.'/';
         }
         elseif($data->Branch_car == 'นราธิวาส'){
-            $SetContract = $Settype.'-'.$SetYear.'22'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'52'.'/';
         }
         elseif($data->Branch_car == 'สายบุรี'){
-            $SetContract = $Settype.'-'.$SetYear.'23'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'53'.'/';
         }
         elseif($data->Branch_car == 'โกลก'){
-            $SetContract = $Settype.'-'.$SetYear.'24'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'44'.'/';
         }
         elseif($data->Branch_car == 'เบตง'){
-            $SetContract = $Settype.'-'.$SetYear.'25'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'55'.'/';
         }
         elseif($data->Branch_car == 'โคกโพธิ์'){
-            $SetContract = $Settype.'-'.$SetYear.'26'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'56'.'/';
         }
-        elseif($data->Branch_car == 'ระแงะ'){
-            $SetContract = $Settype.'-'.$SetYear.'27'.'/';
+        elseif($data->Branch_car == 'ตันหยงมัส'){
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'57'.'/';
         }
         elseif($data->Branch_car == 'บังนังสตา'){
-            $SetContract = $Settype.'-'.$SetYear.'28'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'58'.'/';
         }
         else{
-            $SetContract = $Settype.'-'.$SetYear.'00'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'00'.'/';
         }
 
         $Buyerdb = new Buyer([
             'Contract_buyer' => $SetContract,
             'Flag' => $Flag,
-            'Type_Con' => $Settype,
+            'Type_Con' => $data->Type_leasing,
             'Date_Due' => $DateDue,
             'Name_buyer' => $data->Name_buyer,
             'last_buyer' => $data->Last_buyer,
