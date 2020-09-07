@@ -132,15 +132,6 @@ class DataCustomerController extends Controller
         $SetYear = substr($Year,2,3);
 
         ////////////////////////////////////
-        if($data->Type_leasing == 'P03'){
-            $Flag = 'N';
-        }elseif($data->Type_leasing == 'P06'){
-            $Flag = 'D';
-        }elseif($data->Type_leasing == 'P07'){
-            $Flag = 'D';
-        }
-
-        ////////////////////////////////////
         if($data->Branch_car == 'ปัตตานี'){
             $SetContract = $data->Type_leasing.'-'.$SetYear.'50'.'/';
         }
@@ -174,7 +165,6 @@ class DataCustomerController extends Controller
 
         $Buyerdb = new Buyer([
             'Contract_buyer' => $SetContract,
-            'Flag' => $Flag,
             'Type_Con' => $data->Type_leasing,
             'Date_Due' => $DateDue,
             'Name_buyer' => $data->Name_buyer,
