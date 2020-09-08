@@ -266,19 +266,19 @@
                             <div class="row">
                               @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right"><font color="red">เลขที่สัญญา : </font></label>
                                     <div class="col-sm-8">
-                                      <input type="text" name="Contract_buyer" class="form-control" placeholder="ป้อนเลขที่สัญญา" />
+                                      <input type="text" name="Contract_buyer" class="form-control form-control-sm" placeholder="ป้อนเลขที่สัญญา" />
                                     </div>
                                   </div>
                                 </div>
                               @endif
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right"><font color="red">ประเภทสัญญา : </font></label>
                                   <div class="col-sm-8">
-                                    <select name="TypeContract" class="form-control" required>
+                                    <select name="TypeContract" class="form-control form-control-sm" required>
                                       <option value="" selected>--- เลือกสัญญา ---</option>
                                       <option value="P03">สัญญาเงินกู้รถยนต์ (PLoan)</option>
                                       <option value="P06">สัญญาเงินกู้ส่วนบุคคล (Micro)</option>
@@ -291,10 +291,10 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right"><font color="red">สาขา : </font></label>
                                   <div class="col-sm-8">
-                                    <select name="BrachUser" class="form-control" required>
+                                    <select name="BrachUser" class="form-control form-control-sm" required>
                                       <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
                                       <option value="50">ปัตตานี (50)</option>
                                       <option value="51">ยะลา (51)</option>
@@ -310,10 +310,10 @@
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right"><font color="red">วันที่ทำสัญญา : </font></label>
                                   <div class="col-sm-8">
-                                    <input type="date" name="DateDue" class="form-control"  value="{{ date('Y-m-d') }}">
+                                    <input type="date" name="DateDue" class="form-control form-control-sm"  value="{{ date('Y-m-d') }}">
                                   </div>
                                 </div>
                               </div>
@@ -321,18 +321,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ชื่อ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Namebuyer" class="form-control" placeholder="ป้อนชื่อ" />
+                                    <input type="text" name="Namebuyer" class="form-control form-control-sm" placeholder="ป้อนชื่อ" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">นามสกุล : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="lastbuyer" class="form-control" placeholder="ป้อนนามสกุล" />
+                                    <input type="text" name="lastbuyer" class="form-control form-control-sm" placeholder="ป้อนนามสกุล" />
                                   </div>
                                 </div>
                               </div>
@@ -340,18 +340,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ชื่อเล่น : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Nickbuyer" class="form-control" placeholder="ป้อนชื่อเล่น" />
+                                    <input type="text" name="Nickbuyer" class="form-control form-control-sm" placeholder="ป้อนชื่อเล่น" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">สถานะ : </label>
                                   <div class="col-sm-8">
-                                    <select name="Statusbuyer" class="form-control">
+                                    <select name="Statusbuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- เลือกสถานะ ---</option>
                                       <option value="โสด">โสด</option>
                                       <option value="สมรส">สมรส</option>
@@ -364,18 +364,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">เบอร์โทรศัพท์ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Phonebuyer" class="form-control" placeholder="ป้อนเบอร์โทรศัพท์" data-inputmask="&quot;mask&quot;:&quot;999-9999999,999-9999999&quot;" data-mask=""/>
+                                    <input type="text" name="Phonebuyer" class="form-control form-control-sm" placeholder="ป้อนเบอร์โทรศัพท์" data-inputmask="&quot;mask&quot;:&quot;999-9999999,999-9999999&quot;" data-mask=""/>
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6"> 
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">เบอร์โทรอื่นๆ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Phone2buyer" class="form-control" placeholder="ป้อนเบอร์โทรอื่นๆ" />
+                                    <input type="text" name="Phone2buyer" class="form-control form-control-sm" placeholder="ป้อนเบอร์โทรอื่นๆ" />
                                   </div>
                                 </div>
                               </div>
@@ -383,18 +383,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">เลขบัตรปชช.ผู้ซื้อ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Idcardbuyer" class="form-control" placeholder="ป้อนเลขประชาชนผู้ซื้อ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
+                                    <input type="text" name="Idcardbuyer" class="form-control form-control-sm" placeholder="ป้อนเลขประชาชนผู้ซื้อ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">คู่สมรส : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Matebuyer" class="form-control" placeholder="ป้อนคู่สมรส" />
+                                    <input type="text" name="Matebuyer" class="form-control form-control-sm" placeholder="ป้อนคู่สมรส" />
                                   </div>
                                 </div>
                               </div>
@@ -402,10 +402,10 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ที่อยู่ : </label>
                                   <div class="col-sm-8">
-                                    <select name="Addressbuyer" class="form-control">
+                                    <select name="Addressbuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- เลือกที่อยู่ ---</option>
                                       <option value="ตามทะเบียนบ้าน">ตามทะเบียนบ้าน</option>
                                     </select>
@@ -413,10 +413,10 @@
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ที่อยู่ปัจจุบัน/ส่งเอกสาร : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="AddNbuyer" class="form-control" placeholder="ที่อยู่ปัจจุบัน/ส่งเอกสาร" />
+                                    <input type="text" name="AddNbuyer" class="form-control form-control-sm" placeholder="ที่อยู่ปัจจุบัน/ส่งเอกสาร" />
                                   </div>
                                 </div>
                               </div>
@@ -424,18 +424,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">รายละเอียดที่อยู่ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="StatusAddbuyer" class="form-control" placeholder="ป้อนรายละเอียดที่อยู่" />
+                                    <input type="text" name="StatusAddbuyer" class="form-control form-control-sm" placeholder="ป้อนรายละเอียดที่อยู่" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">สถานที่ทำงาน : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Workplacebuyer" class="form-control" placeholder="ป้อนสถานที่ทำงาน" />
+                                    <input type="text" name="Workplacebuyer" class="form-control form-control-sm" placeholder="ป้อนสถานที่ทำงาน" />
                                   </div>
                                 </div>
                               </div>
@@ -443,10 +443,10 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ลักษณะบ้าน : </label>
                                   <div class="col-sm-8">
-                                    <select name="Housebuyer" class="form-control">
+                                    <select name="Housebuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- เลือกลักษณะบ้าน ---</option>
                                       <option value="บ้านตึก 1 ชั้น">บ้านตึก 1 ชั้น</option>
                                       <option value="บ้านตึก 2 ชั้น">บ้านตึก 2 ชั้น</option>
@@ -459,10 +459,10 @@
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ประเภทหลักทรัพย์ : </label>
                                   <div class="col-sm-8">
-                                    <select name="securitiesbuyer" class="form-control">
+                                    <select name="securitiesbuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- ประเภทหลักทรัพย์ ---</option>
                                       <option value="โฉนด">โฉนด</option>
                                       <option value="นส.3">นส.3</option>
@@ -477,18 +477,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">เลขที่โฉนด : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="deednumberbuyer" class="form-control" placeholder="เลขที่โฉนด" />
+                                    <input type="text" name="deednumberbuyer" class="form-control form-control-sm" placeholder="เลขที่โฉนด" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">เนื่อที่ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="areabuyer" class="form-control" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
+                                    <input type="text" name="areabuyer" class="form-control form-control-sm" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
                                   </div>
                                 </div>
                               </div>
@@ -496,10 +496,10 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ประเภทบ้าน : </label>
                                   <div class="col-sm-8">
-                                    <select name="HouseStylebuyer" class="form-control">
+                                    <select name="HouseStylebuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- ประเภทบ้าน ---</option>
                                       <option value="ของตนเอง">ของตนเอง</option>
                                       <option value="อาศัยบิดา-มารดา">อาศัยบิดา-มารดา</option>
@@ -511,10 +511,10 @@
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Careerbuyer" class="form-control" placeholder="อาชีพ"/>
+                                    <input type="text" name="Careerbuyer" class="form-control form-control-sm" placeholder="อาชีพ"/>
                                   </div>
                                 </div>
                               </div>
@@ -522,18 +522,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" name="Incomebuyer" class="form-control" placeholder="รายได้"/>
+                                    <input type="text" name="Incomebuyer" class="form-control form-control-sm" placeholder="รายได้"/>
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ใบขับขี่ : </label>
                                   <div class="col-sm-8">
-                                    <select name="Driverbuyer" class="form-control">
+                                    <select name="Driverbuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- ใบขับขี่ ---</option>
                                       <option value="มี">มี</option>
                                       <option value="ไม่มี">ไม่มี</option>
@@ -545,18 +545,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">หักค่าใช้จ่าย : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" id="Beforeincome" name="Beforeincome" class="form-control" placeholder="ก่อนหักค่าใช้จ่าย" oninput="income();" />
+                                    <input type="text" id="Beforeincome" name="Beforeincome" class="form-control form-control-sm" placeholder="ก่อนหักค่าใช้จ่าย" oninput="income();" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ประวัติการซื้อ/ค้ำ : </label>
                                   <div class="col-sm-4">
-                                    <select name="Purchasebuyer" class="form-control">
+                                    <select name="Purchasebuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- ซื้อ ---</option>
                                       <option value="0 คัน">0 คัน</option>
                                       <option value="1 คัน">1 คัน</option>
@@ -582,7 +582,7 @@
                                     </select>
                                   </div>
                                   <div class="col-sm-4">
-                                    <select name="Supportbuyer" class="form-control">
+                                    <select name="Supportbuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- ค้ำ ---</option>
                                       <option value="0 คัน">0 คัน</option>
                                       <option value="1 คัน">1 คัน</option>
@@ -613,18 +613,18 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">รายได้หลังหักค่าใช้จ่าย : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" id="Afterincome" name="Afterincome" class="form-control" placeholder="หลังหักค่าใช้จ่าย" oninput="income();" />
+                                    <input type="text" id="Afterincome" name="Afterincome" class="form-control form-control-sm" placeholder="หลังหักค่าใช้จ่าย" oninput="income();" />
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">สถานะผู้เช่าซื้อ : </label>
                                   <div class="col-sm-8">
-                                    <select id="Gradebuyer" name="Gradebuyer" class="form-control">
+                                    <select id="Gradebuyer" name="Gradebuyer" class="form-control form-control-sm">
                                       <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
                                       <option value="ลูกค้าเก่าผ่อนดี">ลูกค้าเก่าผ่อนดี</option>
                                       <option value="ลูกค้าเก่ามีงานตาม">ลูกค้าเก่ามีงานตาม</option>
@@ -641,10 +641,10 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-1">
+                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">วัตถุประสงค์ของสินเชื่อ : </label>
                                   <div class="col-sm-8">
-                                    <select name="objectivecar" class="form-control">
+                                    <select name="objectivecar" class="form-control form-control-sm">
                                       <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
                                       <option value="ลงทุนในธุรกิจ">ลงทุนในธุรกิจ</option>
                                       <option value="ขยายกิจการ">ขยายกิจการ</option>
@@ -684,18 +684,18 @@
                           <br><br>
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ชื่อ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="nameSP" class="form-control" placeholder="ชื่อ" />
+                                  <input type="text" name="nameSP" class="form-control form-control-sm" placeholder="ชื่อ" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">นามสกุล : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="lnameSP" class="form-control" placeholder="นามสกุล" />
+                                  <input type="text" name="lnameSP" class="form-control form-control-sm" placeholder="นามสกุล" />
                                 </div>
                               </div>
                             </div>
@@ -703,18 +703,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ชื่อเล่น : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="niknameSP" class="form-control" placeholder="ชื่อเล่น" />
+                                  <input type="text" name="niknameSP" class="form-control form-control-sm" placeholder="ชื่อเล่น" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">สถานะ : </label>
                                 <div class="col-sm-8">
-                                  <select name="statusSP" class="form-control">
+                                  <select name="statusSP" class="form-control form-control-sm">
                                     <option value="" selected>--- สถานะ ---</option>
                                     <option value="โสด">โสด</option>
                                     <option value="สมรส">สมรส</option>
@@ -728,18 +728,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เบอร์โทร : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="telSP" class="form-control" placeholder="เบอร์โทร" data-inputmask="&quot;mask&quot;:&quot;999-9999999,999-9999999&quot;" data-mask=""/>
+                                  <input type="text" name="telSP" class="form-control form-control-sm" placeholder="เบอร์โทร" data-inputmask="&quot;mask&quot;:&quot;999-9999999,999-9999999&quot;" data-mask=""/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ความสัมพันธ์ : </label>
                                 <div class="col-sm-8">
-                                  <select name="relationSP" class="form-control">
+                                  <select name="relationSP" class="form-control form-control-sm">
                                     <option value="" selected>--- ความสัมพันธ์ ---</option>
                                     <option value="พี่น้อง">พี่น้อง</option>
                                     <option value="ญาติ">ญาติ</option>
@@ -756,18 +756,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เลขบัตรปชช.ผู้ค่ำ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="idcardSP" class="form-control" placeholder="เลขบัตรประชาชนผู้ค่ำ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
+                                  <input type="text" name="idcardSP" class="form-control form-control-sm" placeholder="เลขบัตรประชาชนผู้ค่ำ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">คู่สมรส : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="mateSP" class="form-control" placeholder="คู่สมรส" />
+                                  <input type="text" name="mateSP" class="form-control form-control-sm" placeholder="คู่สมรส" />
                                 </div>
                               </div>
                             </div>
@@ -775,10 +775,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ที่อยู่ : </label>
                                 <div class="col-sm-8">
-                                  <select name="addSP" class="form-control">
+                                  <select name="addSP" class="form-control form-control-sm">
                                     <option value="" selected>--- ที่อยู่ ---</option>
                                     <option value="ตามทะเบียนบ้าน">ตามทะเบียนบ้าน</option>
                                   </select>
@@ -786,10 +786,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ที่อยู่ปัจจุบัน/จัดส่งเอกสาร : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="addnowSP" class="form-control" placeholder="ที่อยู่ปัจจุบัน/จัดส่งเอกสาร" />
+                                  <input type="text" name="addnowSP" class="form-control form-control-sm" placeholder="ที่อยู่ปัจจุบัน/จัดส่งเอกสาร" />
                                 </div>
                               </div>
                             </div>
@@ -797,18 +797,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รายละเอียดที่อยู่ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="statusaddSP" class="form-control" placeholder="รายละเอียดที่อยู่" />
+                                  <input type="text" name="statusaddSP" class="form-control form-control-sm" placeholder="รายละเอียดที่อยู่" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">สถานที่ทำงาน : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="workplaceSP" class="form-control" placeholder="สถานที่ทำงาน" />
+                                  <input type="text" name="workplaceSP" class="form-control form-control-sm" placeholder="สถานที่ทำงาน" />
                                 </div>
                               </div>
                             </div>
@@ -816,10 +816,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ลักษณะบ้าน : </label>
                                 <div class="col-sm-8">
-                                  <select name="houseSP" class="form-control">
+                                  <select name="houseSP" class="form-control form-control-sm">
                                     <option value="" selected>--- เลือกลักษณะบ้าน ---</option>
                                     <option value="บ้านตึก 1 ชั้น">บ้านตึก 1 ชั้น</option>
                                     <option value="บ้านตึก 2 ชั้น">บ้านตึก 2 ชั้น</option>
@@ -832,10 +832,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประเภทหลักทรัพย์ : </label>
                                 <div class="col-sm-8">
-                                  <select name="securitiesSP" class="form-control">
+                                  <select name="securitiesSP" class="form-control form-control-sm">
                                     <option value="" selected>--- ประเภทหลักทรัพย์ ---</option>
                                     <option value="โฉนด">โฉนด</option>
                                     <option value="นส.3">นส.3</option>
@@ -850,18 +850,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เลขที่โฉนด : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="deednumberSP" class="form-control" placeholder="เลขที่โฉนด" />
+                                  <input type="text" name="deednumberSP" class="form-control form-control-sm" placeholder="เลขที่โฉนด" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เนื้อที่ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="areaSP" class="form-control" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
+                                  <input type="text" name="areaSP" class="form-control form-control-sm" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
                                 </div>
                               </div>
                             </div>
@@ -869,10 +869,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประเภทบ้าน : </label>
                                 <div class="col-sm-8">
-                                  <select name="housestyleSP" class="form-control">
+                                  <select name="housestyleSP" class="form-control form-control-sm">
                                     <option value="" selected>--- ประเภทบ้าน ---</option>
                                     <option value="ของตนเอง">ของตนเอง</option>
                                     <option value="อาศัยบิดา">อาศัยบิดา-มารดา</option>
@@ -884,10 +884,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="careerSP" class="form-control" placeholder="อาชีพ"/>
+                                  <input type="text" name="careerSP" class="form-control form-control-sm" placeholder="อาชีพ"/>
                                 </div>
                               </div>
                             </div>
@@ -895,18 +895,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="incomeSP" class="form-control" placeholder="รายได้"/>
+                                  <input type="text" name="incomeSP" class="form-control form-control-sm" placeholder="รายได้"/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประวัติซื้อ/ค้ำ  : </label>
                                 <div class="col-sm-4">
-                                  <select name="puchaseSP" class="form-control">
+                                  <select name="puchaseSP" class="form-control form-control-sm">
                                     <option value="" selected>--- ซื้อ ---</option>
                                     <option value="0 คัน">0 คัน</option>
                                     <option value="1 คัน">1 คัน</option>
@@ -932,7 +932,7 @@
                                   </select>
                                 </div>
                                 <div class="col-sm-4">
-                                  <select name="supportSP" class="form-control">
+                                  <select name="supportSP" class="form-control form-control-sm">
                                     <option value="" selected>--- ค้ำ ---</option>
                                     <option value="0 คัน">0 คัน</option>
                                     <option value="1 คัน">1 คัน</option>
@@ -966,10 +966,10 @@
                           <p></p>
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ยี่ห้อ : </label>
                                 <div class="col-sm-8">
-                                  <select name="Brandcar" class="form-control">
+                                  <select name="Brandcar" class="form-control form-control-sm">
                                     <option value="" selected>--- ยี่ห้อ ---</option>
                                     <option value="ISUZU">ISUZU</option>
                                     <option value="MITSUBISHI">MITSUBISHI</option>
@@ -986,10 +986,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประเภทรถ : </label>
                                 <div class="col-sm-8">
-                                  <select id="Typecardetail" name="Typecardetail" class="form-control" onchange="calculate();">
+                                  <select id="Typecardetail" name="Typecardetail" class="form-control form-control-sm" onchange="calculate();">
                                     <option value="" selected>--- ประเภทรถ ---</option>
                                     <option value="รถกระบะ">รถกระบะ</option>
                                     <option value="รถตอนเดียว">รถตอนเดียว</option>
@@ -1002,18 +1002,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">สี : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Colourcar" class="form-control" placeholder="สี" />
+                                  <input type="text" name="Colourcar" class="form-control form-control-sm" placeholder="สี" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ปี : </label>
                                 <div class="col-sm-8">
-                                  <select id="Yearcar" name="Yearcar" class="form-control" onchange="calculate();">
+                                  <select id="Yearcar" name="Yearcar" class="form-control form-control-sm" onchange="calculate();">
                                     <option value="" selected>--- เลือกปี ---</option>
                                       @php
                                           $Year = date('Y');
@@ -1032,18 +1032,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ป้ายเดิม : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Licensecar" class="form-control" placeholder="ป้ายเดิม" required/>
+                                  <input type="text" name="Licensecar" class="form-control form-control-sm" placeholder="ป้ายเดิม" required/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">กลุ่มปีรถยนต์ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Groupyearcar" name="Groupyearcar" class="form-control" placeholder="กลุ่มปีรถยนต์" onchange="calculate();"/>
+                                  <input type="text" id="Groupyearcar" name="Groupyearcar" class="form-control form-control-sm" placeholder="กลุ่มปีรถยนต์" onchange="calculate();"/>
                                 </div>
                               </div>
                             </div>
@@ -1051,18 +1051,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ป้ายใหม่ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Nowlicensecar" class="form-control" placeholder="ป้ายใหม่" />
+                                  <input type="text" name="Nowlicensecar" class="form-control form-control-sm" placeholder="ป้ายใหม่" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เลขไมล์ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Milecar" name="Milecar" class="form-control" placeholder="เลขไมล์" oninput="mile();" />
+                                  <input type="text" id="Milecar" name="Milecar" class="form-control form-control-sm" placeholder="เลขไมล์" oninput="mile();" />
                                 </div>
                               </div>
                             </div>
@@ -1070,18 +1070,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รุ่น : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Modelcar" class="form-control" placeholder="รุ่น" />
+                                  <input type="text" name="Modelcar" class="form-control form-control-sm" placeholder="รุ่น" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ราคากลาง : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Midpricecar" name="Midpricecar" class="form-control" maxlength="9" placeholder="ราคากลาง" oninput="mile();percent();" />
+                                  <input type="text" id="Midpricecar" name="Midpricecar" class="form-control form-control-sm" maxlength="9" placeholder="ราคากลาง" oninput="mile();percent();" />
                                 </div>
                               </div>
                             </div>
@@ -1092,18 +1092,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เงินต้น : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Topcar" name="Topcar" class="form-control" maxlength="9" placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
+                                  <input type="text" id="Topcar" name="Topcar" class="form-control form-control-sm" maxlength="9" placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Totalfee" name="Paymemtcar" class="form-control" placeholder="-" readonly oninput="balance2();"/>
+                                  <input type="text" id="Totalfee" name="Paymemtcar" class="form-control form-control-sm" placeholder="-" readonly oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
@@ -1111,19 +1111,19 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
                                 <div class="col-sm-7">
-                                  <input type="text" id="Processfee" name="Vatcar" class="form-control" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
+                                  <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
                                 </div>
                                 <label class="col-sm-1 col-form-label text-left">% </label>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ชำระต่องวด : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Paycar" name="Paycar" class="form-control" placeholder="-" readonly/>
+                                  <input type="text" id="Paycar" name="Paycar" class="form-control form-control-sm" placeholder="-" readonly/>
                                 </div>
                               </div>
                             </div>
@@ -1131,19 +1131,19 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ดอกเบี้ย/เดือน : </label>
                                 <div class="col-sm-7">
-                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();"/>
+                                  <input type="text" id="Interestcar" name="Interestcar" class="form-control form-control-sm" placeholder="ป้อนดอกเบี้ย" oninput="calculate2();balance2();"/>
                                 </div>
                                 <label class="col-sm-1 col-form-label text-left">% </label>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">กำไรจากดอกเบี้ย : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Profit" name="Taxcar" class="form-control" placeholder="-" readonly />
+                                  <input type="text" id="Profit" name="Taxcar" class="form-control form-control-sm" placeholder="-" readonly />
                                 </div>
                               </div>
                             </div>
@@ -1151,10 +1151,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ระยะเวลาผ่อน : </label>
                                 <div class="col-sm-8">
-                                  <select id="Timeslackencar" name="Timeslackencar" class="form-control" oninput="calculate();calculate2();balance2();">
+                                  <select id="Timeslackencar" name="Timeslackencar" class="form-control form-control-sm" oninput="calculate();calculate2();balance2();">
                                     <option value="" selected>--- ระยะเวลาผ่อน ---</option>
                                     <option value="12">12</option>
                                     <option value="18">18</option>
@@ -1174,10 +1174,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ยอดรวมทั้งสัญญา : </label>
                                   <div class="col-sm-8">
-                                    <input type="text" id="Totalpay1car" name="Totalpay1car" class="form-control" placeholder="-" readonly />
+                                    <input type="text" id="Totalpay1car" name="Totalpay1car" class="form-control form-control-sm" placeholder="-" readonly />
                                   </div>
                               </div>
                             </div>
@@ -1185,10 +1185,10 @@
                           <hr>
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประกันภัย : </label>
                                 <div class="col-sm-8">
-                                  <select id="Insurancecar" name="Insurancecar" class="form-control" onchange="calculate();">
+                                  <select id="Insurancecar" name="Insurancecar" class="form-control form-control-sm" onchange="calculate();">
                                     <option value="" selected>--- ประกันภัย ---</option>
                                     <option value="แถม ป2+ 1ปี">แถม ป2+ 1ปี</option>
                                     <option value="มี ป2+ อยู่แล้ว">มี ป2+ อยู่แล้ว</option>
@@ -1202,10 +1202,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เปอร์เซ็นจัดไฟแนนซ์ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Percentcar" name="Percentcar" class="form-control int" placeholder="เปอร์เซ็นจัดไฟแนนซ์" readonly />
+                                  <input type="text" id="Percentcar" name="Percentcar" class="form-control form-control-sm int" placeholder="เปอร์เซ็นจัดไฟแนนซ์" readonly />
                                 </div>
                               </div>
                             </div>
@@ -1213,10 +1213,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">แบบ : </label>
                                 <div class="col-sm-8">
-                                  <select id="statuscar" name="statuscar" class="form-control">
+                                  <select id="statuscar" name="statuscar" class="form-control form-control-sm">
                                     <option value="" selected>--- เลือกแบบ ---</option>
                                     <option value="กส.ค้ำมีหลักทรัพย์">กส.ค้ำมีหลักทรัพย์</option>
                                     <option value="กส.ค้ำไม่มีหลักทรัพย์">กส.ค้ำไม่มีหลักทรัพย์</option>
@@ -1227,10 +1227,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">วันที่ชำระงวดแรก : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Dateduefirstcar" class="form-control" readonly placeholder="วันที่ชำระงวดแรก" />
+                                  <input type="text" name="Dateduefirstcar" class="form-control form-control-sm" readonly placeholder="วันที่ชำระงวดแรก" />
                                 </div>
                               </div>
                             </div>
@@ -1239,18 +1239,18 @@
                           <hr />
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ผู้รับเงิน : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Payeecar" class="form-control" placeholder="ผู้รับเงิน" />
+                                  <input type="text" name="Payeecar" class="form-control form-control-sm" placeholder="ผู้รับเงิน" />
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เลขที่บัญชี : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Accountbrancecar" class="form-control" placeholder="เลขที่บัญชีผู้รับเงิน" maxlength="15" />
+                                  <input type="text" name="Accountbrancecar" class="form-control form-control-sm" placeholder="เลขที่บัญชีผู้รับเงิน" maxlength="15" />
                                 </div>
                               </div>
                             </div>
@@ -1259,10 +1259,10 @@
                           <div class="row">
                             <div class="col-6"></div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">สาขา : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="branchbrancecar" class="form-control" placeholder="สาขาผู้รับเงิน" />
+                                  <input type="text" name="branchbrancecar" class="form-control form-control-sm" placeholder="สาขาผู้รับเงิน" />
                                 </div>
                               </div>
                             </div>
@@ -1271,10 +1271,10 @@
                           <div class="row">
                             <div class="col-6"></div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เบอร์โทรศัพท์ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Tellbrancecar" class="form-control" placeholder="เบอร์โทรศัพท์" data-inputmask="&quot;mask&quot;:&quot;999-9999999&quot;" data-mask="" />
+                                  <input type="text" name="Tellbrancecar" class="form-control form-control-sm" placeholder="เบอร์โทรศัพท์" data-inputmask="&quot;mask&quot;:&quot;999-9999999&quot;" data-mask="" />
                                 </div>
                               </div>
                             </div>
@@ -1282,18 +1282,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right"><font color="red">(* กรณีเป็นพนักงาน) </font>แนะนำ/นายหน้า : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Agentcar" name="Agentcar" class="form-control" placeholder="แนะนำ/นายหน้า" oninput="commission();"/>
+                                  <input type="text" id="Agentcar" name="Agentcar" class="form-control form-control-sm" placeholder="แนะนำ/นายหน้า" oninput="commission();"/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เลขที่บัญชี : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Accountagentcar" class="form-control" placeholder="เลขที่บัญชีนายหน้า" maxlength="15" />
+                                  <input type="text" name="Accountagentcar" class="form-control form-control-sm" placeholder="เลขที่บัญชีนายหน้า" maxlength="15" />
                                 </div>
                               </div>
                             </div>
@@ -1301,18 +1301,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1" id="ShowCom" style="display:none;">
+                              <div class="form-group row mb-0" id="ShowCom" style="display:none;">
                                 <label class="col-sm-3 col-form-label text-right">ค่าคอม : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="Commissioncar" name="Commissioncar" class="form-control" placeholder="ค่าคอม" oninput="commission();"/>
+                                  <input type="text" id="Commissioncar" name="Commissioncar" class="form-control form-control-sm" placeholder="ค่าคอม" oninput="commission();"/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">สาขา : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="branchAgentcar" class="form-control" placeholder="สาขานายหน้า" />
+                                  <input type="text" name="branchAgentcar" class="form-control form-control-sm" placeholder="สาขานายหน้า" />
                                 </div>
                               </div>
                             </div>
@@ -1381,10 +1381,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประวัติการซื้อ/ค้ำ : </label>
                                 <div class="col-sm-4">
-                                  <select name="Purchasehistorycar" class="form-control">
+                                  <select name="Purchasehistorycar" class="form-control form-control-sm">
                                     <option value="" selected>--- ซื้อ ---</option>
                                     <option value="0 คัน">0 คัน</option>
                                     <option value="1 คัน">1 คัน</option>
@@ -1410,7 +1410,7 @@
                                   </select>
                                 </div>
                                 <div class="col-sm-4">
-                                  <select name="Supporthistorycar" class="form-control">
+                                  <select name="Supporthistorycar" class="form-control form-control-sm">
                                     <option value="" selected>--- ค้ำ ---</option>
                                     <option value="0 คัน">0 คัน</option>
                                     <option value="1 คัน">1 คัน</option>
@@ -1438,10 +1438,10 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">เบอร์โทรศัพท์ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Tellagentcar" class="form-control" placeholder="เบอร์โทรศัพท์" data-inputmask="&quot;mask&quot;:&quot;999-9999999&quot;" data-mask="" />
+                                  <input type="text" name="Tellagentcar" class="form-control form-control-sm" placeholder="เบอร์โทรศัพท์" data-inputmask="&quot;mask&quot;:&quot;999-9999999&quot;" data-mask="" />
                                 </div>
                               </div>
                             </div>
@@ -1449,10 +1449,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">หมายเหตุ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="Notecar" class="form-control" placeholder="หมายเหตุ"/>
+                                  <input type="text" name="Notecar" class="form-control form-control-sm" placeholder="หมายเหตุ"/>
                                 </div>
                               </div>
                             </div>
@@ -1474,27 +1474,11 @@
                             <div class="col-5">
                               <div class="float-right form-inline">
                                 <!-- <label><font color="red">เจ้าหน้าที่สินเชื่อ : </font></label> -->
-                                <input type="hidden" name="Loanofficercar" class="form-control" value="{{ Auth::user()->name }}" readonly />
+                                <input type="hidden" name="Loanofficercar" class="form-control form-control-sm" value="{{ Auth::user()->name }}" readonly />
                               </div>
                             </div>
                             <div class="col-5">
                               <div class="float-right form-inline">
-                                <!-- <label><font color="red">สาขา : </font></label> -->
-                                {{-- @if(Auth::user()->branch == 99)
-                                    <input type="hidden" name="branchcar" class="form-control" value="Admin" readonly />
-                                @elseif(Auth::user()->branch == 01)
-                                    <input type="hidden" name="branchcar" class="form-control" value="ปัตตานี" readonly />
-                                @elseif(Auth::user()->branch == 03)
-                                    <input type="hidden" name="branchcar" class="form-control" value="ยะลา" readonly />
-                                @elseif(Auth::user()->branch == 04)
-                                    <input type="hidden" name="branchcar" class="form-control" value="นราธิวาส" readonly />
-                                @elseif(Auth::user()->branch == 05)
-                                    <input type="hidden" name="branchcar" class="form-control" value="สายบุรี" readonly />
-                                @elseif(Auth::user()->branch == 06)
-                                    <input type="hidden" name="branchcar" class="form-control" value="โกลก" readonly />
-                                @elseif(Auth::user()->branch == 07)
-                                    <input type="hidden" name="branchcar" class="form-control" value="เบตง" readonly />
-                                @endif --}}
                               </div>
                             </div>
                           </div>
@@ -1504,18 +1488,18 @@
                           <p></p>
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">พรบ. : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="actPrice" name="actPrice" class="form-control" value="0" placeholder="พรบ." oninput="balance2();"/>
+                                  <input type="text" id="actPrice" name="actPrice" class="form-control form-control-sm" value="0" placeholder="พรบ." oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ซื้อ ป2+/ป1 : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="P2Price" name="P2Price" class="form-control" value="0" placeholder="ซื้อ ป2+" oninput="balance2();"/>
+                                  <input type="text" id="P2Price" name="P2Price" class="form-control form-control-sm" value="0" placeholder="ซื้อ ป2+" oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
@@ -1523,18 +1507,18 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ยอดปิดบัญชี : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="closeAccountPrice" name="closeAccountPrice" class="form-control" value="0" placeholder="ยอดปิดบัญชี" oninput="balance2();"/>
+                                  <input type="text" id="closeAccountPrice" name="closeAccountPrice" class="form-control form-control-sm" value="0" placeholder="ยอดปิดบัญชี" oninput="balance2();"/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รวมค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" class="form-control" placeholder="รวมค่าดำเนินการ" onchange="balance2();" readonly/>
+                                  <input type="text" id="totalkPrice" name="totalkPrice" class="form-control form-control-sm" placeholder="รวมค่าดำเนินการ" onchange="balance2();" readonly/>
                                 </div>
                               </div>
                             </div>
@@ -1578,18 +1562,18 @@
                           <hr>
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">คงเหลือ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="balancePrice" name="balancePrice" class="form-control" placeholder="คงเหลือ" readonly/>
+                                  <input type="text" id="balancePrice" name="balancePrice" class="form-control form-control-sm" placeholder="คงเหลือ" readonly/>
                                 </div>
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ค่าคอมหลังหัก 1.5%  : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="commitPrice" name="commitPrice" class="form-control" placeholder="ค่าคอมหลังหัก" readonly/>
+                                  <input type="text" id="commitPrice" name="commitPrice" class="form-control form-control-sm" placeholder="ค่าคอมหลังหัก" readonly/>
                                 </div>
                               </div>
                             </div>
@@ -1597,10 +1581,10 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-1">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">หมายเหตุ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" name="notePrice" class="form-control" placeholder="หมายเหตุ"/>
+                                  <input type="text" name="notePrice" class="form-control form-control-sm" placeholder="หมายเหตุ"/>
                                 </div>
                               </div>
                             </div>
@@ -1735,7 +1719,7 @@
                             <div class="card-body">
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ชื่อ : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="nameSP2" class="form-control" placeholder="ชื่อ" />
@@ -1743,7 +1727,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">นามสกุล : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="lnameSP2" class="form-control" placeholder="นามสกุล" />
@@ -1753,7 +1737,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ชื่อเล่น : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="niknameSP2" class="form-control" placeholder="ชื่อเล่น" />
@@ -1761,7 +1745,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">สถานะ : </label>
                                     <div class="col-sm-8">
                                       <select name="statusSP2" class="form-control">
@@ -1777,7 +1761,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">เบอร์โทร : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="telSP2" class="form-control" placeholder="เบอร์โทร" data-inputmask="&quot;mask&quot;:&quot;999-9999999,999-9999999&quot;" data-mask=""/>
@@ -1785,7 +1769,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ความสัมพันธ์ : </label>
                                     <div class="col-sm-8">
                                       <select name="relationSP2" class="form-control">
@@ -1804,7 +1788,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">คู่สมรส : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="mateSP2" class="form-control" placeholder="คู่สมรส" />
@@ -1812,7 +1796,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">เลขบัตรประชาชน : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="idcardSP2" class="form-control" placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" />
@@ -1822,7 +1806,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ที่อยู่ : </label>
                                     <div class="col-sm-8">
                                       <select name="addSP2" class="form-control">
@@ -1833,7 +1817,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ที่อยู่ปัจจุบัน/จัดส่งเอกสาร : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="addnowSP2" class="form-control" placeholder="ที่อยู่ปัจจุบัน/จัดส่งเอกสาร" />
@@ -1843,7 +1827,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">รายละเอียดที่อยู่ : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="statusaddSP2" class="form-control" placeholder="รายละเอียดที่อยู่" />
@@ -1851,7 +1835,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">สถานที่ทำงาน : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="workplaceSP2" class="form-control" placeholder="สถานที่ทำงาน" />
@@ -1861,7 +1845,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ลักษณะบ้าน : </label>
                                     <div class="col-sm-8">
                                       <select name="houseSP2" class="form-control">
@@ -1877,7 +1861,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ประเภทหลักทรัพย์ : </label>
                                     <div class="col-sm-8">
                                       <select name="securitiesSP2" class="form-control">
@@ -1894,7 +1878,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">เลขที่โฉนด : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="deednumberSP2" class="form-control" placeholder="เลขที่โฉนด" />
@@ -1902,7 +1886,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">เนื้อที่ : </label>
                                     <div class="col-sm-8">
                                       <input type="text" name="areaSP2" class="form-control" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
@@ -1912,7 +1896,7 @@
                               </div> 
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ประเภทบ้าน : </label>
                                     <div class="col-sm-8">
                                       <select name="housestyleSP2" class="form-control">
@@ -1927,7 +1911,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
                                     <div class="col-sm-8">
                                       <select name="careerSP2" class="form-control">
@@ -1968,7 +1952,7 @@
                               </div>
                               <div class="row">
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
                                     <div class="col-sm-8">
                                       <select name="incomeSP2" class="form-control">
@@ -1982,7 +1966,7 @@
                                   </div>
                                 </div>
                                 <div class="col-6">
-                                  <div class="form-group row mb-1">
+                                  <div class="form-group row mb-0">
                                     <label class="col-sm-3 col-form-label text-right">ประวัติซื้อ : </label>
                                     <div class="col-sm-4">
                                       <select name="puchaseSP2" class="form-control">
