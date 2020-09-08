@@ -189,7 +189,7 @@
                             </thead>
                             <tbody>
                               @foreach($data as $key => $row)
-                                @if($row->Type_Con == "P06")
+                                @if($row->Type_Con == "P06" or $row->Type_Con == "P07")
                                   <tr>
                                     <td class="text-center"> {{$key+1}} </td>
                                     <td class="text-left"> {{$row->branch_car}} </td>
