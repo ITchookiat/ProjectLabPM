@@ -306,19 +306,10 @@ class AnalysController extends Controller
           $SetFlag = "Y"; //สถานะเริ่มต้นของ PLoan
         }elseif ($request->get('TypeContract') == "P06") {
           $SetFlag = "E"; //สถานะเริ่มต้นของ Micro
+        }elseif ($request->get('TypeContract') == "P07") {
+          $SetFlag = "S"; //สถานะเริ่มต้นของ P07
         }
       }
-      // elseif ($request->get('TypeContract') != NULL) {
-      //   $SetDateConn = \Carbon\Carbon::parse($request->get('DateDue'))->format('Y') +543;
-      //   $SubStr = substr($SetDateConn,2,3);
-      //   $StrConn = $request->get('TypeContract').$SubStr.$request->get('BrachUser')."/";
-
-      //   if ($request->get('TypeContract') == "P03") {
-      //     $SetFlag = "N"; //สถานะเริ่มต้นของ PLoan
-      //   }elseif ($request->get('TypeContract') == "P06") {
-      //     $SetFlag = "D"; //สถานะเริ่มต้นของ Micro
-      //   }
-      // }
 
       $Buyerdb = new Buyer([
         'Contract_buyer' => $StrConn,
@@ -460,23 +451,23 @@ class AnalysController extends Controller
           $AccountImage->move($destination_path,$NameImage);
         }
 
-        if ($request->get('BrachUser') == "20") {
+        if ($request->get('BrachUser') == "50") {
           $SetBranch = "ปัตตานี";
-        }elseif ($request->get('BrachUser') == "21") {
+        }elseif ($request->get('BrachUser') == "51") {
           $SetBranch = "ยะลา";
-        }elseif ($request->get('BrachUser') == "22") {
+        }elseif ($request->get('BrachUser') == "52") {
           $SetBranch = "นราธิวาส";
-        }elseif ($request->get('BrachUser') == "23") {
+        }elseif ($request->get('BrachUser') == "53") {
           $SetBranch = "สายบุรี";
-        }elseif ($request->get('BrachUser') == "24") {
+        }elseif ($request->get('BrachUser') == "54") {
           $SetBranch = "สุไหงโกลก";
-        }elseif ($request->get('BrachUser') == "25") {
+        }elseif ($request->get('BrachUser') == "55") {
           $SetBranch = "เบตง";
-        }elseif ($request->get('BrachUser') == "26") {
+        }elseif ($request->get('BrachUser') == "56") {
           $SetBranch = "โคกโพธิ์";
-        }elseif ($request->get('BrachUser') == "27") {
-          $SetBranch = "ระแงะ";
-        }elseif ($request->get('BrachUser') == "28") {
+        }elseif ($request->get('BrachUser') == "57") {
+          $SetBranch = "ตันหยงมัส";
+        }elseif ($request->get('BrachUser') == "58") {
           $SetBranch = "บันนังสตา";
         }
 
@@ -530,7 +521,6 @@ class AnalysController extends Controller
           'AccountImage_car' => $NameImage,
         ]);
         $Cardetaildb ->save();
-
 
         if ($request->get('totalkPrice') != Null) {
           $SettotalkPrice = str_replace (",","",$request->get('totalkPrice'));
@@ -727,30 +717,28 @@ class AnalysController extends Controller
       $Getcardetail = Cardetail::where('Buyercar_id',$id)->first();
 
       //สร้างเลขที่สัญญา
-      if ($request->get('BrachUser') == "20" or $request->get('BrachUser') == "ปัตตานี") {
-        $NumBranch = "20";
-      }elseif ($request->get('BrachUser') == "21" or $request->get('BrachUser') == "ยะลา") {
-        $NumBranch = "21";
-      }elseif ($request->get('BrachUser') == "22" or $request->get('BrachUser') == "นราธิวาส") {
-        $NumBranch = "22";
-      }elseif ($request->get('BrachUser') == "23" or $request->get('BrachUser') == "สายบุรี") {
-        $NumBranch = "23";
-      }elseif ($request->get('BrachUser') == "24" or $request->get('BrachUser') == "สุไหงโกลก") {
-        $NumBranch = "24";
-      }elseif ($request->get('BrachUser') == "25" or $request->get('BrachUser') == "เบตง") {
-        $NumBranch = "25";
-      }elseif ($request->get('BrachUser') == "26" or $request->get('BrachUser') == "โคกโพธิ์") {
-        $NumBranch = "26";
-      }elseif ($request->get('BrachUser') == "27" or $request->get('BrachUser') == "ระแงะ") {
-        $NumBranch = "27";
-      }elseif ($request->get('BrachUser') == "28" or $request->get('BrachUser') == "บันนังสตา") {
-        $NumBranch = "28";
+      if ($request->get('BrachUser') == "50" or $request->get('BrachUser') == "ปัตตานี") {
+        $NumBranch = "50";
+      }elseif ($request->get('BrachUser') == "51" or $request->get('BrachUser') == "ยะลา") {
+        $NumBranch = "51";
+      }elseif ($request->get('BrachUser') == "52" or $request->get('BrachUser') == "นราธิวาส") {
+        $NumBranch = "52";
+      }elseif ($request->get('BrachUser') == "53" or $request->get('BrachUser') == "สายบุรี") {
+        $NumBranch = "53";
+      }elseif ($request->get('BrachUser') == "54" or $request->get('BrachUser') == "สุไหงโกลก") {
+        $NumBranch = "54";
+      }elseif ($request->get('BrachUser') == "55" or $request->get('BrachUser') == "เบตง") {
+        $NumBranch = "55";
+      }elseif ($request->get('BrachUser') == "56" or $request->get('BrachUser') == "โคกโพธิ์") {
+        $NumBranch = "56";
+      }elseif ($request->get('BrachUser') == "57" or $request->get('BrachUser') == "ตันหยงมัส") {
+        $NumBranch = "57";
+      }elseif ($request->get('BrachUser') == "58" or $request->get('BrachUser') == "บันนังสตา") {
+        $NumBranch = "58";
       }
 
       $GetYear = substr(date('Y')+543, 2,4);  //ดึงปี พ.ศ.
       $NewContract = $request->get('TypeContract').'-'.$GetYear.$NumBranch."/";
-
-      
 
       if ($request->get('Topcar') != Null) {
         $SetTopcar = str_replace (",","",$request->get('Topcar'));
@@ -780,14 +768,18 @@ class AnalysController extends Controller
             $SetFlag = "Y";
           }elseif ($request->get('TypeContract') == "P06") {
             $SetFlag = "E";
+          }elseif ($request->get('TypeContract') == "P07") {
+            $SetFlag = "S";
           }
         }else {
           $newDateDue = $request->get('DateDue');
           $StatusApp = "รออนุมัติ";
           if ($request->get('TypeContract') == "P03") {
-            $SetFlag = "N";
+            $SetFlag = NULL;
           }elseif ($request->get('TypeContract') == "P06") {
-            $SetFlag = "D";
+            $SetFlag = NULL;
+          }elseif ($request->get('TypeContract') == "P07") {
+            $SetFlag = NULL;
           }
         }
       }else {
@@ -800,14 +792,18 @@ class AnalysController extends Controller
             $SetFlag = "Y";
           }elseif ($request->get('TypeContract') == "P06") {
             $SetFlag = "E";
+          }elseif ($request->get('TypeContract') == "P07") {
+            $SetFlag = "S";
           }
         }elseif ($request->get('MASTER') != Null) {
           $newDateDue = $request->get('DateDue');
           $StatusApp = "รออนุมัติ";
           if ($request->get('TypeContract') == "P03") {
-            $SetFlag = "N";
+            $SetFlag = NULL;
           }elseif ($request->get('TypeContract') == "P06") {
-            $SetFlag = "D";
+            $SetFlag = NULL;
+          }elseif ($request->get('TypeContract') == "P07") {
+            $SetFlag = NULL;
           }
         }
       }
@@ -966,23 +962,23 @@ class AnalysController extends Controller
             $cardetail->AccountImage_car = $NameImage;
           }
 
-          if ($request->get('BrachUser') == "20" or $request->get('BrachUser') == "ปัตตานี") {
+          if ($request->get('BrachUser') == "50" or $request->get('BrachUser') == "ปัตตานี") {
             $SetBranch = "ปัตตานี";
-          }elseif ($request->get('BrachUser') == "21" or $request->get('BrachUser') == "ยะลา") {
+          }elseif ($request->get('BrachUser') == "51" or $request->get('BrachUser') == "ยะลา") {
             $SetBranch = "ยะลา";
-          }elseif ($request->get('BrachUser') == "22" or $request->get('BrachUser') == "นราธิวาส") {
+          }elseif ($request->get('BrachUser') == "52" or $request->get('BrachUser') == "นราธิวาส") {
             $SetBranch = "นราธิวาส";
-          }elseif ($request->get('BrachUser') == "23" or $request->get('BrachUser') == "สายบุรี") {
+          }elseif ($request->get('BrachUser') == "53" or $request->get('BrachUser') == "สายบุรี") {
             $SetBranch = "สายบุรี";
-          }elseif ($request->get('BrachUser') == "24" or $request->get('BrachUser') == "สุไหงโกลก") {
+          }elseif ($request->get('BrachUser') == "54" or $request->get('BrachUser') == "สุไหงโกลก") {
             $SetBranch = "สุไหงโกลก";
-          }elseif ($request->get('BrachUser') == "25" or $request->get('BrachUser') == "เบตง") {
+          }elseif ($request->get('BrachUser') == "55" or $request->get('BrachUser') == "เบตง") {
             $SetBranch = "เบตง";
-          }elseif ($request->get('BrachUser') == "26" or $request->get('BrachUser') == "โคกโพธิ์") {
+          }elseif ($request->get('BrachUser') == "56" or $request->get('BrachUser') == "โคกโพธิ์") {
             $SetBranch = "โคกโพธิ์";
-          }elseif ($request->get('BrachUser') == "27" or $request->get('BrachUser') == "ระแงะ") {
-            $SetBranch = "ระแงะ";
-          }elseif ($request->get('BrachUser') == "28" or $request->get('BrachUser') == "บันนังสตา") {
+          }elseif ($request->get('BrachUser') == "57" or $request->get('BrachUser') == "ตันหยงมัส") {
+            $SetBranch = "ตันหยงมัส";
+          }elseif ($request->get('BrachUser') == "58" or $request->get('BrachUser') == "บันนังสตา") {
             $SetBranch = "บันนังสตา";
           }
 
@@ -994,17 +990,24 @@ class AnalysController extends Controller
               $datedueBF = date_create($SetDate);
               $DateDue = date_format($datedueBF, 'd-m-Y');
 
-              if ($request->get('TypeContract') == "P03") {
+              if ($request->get('TypeContract') == "P03") {       //PLoan
                 $connect = DB::table('Buyers')
                     ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                     ->where('buyers.Flag', '=' ,'Y')
                     ->where('cardetails.Branch_car' ,$cardetail->branch_car)
                     ->orderBy('Contract_buyer', 'desc')->limit(1)
                     ->first();
-              }elseif ($request->get('TypeContract') == "P06") {
+              }elseif ($request->get('TypeContract') == "P06") {  //Micro
                 $connect = DB::table('Buyers')
                     ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                     ->where('buyers.Flag', '=' ,'E')
+                    ->where('cardetails.Branch_car' ,$cardetail->branch_car)
+                    ->orderBy('Contract_buyer', 'desc')->limit(1)
+                    ->first();
+              }elseif ($request->get('TypeContract') == "P07") {  //P07
+                $connect = DB::table('Buyers')
+                    ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                    ->where('buyers.Flag', '=' ,'S')
                     ->where('cardetails.Branch_car' ,$cardetail->branch_car)
                     ->orderBy('Contract_buyer', 'desc')->limit(1)
                     ->first();
@@ -1028,14 +1031,6 @@ class AnalysController extends Controller
               $DateDue = NULL;      //วันดิวงวดแรก
               $newDateDue = NULL;   //วันอนุมัติ
               $StatusApp = "รออนุมัติ";
-            
-              // $contract = $connect[0]->Contract_buyer;
-              // $SetStr = explode("/",$contract);
-              // $StrNum = $SetStr[0];
-
-              // $GetIdConn = Buyer::where('id',$id)->first();
-              //   $GetIdConn->Contract_buyer = $StrNum;
-              // $GetIdConn->update();
           }
 
           $cardetail->Dateduefirst_car = $DateDue;     //วันที่ ดิวงวดแรก

@@ -216,30 +216,6 @@
                       </div>
                       <div class="col-sm-9">
                         <ol class="breadcrumb float-sm-right">
-                          {{-- PLoan --}}
-                          <div class="float-right form-inline">
-                            <i class="fas fa-grip-vertical"></i>
-                            <span class="todo-wrap">
-                            <input type="checkbox" id="3" class="checkbox" name="TypeContract" value="P03">
-                              <label for="3" class="todo">
-                                <i class="fa fa-check"></i>
-                                <span class="text"><font color="red">PLOAN &nbsp;&nbsp;</font></span>
-                              </label>
-                            </span>
-                          </div>
-
-                          {{-- Micro --}}
-                          <div class="float-right form-inline">
-                            <i class="fas fa-grip-vertical"></i>
-                            <span class="todo-wrap">
-                              <input type="checkbox" id="4" class="checkbox" name="TypeContract" value="P06">
-                              <label for="4" class="todo">
-                                <i class="fa fa-check"></i>
-                                <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>
-                              </label>
-                            </span>
-                          </div>
-                          
                           {{-- ปิดสิทธ์แก้ไข / เอกสารครบ --}}
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
@@ -298,6 +274,19 @@
                                   </div>
                                 </div>
                               @endif
+                              <div class="col-6">
+                                <div class="form-group row mb-1">
+                                  <label class="col-sm-3 col-form-label text-right"><font color="red">ประเภทสัญญา : </font></label>
+                                  <div class="col-sm-8">
+                                    <select name="TypeContract" class="form-control" required>
+                                      <option value="" selected>--- เลือกสัญญา ---</option>
+                                      <option value="P03">สัญญาเงินกู้รถยนต์ (PLoan)</option>
+                                      <option value="P06">สัญญาเงินกู้ส่วนบุคคล (Micro)</option>
+                                      <option value="P07">สัญญาเงินกู้พนักงาน (P07)</option>
+                                    </select>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
 
                             <div class="row">
@@ -307,15 +296,15 @@
                                   <div class="col-sm-8">
                                     <select name="BrachUser" class="form-control" required>
                                       <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
-                                      <option value="20">ปัตตานี (20)</option>
-                                      <option value="21">ยะลา (21)</option>
-                                      <option value="22">นราธิวาส (22)</option>
-                                      <option value="23">สายบุรี (23)</option>
-                                      <option value="24">สุไหงโกลก (24)</option>
-                                      <option value="25">เบตง (25)</option>
-                                      <option value="26">โคกโพธิ์ (26)</option>
-                                      <option value="27">ระแงะ (27)</option>
-                                      <option value="28">บันนังสตา (28)</option>
+                                      <option value="50">ปัตตานี (50)</option>
+                                      <option value="51">ยะลา (51)</option>
+                                      <option value="52">นราธิวาส (52)</option>
+                                      <option value="53">สายบุรี (53)</option>
+                                      <option value="54">สุไหงโกลก (54)</option>
+                                      <option value="55">เบตง (55)</option>
+                                      <option value="56">โคกโพธิ์ (56)</option>
+                                      <option value="57">ตันหยงมัส (57)</option>
+                                      <option value="58">บันนังสตา (58)</option>
                                     </select>
                                   </div>
                                 </div>

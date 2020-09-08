@@ -131,26 +131,26 @@
                               <label for="text" class="mr-sm-2">สาขา : </label>
                               <select name="branch" class="form-control">
                                 <option selected value="">----------เลือกสาขา--------</option>
-                                <option value="ปัตตานี" {{ ($branch == 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</otion>
-                                <option value="ยะลา" {{ ($branch == 'ยะลา') ? 'selected' : '' }}>ยะลา</otion>
-                                <option value="นราธิวาส" {{ ($branch == 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</otion>
-                                <option value="สายบุรี" {{ ($branch == 'สายบุรี') ? 'selected' : '' }}>สายบุรี</otion>
-                                <option value="โกลก" {{ ($branch == 'โกลก') ? 'selected' : '' }}>โกลก</otion>
-                                <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง</otion>
+                                <option value="ปัตตานี" {{ ($branch == 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
+                                <option value="ยะลา" {{ ($branch == 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
+                                <option value="นราธิวาส" {{ ($branch == 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
+                                <option value="สายบุรี" {{ ($branch == 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
+                                <option value="โกลก" {{ ($branch == 'โกลก') ? 'selected' : '' }}>โกลก</option>
+                                <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง</option>
                               </select>
 
                               <label for="text" class="mr-sm-2">&nbsp;&nbsp;&nbsp;สัญญา : </label>
                               <select name="TypeContract" class="form-control">
                                 <option selected value="">-----เลือกสัญญา-----</option>
-                                <option value="P03" {{ ($typeCon == 'P03') ? 'selected' : '' }}>PLoan (P03)</otion>
-                                <option value="P06" {{ ($typeCon == 'P06') ? 'selected' : '' }}>Micro (P06)</otion>
+                                <option value="P03" {{ ($typeCon == 'P03') ? 'selected' : '' }}>PLoan (P03)</option>
+                                <option value="P06" {{ ($typeCon == 'P06') ? 'selected' : '' }}>Micro (P06)</option>
                               </select>
 
                               <label for="text" class="mr-sm-2">สถานะ : </label>
                               <select name="status" class="form-control">
                                 <option selected value="">---------สถานะ--------</option>
-                                <option value="อนุมัติ"{{ ($status == 'อนุมัติ') ? 'selected' : '' }}>อนุมัติ</otion>
-                                <option value="รออนุมัติ"{{ ($status == 'รออนุมัติ') ? 'selected' : '' }}>รออนุมัติ</otion>
+                                <option value="อนุมัติ"{{ ($status == 'อนุมัติ') ? 'selected' : '' }}>อนุมัติ</option>
+                                <option value="รออนุมัติ"{{ ($status == 'รออนุมัติ') ? 'selected' : '' }}>รออนุมัติ</option>
                               </select>
                             </div>
                           </div>
@@ -183,10 +183,12 @@
                                   <td class="text-center"> {{ $row->branch_car}} </td>
                                   <td class="text-left"> 
                                     {{ $row->Contract_buyer}} 
-                                    @if ($row->Flag == "N" or $row->Flag == "Y")
+                                    @if ($row->Type_Con == "P03")
                                       <span class="badge bg-danger prem">PLoan</span>
-                                    @elseif($row->Flag == "D" or $row->Flag == "E")
+                                    @elseif($row->Type_Con == "P06")
                                       <span class="badge bg-info prem">Micro</span>
+                                    @elseif($row->Type_Con == "P07")
+                                      <span class="badge bg-warning prem">Staff</span>
                                     @endif
                                   </td>
                                   <td class="text-left"> {{ $row->status_car}} </td>
