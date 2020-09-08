@@ -131,15 +131,15 @@
                               <label for="text" class="mr-sm-2">สาขา : </label>
                               <select name="branch" class="form-control">
                                 <option selected value="">----------เลือกสาขา--------</option>
-                                <option value="ปัตตานี" {{ ($branch == 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
-                                <option value="ยะลา" {{ ($branch == 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
-                                <option value="นราธิวาส" {{ ($branch == 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
-                                <option value="สายบุรี" {{ ($branch == 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
-                                <option value="โกลก" {{ ($branch == 'โกลก') ? 'selected' : '' }}>โกลก</option>
-                                <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง</option>
-                                <option value="โคกโพธิ์" {{ ($branch == 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
-                                <option value="ตันหยงมัส" {{ ($branch == 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส</option>
-                                <option value="บังนังสตา" {{ ($branch == 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา</option>
+                                <option value="ปัตตานี" {{ ($branch == 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี (50)</option>
+                                <option value="ยะลา" {{ ($branch == 'ยะลา') ? 'selected' : '' }}>ยะลา (51)</option>
+                                <option value="นราธิวาส" {{ ($branch == 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส (52)</option>
+                                <option value="สายบุรี" {{ ($branch == 'สายบุรี') ? 'selected' : '' }}>สายบุรี (53)</option>
+                                <option value="โกลก" {{ ($branch == 'โกลก') ? 'selected' : '' }}>โกลก (54)</option>
+                                <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
+                                <option value="โคกโพธิ์" {{ ($branch == 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
+                                <option value="ตันหยงมัส" {{ ($branch == 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
+                                <option value="บังนังสตา" {{ ($branch == 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา (58)</option>
                               </select>
 
                               <label for="text" class="mr-sm-2">&nbsp;&nbsp;&nbsp;สัญญา : </label>
@@ -147,6 +147,7 @@
                                 <option selected value="">-----เลือกสัญญา-----</option>
                                 <option value="P03" {{ ($typeCon == 'P03') ? 'selected' : '' }}>PLoan (P03)</option>
                                 <option value="P06" {{ ($typeCon == 'P06') ? 'selected' : '' }}>Micro (P06)</option>
+                                <option value="P07" {{ ($typeCon == 'P07') ? 'selected' : '' }}>เงินกู้พนักงาน (P07)</option>
                               </select>
 
                               <label for="text" class="mr-sm-2">สถานะ : </label>
