@@ -67,12 +67,15 @@
                             <select name="branch" class="form-control" style="width: 400px;">
                               <option value="" selected>--------- สาขา ----------</option>
                               <option value="99" {{ ($user->branch === '99') ? 'selected' : '' }}>Admin</option>
-                              <option value="01" {{ ($user->branch === '01') ? 'selected' : '' }}>สาขา ปัตตานี</option>
-                              <option value="03" {{ ($user->branch === '03') ? 'selected' : '' }}>สาขา ยะลา</option>
-                              <option value="04" {{ ($user->branch === '04') ? 'selected' : '' }}>สาขา นราธิวาส</option>
-                              <option value="05" {{ ($user->branch === '05') ? 'selected' : '' }}>สาขา สายบุรี</option>
-                              <option value="06" {{ ($user->branch === '06') ? 'selected' : '' }}>สาขา โกลก</option>
-                              <option value="07" {{ ($user->branch === '07') ? 'selected' : '' }}>สาขา เบตง</option>
+                              <option value="50" {{ ($user->branch === '50') ? 'selected' : '' }}>สาขา ปัตตานี</option>
+                              <option value="51" {{ ($user->branch === '51') ? 'selected' : '' }}>สาขา ยะลา</option>
+                              <option value="52" {{ ($user->branch === '52') ? 'selected' : '' }}>สาขา นราธิวาส</option>
+                              <option value="53" {{ ($user->branch === '53') ? 'selected' : '' }}>สาขา สายบุรี</option>
+                              <option value="54" {{ ($user->branch === '54') ? 'selected' : '' }}>สาขา โกลก</option>
+                              <option value="55" {{ ($user->branch === '55') ? 'selected' : '' }}>สาขา เบตง</option>
+                              <option value="56" {{ ($user->branch === '56') ? 'selected' : '' }}>สาขา โคกโพธิ์</option>
+                              <option value="57" {{ ($user->branch === '57') ? 'selected' : '' }}>สาขา ตันหยงมัส</option>
+                              <option value="58" {{ ($user->branch === '58') ? 'selected' : '' }}>สาขา บังนังสตา</option>
                               <option value="10" {{ ($user->branch === '10') ? 'selected' : '' }}>สาขา รถบ้าน</option>
                             </select>
                           </div>

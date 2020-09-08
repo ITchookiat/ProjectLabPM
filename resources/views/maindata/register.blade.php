@@ -75,12 +75,15 @@
                             <select name="branch" class="form-control" style="width: 330px;">
                               <option selected disabled value="" >เลือกสาขา</option>
                               <option value="99" > Admin</option>
-                              <option value="01" > สาขา ปัตตานี</option>
-                              <option value="03" > สาขา ยะลา</option>
-                              <option value="04" > สาขา นราธิวาส</option>
-                              <option value="05" > สาขา สายบุรี</option>
-                              <option value="06" > สาขา โกลก</option>
-                              <option value="07" > สาขา เบตง</option>
+                              <option value="50" > สาขา ปัตตานี</option>
+                              <option value="51" > สาขา ยะลา</option>
+                              <option value="52" > สาขา นราธิวาส</option>
+                              <option value="53" > สาขา สายบุรี</option>
+                              <option value="54" > สาขา โกลก</option>
+                              <option value="55" > สาขา เบตง</option>
+                              <option value="56" > สาขา โคกโพธิ์</option>
+                              <option value="57" > สาขา ตันหยงมัส</option>
+                              <option value="58" > สาขา บังนังสตา</option>
                               <option value="10" > สาขา รถบ้าน</option>
                             </select>
                           </div>

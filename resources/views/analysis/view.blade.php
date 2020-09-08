@@ -137,6 +137,9 @@
                                 <option value="สายบุรี" {{ ($branch == 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
                                 <option value="โกลก" {{ ($branch == 'โกลก') ? 'selected' : '' }}>โกลก</option>
                                 <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง</option>
+                                <option value="โคกโพธิ์" {{ ($branch == 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
+                                <option value="ตันหยงมัส" {{ ($branch == 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส</option>
+                                <option value="บังนังสตา" {{ ($branch == 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา</option>
                               </select>
 
                               <label for="text" class="mr-sm-2">&nbsp;&nbsp;&nbsp;สัญญา : </label>
@@ -282,7 +285,7 @@
                                       @endif
                                     @endif
 
-                                    @if(auth::user()->type == "Admin") 
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์") 
                                       <form method="post" class="delete_form" action="{{ action('AnalysController@destroy',[$row->id,$type]) }}" style="display:inline;">
                                         {{csrf_field()}}
                                         <input type="hidden" name="_method" value="DELETE" />
