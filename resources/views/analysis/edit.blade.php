@@ -250,31 +250,7 @@
                 <div class="card-body text-sm">
                   <div class="container-fluid">
                     <div class="row mb-2">
-                      <div class="col-sm-3">
-                         {{-- PLoan --}}
-                         <div class="float-left form-inline">
-                          <i class="fas fa-grip-vertical"></i>
-                          <span class="todo-wrap">
-                            <input type="checkbox" id="11" class="checkbox" name="TypeContract" value="P03" {{ ($SubStr === "P03") ? 'checked' : '' }}>
-                            <label for="11" class="todo">
-                              <i class="fa fa-check"></i>
-                              <span class="text"><font color="red">PLOAN &nbsp;&nbsp;</font></span>
-                            </label>
-                          </span>
-                        </div>
-
-                        {{-- Micro --}}
-                        <div class="float-left form-inline">
-                          <i class="fas fa-grip-vertical"></i>
-                          <span class="todo-wrap">
-                            <input type="checkbox" id="10" class="checkbox" name="TypeContract" value="P06" {{ ($SubStr === "P06") ? 'checked' : '' }}>
-                            <label for="10" class="todo">
-                              <i class="fa fa-check"></i>
-                              <span class="text"><font color="red">MICRO &nbsp;&nbsp;</font></span>
-                            </label>
-                          </span>
-                        </div>
-                      </div>
+                      <div class="col-sm-3"></div>
                       <div class="col-sm-9">
                         <ol class="breadcrumb float-sm-right">
                           {{-- ผู้จัดการ --}}
@@ -438,13 +414,14 @@
                               </div>
                               <div class="col-6">
                                 <div class="form-group row mb-1">
-                                  <label class="col-sm-3 col-form-label text-right"><font color="red">วันที่ทำสัญญา : </font></label>
+                                  <label class="col-sm-3 col-form-label text-right"><font color="red">ประเภทสัญญา : </font></label>
                                   <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="date" name="DateDue" class="form-control" value="{{ $newDateDue }}">
-                                  @else
-                                    <input type="date" name="DateDue" class="form-control" value="{{ $newDateDue }}" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}>
-                                  @endif
+                                    <select name="TypeContract" class="form-control" required>
+                                      <option value="" selected>--- เลือกสัญญา ---</option>
+                                      <option value="P03" {{ ($SubStr === 'P03') ? 'selected' : '' }}>สัญญาเงินกู้รถยนต์ (PLoan)</option>
+                                      <option value="P06" {{ ($SubStr === 'P06') ? 'selected' : '' }}>สัญญาเงินกู้ส่วนบุคคล (Micro)</option>
+                                      <option value="P07" {{ ($SubStr === 'P07') ? 'selected' : '' }}>สัญญาเงินกู้พนักงาน (P07)</option>
+                                    </select>
                                   </div>
                                 </div>
                               </div>
@@ -458,54 +435,45 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <select name="BrachUser" class="form-control" required>
                                       <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
-                                      <option value="20" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
-                                      <option value="21" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
-                                      <option value="22" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
-                                      <option value="23" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
-                                      <option value="24" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก</option>
-                                      <option value="25" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง</option>
-                                      <option value="26" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
-                                      <option value="27" {{ ($data->branch_car === 'ระแงะ') ? 'selected' : '' }}>ระแงะ</option>
-                                      <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
+                                      <option value="50" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี (50)</option>
+                                      <option value="51" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา (51)</option>
+                                      <option value="52" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส (52)</option>
+                                      <option value="53" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี (53)</option>
+                                      <option value="54" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก (54)</option>
+                                      <option value="55" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
+                                      <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
+                                      <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
+                                      <option value="58" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา (58)</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
-                                      {{-- @php
-                                        if ($data->branch_car == "ปัตตานี") {
-                                          $SetBranch = "20";
-                                        }elseif ($data->branch_car == "ยะลา") {
-                                          $SetBranch = "21";
-                                        }elseif ($data->branch_car == "นราธิวาส") {
-                                          $SetBranch = "22";
-                                        }elseif ($data->branch_car == "สายบุรี") {
-                                          $SetBranch = "23";
-                                        }elseif ($data->branch_car == "สุไหงโกลก") {
-                                          $SetBranch = "24";
-                                        }elseif ($data->branch_car == "เบตง") {
-                                          $SetBranch = "25";
-                                        }elseif ($data->branch_car == "โคกโพธิ์") {
-                                          $SetBranch = "26";
-                                        }elseif ($data->branch_car == "ระแงะ") {
-                                          $SetBranch = "27";
-                                        }elseif ($data->branch_car == "บันนังสตา") {
-                                          $SetBranch = "28";
-                                        }
-                                      @endphp --}}
                                       <input type="text" name="BrachUser" class="form-control" value="{{ $data->branch_car }}" readonly/>
                                     @else
                                       <select name="BrachUser" class="form-control" required>
                                         <option value="" selected>--- เลือกสาขาตัวเอง ---</option>
-                                        <option value="20" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี</option>
-                                        <option value="21" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา</option>
-                                        <option value="22" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส</option>
-                                        <option value="23" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี</option>
-                                        <option value="24" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก</option>
-                                        <option value="25" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง</option>
-                                        <option value="26" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์</option>
-                                        <option value="27" {{ ($data->branch_car === 'ระแงะ') ? 'selected' : '' }}>ระแงะ</option>
-                                        <option value="28" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา</option>
+                                        <option value="50" {{ ($data->branch_car === 'ปัตตานี') ? 'selected' : '' }}>ปัตตานี (50)</option>
+                                        <option value="51" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา (51)</option>
+                                        <option value="52" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส (52)</option>
+                                        <option value="53" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี (53)</option>
+                                        <option value="54" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก (54)</option>
+                                        <option value="55" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
+                                        <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
+                                        <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
+                                        <option value="58" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา (58)</option>
                                       </select>
                                     @endif
+                                  @endif
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group row mb-1">
+                                  <label class="col-sm-3 col-form-label text-right"><font color="red">วันที่ทำสัญญา : </font></label>
+                                  <div class="col-sm-8">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="date" name="DateDue" class="form-control" value="{{ $newDateDue }}">
+                                  @else
+                                    <input type="date" name="DateDue" class="form-control" value="{{ $newDateDue }}" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}>
                                   @endif
                                   </div>
                                 </div>
