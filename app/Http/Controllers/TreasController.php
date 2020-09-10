@@ -50,18 +50,32 @@ class TreasController extends Controller
                     ->get();
             }
             
+            $CountP03 = 0;
+            $CountP06 = 0;
+            $CountP07 = 0;
+            if ($data != NULL) {
+                foreach ($data as $key => $value) {
+                    if ($value->Type_Con == 'P03' and $value->UserCheckAc_car == NULL) {
+                        $CountP03 += 1;
+                    }elseif ($value->Type_Con == 'P06' and $value->UserCheckAc_car == NULL) {
+                        $CountP06 += 1;
+                    }elseif ($value->Type_Con == 'P07' and $value->UserCheckAc_car == NULL) {
+                        $CountP07 += 1;
+                    }
+                }
+            }
+            
             if ($newfdate == false and $newtdate == false) {
                 $newfdate = date('Y-m-d');
                 $newtdate = date('Y-m-d');
             }
 
             $topcar = DB::table('buyers')
-            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
-            ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
-            ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
-            ->whereBetween('buyers.Date_Due',[$newfdate,$newtdate])
-            ->get();
-            // dd($topcar);
+                ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+                ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
+                ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+                ->whereBetween('buyers.Date_Due',[$newfdate,$newtdate])
+                ->get();
             $count = count($topcar);
   
             if($count != 0){
@@ -76,7 +90,8 @@ class TreasController extends Controller
                 $SumCommitprice = 0;
             }
 
-            return view('treasury.view', compact('data','newfdate','newtdate','SumTopcar','SumCommissioncar','SumCommitprice'));
+            return view('treasury.view', compact('data','newfdate','newtdate','SumTopcar','SumCommissioncar','SumCommitprice',
+                                                 'CountP03','CountP06','CountP07'));
         }
         elseif ($request->type == 2) {
             $type = $request->type;
