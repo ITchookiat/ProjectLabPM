@@ -244,10 +244,6 @@
            </th>
         </tr>
         <tr>
-          <th align="right" width="120px"> เงินต้น + ค่าดำเนินการ&nbsp;</th>
-          <th align="right" width="120px"> <b>{{$dataReport->Paymemt_car}} &nbsp;</b></th>
-        </tr>
-        <tr>
           <th align="right" width="120px"> ชำระต่องวด &nbsp;</th>
           <th align="right" width="120px"> <b>{{$dataReport->Pay_car}} &nbsp;</b></th>
           <th align="right" width="120px"> <b>{{$dataReport->Timepayment_car}} &nbsp;</b></th>
