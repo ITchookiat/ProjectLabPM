@@ -29,7 +29,7 @@ Route::group(['middleware' => 'auth'], function()
 
     route::resource('MasterAnalysis','AnalysController');
     Route::get('/Analysis/Home/{type}', 'AnalysController@index')->name('Analysis');
-    Route::get('/Analysis/edit/{type}/{id}/{fdate}/{tdate}/{branch}/{status}/{typeCon}', 'AnalysController@edit')->name('Analysis.edit');
+    Route::get('/Analysis/edit/{type}/{id}/{fdate}/{tdate}/{branch}/{status}', 'AnalysController@edit')->name('Analysis.edit');
     Route::patch('/Analysis/update/{id}/{type}', 'AnalysController@update')->name('Analysis.update');
     Route::delete('/Analysis/delete/{id}/{type}', 'AnalysController@destroy')->name('Analysis.destroy');
     Route::get('/Analysis/deleteImageAll/{id}/{path}', 'AnalysController@deleteImageAll');

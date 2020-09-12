@@ -72,12 +72,6 @@ class AnalysController extends Controller
           $contno = session('Contno');
         }
 
-        if ($request->has('TypeContract')) {
-          $typeCon = $request->get('TypeContract');
-        }elseif (session()->has('typeCon')) {
-          $typeCon = session('typeCon');
-        }
-
         // dd($newfdate == false and $newtdate == false);
 
         if ($newfdate == false and $newtdate == false) {
@@ -102,9 +96,6 @@ class AnalysController extends Controller
               ->when(!empty($status), function($q) use($status){
                 return $q->where('cardetails.StatusApp_car','=',$status);
               })
-              ->when(!empty($typeCon), function($q) use($typeCon){
-                return $q->where('buyers.Type_Con','=',$typeCon);
-              })
               ->when(!empty($contno), function($q) use($contno){
                 return $q->where('buyers.Contract_buyer','=',$contno);
               })
@@ -116,6 +107,21 @@ class AnalysController extends Controller
         $newfdate = \Carbon\Carbon::parse($newfdate)->format('Y') ."-". \Carbon\Carbon::parse($newfdate)->format('m')."-". \Carbon\Carbon::parse($newfdate)->format('d');
         $newtdate = \Carbon\Carbon::parse($newtdate)->format('Y') ."-". \Carbon\Carbon::parse($newtdate)->format('m')."-". \Carbon\Carbon::parse($newtdate)->format('d');
         // dd($newfdate);
+
+        $CountP03 = 0;
+        $CountP06 = 0;
+        $CountP07 = 0;
+        if ($data != NULL) {
+          foreach ($data as $key => $value) {
+            if ($value->Type_Con == 'P03') {
+                $CountP03 += 1;
+            }elseif ($value->Type_Con == 'P06') {
+                $CountP06 += 1;
+            }elseif ($value->Type_Con == 'P07') {
+                $CountP07 += 1;
+            }
+          }
+        }
 
         $topcar = DB::table('buyers')
           ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
@@ -137,7 +143,8 @@ class AnalysController extends Controller
             $SumCommitprice = 0;
         }
 
-        return view('analysis.view', compact('type', 'data','branch','newfdate','newtdate','status','typeCon','Setdate','SumTopcar','SumCommissioncar','SumCommitprice','contno','SetStrConn','SetStr1','SetStr2'));
+        return view('analysis.view', compact('type', 'data','branch','newfdate','newtdate','status','Setdate','SumTopcar','SumCommissioncar',
+                                             'SumCommitprice','contno','SetStrConn','SetStr1','SetStr2','CountP03','CountP06','CountP07'));
       }
       elseif ($request->type == 2){ //เพิ่มสินเชื่อ
         return view('analysis.createbuyer');
@@ -677,7 +684,7 @@ class AnalysController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($type,$id,$fdate,$tdate,$branch,$status,$typeCon,Request $request)
+    public function edit($type,$id,$fdate,$tdate,$branch,$status,Request $request)
     {
       if ($type == 1) {
         $data = DB::table('buyers')
