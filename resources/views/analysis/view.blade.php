@@ -110,10 +110,10 @@
                 <div class="float-right form-inline">
                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                     <label class="mr-sm-2">เลขที่สัญญา : </label>
-                    <input type="type" name="Contno" value="{{$contno}}" maxlength="12" class="form-control"/>
+                    <input type="type" name="Contno" value="{{$contno}}" maxlength="13" class="form-control"/>
                   @else
                     <label class="mr-sm-2">เลขที่สัญญา : </label>
-                    <input type="type" name="Contno" value="{{$contno}}" maxlength="12" class="form-control"/>
+                    <input type="type" name="Contno" value="{{$contno}}" maxlength="13" class="form-control"/>
                   @endif
 
                   <label class="mr-sm-2">จากวันที่ : </label>

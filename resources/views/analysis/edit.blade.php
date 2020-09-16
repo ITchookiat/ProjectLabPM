@@ -2535,7 +2535,7 @@
                                 </div>
                               </div>
                             </div>
-                          @if($data->Payee_car == $data->Agent_car)
+                          @if($data->Payee_car == $data->Agent_car and $data->Accountbrance_car == $data->Accountagent_car)
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right"><font color="red">รวมยอดโอน :</font> </label>
