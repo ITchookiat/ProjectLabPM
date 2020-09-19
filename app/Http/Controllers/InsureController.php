@@ -13,22 +13,29 @@ class InsureController extends Controller
         // dump($type);
         $newfdate = '';
         $newtdate = '';
+        $typecar = '';
         if ($request->has('Fromdate')) {
             $newfdate = $request->get('Fromdate');
         }
         if ($request->has('Todate')) {
-        $newtdate = $request->get('Todate');
+            $newtdate = $request->get('Todate');
+        }
+        if ($request->has('Typecar')) {
+            $typecar = $request->get('Typecar');
         }
 
         $data = DB::table('data_insures')
               ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
                 return $q->whereBetween('Date_useradd',[$newfdate,$newtdate]);
                 })
+              ->when(!empty($typecar), function($q) use ($typecar) {
+                return $q->where('Type_car',[$typecar]);
+                })
               ->orderBY('created_at', 'DESC')
               ->get();
         $countData = count($data);
  
-        return view('insurance.view', compact('data','type','newfdate','newtdate','countData'));
+        return view('insurance.view', compact('data','type','newfdate','newtdate','countData','typecar'));
     }
 
     public function store(Request $request)
