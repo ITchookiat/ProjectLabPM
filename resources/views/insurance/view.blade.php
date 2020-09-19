@@ -114,10 +114,17 @@
                       <div class="col-md-12">
                         <div class="float-right form-inline">
                           <label>จากวันที่ : </label>
-                          <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control" />
+                          <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: '' }}" class="form-control" />
 
                           <label>ถึงวันที่ : </label>
-                          <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control" />
+                          <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: '' }}" class="form-control" />
+
+                          <label>ประเภทรถ : </label>
+                          <select name="Typecar" class="form-control">
+                            <option value="" selected>--- เลือกประเภทรถ ---</option>
+                            <option value="รถใช้งาน" {{ ($typecar === 'รถใช้งาน') ? 'selected' : '' }}>รถใช้งาน</option>
+                            <option value="รถ Demo" {{ ($typecar === 'รถ Demo') ? 'selected' : '' }}>รถ Demo</option>
+                          </select>
                         </div>
                       </div>
                     </div>
@@ -148,11 +155,12 @@
                           <th class="text-center alert">การแจ้งเตือน</th>
                           <th class="text-center no">ลำดับ</th>
                           <!-- <th class="text-center datekey">วันที่คีย์</th> -->
-                          <th class="text-center register">ป้ายทะเบียน</th>
+                          <th class="text-center register">ทะเบียน</th>
                           <th class="text-center brand">ยี่ห้อรถ</th>
                           <!-- <th class="text-center version">รุ่นรถ</th> -->
                           <th class="text-center engno">เลขตัวถัง</th>
-                          <th class="text-center company">บริษัทประกัน</th>
+                          <th class="text-center company">บริษัท</th>
+                          <th class="text-center type">ประเภทรถ</th>
                           <th class="text-center note" style="width:150px">หมายเหตุ</th>
                           <th class="text-center act">ตัวเลือก</th>
                         </tr>
@@ -251,6 +259,7 @@
                             <!-- <td class="text-center version">{{$row->Version_car}}</td> -->
                             <td class="text-center engno">{{$row->Engno_car}}</td>
                             <td class="text-left company"> {{$row->Companyinsure_car}}</td>
+                            <td class="text-left type"> {{$row->Type_car}}</td>
                             <td class="text-left note"> {{$row->Note_car}}</td>
                             <td class="text-center act">
                               <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#modal-view" title="ดูรายการ"
