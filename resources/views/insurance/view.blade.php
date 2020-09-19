@@ -100,12 +100,11 @@
                     <div class="row">
                       <div class="col-md-12">
                         <div class="float-right form-inline">
-                          <button type="submit" class="btn bg-warning btn-app">
-                            <span class="fas fa-search"></span> Search
-                          </button>
-
                           <button type="button" class="btn bg-primary btn-app">
                             <span class="fas fa-print"></span> Print
+                          </button>
+                          <button type="submit" class="btn bg-warning btn-app">
+                            <span class="fas fa-search"></span> Search
                           </button>
                         </div>
                       </div>
