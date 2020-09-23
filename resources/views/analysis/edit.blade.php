@@ -212,7 +212,7 @@
                             <button type="submit" class="delete-modal btn btn-success">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
+                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
@@ -220,7 +220,7 @@
                               <button type="submit" class="delete-modal btn btn-success">
                                 <i class="fas fa-save"></i> Update
                               </button>
-                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
+                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
                                 <i class="far fa-window-close"></i> Close
                               </a>
                             @else
@@ -234,7 +234,7 @@
                             <button type="submit" class="delete-modal btn btn-success">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
+                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @else
@@ -1110,13 +1110,13 @@
                                     <p></p>
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                       <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
-                                      <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                      <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                         <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
                                       </a>
                                     @else
                                       @if($data->Approvers_car == Null)
                                         @if($GetDocComplete == Null)
-                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                           <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
                                         </a>
                                         @endif
@@ -1138,32 +1138,31 @@
                                 @endif
                               </div>
                             </div>
-                            <hr>
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
-                                  @if($countImage != 0)
-                                    @php
-                                      $path = $data->License_car;
-                                    @endphp
-                                    <p></p>
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
-                                      <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
-                                        <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
-                                      </a>
-                                    @else
-                                      @if($data->Approvers_car == Null)
-                                        @if($GetDocComplete == Null)
-                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                    @if($countImage != 0)
+                                      @php
+                                        $path = $data->License_car;
+                                      @endphp
+                                      <p></p>
+                                      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                        <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
+                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                           <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
                                         </a>
+                                      @else
+                                        @if($data->Approvers_car == Null)
+                                          @if($GetDocComplete == Null)
+                                          <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                            <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
+                                          </a>
+                                          @endif
                                         @endif
                                       @endif
                                     @endif
-                                  @endif
+                                  </div>
                                 </div>
-                              </div>
                             </div>
                             <br/>
 
@@ -2582,7 +2581,7 @@
                                 </div>
                               </div>
                             </div>
-                          @if($data->Payee_car == $data->Agent_car and $data->Accountbrance_car == $data->Accountagent_car)
+                          @if($data->Payee_car == $data->Agent_car)
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right"><font color="red">รวมยอดโอน :</font> </label>
