@@ -182,9 +182,9 @@
                                     <td class="text-center"> {{ $row->branch_car}} </td>
                                     <td class="text-left"> 
                                       {{ $row->Contract_buyer}} 
-                                      @if ($row->Type_Con == "P03")
+                                      {{-- @if ($row->Type_Con == "P03")
                                         <span class="badge bg-danger prem">PLoan</span>
-                                      @endif
+                                      @endif --}}
                                     </td>
                                     <td class="text-left"> {{ $row->status_car}} </td>
                                     <td class="text-left"> {{ $row->Brand_car}} </td>
@@ -333,9 +333,9 @@
                                     <td class="text-center"> {{ $row->branch_car}} </td>
                                     <td class="text-left"> 
                                       {{ $row->Contract_buyer}} 
-                                      @if($row->Type_Con == "P06")
+                                      {{-- @if($row->Type_Con == "P06")
                                         <span class="badge bg-info prem">Micro</span>
-                                      @endif
+                                      @endif --}}
                                     </td>
                                     <td class="text-left"> {{ $row->status_car}} </td>
                                     <td class="text-left"> {{ $row->Brand_car}} </td>
@@ -481,9 +481,9 @@
                                     <td class="text-center"> {{ $row->branch_car}} </td>
                                     <td class="text-left"> 
                                       {{ $row->Contract_buyer}} 
-                                      @if($row->Type_Con == "P07")
+                                      {{-- @if($row->Type_Con == "P07")
                                         <span class="badge bg-warning prem">Staff</span>
-                                      @endif
+                                      @endif --}}
                                     </td>
                                     <td class="text-left"> {{ $row->status_car}} </td>
                                     <td class="text-left"> {{ $row->Brand_car}} </td>

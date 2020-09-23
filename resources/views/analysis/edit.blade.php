@@ -212,7 +212,7 @@
                             <button type="submit" class="delete-modal btn btn-success">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
+                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
@@ -220,7 +220,7 @@
                               <button type="submit" class="delete-modal btn btn-success">
                                 <i class="fas fa-save"></i> Update
                               </button>
-                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
+                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                                 <i class="far fa-window-close"></i> Close
                               </a>
                             @else
@@ -234,7 +234,7 @@
                             <button type="submit" class="delete-modal btn btn-success">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
+                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @else
