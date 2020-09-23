@@ -163,6 +163,28 @@ class DataCustomerController extends Controller
             $SetContract = $data->Type_leasing.'-'.$SetYear.'00'.'/';
         }
 
+        if(auth()->user()->branch == '01'){
+            $SetUserBranch = 'ปัตตานี';
+        }elseif(auth()->user()->branch == '03'){
+            $SetUserBranch = 'ยะลา';
+        }elseif(auth()->user()->branch == '04'){
+            $SetUserBranch = 'นราธิวาส';
+        }elseif(auth()->user()->branch == '05'){
+            $SetUserBranch = 'สายบุรี';
+        }elseif(auth()->user()->branch == '06'){
+            $SetUserBranch = 'สุไหงโกลก';
+        }elseif(auth()->user()->branch == '07'){
+            $SetUserBranch = 'เบตง';
+        }elseif(auth()->user()->branch == '08'){
+            $SetUserBranch = 'โคกโพธิ์';
+        }elseif(auth()->user()->branch == '09'){
+            $SetUserBranch = 'ตันหยงมัส';
+        }elseif(auth()->user()->branch == '12'){
+            $SetUserBranch = 'บังนังสตา';
+        }else{
+            $SetUserBranch = 'แอดมิน';
+        }
+
         $Buyerdb = new Buyer([
             'Contract_buyer' => $SetContract,
             'Type_Con' => $data->Type_leasing,
@@ -172,6 +194,7 @@ class DataCustomerController extends Controller
             'Phone_buyer' => $data->Phone_buyer,
             'Idcard_buyer' => $data->IDCard_buyer,
             'Walkin_id' => $data->Customer_id,
+            'SendUse_Walkin' => $SetUserBranch,
           ]);
           $Buyerdb->save();
 
@@ -198,7 +221,7 @@ class DataCustomerController extends Controller
             'Loanofficer_car' => $data->Name_user,
             'StatusApp_car' => 'รออนุมัติ',
             'DocComplete_car' => $request->get('doccomplete'),
-            'branch_car' => $data->Branch_car,
+            'branch_car' => $SetUserBranch,
           ]);
           $Cardetaildb ->save();
 

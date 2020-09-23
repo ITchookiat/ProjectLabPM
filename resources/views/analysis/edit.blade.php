@@ -1072,6 +1072,14 @@
                                   </div>
                                 </div>
                               </div>
+                              <div class="col-6">
+                                <div class="form-group row mb-0">
+                                  <label class="col-sm-3 col-form-label text-right">สาขาที่รับลูกค้า : </label>
+                                  <div class="col-sm-8">
+                                  <input type="text" class="form-control" value="{{$data->SendUse_Walkin}}" readonly/>
+                                  </div>
+                                </div>
+                              </div>
                             </div>
 
                             <hr>
@@ -1081,7 +1089,7 @@
                             <input type="hidden" name="status" value="{{ $status }}" />
 
                             <div class="row">
-                              <div class="col-md-12">
+                              <div class="col-md-8">
                                 <h5 class="text-center"><b>รูปภาพประกอบ</b></h5>
                                 @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                   <div class="file-loading">
@@ -1094,6 +1102,45 @@
                                     </div>
                                   @endif
                                 @endif
+                                <!-- <div class="form-group">
+                                  @if($countImage != 0)
+                                    @php
+                                      $path = $data->License_car;
+                                    @endphp
+                                    <p></p>
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                      <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
+                                      <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                        <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
+                                      </a>
+                                    @else
+                                      @if($data->Approvers_car == Null)
+                                        @if($GetDocComplete == Null)
+                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                          <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
+                                        </a>
+                                        @endif
+                                      @endif
+                                    @endif
+                                  @endif
+                                </div> -->
+                              </div>
+                              <div class="col-md-4">
+                                <h5 class="text-center"><b>รายละเอียดอาชีพ</b></h5>
+                                @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                  <textarea class="form-control" name="CareerDetail" rows="12">{{$data->CareerDetail_buyer}}</textarea>
+                                @else
+                                    @if($GetDocComplete != Null)
+                                      <textarea class="form-control" name="CareerDetail" rows="12" readonly>{{$data->CareerDetail_buyer}}</textarea>
+                                    @else
+                                      <textarea class="form-control" name="CareerDetail" rows="12">{{$data->CareerDetail_buyer}}</textarea>
+                                    @endif
+                                @endif
+                              </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                              <div class="col-md-12">
                                 <div class="form-group">
                                   @if($countImage != 0)
                                     @php
@@ -1102,13 +1149,13 @@
                                     <p></p>
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                       <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
-                                      <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                      <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                         <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
                                       </a>
                                     @else
                                       @if($data->Approvers_car == Null)
                                         @if($GetDocComplete == Null)
-                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
+                                        <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                           <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
                                         </a>
                                         @endif

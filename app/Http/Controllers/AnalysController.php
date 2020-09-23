@@ -841,6 +841,7 @@ class AnalysController extends Controller
         $user->Driver_buyer = $request->get('Driverbuyer');
         $user->HouseStyle_buyer = $request->get('HouseStylebuyer');
         $user->Career_buyer = $request->get('Careerbuyer');
+        $user->CareerDetail_buyer = $request->get('CareerDetail');
         $user->Income_buyer = $request->get('Incomebuyer');
         $user->Purchase_buyer = $request->get('Purchasebuyer');
         $user->Support_buyer = $request->get('Supportbuyer');

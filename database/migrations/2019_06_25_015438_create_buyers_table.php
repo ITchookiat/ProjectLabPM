@@ -35,6 +35,7 @@ class CreateBuyersTable extends Migration
             $table->string('Driver_buyer')->nullable();
             $table->string('HouseStyle_buyer')->nullable();
             $table->string('Career_buyer')->nullable();
+            $table->string('CareerDetail_buyer')->nullable();
             $table->string('Income_buyer')->nullable();
             $table->string('Purchase_buyer')->nullable();
             $table->string('Support_buyer')->nullable();
@@ -46,6 +47,7 @@ class CreateBuyersTable extends Migration
             $table->string('Gradebuyer_car')->nullable();
             $table->string('Objective_car')->nullable();
             $table->string('Walkin_id')->nullable();
+            $table->string('SendUse_Walkin')->nullable();
             $table->timestamps();
         });
     }
