@@ -766,6 +766,7 @@ class AnalysController extends Controller
         $SetLicense = $request->get('Licensecar');
       }
 
+
       // กำหนด วันอนุมัติสัญญา
       $StatusApp = "รออนุมัติ";
       $newDateDue = $request->get('DateDue');
@@ -826,9 +827,11 @@ class AnalysController extends Controller
       }
 
       $user = Buyer::find($id);
-        $user->Contract_buyer = $NewContract;
-        $user->Type_Con = $request->get('TypeContract');
-        $user->Date_Due = $newDateDue;
+        if ($Getcardetail->Date_Appcar == NULL) { //เช็คอนุมัติ
+          $user->Contract_buyer = $NewContract;
+          $user->Type_Con = $request->get('TypeContract');
+          $user->Date_Due = $newDateDue;
+        }
         $user->Name_buyer = $request->get('Namebuyer');
         $user->last_buyer = $request->get('lastbuyer');
         $user->Nick_buyer = $request->get('Nickbuyer');
@@ -1040,14 +1043,18 @@ class AnalysController extends Controller
             }
           }
           else { //รออนุมัติ
+            if ($Getcardetail->Date_Appcar == NULL) { //เช็คอนุมัติ
               $DateDue = NULL;      //วันดิวงวดแรก
               $newDateDue = NULL;   //วันอนุมัติ
               $StatusApp = "รออนุมัติ";
+            } 
           }
 
-          $cardetail->Dateduefirst_car = $DateDue;     //วันที่ ดิวงวดแรก
-          $cardetail->Date_Appcar = $newDateDue;       //วันที่ อนุมัติ
-          $cardetail->StatusApp_car = $StatusApp;      //สถานะ อนุมัติ
+          if ($Getcardetail->Date_Appcar == NULL) { //เช็คอนุมัติ
+            $cardetail->Dateduefirst_car = $DateDue;     //วันที่ ดิวงวดแรก
+            $cardetail->Date_Appcar = $newDateDue;       //วันที่ อนุมัติ
+            $cardetail->StatusApp_car = $StatusApp;      //สถานะ อนุมัติ
+          }
 
           $cardetail->Insurance_car = $request->get('Insurancecar');
           $cardetail->status_car = $request->get('statuscar');
@@ -1061,7 +1068,9 @@ class AnalysController extends Controller
           $cardetail->Tellagent_car = $request->get('Tellagentcar');
           $cardetail->Purchasehistory_car = $request->get('Purchasehistorycar');
           $cardetail->Supporthistory_car = $request->get('Supporthistorycar');
-          $cardetail->branch_car = $SetBranch;                       //สาขา   
+          if ($Getcardetail->Date_Appcar == NULL) { //เช็คอนุมัติ
+            $cardetail->branch_car = $SetBranch;                       //สาขา   
+          }
           $cardetail->DocComplete_car = $SetDocComplete;             //เอกสารครบ
           $cardetail->Check_car = $request->get('MASTER');           //หัวหน้า
           $cardetail->Approvers_car = $request->get('AUDIT');        //audit
@@ -1226,7 +1235,7 @@ class AnalysController extends Controller
       }
 
       if ($type == 1) {
-        return redirect()->Route('Analysis',$type)->with(['fdate' => $fdate,'tdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
+        return redirect()->Route('Analysis',$type)->with(['newfdate' => $fdate,'newtdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
       }
     }
 
