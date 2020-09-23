@@ -44,14 +44,14 @@ class AnalysController extends Controller
 
         if ($request->has('Fromdate')) {
           $newfdate = $request->get('Fromdate');
-        }elseif (session()->has('fdate')) {
-          $newfdate = session('fdate');
+        }elseif (session()->has('newfdate')) {
+          $newfdate = session('newfdate');
         }
 
         if ($request->has('Todate')) {
           $newtdate = $request->get('Todate');
-        }elseif (session()->has('tdate')) {
-          $newtdate = session('tdate');
+        }elseif (session()->has('newtdate')) {
+          $newtdate = session('newtdate');
         }
 
         if ($request->has('branch')) {
@@ -72,9 +72,14 @@ class AnalysController extends Controller
           $contno = session('Contno');
         }
 
-        // dd($newfdate == false and $newtdate == false);
+        if ($branch == 'Null') {
+          $branch = NULL;
+        }
+        if ($status == 'Null') {
+          $status = NULL;
+        }
 
-        if ($newfdate == false and $newtdate == false) {
+        if ($newfdate == '' and $newtdate == '') {
           $data = DB::table('buyers')
               ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
               ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
@@ -106,7 +111,6 @@ class AnalysController extends Controller
         $type = $request->type;
         $newfdate = \Carbon\Carbon::parse($newfdate)->format('Y') ."-". \Carbon\Carbon::parse($newfdate)->format('m')."-". \Carbon\Carbon::parse($newfdate)->format('d');
         $newtdate = \Carbon\Carbon::parse($newtdate)->format('Y') ."-". \Carbon\Carbon::parse($newtdate)->format('m')."-". \Carbon\Carbon::parse($newtdate)->format('d');
-        // dd($newfdate);
 
         $CountP03 = 0;
         $CountP06 = 0;
