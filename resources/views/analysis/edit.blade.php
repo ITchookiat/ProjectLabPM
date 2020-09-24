@@ -1934,12 +1934,12 @@
                                 <label class="col-sm-3 col-form-label text-right">ค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
+                                    <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" value="{{($data->Vat_car != null)?$data->Vat_car:0}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
                                   @else
                                     @if($GetDocComplete != Null)
-                                      <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();" readonly/>
+                                      <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" value="{{($data->Vat_car != null)?$data->Vat_car:0}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();" readonly/>
                                     @else
-                                      <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" value="{{$data->Vat_car}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
+                                      <input type="text" id="Processfee" name="Vatcar" class="form-control form-control-sm" value="{{($data->Vat_car != null)?$data->Vat_car:0}}" placeholder="ป้อนค่าดำเนินการ" oninput="calculate2();balance2();"/>
                                     @endif
                                   @endif
                                 </div>
