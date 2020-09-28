@@ -163,23 +163,23 @@ class DataCustomerController extends Controller
             $SetContract = $data->Type_leasing.'-'.$SetYear.'00'.'/';
         }
 
-        if(auth()->user()->branch == '01'){
+        if(auth()->user()->branch == '50'){
             $SetUserBranch = 'ปัตตานี';
-        }elseif(auth()->user()->branch == '03'){
+        }elseif(auth()->user()->branch == '51'){
             $SetUserBranch = 'ยะลา';
-        }elseif(auth()->user()->branch == '04'){
+        }elseif(auth()->user()->branch == '52'){
             $SetUserBranch = 'นราธิวาส';
-        }elseif(auth()->user()->branch == '05'){
+        }elseif(auth()->user()->branch == '53'){
             $SetUserBranch = 'สายบุรี';
-        }elseif(auth()->user()->branch == '06'){
+        }elseif(auth()->user()->branch == '54'){
             $SetUserBranch = 'สุไหงโกลก';
-        }elseif(auth()->user()->branch == '07'){
+        }elseif(auth()->user()->branch == '55'){
             $SetUserBranch = 'เบตง';
-        }elseif(auth()->user()->branch == '08'){
+        }elseif(auth()->user()->branch == '56'){
             $SetUserBranch = 'โคกโพธิ์';
-        }elseif(auth()->user()->branch == '09'){
+        }elseif(auth()->user()->branch == '57'){
             $SetUserBranch = 'ตันหยงมัส';
-        }elseif(auth()->user()->branch == '12'){
+        }elseif(auth()->user()->branch == '58'){
             $SetUserBranch = 'บังนังสตา';
         }else{
             $SetUserBranch = 'แอดมิน';
