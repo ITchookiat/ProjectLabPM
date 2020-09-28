@@ -145,7 +145,7 @@ class DataCustomerController extends Controller
             $SetContract = $data->Type_leasing.'-'.$SetYear.'53'.'/';
         }
         elseif($data->Branch_car == 'โกลก'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'44'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'54'.'/';
         }
         elseif($data->Branch_car == 'เบตง'){
             $SetContract = $data->Type_leasing.'-'.$SetYear.'55'.'/';
@@ -172,7 +172,7 @@ class DataCustomerController extends Controller
         }elseif(auth()->user()->branch == '53'){
             $SetUserBranch = 'สายบุรี';
         }elseif(auth()->user()->branch == '54'){
-            $SetUserBranch = 'สุไหงโกลก';
+            $SetUserBranch = 'โกลก';
         }elseif(auth()->user()->branch == '55'){
             $SetUserBranch = 'เบตง';
         }elseif(auth()->user()->branch == '56'){
