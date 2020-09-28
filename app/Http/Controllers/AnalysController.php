@@ -849,6 +849,7 @@ class AnalysController extends Controller
         $user->HouseStyle_buyer = $request->get('HouseStylebuyer');
         $user->Career_buyer = $request->get('Careerbuyer');
         $user->CareerDetail_buyer = $request->get('CareerDetail');
+        $user->ApproveDetail_buyer = $request->get('ApproveDetail');
         $user->Income_buyer = $request->get('Incomebuyer');
         $user->Purchase_buyer = $request->get('Purchasebuyer');
         $user->Support_buyer = $request->get('Supportbuyer');

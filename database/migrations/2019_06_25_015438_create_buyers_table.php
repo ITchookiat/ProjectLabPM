@@ -36,6 +36,7 @@ class CreateBuyersTable extends Migration
             $table->string('HouseStyle_buyer')->nullable();
             $table->string('Career_buyer')->nullable();
             $table->string('CareerDetail_buyer')->nullable();
+            $table->string('ApproveDetail_buyer')->nullable();
             $table->string('Income_buyer')->nullable();
             $table->string('Purchase_buyer')->nullable();
             $table->string('Support_buyer')->nullable();
