@@ -93,6 +93,7 @@ class ExcelController extends Controller
               ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
               ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
               ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+              ->join('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
               ->where('cardetails.Approvers_car','!=',Null)
               ->where('buyers.Contract_buyer','not like', '22%')
               ->where('buyers.Contract_buyer','not like', '33%')
@@ -104,6 +105,7 @@ class ExcelController extends Controller
               ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
               ->join('cardetails','buyers.id','=','cardetails.Buyercar_id')
               ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+              ->join('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
               ->where('cardetails.Approvers_car','!=',Null)
               ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
                 return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
@@ -129,7 +131,7 @@ class ExcelController extends Controller
 
         // dd($data);
         $data_array[] = array('ลำดับ','เลขสัญญา','ชื่อ-นามสกุล','สาขา','วันที่โอน','สถานะ','ยี่ห้อ','รุ่น','ทะเบียนเดิม','ทะเบียนใหม่','ปี','ยอดจัด','ค่าดำเนินการ','รวมค่าดำเนินการ','ชำระต่องวด','กำไรดอกเบี้ย','ดอกเบี้ย/เดือน','งวดผ่อน(เดือน)','พรบ.','ยอดปิดบัญชี','ซื้อประกัน', '%ยอดจัด',
-                              'รวม คชจ', 'คงเหลือ', 'ค่าคอมก่อนหัก3%', 'ค่ค่าคอมหลังหัก3%', 'เอกสารผู้ค้ำ', 'ผู้รับเงิน', 'เลขที่บัญชี', 'เบอร์โทรผู้รับเงิน', 'ผู้รับค่าคอม', 'เลขที่บัญชี', 'เบอร์โทรผู้แนะนำ', 'ใบขับขี่', 'แถมประกัน'.'สถานะผู้เช่าซื้อ');
+                              'รวม คชจ', 'คงเหลือ', 'ค่าคอมก่อนหัก3%', 'ค่ค่าคอมหลังหัก3%', 'เอกสารผู้ค้ำ', 'ผู้รับเงิน', 'เลขที่บัญชี', 'เบอร์โทรผู้รับเงิน', 'ผู้รับค่าคอม', 'เลขที่บัญชี', 'เบอร์โทรผู้แนะนำ', 'ใบขับขี่', 'แถมประกัน'.'สถานะผู้เช่าซื้อ','ตำแหน่งที่อยู่ผู้ซื้อ','ตำแหน่งที่อยู่ผู้ค้ำ');
 
           foreach($data as $key => $row){
             $date = date_create($row->Date_Due);
@@ -172,6 +174,8 @@ class ExcelController extends Controller
              'ใบขับขี่' => $row->Driver_buyer,
              'แถมประกัน' => $row->Insurance_car,
              'สถานะผู้เช่าซื้อ' => $row->Gradebuyer_car,
+             'ตำแหน่งที่อยู่ผู้ซื้อ' => $row->Buyer_latlong,
+             'ตำแหน่งที่อยู่ผู้ค้ำ' => $row->Support_latlong,
             );
           }
         $data_array = collect($data_array);

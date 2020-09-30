@@ -2580,7 +2580,7 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ค่าคอมหลังหัก 1.5%  : </label>
+                                <label class="col-sm-3 col-form-label text-right">ค่าคอมหลังหัก 3%  : </label>
                                 <div class="col-sm-8">
                                   <input type="text" id="commitPrice" name="commitPrice" value="{{number_format($data->commit_Price, 2)}}" class="form-control form-control-sm" placeholder="ค่าคอมหลังหัก" readonly/>
                                 </div>
