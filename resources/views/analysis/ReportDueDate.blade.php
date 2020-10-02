@@ -72,7 +72,7 @@
           <th align="center" width="45px" style="background-color: #FFFF00;"><b>กำไร/ดอกเบี้ย</b></th>
           <th align="center" width="45px" style="background-color: #BEBEBE;"><b>รวม.คชจ</b></th>
           <th align="center" width="35px" style="background-color: #BEBEBE;"><b>คงเหลือ</b></th>
-          <th align="center" width="35px" style="background-color: #BEBEBE;"><b>หัก 1.5%</b></th>
+          <th align="center" width="35px" style="background-color: #BEBEBE;"><b>หัก 3 %</b></th>
           <th align="center" width="105px" style="background-color: #BEBEBE;"><b>ผู้รับเงิน</b></th>
           <th align="center" width="105px" style="background-color: #BEBEBE;"><b>ผู้รับคอม</b></th>
           <th align="center" width="50px" style="background-color: #BEBEBE;"><b>รวม</b></th>
