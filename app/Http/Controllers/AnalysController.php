@@ -79,6 +79,8 @@ class AnalysController extends Controller
           $status = NULL;
         }
 
+        // dd($newfdate,$branch);
+
         if ($newfdate == '' and $newtdate == '') {
           $data = DB::table('buyers')
               ->join('sponsors','buyers.id','=','sponsors.Buyer_id')

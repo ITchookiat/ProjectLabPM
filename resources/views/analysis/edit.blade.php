@@ -212,7 +212,7 @@
                             <button type="submit" class="delete-modal btn btn-success">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
+                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
@@ -220,7 +220,7 @@
                               <button type="submit" class="delete-modal btn btn-success">
                                 <i class="fas fa-save"></i> Update
                               </button>
-                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
+                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
                                 <i class="far fa-window-close"></i> Close
                               </a>
                             @else
@@ -234,7 +234,7 @@
                             <button type="submit" class="delete-modal btn btn-success">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}">
+                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @else
@@ -307,7 +307,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                              @if(auth::user()->type == "Admin" or auth::user()->position == "MASTER")
+                              @if(auth::user()->type == "Admin" or auth::user()->position == "MASTER" or auth::user()->position == "MANAGER")
                                 @if($data->Check_car != NULL)
                                   <input type="checkbox" class="checkbox" name="MASTER" id="3" value="{{ $data->Check_car }}" {{ ($data->Check_car !== NULL) ? 'checked' : '' }}>
                                 @else
