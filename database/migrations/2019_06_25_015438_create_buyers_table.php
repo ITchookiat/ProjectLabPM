@@ -49,6 +49,7 @@ class CreateBuyersTable extends Migration
             $table->string('Objective_car')->nullable();
             $table->string('Walkin_id')->nullable();
             $table->string('SendUse_Walkin')->nullable();
+            $table->string('Memo_buyer')->nullable();
             $table->timestamps();
         });
     }
