@@ -1130,7 +1130,7 @@
                                   <div class="col-md-6">
                                     <h5 class="text-center"><b>รายละเอียดอาชีพ</b></h5>
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <textarea class="form-control" name="CareerDetail" rows="10" placeholder="ป้อนรายละเอียด">{{$data->CareerDetail_buyer}}</textarea>
+                                      <textarea class="form-control" name="CareerDetail" rows="5" placeholder="ป้อนรายละเอียด">{{$data->CareerDetail_buyer}}</textarea>
                                     @else
                                         @if($GetDocComplete != Null)
                                           <textarea class="form-control" name="CareerDetail" rows="10" placeholder="ป้อนรายละเอียด" readonly>{{$data->CareerDetail_buyer}}</textarea>
@@ -1142,7 +1142,7 @@
                                   <div class="col-md-6">
                                     <h5 class="text-center"><b>เหตุผลในการขออนุมัติ</b></h5>
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <textarea class="form-control" name="ApproveDetail" rows="10" placeholder="ป้อนเหตุผล">{{$data->ApproveDetail_buyer}}</textarea>
+                                      <textarea class="form-control" name="ApproveDetail" rows="5" placeholder="ป้อนเหตุผล">{{$data->ApproveDetail_buyer}}</textarea>
                                     @else
                                         @if($GetDocComplete != Null)
                                           <textarea class="form-control" name="ApproveDetail" rows="10" placeholder="ป้อนเหตุผล" readonly>{{$data->ApproveDetail_buyer}}</textarea>
@@ -1152,6 +1152,15 @@
                                     @endif
                                   </div>
                                 </div>
+                                @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                <br>
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <h5 class="text-left"><b>ผลการโทรหาลูกค้า</b></h5>
+                                      <textarea class="form-control" name="Memo" rows="4" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
+                                  </div>
+                                </div>
+                                @endif
                               </div>
                             </div>
                             <div class="row">

@@ -862,6 +862,7 @@ class AnalysController extends Controller
         $user->AfterIncome_buyer = str_replace(",","",$request->get('Afterincome'));
         $user->Gradebuyer_car = $request->get('Gradebuyer');
         $user->Objective_car = $request->get('objectivecar');
+        $user->Memo_buyer = $request->get('Memo');
       $user->update();
 
       $SettelSP = str_replace ("_","",$request->get('telSP'));
