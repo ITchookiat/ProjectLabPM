@@ -1156,7 +1156,7 @@
                                 <br>
                                 <div class="row">
                                   <div class="col-md-12">
-                                    <h5 class="text-left"><b>ผลการโทรหาลูกค้า</b></h5>
+                                    <h5 class="text-left"><b>ผลการตรวจสอบลูกค้า</b></h5>
                                       <textarea class="form-control" name="Memo" rows="4" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
                                   </div>
                                 </div>
