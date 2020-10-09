@@ -52,7 +52,7 @@
   </head>
     <label align="right">วันที่ : <u>{{$date2}}</u></label>
     <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน PLaon-Micro</h2>
-    <h4 class="card-title p-3" align="center">บริษัท ชูเกียรติลิสซิ่ง จำกัด</h4>
+    <h4 class="card-title p-3" align="center">บริษัท ชูเกียรติพร๊อพเพอร์ตี้ จำกัด (สาขาปัตตานี)</h4>
     <hr>
   <body>
     <br />
