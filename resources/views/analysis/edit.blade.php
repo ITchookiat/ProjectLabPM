@@ -1155,13 +1155,18 @@
                                 @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                 <br>
                                 <div class="row">
-                                  <div class="col-md-12">
-                                    <h5 class="text-left"><b>ผลการตรวจสอบลูกค้า</b></h5>
+                                  <div class="col-md-6">
+                                    <h5 class="text-center"><b>ผลการตรวจสอบลูกค้า</b></h5>
                                       <textarea class="form-control" name="Memo" rows="4" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
+                                  </div>
+                                  <div class="col-md-6">
+                                    <h5 class="text-center"><b>ผลการตรวจสอบนายหน้า</b></h5>
+                                      <textarea class="form-control" name="Memobroker" rows="4" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
                                   </div>
                                 </div>
                                 @else
                                   <input type="hidden" name="Memo" value="{{$data->Memo_buyer}}" class="form-control form-control-sm"/>
+                                  <input type="hidden" name="Memobroker" value="{{$data->Memo_broker}}" class="form-control form-control-sm"/>
                                 @endif
                               </div>
                             </div>
