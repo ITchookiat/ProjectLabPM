@@ -270,7 +270,7 @@
           </div>
           <div class="col-md-6">
             <div class="float-right form-inline">
-              <label>หัก 1.5% : </label>
+              <label>หัก 3% : </label>
               <input type="text" class="form-control text-right" style="width: 200px;" value="{{number_format($data->commit_Price, 2)}}" readonly/>
             </div>
           </div>
