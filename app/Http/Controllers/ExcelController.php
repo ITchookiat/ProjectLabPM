@@ -180,7 +180,7 @@ class ExcelController extends Controller
              'รายละเอียดอาชีพ' => $row->CareerDetail_buyer,
              'ผลการประเมินลูกค้า' => $row->ApproveDetail_buyer,
              'ผลการตรวจสอบลูกค้า' => $row->Memo_buyer,
-             'ผลการตรวจสอบนายหน้า' => $row->Memo_broker
+             'ผลการตรวจสอบนายหน้า' => $row->Memo_broker,
             );
           }
         $data_array = collect($data_array);
