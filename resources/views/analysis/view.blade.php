@@ -99,9 +99,14 @@
               <form method="get" action="{{ route('Analysis',1) }}">
                 <div class="float-right form-inline">
                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                    <a target="_blank" href="{{ action('ReportAnalysController@ReportDueDate', $type) }}" class="btn bg-primary btn-app">
-                      <span class="fas fa-print"></span> ปริ้นรายการ
-                    </a>
+                    <button type="button" class="btn bg-primary btn-app" data-toggle="dropdown">
+                      <span class="fas fa-print"></span> ปริ้นรายงาน
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}"> รายงานจัดไฟแนนซ์ประจำวัน</a></li>
+                      <li class="dropdown-divider"></li>
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}"> รายงานขออนุมัติประจำวัน</a></li>
+                    </ul>
                   @endif
                   <button type="submit" class="btn bg-warning btn-app">
                     <span class="fas fa-search"></span> Search

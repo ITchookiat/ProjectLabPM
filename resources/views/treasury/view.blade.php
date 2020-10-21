@@ -102,6 +102,8 @@
                       <span class="fas fa-print"></span> ปริ้นรายงาน
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}"> รายงานจัดไฟแนนซ์ประจำวัน</a></li>
+                      <li class="dropdown-divider"></li>
                       <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-6" data-link="{{ route('treasury', 2) }}"> รายงานอนุมัติประจำวัน</a></li>
                     </ul>
                   </div>

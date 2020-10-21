@@ -51,7 +51,11 @@
 
   </head>
     <label align="right">วันที่ : <u>{{$date2}}</u></label>
-    <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน PLaon-Micro</h2>
+    @if($type == 8)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานจัดไฟแนนซ์ประจำวัน</h2>
+    @else
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน PLaon-Micro</h2>
+    @endif
     <h4 class="card-title p-3" align="center">บริษัท ชูเกียรติพร๊อพเพอร์ตี้ จำกัด (สาขาปัตตานี)</h4>
     <hr>
   <body>

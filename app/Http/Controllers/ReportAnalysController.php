@@ -131,8 +131,7 @@ class ReportAnalysController extends Controller
       $date = $Y.'-'.$m.'-'.$d;
       $date2 = $d.'-'.$m.'-'.$Y2;
 
-      if($request->type == 1){
-
+      if($request->type == 1){  //รายงานขออนุมัติประจำวัน
         $dataReport = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
@@ -141,9 +140,9 @@ class ReportAnalysController extends Controller
             ->where('cardetails.Approvers_car','<>','')
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
-        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2'));
-      
-        // dd($dataReport);
+
+        $type = $request->type;
+        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
       }
       elseif($request->type == 7){ //รายงานส่งผู้บริหาร
         $ids = $request->choose;
@@ -162,34 +161,47 @@ class ReportAnalysController extends Controller
           $tdate = $request->get('Todate');
           $tdate = \Carbon\Carbon::parse($tdate)->format('Y') ."-". \Carbon\Carbon::parse($tdate)->format('m')."-". \Carbon\Carbon::parse($tdate)->format('d');
         }
-        // dd($ids,$fdate,$tdate);
+
         $dataReport = DB::table('buyers')
-                        ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
-                        ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                        ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-                        // ->whereIn('buyers.id', $ids)
-                        ->when(!empty($ids), function($q) use($ids){
-                          return $q->whereIn('buyers.id', $ids);
-                          })
-                        ->when(!empty($fdate)  && !empty($tdate), function($q) use ($fdate, $tdate) {
-                            return $q->whereBetween('cardetails.Date_Appcar',[$fdate,$tdate]);
-                          })
-                        ->where('cardetails.Approvers_car','<>','')
-                        ->orderBy('buyers.Contract_buyer', 'ASC')
-                        ->get();
-        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2'));
+            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+            ->when(!empty($ids), function($q) use($ids){
+              return $q->whereIn('buyers.id', $ids);
+              })
+            ->when(!empty($fdate)  && !empty($tdate), function($q) use ($fdate, $tdate) {
+                return $q->whereBetween('cardetails.Date_Appcar',[$fdate,$tdate]);
+              })
+            ->where('cardetails.Approvers_car','<>','')
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+        $type = $request->type;
+        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+      }
+      elseif($request->type == 8){  //รายงานจัดไฟแนนซ์ประจำวัน
+        $dataReport = DB::table('buyers')
+            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+            ->where('buyers.Date_Due',$date)
+            ->where('cardetails.Approvers_car','=',NULL)
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+        $type = $request->type;
+        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
       }
 
-        // $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2'));
-        $html = $view->render();
-        $pdf = new PDF();
-        $pdf::SetTitle('รายงานนำเสนอ');
-        $pdf::AddPage('L', 'A4');
-        $pdf::SetMargins(5, 5, 5, 0);
-        $pdf::SetFont('freeserif', '', 8, '', true);
-        $pdf::SetAutoPageBreak(TRUE, 25);
+      $html = $view->render();
+      $pdf = new PDF();
+      $pdf::SetTitle('รายงานนำเสนอ');
+      $pdf::AddPage('L', 'A4');
+      $pdf::SetMargins(5, 5, 5, 0);
+      $pdf::SetFont('freeserif', '', 8, '', true);
+      $pdf::SetAutoPageBreak(TRUE, 25);
 
-        $pdf::WriteHTML($html,true,false,true,false,'');
-        $pdf::Output('report.pdf');
+      $pdf::WriteHTML($html,true,false,true,false,'');
+      $pdf::Output('report.pdf');
     }
 }
