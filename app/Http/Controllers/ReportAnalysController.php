@@ -179,7 +179,7 @@ class ReportAnalysController extends Controller
         $type = $request->type;
         $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
       }
-      elseif($request->type == 8){  //รายงานจัดไฟแนนซ์ประจำวัน
+      elseif($request->type == 8){  //รายงานขอเบิกเงินประจำวัน
         $dataReport = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
