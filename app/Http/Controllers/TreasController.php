@@ -223,6 +223,8 @@ class TreasController extends Controller
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
 
+            dd("ระบบ ยังไม่เปิดใช้งาน");
+
             $view = \View::make('treasury.reportTreas' ,compact('dataReport','type','newfdate','newtdate'));
             $html = $view->render();
             $pdf = new PDF();
