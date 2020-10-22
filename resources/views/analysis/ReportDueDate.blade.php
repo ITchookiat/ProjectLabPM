@@ -52,7 +52,7 @@
   </head>
     <label align="right">วันที่ : <u>{{$date2}}</u></label>
     @if($type == 8)
-      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานจัดไฟแนนซ์ประจำวัน</h2>
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขอเบิกเงินประจำวัน</h2>
     @else
       <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน PLaon-Micro</h2>
     @endif

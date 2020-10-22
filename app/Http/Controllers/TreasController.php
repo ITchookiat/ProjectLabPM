@@ -189,7 +189,7 @@ class TreasController extends Controller
             $newtdate = $request->get('Todate');
         }
 
-        if ($type == 2) {
+        if ($type == 2) {   //รายงานอนุมัติโอนเงินประจำวัน
             $dataReport = DB::table('buyers')
                     ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                     ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
@@ -200,7 +200,7 @@ class TreasController extends Controller
                     ->orderBy('buyers.Contract_buyer', 'ASC')
                     ->get();
 
-            $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2'));
+            $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
             $html = $view->render();
             $pdf = new PDF();
             $pdf::SetTitle('รายงานนำเสนอ');
@@ -222,8 +222,6 @@ class TreasController extends Controller
             ->where('cardetails.UserCheckAc_car','<>',NULL)
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
-
-            // dd($dataReport);
 
             $view = \View::make('treasury.reportTreas' ,compact('dataReport','type','newfdate','newtdate'));
             $html = $view->render();
