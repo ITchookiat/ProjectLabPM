@@ -105,6 +105,8 @@
                       <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}"> รายงานขอเบิกเงินประจำวัน</a></li>
                       <li class="dropdown-divider"></li>
                       <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-6" data-link="{{ route('treasury', 2) }}"> รายงานอนุมัติประจำวัน</a></li>
+                      <li class="dropdown-divider"></li>
+                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-7" data-link="{{ route('treasury', 3) }}"> รายงานโอนเงินประจำวัน</a></li>
                     </ul>
                   </div>
                   <button type="submit" class="btn bg-warning btn-app">
