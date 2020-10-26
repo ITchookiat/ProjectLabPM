@@ -694,13 +694,14 @@ class AnalysController extends Controller
     {
       if ($type == 1) {
         $data = DB::table('buyers')
-          ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
-          ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
-          ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-          ->leftJoin('expenses','Buyers.id','=','expenses.Buyerexpenses_id')
-          ->leftJoin('upload_lat_longs','Buyers.id','=','upload_lat_longs.Use_id')
-          ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','buyers.created_at AS createdBuyers_at')
-          ->where('buyers.id',$id)->first();
+            ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
+            ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->leftJoin('expenses','Buyers.id','=','expenses.Buyerexpenses_id')
+            ->leftJoin('upload_lat_longs','Buyers.id','=','upload_lat_longs.Use_id')
+            ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','buyers.created_at AS createdBuyers_at')
+            ->where('buyers.id',$id)
+            ->first();
                   
         $GetDocComplete = $data->DocComplete_car;
         $SubStr = substr($data->Contract_buyer,0,3);
@@ -751,7 +752,7 @@ class AnalysController extends Controller
       }
 
       $GetYear = substr(date('Y')+543, 2,4);  //ดึงปี พ.ศ.
-      $NewContract = $request->get('TypeContract').'-'.$GetYear.$NumBranch."/";
+      $NewContract = $request->get('TypeContract').'-'.$GetYear.$NumBranch;
 
       if ($request->get('Topcar') != Null) {
         $SetTopcar = str_replace (",","",$request->get('Topcar'));
@@ -767,7 +768,6 @@ class AnalysController extends Controller
       if ($request->get('Licensecar') != NULL) {
         $SetLicense = $request->get('Licensecar');
       }
-
 
       // กำหนด วันอนุมัติสัญญา
       $StatusApp = "รออนุมัติ";
@@ -1032,14 +1032,15 @@ class AnalysController extends Controller
                     ->orderBy('Contract_buyer', 'desc')->limit(1)
                     ->first();
               }
+
               
               $cont = $connect->Contract_buyer;
-              $SetStr = explode("/",$cont);
+              $SetStr = explode("-",$cont);
               $StrNum = $SetStr[1] + 1;
               
-              $num = "1000";
-              $SubStr = substr($num.$StrNum, -4);
-              $StrConn = $SetStr[0]."/".$SubStr;
+              // $num = "1000";
+              // $SubStr = substr($num.$StrNum, -4);
+              $StrConn = $SetStr[0]."-".$StrNum;
               
               $GetIdConn = Buyer::where('id',$id)->first();
                 $GetIdConn->Contract_buyer = $StrConn;
