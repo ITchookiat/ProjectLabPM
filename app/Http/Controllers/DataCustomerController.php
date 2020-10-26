@@ -133,34 +133,34 @@ class DataCustomerController extends Controller
 
         ////////////////////////////////////
         if($data->Branch_car == 'ปัตตานี'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'50'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'50';
         }
         elseif($data->Branch_car == 'ยะลา'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'51'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'51';
         }
         elseif($data->Branch_car == 'นราธิวาส'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'52'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'52';
         }
         elseif($data->Branch_car == 'สายบุรี'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'53'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'53';
         }
         elseif($data->Branch_car == 'โกลก'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'54'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'54';
         }
         elseif($data->Branch_car == 'เบตง'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'55'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'55';
         }
         elseif($data->Branch_car == 'โคกโพธิ์'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'56'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'56';
         }
         elseif($data->Branch_car == 'ตันหยงมัส'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'57'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'57';
         }
         elseif($data->Branch_car == 'บังนังสตา'){
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'58'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'58';
         }
         else{
-            $SetContract = $data->Type_leasing.'-'.$SetYear.'00'.'/';
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'00';
         }
 
         if(auth()->user()->branch == '50'){
