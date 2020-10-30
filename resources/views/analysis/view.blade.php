@@ -58,7 +58,11 @@
     </div>
     <div class="row">
       <div class="col-md-3">
-        <a href="{{ route('Analysis', 2) }}" class="btn btn-success btn-block mb-3">Compose</a>
+          @if(auth::user()->type == 'Admin' or auth::user()->type == 'แผนก วิเคราะห์')
+          <a href="{{ route('Analysis', 2) }}" class="btn btn-success btn-block mb-3">Compose</a>
+        @else
+          <a href="#" class="btn btn-success btn-block mb-3">Compose</a>
+        @endif
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">List</h3>
