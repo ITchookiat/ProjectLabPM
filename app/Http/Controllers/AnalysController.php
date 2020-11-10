@@ -863,7 +863,9 @@ class AnalysController extends Controller
         $user->Gradebuyer_car = $request->get('Gradebuyer');
         $user->Objective_car = $request->get('objectivecar');
         $user->Memo_buyer = $request->get('Memo');
+        $user->Prefer_buyer = $request->get('Buyerprefer');
         $user->Memo_broker = $request->get('Memobroker');
+        $user->Prefer_broker = $request->get('Brokerprefer');
       $user->update();
 
       $SettelSP = str_replace ("_","",$request->get('telSP'));

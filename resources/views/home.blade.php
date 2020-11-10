@@ -34,7 +34,7 @@
           </div>
 
           <div align="center">
-            <img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 43%">
+            <a href="{{ route('Analysis',1) }}"><img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 43%"></a>
           </div>
 
           <div class="row">
