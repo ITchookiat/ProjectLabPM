@@ -215,7 +215,7 @@
             document.form1.actPrice.value = addCommas(actPrice);
             document.form1.P2Price.value = addCommas(P2Price);
             document.form1.closeAccountPrice.value = addCommas(closeAccountPrice);
-            document.form1.totalkPrice.value = addCommas(capital.toFixed(2));
+            document.form1.totalkPrice.value = addCommas(TotalPrice.toFixed(2));
             document.form1.balancePrice.value = addCommas(TotalBalance.toFixed(2));
           }
           else if(actPrice != '' || closeAccountPrice != '' || P2Price != '')
