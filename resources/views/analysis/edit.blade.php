@@ -307,7 +307,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                              @if(auth::user()->type == "Admin" or auth::user()->position == "MASTER" or auth::user()->position == "MANAGER")
+                              @if(auth::user()->type == "Admin" or auth::user()->position == "MASTER" or auth::user()->position == "MANAGER" or auth::user()->position == "AUDIT")
                                 @if($data->Check_car != NULL)
                                   <input type="checkbox" class="checkbox" name="MASTER" id="3" value="{{ $data->Check_car }}" {{ ($data->Check_car !== NULL) ? 'checked' : '' }}>
                                 @else
@@ -321,7 +321,7 @@
                                 <font color="red">MASTER &nbsp;&nbsp;</font>
                               </label>
                             </span>
-                            @if(auth::user()->type != "Admin" and auth::user()->position != "MASTER")
+                            @if(auth::user()->type != "Admin" and auth::user()->position != "MASTER" and auth::user()->position != "AUDIT")
                               @if($data->Check_car != NULL)
                                 <input type="hidden" name="MASTER" value="{{ $data->Check_car }}">
                               @endif
