@@ -356,7 +356,7 @@
                                 <font color="red">RESTRICT RIGHTS</font>
                               </label>
                             </span>
-                            @if(auth::user()->type != "Admin" and auth::user()->position != "MASTER" and auth::user()->position != "STAFF")
+                            @if(auth::user()->type != "Admin" and auth::user()->position != "MASTER" and auth::user()->position != "STAFF" and auth::user()->position != "AUDIT")
                               <input type="hidden" name="doccomplete" value="{{ $data->DocComplete_car }}">
                             @endif
 
