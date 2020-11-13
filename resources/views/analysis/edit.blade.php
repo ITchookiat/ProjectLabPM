@@ -331,7 +331,7 @@
                           <div class="float-right form-inline">
                             <i class="fas fa-grip-vertical"></i>
                             <span class="todo-wrap">
-                              @if(auth::user()->type == "Admin" or auth::user()->position == "MASTER")
+                              @if(auth::user()->type == "Admin" or auth::user()->position == "MASTER" or auth::user()->position == "AUDIT")
                                 @if($data->DocComplete_car != NULL)
                                   <input type="checkbox" class="checkbox" name="doccomplete" id="4" value="{{ $data->DocComplete_car }}" {{ ($data->DocComplete_car !== NULL) ? 'checked' : '' }}>
                                 @else
