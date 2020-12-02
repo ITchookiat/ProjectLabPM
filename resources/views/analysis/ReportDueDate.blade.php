@@ -128,6 +128,12 @@
                   กล
                 @elseif($value->branch_car == 'เบตง')
                   บต
+                @elseif($value->branch_car == 'โคกโพธิ์')
+                  คพ
+                @elseif($value->branch_car == 'ตันหยงมัส')
+                  ตยม
+                @elseif($value->branch_car == 'บังนังสตา')
+                  บนต
                 @endif
               </td>
               @if($value->note_Price == Null)
