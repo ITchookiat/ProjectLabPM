@@ -395,6 +395,10 @@
             <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->ApproveDetail_buyer}}</b></th>
           </tr>
           <tr>
+            <th align="right" width="120px"> แหล่งที่มาของลูกค้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Resource_news}}</b></th>
+          </tr>
+          <tr>
             <th class="text-center" width="540px"></th>
           </tr>
           <tr>

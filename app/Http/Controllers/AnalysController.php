@@ -699,7 +699,8 @@ class AnalysController extends Controller
             ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->leftJoin('expenses','Buyers.id','=','expenses.Buyerexpenses_id')
             ->leftJoin('upload_lat_longs','Buyers.id','=','upload_lat_longs.Use_id')
-            ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','buyers.created_at AS createdBuyers_at')
+            ->leftJoin('data_customers','Buyers.Walkin_id','=','data_customers.Customer_id')
+            ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','data_customers.*','buyers.created_at AS createdBuyers_at')
             ->where('buyers.id',$id)
             ->first();
                   

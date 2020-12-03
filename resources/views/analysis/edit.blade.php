@@ -1075,8 +1075,12 @@
                               <div class="col-6">
                                 <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">สาขาที่รับลูกค้า : </label>
-                                  <div class="col-sm-8">
+                                  <div class="col-sm-3">
                                   <input type="text" class="form-control" value="{{$data->SendUse_Walkin}}" readonly/>
+                                  </div>
+                                  <label class="col-sm-2 col-form-label text-right">ที่มาของลูกค้า : </label>
+                                  <div class="col-sm-3">
+                                  <input type="text" class="form-control" value="{{$data->Resource_news}}" readonly/>
                                   </div>
                                 </div>
                               </div>
