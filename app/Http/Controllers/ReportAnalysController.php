@@ -98,6 +98,7 @@ class ReportAnalysController extends Controller
                       ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
                       ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
                       ->leftJoin('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+                      ->leftJoin('data_customers','Buyers.Walkin_id','=','data_customers.Customer_id')
                       ->where('buyers.id',$id)->first();
       // $newDateDue = \Carbon\Carbon::parse($dataReport->Date_Due)->format('Y')+543 ."-". \Carbon\Carbon::parse($dataReport->Date_Due)->format('m')."-". \Carbon\Carbon::parse($dataReport->Date_Due)->format('d');
       $DateDue = \Carbon\Carbon::parse($dataReport->Date_Due)->format('d')."-".\Carbon\Carbon::parse($dataReport->Date_Due)->format('m');
