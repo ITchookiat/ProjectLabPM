@@ -439,7 +439,7 @@
                                       <option value="51" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา (51)</option>
                                       <option value="52" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส (52)</option>
                                       <option value="53" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี (53)</option>
-                                      <option value="54" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก (54)</option>
+                                      <option value="54" {{ ($data->branch_car === 'โกลก') ? 'selected' : '' }}>โกลก (54)</option>
                                       <option value="55" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
                                       <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                       <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
@@ -455,7 +455,7 @@
                                         <option value="51" {{ ($data->branch_car === 'ยะลา') ? 'selected' : '' }}>ยะลา (51)</option>
                                         <option value="52" {{ ($data->branch_car === 'นราธิวาส') ? 'selected' : '' }}>นราธิวาส (52)</option>
                                         <option value="53" {{ ($data->branch_car === 'สายบุรี') ? 'selected' : '' }}>สายบุรี (53)</option>
-                                        <option value="54" {{ ($data->branch_car === 'สุไหงโกลก') ? 'selected' : '' }}>สุไหงโกลก (54)</option>
+                                        <option value="54" {{ ($data->branch_car === 'โกลก') ? 'selected' : '' }}>โกลก (54)</option>
                                         <option value="55" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
                                         <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                         <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>

@@ -300,7 +300,7 @@
                                       <option value="51">ยะลา (51)</option>
                                       <option value="52">นราธิวาส (52)</option>
                                       <option value="53">สายบุรี (53)</option>
-                                      <option value="54">สุไหงโกลก (54)</option>
+                                      <option value="54">โกลก (54)</option>
                                       <option value="55">เบตง (55)</option>
                                       <option value="56">โคกโพธิ์ (56)</option>
                                       <option value="57">ตันหยงมัส (57)</option>
