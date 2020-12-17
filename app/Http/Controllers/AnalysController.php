@@ -699,7 +699,8 @@ class AnalysController extends Controller
             ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->leftJoin('expenses','Buyers.id','=','expenses.Buyerexpenses_id')
             ->leftJoin('upload_lat_longs','Buyers.id','=','upload_lat_longs.Use_id')
-            ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','buyers.created_at AS createdBuyers_at')
+            ->leftJoin('data_customers','Buyers.Walkin_id','=','data_customers.Customer_id')
+            ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','upload_lat_longs.*','data_customers.Customer_id','data_customers.Resource_news','buyers.created_at AS createdBuyers_at')
             ->where('buyers.id',$id)
             ->first();
                   
@@ -863,7 +864,9 @@ class AnalysController extends Controller
         $user->Gradebuyer_car = $request->get('Gradebuyer');
         $user->Objective_car = $request->get('objectivecar');
         $user->Memo_buyer = $request->get('Memo');
+        $user->Prefer_buyer = $request->get('Buyerprefer');
         $user->Memo_broker = $request->get('Memobroker');
+        $user->Prefer_broker = $request->get('Brokerprefer');
       $user->update();
 
       $SettelSP = str_replace ("_","",$request->get('telSP'));

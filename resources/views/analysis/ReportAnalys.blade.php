@@ -377,10 +377,53 @@
         </tr>
         <tr>
           <th align="right" width="120px"> ผู้อนุมัติ &nbsp;</th>
-          <th class="text-center" width="120px" style="background-color: yellow;"> <b>{{$dataReport->Approvers_car}}</b></th>
-          <th align="right" width="120px"> หมายเหตุ &nbsp;</th>
-          <th class="text-center" width="180px" style="background-color: yellow;"> <b>{{$dataReport->Note_car}}</b></th>
+          <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Approvers_car}}</b></th>
+
         </tr>
+      </table>
+      <br/><br/><br/><br/>
+      <h4 align="left"><u>รายละเอียดเพิ่มเติม</u></h4>
+      <table border="1">
+        <tbody>
+          <tr>
+            <th align="right" width="120px"> หมายเหต/กรณีพิเศษ &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Note_car}}</b></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> รายละเอียดอาชีพ &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->CareerDetail_buyer}}</b></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> ผลการประเมินลูกค้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->ApproveDetail_buyer}}</b></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> แหล่งที่มาของลูกค้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Resource_news}}</b></th>
+          </tr>
+          <tr>
+            <th class="text-center" width="540px"></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> ผลการตรวจสอบลูกค้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Memo_buyer}}</b></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> ความพึงพอใจลูกค้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Prefer_buyer}}</b></th>
+          </tr>
+          <tr>
+            <th class="text-center" width="540px"></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> ผลการตรวจสอบนายหน้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Memo_broker}}</b></th>
+          </tr>
+          <tr>
+            <th align="right" width="120px"> ความพึงพอใจนายหน้า &nbsp;</th>
+            <th class="text-center" width="420px" style="background-color: yellow;"> <b>{{$dataReport->Prefer_broker}}</b></th>
+          </tr>
+        </tbody>
       </table>
     @elseif($type == 4)
       <table border="1">
