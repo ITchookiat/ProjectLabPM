@@ -740,7 +740,7 @@ class AnalysController extends Controller
         $NumBranch = "52";
       }elseif ($request->get('BrachUser') == "53" or $request->get('BrachUser') == "สายบุรี") {
         $NumBranch = "53";
-      }elseif ($request->get('BrachUser') == "54" or $request->get('BrachUser') == "สุไหงโกลก") {
+      }elseif ($request->get('BrachUser') == "54" or $request->get('BrachUser') == "โกลก") {
         $NumBranch = "54";
       }elseif ($request->get('BrachUser') == "55" or $request->get('BrachUser') == "เบตง") {
         $NumBranch = "55";
@@ -993,7 +993,7 @@ class AnalysController extends Controller
             $SetBranch = "นราธิวาส";
           }elseif ($request->get('BrachUser') == "53" or $request->get('BrachUser') == "สายบุรี") {
             $SetBranch = "สายบุรี";
-          }elseif ($request->get('BrachUser') == "54" or $request->get('BrachUser') == "สุไหงโกลก") {
+          }elseif ($request->get('BrachUser') == "54" or $request->get('BrachUser') == "โกลก") {
             $SetBranch = "โกลก";
           }elseif ($request->get('BrachUser') == "55" or $request->get('BrachUser') == "เบตง") {
             $SetBranch = "เบตง";
