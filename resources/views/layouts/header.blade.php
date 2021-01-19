@@ -110,15 +110,14 @@
     <div class="os-padding">
       <div class="os-viewport os-viewport-native-scrollbars-invisible" style="">
         <div class="os-content" style="padding: 16px; height: 100%; width: 100%;">
-          <h5>เมนูเพิ่มเติม...</h5><hr class="mb-2"><div class="mb-4">
-            <input type="checkbox" value="1" class="mr-1">
-            <span>Brand small text</span>
-          </div>
-          <h6>Accent Color Variants</h6>
-          <div class="d-flex"></div>
-          <div class="d-flex flex-wrap mb-3">
-            <div class="bg-teal elevation-2" style="width: 40px; height: 20px; border-radius: 25px; margin-right: 10px; margin-bottom: 10px; opacity: 0.8; cursor: pointer;"></div>
-          </div>
+          <h5>เมนูตั้งค่า (Menu Setting)</h5><hr class="mb-2">
+          @if(auth::user()->type == "Admin")
+            <div class="mb-2">
+              <a href="{{ route('MasterMaindata.index') }}">
+                <i class="far fa-id-badge text-red mr-1"></i> ข้อมูลผู้ใช้งานระบบ
+              </a>
+            </div>
+          @endif
         </div>
       </div>
     </div>
@@ -135,6 +134,7 @@
     <div class="os-scrollbar-corner"></div>
   </div>
 </aside>
+
 
 
 {{-- ฟังชัน login ข้ามโปรแกรม --}}

@@ -35,8 +35,8 @@ class CreateBuyersTable extends Migration
             $table->string('Driver_buyer')->nullable();
             $table->string('HouseStyle_buyer')->nullable();
             $table->string('Career_buyer')->nullable();
-            $table->string('CareerDetail_buyer')->nullable();
-            $table->string('ApproveDetail_buyer')->nullable();
+            $table->string('CareerDetail_buyer', "MAX")->nullable();
+            $table->string('ApproveDetail_buyer', "MAX")->nullable();
             $table->string('Income_buyer')->nullable();
             $table->string('Purchase_buyer')->nullable();
             $table->string('Support_buyer')->nullable();
@@ -49,10 +49,10 @@ class CreateBuyersTable extends Migration
             $table->string('Objective_car')->nullable();
             $table->string('Walkin_id')->nullable();
             $table->string('SendUse_Walkin')->nullable();
-            $table->string('Memo_buyer')->nullable();
-            $table->string('Prefer_buyer')->nullable();
-            $table->string('Memo_broker')->nullable();
-            $table->string('Prefer_broker')->nullable();
+            $table->string('Memo_buyer', "MAX")->nullable();
+            $table->string('Prefer_buyer', "MAX")->nullable();
+            $table->string('Memo_broker', "MAX")->nullable();
+            $table->string('Prefer_broker', "MAX")->nullable();
             $table->timestamps();
         });
     }

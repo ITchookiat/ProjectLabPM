@@ -6,11 +6,9 @@
   <section class="content">
     <div class="content-header">
       @if(session()->has('success'))
-        <div class="alert alert-success alert-dismissible" role="alert">
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span></button>
-          <strong>สำเร็จ!</strong> {{ session()->get('success') }}
-        </div>
+        <script type="text/javascript">
+          toastr.success('{{ session()->get('success') }}')
+        </script>
       @endif
 
       <section class="content">
@@ -22,7 +20,7 @@
               </div>
               <div class="card-body">
                 <div class="float-right form-inline"> 
-                  <a href="{{ route('regist') }}" class="btn btn-success">
+                  <a href="{{ route('MasterMaindata.show',[1]) }}" class="btn btn-success">
                     <span class="glyphicon glyphicon-plus"></span> Register
                   </a>
                 </div>
@@ -113,5 +111,4 @@
       $(".alert").alert('close');
     });;
   </script>
-
 @endsection

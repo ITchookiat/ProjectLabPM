@@ -42,7 +42,18 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      User::create([
+        'name' => $request->get('name'),
+        'username' => $request->get('username'),
+        'email' => $request->get('email'),
+        'password' => bcrypt($request->get('password')),
+        'password_token' => $request->get('password'),
+        'branch' => $request->get('branch'),
+        'type' => $request->get('section_type'),
+        'position' => $request->get('position'),
+      ]);
+
+      return redirect()->Route('MasterMaindata.index')->with('success','อัพเดตข้อมูลเรียบร้อย');
     }
 
     /**
@@ -53,7 +64,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+      if ($id == 1) {
+        if(auth()->user()->type == "Admin"){    // เช็คสิทธิ์ ในตาราง user
+          return view('maindata.register');
+        }else{
+          abort(404);
+        }
+      }
     }
 
     /**
@@ -78,18 +95,13 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-      // dd($request);
-      $this->validate($request,['main_username' => 'required','main_name' => 'required','main_email' => 'required','section_type' => 'required','branch' => 'required']);  /**required =ตรวจสอบ,จำเป็นต้องป้อนข้อมูล */
-
       $user = User::find($id);
-
-      $user->username = $request->get('main_username');
-      $user->name = $request->get('main_name');
-      $user->email = $request->get('main_email');
-      $user->branch = $request->get('branch');
-      $user->type = $request->get('section_type');
-      $user->position = $request->get('position');
-
+        $user->username = $request->get('main_username');
+        $user->name = $request->get('main_name');
+        $user->email = $request->get('main_email');
+        $user->branch = $request->get('branch');
+        $user->type = $request->get('section_type');
+        $user->position = $request->get('position');
       $user->update();
 
       return redirect()->Route('ViewMaindata')->with('success','อัพเดตข้อมูลเรียบร้อย');
@@ -107,31 +119,5 @@ class UserController extends Controller
       $item->Delete();
 
       return redirect()->back()->with('success','ลบข้อมูลเรียบร้อย');
-    }
-
-    public function register()  //แสดง
-    {
-      if(auth()->user()->type == "Admin"){    // เช็คสิทธิ์ ในตาราง user
-        return view('maindata.register');
-      }else{
-        abort(404);
-      }
-
-    }
-
-    public function Saveregister(Request $request)  //บันทึก
-    {
-      User::create([
-        'name' => $request->get('name'),
-        'username' => $request->get('username'),
-        'email' => $request->get('email'),
-        'password' => bcrypt($request->get('password')),
-        'password_token' => $request->get('password'),
-        'branch' => $request->get('branch'),
-        'type' => $request->get('section_type'),
-        'position' => $request->get('position'),
-      ]);
-
-      return redirect()->Route('ViewMaindata')->with('success','อัพเดตข้อมูลเรียบร้อย');
     }
 }
