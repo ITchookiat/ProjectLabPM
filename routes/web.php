@@ -19,13 +19,16 @@ Auth::routes();
 
 Route::group(['middleware' => 'auth'], function()
   {
-    //------------------Admin--------------------//
-    Route::get('/maindata/register', 'UserController@register')->name('regist');
-    Route::post('/maindata/saveregister', 'UserController@Saveregister')->name('Saveregist');
-    Route::get('/maindata/view', 'UserController@index')->name('ViewMaindata');
-    Route::get('/maindata/edit/{id}', 'UserController@edit')->name('maindata.edit');
-    Route::patch('/maindata/update/{id}', 'UserController@update')->name('maindata.update');
-    Route::delete('/maindata/delete/{id}', 'UserController@destroy')->name('maindata.destroy');
+    //----------------Admin register-----------------//
+    route::resource('MasterMaindata','UserController');
+
+    // //------------------Admin--------------------//
+    // Route::get('/maindata/register', 'UserController@register')->name('regist');
+    // Route::post('/maindata/saveregister', 'UserController@Saveregister')->name('Saveregist');
+    // Route::get('/maindata/view', 'UserController@index')->name('ViewMaindata');
+    // Route::get('/maindata/edit/{id}', 'UserController@edit')->name('maindata.edit');
+    // Route::patch('/maindata/update/{id}', 'UserController@update')->name('maindata.update');
+    // Route::delete('/maindata/delete/{id}', 'UserController@destroy')->name('maindata.destroy');
 
     route::resource('MasterAnalysis','AnalysController');
     Route::get('/Analysis/Home/{type}', 'AnalysController@index')->name('Analysis');

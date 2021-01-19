@@ -59,10 +59,11 @@
     <div class="row">
       <div class="col-md-3">
           @if(auth::user()->type == 'Admin' or auth::user()->type == 'แผนก วิเคราะห์')
-          <a href="{{ route('Analysis', 2) }}" class="btn btn-success btn-block mb-3">Compose</a>
-        @else
-          <a href="#" class="btn btn-success btn-block mb-3">Compose</a>
-        @endif
+            <a href="{{ route('Analysis', 2) }}" class="btn btn-success btn-block mb-3">Compose</a>
+            <a href="{{ route('DataCustomer', 1) }}" class="btn btn-danger btn-block mb-3">New Walk-in</a>
+          @else
+            <a href="{{ route('DataCustomer', 1) }}" class="btn btn-danger btn-block mb-3">New Walk-in</a>
+          @endif
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">List</h3>

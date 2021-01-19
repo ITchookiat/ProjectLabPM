@@ -37,13 +37,13 @@ return [
       'ibmi' => [
             'driver'               => 'db2_ibmi_odbc',
             'driverName'           => '{IBM DB2 ODBC DRIVER}',
-             // General settings
-            'host'                 => '192.168.200.10',
+            // General settings
+            'host'                 => '203.150.34.16',
             'protocol'             => 'TCPIP',
             'username'             => 'sfhp',
             'password'             => 'Soft@2K7',
             //Server settings
-            'database'             => 'DATASF',
+            'database'             => 'DBMSCKKB',
             'prefix'               => '',
             'schema'               => 'information_schema',
             'port'                 => '50000',
