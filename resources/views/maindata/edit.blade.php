@@ -26,7 +26,7 @@
 
                 <div class="row">
                   <div class="col-md-12"> <br />
-                    <form method="post" action="{{ action('UserController@update',$id) }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('MasterMaindata.update',$id) }}" enctype="multipart/form-data">
                       @csrf
                       @method('put')
 
@@ -127,11 +127,10 @@
                         <button type="submit" class="delete-modal btn btn-success">
                           <span class="glyphicon glyphicon-floppy-save"></span> อัพเดท
                         </button>
-                        <a class="delete-modal btn btn-danger" href="{{ route('ViewMaindata') }}">ยกเลิก</a>
+                        <a class="delete-modal btn btn-danger" href="{{ route('MasterMaindata.index') }}">ยกเลิก</a>
                       </div>
                       <input type="hidden" name="_method" value="PATCH"/>
                     </form>
-    
                   </div>
                 </div>
 

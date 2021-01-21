@@ -82,7 +82,6 @@ class UserController extends Controller
     public function edit($id)
     {
       $user = User::find($id);
-
       return view('maindata.edit',compact('user','id'));
     }
 
@@ -104,7 +103,7 @@ class UserController extends Controller
         $user->position = $request->get('position');
       $user->update();
 
-      return redirect()->Route('ViewMaindata')->with('success','อัพเดตข้อมูลเรียบร้อย');
+      return redirect()->Route('MasterMaindata.index')->with('success','อัพเดตข้อมูลเรียบร้อย');
     }
 
     /**
