@@ -481,7 +481,7 @@ class AnalysController extends Controller
         }elseif ($request->get('BrachUser') == "57") {
           $SetBranch = "ตันหยงมัส";
         }elseif ($request->get('BrachUser') == "58") {
-          $SetBranch = "บันนังสตา";
+          $SetBranch = "รือเสาะ";
         }
 
         $Cardetaildb = new Cardetail([
@@ -748,7 +748,7 @@ class AnalysController extends Controller
         $NumBranch = "56";
       }elseif ($request->get('BrachUser') == "57" or $request->get('BrachUser') == "ตันหยงมัส") {
         $NumBranch = "57";
-      }elseif ($request->get('BrachUser') == "58" or $request->get('BrachUser') == "บันนังสตา") {
+      }elseif ($request->get('BrachUser') == "58" or $request->get('BrachUser') == "รือเสาะ") {
         $NumBranch = "58";
       }
 
@@ -1001,8 +1001,8 @@ class AnalysController extends Controller
             $SetBranch = "โคกโพธิ์";
           }elseif ($request->get('BrachUser') == "57" or $request->get('BrachUser') == "ตันหยงมัส") {
             $SetBranch = "ตันหยงมัส";
-          }elseif ($request->get('BrachUser') == "58" or $request->get('BrachUser') == "บันนังสตา") {
-            $SetBranch = "บันนังสตา";
+          }elseif ($request->get('BrachUser') == "58" or $request->get('BrachUser') == "รือเสาะ") {
+            $SetBranch = "รือเสาะ";
           }
 
           // สถานะ อนุมัติสัญญา

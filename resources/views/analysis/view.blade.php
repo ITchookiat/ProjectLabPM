@@ -144,7 +144,8 @@
                     <option value="เบตง" {{ ($branch == 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
                     <option value="โคกโพธิ์" {{ ($branch == 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                     <option value="ตันหยงมัส" {{ ($branch == 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
-                    <option value="บังนังสตา" {{ ($branch == 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา (58)</option>
+                    <option value="รือเสาะ" {{ ($branch == 'รือเสาะ') ? 'selected' : '' }}>รือเสาะ (58)</option>
+                    {{-- <option value="บังนังสตา" {{ ($branch == 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา (58)</option> --}}
                   </select>
 
                   <label for="text" class="mr-sm-2">สถานะ : </label>
