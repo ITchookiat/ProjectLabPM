@@ -443,7 +443,7 @@
                                       <option value="55" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
                                       <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                       <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
-                                      <option value="58" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา (58)</option>
+                                      <option value="58" {{ ($data->branch_car === 'รือเสาะ') ? 'selected' : '' }}>รือเสาะ (58)</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -459,7 +459,7 @@
                                         <option value="55" {{ ($data->branch_car === 'เบตง') ? 'selected' : '' }}>เบตง (55)</option>
                                         <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                         <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
-                                        <option value="58" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา (58)</option>
+                                        <option value="58" {{ ($data->branch_car === 'รือเสาะ') ? 'selected' : '' }}>รือเสาะ (58)</option>
                                       </select>
                                     @endif
                                   @endif

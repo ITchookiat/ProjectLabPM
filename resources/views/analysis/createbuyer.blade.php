@@ -304,7 +304,7 @@
                                       <option value="55">เบตง (55)</option>
                                       <option value="56">โคกโพธิ์ (56)</option>
                                       <option value="57">ตันหยงมัส (57)</option>
-                                      <option value="58">บันนังสตา (58)</option>
+                                      <option value="58">รือเสาะ (58)</option>
                                     </select>
                                   </div>
                                 </div>
