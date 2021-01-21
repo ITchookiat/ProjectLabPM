@@ -52,11 +52,11 @@
                         <td class="text-center">{{ $row->type }}</td>
                         <td class="text-center">{{ $row->position }}</td>
                         <td class="text-center">
-                          <a href="{{ action('UserController@edit',[$row['id']]) }}" class="btn btn-warning btn-sm">
+                          <a href="{{ route('MasterMaindata.edit',$row->id) }}" class="btn btn-warning btn-sm">
                             <span class="glyphicon glyphicon-edit"></span> Edit
                           </a>
 
-                          <form method="post" class="delete_form" action="{{ action('UserController@destroy',$row['id']) }}" style="display:inline;">
+                          <form method="post" class="delete_form" action="{{ route('MasterMaindata.destroy',$row->id) }}" style="display:inline;">
                             {{csrf_field()}}
                             <input type="hidden" name="_method" value="DELETE" />
                             <button type="submit" class="delete-modal btn btn-danger btn-sm" onclick="return confirm('คุณต้องการลบข้อมูลนี้หรือไม่?')">

@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('Saveregist') }}">
+                    <form method="POST" action="{{ route('MasterMaindata.store') }}">
                         @csrf
 
                         <div class="form-group row">
@@ -129,7 +129,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
-                                <a class="delete-modal btn btn-danger" href="{{ route('ViewMaindata') }}">ยกเลิก</a>
+                                <a class="delete-modal btn btn-danger" href="{{ route('MasterMaindata.index') }}">ยกเลิก</a>
                             </div>
                         </div>
                     </form>
