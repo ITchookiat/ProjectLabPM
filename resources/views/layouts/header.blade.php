@@ -91,7 +91,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-danger btn-outline pull-left" data-dismiss="modal"><i class="fa fa-times-circle"></i>  ยกเลิก</button>
-        <a href="{{ route('logout') }}" class="btn btn-success btn-outline" >
+        <a href="http://192.168.200.9/Projectleasing/public" class="btn btn-success btn-outline" >
           <i class="fa fa-check-circle"></i>  ตกลง
         </a>
       </div>
