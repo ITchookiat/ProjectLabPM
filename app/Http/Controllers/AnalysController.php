@@ -773,53 +773,27 @@ class AnalysController extends Controller
       // กำหนด วันอนุมัติสัญญา
       $StatusApp = "รออนุมัติ";
       $newDateDue = $request->get('DateDue');
-      if ($SetTopcar > 250000) {
-        if ($request->get('MANAGER') != Null) {
-          if ($Getcardetail->Date_Appcar == Null) {
-            $newDateDue = date('Y-m-d');
-          }
-          $StatusApp = "อนุมัติ";
-          if ($request->get('TypeContract') == "P03") {
-            $SetFlag = "Y";
-          }elseif ($request->get('TypeContract') == "P06") {
-            $SetFlag = "E";
-          }elseif ($request->get('TypeContract') == "P07") {
-            $SetFlag = "S";
-          }
-        }else {
-          $newDateDue = $request->get('DateDue');
-          $StatusApp = "รออนุมัติ";
-          if ($request->get('TypeContract') == "P03") {
-            $SetFlag = NULL;
-          }elseif ($request->get('TypeContract') == "P06") {
-            $SetFlag = NULL;
-          }elseif ($request->get('TypeContract') == "P07") {
-            $SetFlag = NULL;
-          }
+      if ($request->get('MANAGER') != Null) {
+        if ($Getcardetail->Date_Appcar == Null) {
+          $newDateDue = date('Y-m-d');
+        }
+        $StatusApp = "อนุมัติ";
+        if ($request->get('TypeContract') == "P03") {
+          $SetFlag = "Y";
+        }elseif ($request->get('TypeContract') == "P06") {
+          $SetFlag = "E";
+        }elseif ($request->get('TypeContract') == "P07") {
+          $SetFlag = "S";
         }
       }else {
-        if ($request->get('AUDIT') != Null) {
-          if ($Getcardetail->Date_Appcar == Null) {
-            $newDateDue = date('Y-m-d');
-          }
-          $StatusApp = "อนุมัติ";
-          if ($request->get('TypeContract') == "P03") {
-            $SetFlag = "Y";
-          }elseif ($request->get('TypeContract') == "P06") {
-            $SetFlag = "E";
-          }elseif ($request->get('TypeContract') == "P07") {
-            $SetFlag = "S";
-          }
-        }elseif ($request->get('MASTER') != Null) {
-          $newDateDue = $request->get('DateDue');
-          $StatusApp = "รออนุมัติ";
-          if ($request->get('TypeContract') == "P03") {
-            $SetFlag = NULL;
-          }elseif ($request->get('TypeContract') == "P06") {
-            $SetFlag = NULL;
-          }elseif ($request->get('TypeContract') == "P07") {
-            $SetFlag = NULL;
-          }
+        $newDateDue = $request->get('DateDue');
+        $StatusApp = "รออนุมัติ";
+        if ($request->get('TypeContract') == "P03") {
+          $SetFlag = NULL;
+        }elseif ($request->get('TypeContract') == "P06") {
+          $SetFlag = NULL;
+        }elseif ($request->get('TypeContract') == "P07") {
+          $SetFlag = NULL;
         }
       }
 
