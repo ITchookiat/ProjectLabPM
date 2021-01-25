@@ -1,125 +1,28 @@
 @extends('layouts.master')
 @section('title','Home')
 @section('content')
+  <style>
+    i:hover {
+      color: blue;
+    }
+  </style>
 
-<style>
-  i:hover {
-    color: blue;
-  }
-</style>
+  @if(session()->has('success'))
+    <script type="text/javascript">
+      toastr.success('{{ session()->get('success') }}')
+    </script>
+  @endif
 
-<div class="content-header">
-  <div class="row justify-content-center">
-    <div class="col-md-12 table-responsive">
-      <div class="card">
-        <div class="card-body">
-          @if(session()->has('success'))
-            <script type="text/javascript">
-              toastr.success('{{ session()->get('success') }}')
-            </script>
-          @endif
-
-
-          <div class="row mb-0">
-            <div class="col-sm-6">
-              <h1 class="m-0 text-dark">LAB PLoan-Micro</h1>
-            </div>
-            <div class="col-sm-6">
-              @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก รถบ้าน")
-                <a class="btn bg-warning btn-app float-right" data-toggle="modal" data-target="#modal-walkin" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
-                  <span class="fas fa-users prem fa-5x"></span> <label class="prem">WALK IN</label>
-                </a>
-              @endif
-            </div>
-          </div>
-
-          <div align="center">
-            <a href="{{ route('Analysis',1) }}"><img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 43%"></a>
-          </div>
-
-          <div class="row">
-            {{-- <div class="col-lg-3 col-xs-6">
-              <div class="small-box bg-info">
-                <div class="inner">
-                  <h2>ระบบสินเชื่อ</h2>
-                  <br><br>
-                </div>
-                @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก รถบ้าน" or auth::user()->type == "แผนก การเงินใน")
-                <div class="icon">
-                  <i class="a1 fa fa-sitemap" data-toggle="modal" data-target="#modal-default" style="cursor: pointer;"></i>
-                </div>
-                @endif
-                <a href="#" class="small-box-footer">เพิ่มเติม <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div>
-
-
-            <div class="col-lg-3 col-xs-6">
-              <div class="small-box bg-red">
-                <div class="inner">
-                  <h2>แผนกการเงิน</h2>
-                  <br><br>
-                </div>
-                @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก เร่งรัด" or auth::user()->type == "แผนก กฏหมาย")
-                <div class="icon">
-                  <i class="a1 fas fa-gavel" data-toggle="modal" data-target="#modal-legislation" style="cursor: pointer;"></i>
-                </div>
-                @endif
-                <a href="#" class="small-box-footer">เพิ่มเติม <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div> --}}
-          </div>
-
-        </div>
-      </div>
+  <div class="pricing-header px-3 py-3 pt-md-3 pb-md-0 mx-auto text-center">
+    <div class="card-tools">
+      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก รถบ้าน")
+        <a class="btn bg-warning btn-app float-right" data-toggle="modal" data-target="#modal-walkin" data-backdrop="static" data-keyboard="false" style="border-radius: 40px;">
+          <span class="fas fa-users prem fa-5x"></span> <label class="prem">WALK IN</label>
+        </a>
+      @endif
     </div>
-  </div>
-</div>
-
-  <div class="modal fade" id="modal-default" style="display: none;" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content" >
-        <div class="modal-header">
-          <div class="col text-center">
-            <h4 class="modal-title">ระบบสินเชื่อ</h4>
-          </div>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">x</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="row">
-            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก รถบ้าน" or auth::user()->type == "แผนก การเงินใน")
-              @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน" or auth::user()->branch == 01 or auth::user()->branch == 03 or auth::user()->branch == 04 or auth::user()->branch == 05 or auth::user()->branch == 06 or auth::user()->branch == 07)
-                <div class="col-md-6 col-sm-6 col-xs-12">
-                  <div class="info-box bg-blue">
-                    <span class="info-box-icon bg-blue">
-                      <span class="info-box-icon">
-                        <a href="{{ route('Analysis',1) }}" class="a1"><i class="fas fa-id-card fa-2x"></i></a>
-                      </span>
-                    </span>
-                    <div class="info-box-content">
-                      <span class="info-box-text"><br /></span>
-                      <span class="info-box-number">เช่าซื้อ</span>
-
-                      <div class="progress">
-                        <div class="progress-bar" style="width: 100%"></div>
-                      </div>
-                        <span class="progress-description">
-                          {{-- จำนวนรถที่อนุมัติ {{ $datafinance }} คัน --}}
-                        </span>
-                    </div>
-                  </div>
-                </div>
-              @endif
-            @endif
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          {{-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button> --}}
-        </div>
-      </div>
+    <div align="center">
+      <a href="{{ route('Analysis',1) }}"><img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 53%"></a>
     </div>
   </div>
 
@@ -362,5 +265,4 @@
       document.form2.topcar.value = addCommas(num1);
     }
   </script>
-
 @endsection
