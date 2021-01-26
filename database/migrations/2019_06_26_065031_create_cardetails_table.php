@@ -42,6 +42,7 @@ class CreateCardetailsTable extends Migration
             $table->string('status_car')->nullable();
             $table->string('Percent_car')->nullable();
             $table->string('Payee_car')->nullable();
+            $table->string('IDcardPayee_car')->nullable();
             $table->string('Accountbrance_car')->nullable();
             $table->string('Tellbrance_car')->nullable();
             $table->string('Agent_car')->nullable();
