@@ -2330,7 +2330,18 @@
                           </div>
 
                           <div class="row">
-                            <div class="col-6"></div>
+                            <div class="col-6">
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label text-right">ปชช.ผู้รับเงิน : </label>
+                                <div class="col-sm-8">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" name="IDcardPayeecar" value="{{$data->IDcardPayee_car}}" class="form-control form-control-sm" placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask=""/>
+                                  @else
+                                    <input type="text" name="IDcardPayeecar" value="{{$data->IDcardPayee_car}}" class="form-control form-control-sm" placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                  @endif
+                                </div>
+                              </div>
+                            </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">สาขา : </label>
