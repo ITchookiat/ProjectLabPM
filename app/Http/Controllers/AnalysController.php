@@ -842,6 +842,8 @@ class AnalysController extends Controller
         $user->Prefer_buyer = $request->get('Buyerprefer');
         $user->Memo_broker = $request->get('Memobroker');
         $user->Prefer_broker = $request->get('Brokerprefer');
+        $user->Prefer_broker = $request->get('Brokerprefer');
+        $user->MemoIncome_buyer = $request->get('BuyerIncomeNote');
       $user->update();
 
       $SettelSP = str_replace ("_","",$request->get('telSP'));
@@ -867,6 +869,7 @@ class AnalysController extends Controller
         $sponsor->puchase_SP = $request->get('puchaseSP');
         $sponsor->support_SP = $request->get('supportSP');
         $sponsor->securities_SP = $request->get('securitiesSP');
+        $sponsor->MemoIncome_SP = $request->get('SupportIncomeNote');
       $sponsor->update();
 
       $SettelSP2 = str_replace ("_","",$request->get('telSP2'));
@@ -1048,6 +1051,7 @@ class AnalysController extends Controller
           $cardetail->Accountbrance_car = $request->get('Accountbrancecar');
           $cardetail->Tellbrance_car = $request->get('Tellbrancecar');
           $cardetail->Agent_car = $request->get('Agentcar');
+          $cardetail->IDcardAgent_car = $request->get('IDAgentcar');
           $cardetail->Accountagent_car = $request->get('Accountagentcar');
           $cardetail->Commission_car = $SetCommissioncar;
           $cardetail->Tellagent_car = $request->get('Tellagentcar');
@@ -1219,8 +1223,56 @@ class AnalysController extends Controller
         $status = Null;
       }
 
+      // รูปภาพ รายได้ ผู้เช่าซื้อ
+      if ($request->hasFile('image_income_1')) {
+        $image_array = $request->file('image_income_1');
+        $array_len = count($image_array);
+
+        for ($i=0; $i < $array_len; $i++) {
+          $image_size = $image_array[$i]->getClientSize();
+          $image_lastname = $image_array[$i]->getClientOriginalExtension();
+          $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
+
+          $path = public_path().'/upload-image/'.$SetLicense;
+          Storage::makeDirectory($path, 0777, true, true);
+          $image_array[$i]->move($path,$image_new_name);
+
+          $Uploaddb = new UploadfileImage([
+            'Buyerfileimage_id' => $id,
+            'Type_fileimage' => 4,
+            'Name_fileimage' => $image_new_name,
+            'Size_fileimage' => $image_size,
+          ]);
+          $Uploaddb ->save();
+        }
+      }
+      // รูปภาพ รายได้ ผู้ค้ำ
+      if ($request->hasFile('image_income_2')) {
+        $image_array = $request->file('image_income_2');
+        $array_len = count($image_array);
+
+        for ($i=0; $i < $array_len; $i++) {
+          $image_size = $image_array[$i]->getClientSize();
+          $image_lastname = $image_array[$i]->getClientOriginalExtension();
+          $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
+
+          $path = public_path().'/upload-image/'.$SetLicense;
+          Storage::makeDirectory($path, 0777, true, true);
+          $image_array[$i]->move($path,$image_new_name);
+
+          $Uploaddb = new UploadfileImage([
+            'Buyerfileimage_id' => $id,
+            'Type_fileimage' => 5,
+            'Name_fileimage' => $image_new_name,
+            'Size_fileimage' => $image_size,
+          ]);
+          $Uploaddb ->save();
+        }
+      }
+
       if ($type == 1) {
-        return redirect()->Route('Analysis',$type)->with(['newfdate' => $fdate,'newtdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
+        // return redirect()->Route('Analysis',$type)->with(['newfdate' => $fdate,'newtdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
+        return redirect()->back()->with(['newfdate' => $fdate,'newtdate' => $tdate,'branch' => $branch,'status' => $status,'success' => 'อัพเดตข้อมูลเรียบร้อย']);
       }
     }
 
@@ -1309,6 +1361,40 @@ class AnalysController extends Controller
         $item = DB::table('uploadfile_images')
               ->where('Buyerfileimage_id','=',$id)
               ->where('Type_fileimage','=', '3')
+              ->get();
+
+        if ($item != NULL) {
+          foreach ($item as $key => $value) {
+            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+            File::delete($itemPath);
+
+            $deleteItem = UploadfileImage::where('fileimage_id',$value->fileimage_id);
+            $deleteItem->Delete();
+          }
+
+        }
+      }
+      elseif ($request->type == 4) {
+        $item = DB::table('uploadfile_images')
+              ->where('Buyerfileimage_id','=',$id)
+              ->where('Type_fileimage','=', '4')
+              ->get();
+
+        if ($item != NULL) {
+          foreach ($item as $key => $value) {
+            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+            File::delete($itemPath);
+
+            $deleteItem = UploadfileImage::where('fileimage_id',$value->fileimage_id);
+            $deleteItem->Delete();
+          }
+
+        }
+      }
+      elseif ($request->type == 5) {
+        $item = DB::table('uploadfile_images')
+              ->where('Buyerfileimage_id','=',$id)
+              ->where('Type_fileimage','=', '5')
               ->get();
 
         if ($item != NULL) {

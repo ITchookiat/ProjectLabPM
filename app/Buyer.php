@@ -11,7 +11,7 @@ class Buyer extends Model
                         'Mate_buyer','Idcard_buyer','Address_buyer','AddN_buyer','StatusAdd_buyer','Workplace_buyer','House_buyer',
                         'Driver_buyer','HouseStyle_buyer','Career_buyer','CareerDetail_buyer','ApproveDetail_buyer','Income_buyer','Purchase_buyer','Support_buyer',
                         'securities_buyer','deednumber_buyer','area_buyer','BeforeIncome_buyer','AfterIncome_buyer','Gradebuyer_car','Objective_car','Walkin_id','SendUse_Walkin',
-                        'Memo_buyer','Prefer_buyer','Memo_broker','Prefer_broker'];
+                        'Memo_buyer','Prefer_buyer','Memo_broker','Prefer_broker','MemoIncome_buyer'];
 
   public function Sponsor()
   {
