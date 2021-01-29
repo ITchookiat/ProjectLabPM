@@ -9,12 +9,12 @@
 @endphp
 
   <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  <aside class="main-sidebar elevation-4 sidebar-dark-warning">
     <!-- Brand Logo -->
     <a href="{{ route('index','home') }}" class="brand-link">
       <img src="{{ asset('dist/img/ploan.jpg') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">CHOOKIAT LEASING</span>
+      <span class="brand-text font-weight-light">CHOOKIAT LABPM</span>
     </a>
 
     <!-- Sidebar -->
@@ -34,19 +34,19 @@
         <ul class="nav nav-pills nav-sidebar flex-column text-sm" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item has-treeview {{ Request::is('Analysis/*') ? 'menu-open' : '' }}{{ Request::is('DataCustomer/*') ? 'menu-open' : '' }}">
+          <li class="nav-item has-treeview {{ Request::is('MasterAnalysis') ? 'menu-open' : '' }} {{ Request::is('Analysis/*') ? 'menu-open' : '' }}{{ Request::is('DataCustomer/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link active">
               <i class="nav-icon fa fa-sitemap"></i>
               <p>
-                ระบบสินเชื่อ
+                ระบบเงินกู้
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
             
             @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
               <ul class="nav nav-treeview">
-                <li class="nav-item has-treeview {{ Request::is('Analysis/Home/1') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/2') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/3') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/4') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/5') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/6') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/7') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/1/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/4/*') ? 'menu-open' : '' }} 
-                                                 {{ Request::is('Analysis/deleteImageEach/1/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/deleteImageEach/4/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/2') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview {{ Request::is('MasterAnalysis') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/7') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/1/*') ? 'menu-open' : '' }}
+                                                 {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/2') ? 'menu-open' : '' }}">
                   <a href="#" class="nav-link">
                     <i class="far fa-window-restore text-red nav-icon"></i>
                     <p>
@@ -57,13 +57,20 @@
                   <ul class="nav nav-treeview" style="margin-left: 15px;">
                       @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
                         <li class="nav-item">
-                          <a href="{{ route('Analysis',1) }}" class="nav-link {{ Request::is('Analysis/Home/1') ? 'active' : '' }} {{ Request::is('Analysis/Home/2') ? 'active' : '' }} {{ Request::is('Analysis/edit/1/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
+                          @php
+                            if (isset($_GET['type'])) {
+                              if ($_GET['type'] == 1 || $_GET['type'] == 2) {
+                                $SetActive1 = true;
+                              }
+                            }
+                          @endphp
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{1}}" class="nav-link @if(isset($SetActive1)) {{($SetActive1 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/Home/1') ? 'active' : '' }} {{ Request::is('Analysis/Home/2') ? 'active' : '' }} {{ Request::is('Analysis/edit/1/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>New PLoan-Micro</p>
+                            <p>เงินกู้รถยนต์</p>
                           </a>
-                          <a href="{{ route('Analysis',3) }}" class="nav-link {{ Request::is('Analysis/Home/3') ? 'active' : '' }}">
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{3}}" class="nav-link">
                             <i class="far fa-dot-circle nav-icon"></i>
-                            <p>Report PLoan-Micro</p>
+                            <p>เงินกู้จักรยานยนต์</p>
                           </a>
                         </li>
                       @endif
@@ -75,7 +82,7 @@
 
           <li class="nav-item has-treeview {{ Request::is('Treasury/*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link active">
-              <span id="ShowData"></span>
+              <span style="color: blue;" id="ShowData"></span>
               {{-- <span class="badge badge-danger navbar-badge">3</span> --}}
               <i class="nav-icon fas fa-hand-holding-usd"></i>
               <p>
@@ -165,8 +172,6 @@
           </li> --}}
         </ul>
       </nav>
-
-
     </div>
   </aside>
 

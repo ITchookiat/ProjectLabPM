@@ -25,9 +25,7 @@ class DataCustomerController extends Controller
      */
     public function index(Request $request, $type)
     {
-        // dd($type);
         $datenow = date('Y-m-d');
-        // $datenow = date('Y-m-d', strtotime('-1 days'));
         $newfdate = '';
         $newtdate = '';
         $status = '';
@@ -91,7 +89,6 @@ class DataCustomerController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         if ($request->get('Topcar') != Null) {
             $SetTopcar = str_replace (",","",$request->get('Topcar'));
         }else {
@@ -116,7 +113,7 @@ class DataCustomerController extends Controller
             'Note_car' => $request->get('Notecar'),
             'Name_user' => $request->get('Nameuser'),
             'Type_leasing' => $request->get('TypeLeasing'),
-            'Status_leasing' => 1,
+            'Status_leasing' => 1,  //บันทึกลูกค้า walk-in
           ]);
           $Customerdb->save();
           return redirect()->back()->with('success','บันทึกเรียบร้อยแล้ว');
@@ -159,6 +156,12 @@ class DataCustomerController extends Controller
         elseif($data->Branch_car == 'รือเสาะ'){
             $SetContract = $data->Type_leasing.'-'.$SetYear.'58';
         }
+        elseif($data->Branch_car == 'บังนังสตา'){
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'59';
+        }
+        elseif($data->Branch_car == 'ยะหา'){
+            $SetContract = $data->Type_leasing.'-'.$SetYear.'60';
+        }
         else{
             $SetContract = $data->Type_leasing.'-'.$SetYear.'00';
         }
@@ -181,6 +184,10 @@ class DataCustomerController extends Controller
             $SetUserBranch = 'ตันหยงมัส';
         }elseif(auth()->user()->branch == '58'){
             $SetUserBranch = 'รือเสาะ';
+        }elseif(auth()->user()->branch == '59'){
+            $SetUserBranch = 'บังนังสตา';
+        }elseif(auth()->user()->branch == '60'){
+            $SetUserBranch = 'ยะหา';
         }else{
             $SetUserBranch = 'แอดมิน';
         }

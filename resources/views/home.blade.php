@@ -22,7 +22,7 @@
       @endif
     </div>
     <div align="center">
-      <a href="{{ route('Analysis',1) }}"><img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 53%"></a>
+      <a href="{{ route('MasterAnalysis.index') }}?type={{1}}"><img class="img-responsive" src="{{ asset('dist/img/leasing03.png') }}" alt="User Image" style = "width: 53%"></a>
     </div>
   </div>
 

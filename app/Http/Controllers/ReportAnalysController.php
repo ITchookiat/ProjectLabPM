@@ -5,12 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use PDF;
 use DB;
+use Excel;
 use Carbon\Carbon;
-
-use App\Buyer;
-use App\Sponsor;
-use App\Cardetail;
-use App\Expenses;
 
 class ReportAnalysController extends Controller
 {
@@ -22,7 +18,6 @@ class ReportAnalysController extends Controller
     public function index()
     {
         //
-        dd('sdfdsfd');
     }
 
     /**
@@ -91,24 +86,25 @@ class ReportAnalysController extends Controller
         //
     }
 
+    //ใบเหลือง
     public function ReportPDFIndex(Request $request, $id, $type)
     {
       $dataReport = DB::table('buyers')
-                      ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
-                      ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
-                      ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                      ->leftJoin('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-                      ->leftJoin('data_customers','Buyers.Walkin_id','=','data_customers.Customer_id')
-                      ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','data_customers.Customer_id','data_customers.Resource_news','buyers.created_at AS createdBuyers_at')
-                      ->where('buyers.id',$id)->first();
-      // $newDateDue = \Carbon\Carbon::parse($dataReport->Date_Due)->format('Y')+543 ."-". \Carbon\Carbon::parse($dataReport->Date_Due)->format('m')."-". \Carbon\Carbon::parse($dataReport->Date_Due)->format('d');
+        ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+        ->leftJoin('sponsor2s','buyers.id','=','sponsor2s.Buyer_id2')
+        ->leftJoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+        ->leftJoin('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+        ->leftJoin('data_customers','Buyers.Walkin_id','=','data_customers.Customer_id')
+        ->select('buyers.*','sponsors.*','sponsor2s.*','cardetails.*','expenses.*','data_customers.Customer_id','data_customers.Resource_news','buyers.created_at AS createdBuyers_at')
+        ->where('buyers.id',$id)
+        ->first();
+
       $DateDue = \Carbon\Carbon::parse($dataReport->Date_Due)->format('d')."-".\Carbon\Carbon::parse($dataReport->Date_Due)->format('m');
       $DateDueYear = \Carbon\Carbon::parse($dataReport->Date_Due)->format('Y')+543;
 
       $newDateDue = $DateDue."-".$DateDueYear;
       $now = Carbon::now();
       $date = Carbon::parse($now)->format('d-m-Y');
-      // dd($date);
 
       $view = \View::make('analysis.ReportAnalys' ,compact('dataReport','newDateDue','date','type','dataStructure'));
       $html = $view->render();
@@ -145,41 +141,94 @@ class ReportAnalysController extends Controller
 
         $type = $request->type;
         $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+        $html = $view->render();
+        $pdf = new PDF();
+        $pdf::SetTitle('รายงานขออนุมัติประจำวัน');
+        $pdf::AddPage('L', 'A4');
+        $pdf::SetMargins(5, 5, 5, 0);
+        $pdf::SetFont('freeserif', '', 8, '', true);
+        $pdf::SetAutoPageBreak(TRUE, 25);
+  
+        $pdf::WriteHTML($html,true,false,true,false,'');
+        $pdf::Output('report.pdf');
       }
-      elseif($request->type == 7){ //รายงานส่งผู้บริหาร
-        $ids = $request->choose;
-        $approvedate = date('Y-m-d');
-        $fdate = date('Y-m-d');
-        $tdate = date('Y-m-d');
-        if ($request->has('Approvedate')) {
-          $approvedate = $request->get('Approvedate');
-          $approvedate = \Carbon\Carbon::parse($approvedate)->format('Y') ."-". \Carbon\Carbon::parse($approvedate)->format('m')."-". \Carbon\Carbon::parse($approvedate)->format('d');
-        }
-        if ($request->has('Fromdate')) {
-          $fdate = $request->get('Fromdate');
-          $fdate = \Carbon\Carbon::parse($fdate)->format('Y') ."-". \Carbon\Carbon::parse($fdate)->format('m')."-". \Carbon\Carbon::parse($fdate)->format('d');
-        }
-        if ($request->has('Todate')) {
-          $tdate = $request->get('Todate');
-          $tdate = \Carbon\Carbon::parse($tdate)->format('Y') ."-". \Carbon\Carbon::parse($tdate)->format('m')."-". \Carbon\Carbon::parse($tdate)->format('d');
-        }
+      elseif ($request->type == 2) {  //รายงาน เงินกู้รถยนต์ทั้งหมด
+        $data = DB::table('buyers')
+          ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+          ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
+          ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+          ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+          ->where('cardetails.Approvers_car','!=',Null)
+          ->orderBy('buyers.Contract_buyer', 'ASC')
+          ->get();
 
-        $dataReport = DB::table('buyers')
-            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
-            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-            ->when(!empty($ids), function($q) use($ids){
-              return $q->whereIn('buyers.id', $ids);
-              })
-            ->when(!empty($fdate)  && !empty($tdate), function($q) use ($fdate, $tdate) {
-                return $q->whereBetween('cardetails.Date_Appcar',[$fdate,$tdate]);
-              })
-            ->where('cardetails.Approvers_car','<>','')
-            ->orderBy('buyers.Contract_buyer', 'ASC')
-            ->get();
+        $status = 'สัญญาเงินกู้รถยนต์';
+        Excel::create('รายการสัญญาเงินกู้รถยนต์', function ($excel) use($data,$status) {
+          $excel->sheet($status, function ($sheet) use($data,$status) {
+              $sheet->prependRow(1, array("บริษัท ชูเกียรติลิสซิ่ง จำกัด"));
+              $sheet->prependRow(2, array($status));
+              $sheet->cells('A3:AR3', function($cells) {
+                $cells->setBackground('#FFCC00');
+              });
+              $row = 3;
+              $sheet->row($row, array('ลำดับ','ประเภท','เลขที่สัญญา', 'ชื่อ-สกุล','สาขา', 'วันที่โอน', 'สถานะ',
+                'ยี่ห้อ','รุ่น','ปี', 'ทะเบียนเดิม','ทะเบียนใหม่', 'ยอดจัด', 'ค่าดำเนินการ', 'ชำระต่องวด', 'กำไรดอกเบี้ย','ดอกเบี้ย/เดือน','งวดผ่อน(เดือน)',
+                'พรบ.','ยอดปิดบัญชี','ซื้อประกัน', '% ยอดจัด','รวม คชจ', 'คงเหลือ', 'ค่าคอมก่อนหัก 3%', 'ค่าคอมหลังหัก 3%', 
+                'เลขที่โฉนดผู้ค่ำ', 'ผู้รับเงิน','เลขบัญชี','เบอร์โทรผู้รับเงิน', 'ผู้รับค่าคอม','เลขบัญชี','เบอร์โทรผู้แนะนำ', 
+                'ใบขับขี่','ประกันภัย','สถานะผู้เช่าซื้อ','ตำแหน่งที่อยู่ผู้เช่าซื้อ', 'ตำแหน่งที่อยู่ผู้ค่ำ','รายละเอียดอาชีพ','ผลการประเมินลูกค้า', 'ผลการตรวจสอบลูกค้า','ความพึงพอใจลูกค้า','ผลการตรวจสอบนายหน้า','ความพึงพอใจนายหน้า'));
 
-        $type = $request->type;
-        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+              foreach ($data as $key => $value) {
+
+                $sheet->row(++$row, array(
+                  $key+1,
+                  $value->Type_Con,
+                  $value->Contract_buyer,
+                  $value->Name_buyer.' '.$value->last_buyer,
+                  $value->branch_car,
+                  $value->Date_Due,
+                  $value->status_car,
+                  $value->Brand_car,
+                  $value->Model_car,
+                  $value->Year_car,
+                  $value->License_car,
+                  $value->Nowlicense_car,
+                  number_format($value->Top_car, 2),
+                  $value->Vat_car,
+                  $value->Pay_car,
+                  $value->Tax_car,
+                  $value->Interest_car,
+                  $value->Timeslacken_car,
+                  $value->act_Price,
+                  $value->closeAccount_Price,
+                  $value->P2_Price,
+                  $value->Percent_car,
+                  $value->totalk_Price,
+                  $value->balance_Price,
+                  $value->Commission_car,
+                  $value->commit_Price,
+                  $value->deednumber_SP,
+                  $value->Payee_car,
+                  $value->Accountbrance_car,
+                  $value->Tellbrance_car,
+                  $value->Agent_car,
+                  $value->Accountagent_car,
+                  $value->Tellagent_car,
+                  $value->Driver_buyer,
+                  $value->Insurance_car,
+                  $value->Gradebuyer_car,
+                  $value->Buyer_latlong,
+                  $value->Support_latlong,
+                  $value->CareerDetail_buyer,
+                  $value->ApproveDetail_buyer,
+                  $value->Memo_buyer,
+                  $value->Prefer_buyer,
+                  $value->Memo_broker,
+                  $value->Prefer_broker,
+                ));
+
+              }
+          });
+        })->export('xlsx');
       }
       elseif($request->type == 8){  //รายงานขอเบิกเงินประจำวัน
         $dataReport = DB::table('buyers')
@@ -193,17 +242,16 @@ class ReportAnalysController extends Controller
 
         $type = $request->type;
         $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+        $html = $view->render();
+        $pdf = new PDF();
+        $pdf::SetTitle('รายงานขอเบิกเงินประจำวัน');
+        $pdf::AddPage('L', 'A4');
+        $pdf::SetMargins(5, 5, 5, 0);
+        $pdf::SetFont('freeserif', '', 8, '', true);
+        $pdf::SetAutoPageBreak(TRUE, 25);
+  
+        $pdf::WriteHTML($html,true,false,true,false,'');
+        $pdf::Output('report.pdf');
       }
-
-      $html = $view->render();
-      $pdf = new PDF();
-      $pdf::SetTitle('รายงานนำเสนอ');
-      $pdf::AddPage('L', 'A4');
-      $pdf::SetMargins(5, 5, 5, 0);
-      $pdf::SetFont('freeserif', '', 8, '', true);
-      $pdf::SetAutoPageBreak(TRUE, 25);
-
-      $pdf::WriteHTML($html,true,false,true,false,'');
-      $pdf::Output('report.pdf');
     }
 }

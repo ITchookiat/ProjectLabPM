@@ -199,9 +199,9 @@
                     <div class="col-4">
                       <div class="form-inline">
                         @if($data->StatusApp_car != 'อนุมัติ')
-                          <h4>แก้ไขสัญญา (Edit PLoan-Micro)</h4>
+                          <h5>แก้ไขสัญญา (Edit PLoan-Micro)</h5>
                         @else
-                          <h4>รายละเอียดสัญญา (Details PLoan-Micro)</h4>
+                          <h5>รายละเอียดสัญญา (Details PLoan-Micro)</h5>
                         @endif
                       </div>
                     </div>
@@ -209,36 +209,36 @@
                       <div class="card-tools d-inline float-right">
                         @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                           @if(auth::user()->type == "Admin")
-                            <button type="submit" class="delete-modal btn btn-success">
+                            <button type="submit" class="delete-modal btn btn-success btn-sm">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
+                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{1}}&Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
                             @if($data->StatusApp_car != 'อนุมัติ')
-                              <button type="submit" class="delete-modal btn btn-success">
+                              <button type="submit" class="delete-modal btn btn-success btn-sm">
                                 <i class="fas fa-save"></i> Update
                               </button>
-                              <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
+                              <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{1}}&Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
                                 <i class="far fa-window-close"></i> Close
                               </a>
                             @else
-                              <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
+                              <a class="delete-modal btn btn-danger btn-sm" href="{{ URL::previous() }}">
                                 <i class="fas fa-undo"></i> ย้อนกลับ
                               </a>
                             @endif
                           @endif
                         @else
                           @if($data->StatusApp_car != 'อนุมัติ')
-                            <button type="submit" class="delete-modal btn btn-success">
+                            <button type="submit" class="delete-modal btn btn-success btn-sm">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger" href="{{ route('Analysis',1) }}?Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
+                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{1}}&Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @else
-                            <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
+                            <a class="delete-modal btn btn-danger btn-sm" href="{{ URL::previous() }}">
                               <i class="fas fa-undo"></i> Back
                             </a>
                           @endif
@@ -376,7 +376,7 @@
                     <div class="card-header p-0 pt-1">
                       <ul class="nav nav-tabs" id="custom-tabs-five-tab" role="tablist">
                         <li class="nav-item">
-                          <a class="nav-link MainPage" href="{{ route('Analysis',1) }}">หน้าหลัก</a>
+                          <a class="nav-link MainPage" href="{{ route('MasterAnalysis.index') }}?type={{1}}">หน้าหลัก</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link active" id="Sub-custom-tab1" data-toggle="pill" href="#Sub-tab1" role="tab" aria-controls="Sub-tab1" aria-selected="false">แบบฟอร์มผู้เช่าซื้อ</a>
