@@ -793,33 +793,6 @@
                               </div>
                               <div class="col-6">
                                 <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" name="Careerbuyer" value="{{ $data->Career_buyer }}" class="form-control form-control-sm"  placeholder="เลือกอาชีพ"/>
-                                    @else
-                                      <input type="text" name="Careerbuyer" value="{{ $data->Career_buyer }}" class="form-control form-control-sm"  placeholder="เลือกอาชีพ" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ $data->Income_buyer }}" class="form-control form-control-sm"  placeholder="เลือกรายได้" />
-                                    @else
-                                      <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ $data->Income_buyer }}" class="form-control form-control-sm"  placeholder="เลือกรายได้"  {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ใบขับขี่ : </label>
                                   <div class="col-sm-8">
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
@@ -846,19 +819,7 @@
 
                             <div class="row">
                               <div class="col-6">
-                                <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">หักค่าใช้จ่าย : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" id="Beforeincome" name="Beforeincome" value="{{ number_format($data->BeforeIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" />
-                                    @else
-                                      <input type="text" id="Beforeincome" name="Beforeincome" value="{{ number_format($data->BeforeIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }} />
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
+                               <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ประวัติการซื้อ/ค้ำ : </label>
                                   <div class="col-sm-4">
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
@@ -976,21 +937,6 @@
                                   </div>
                                 </div>
                               </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">รายได้หลังหักค่าใช้จ่าย : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" id="Afterincome" name="Afterincome" value="{{ number_format($data->AfterIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" />
-                                    @else
-                                      <input type="text" id="Afterincome" name="Afterincome" value="{{ number_format($data->AfterIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }} />
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
                               <div class="col-6">
                                 <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">สถานะผู้เช่าซื้อ : </label>
@@ -1028,61 +974,17 @@
                             <div class="row">
                               <div class="col-6">
                                 <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">วัตถุประสงค์ของสินเชื่อ : </label>
+                                  <label class="col-sm-3 col-form-label text-right">สาขาที่รับลูกค้า : </label>
                                   <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <select name="objectivecar" class="form-control form-control-sm" >
-                                        <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
-                                        <option value="ลงทุนในธุรกิจ" {{ ($data->Objective_car === 'ลงทุนในธุรกิจ') ? 'selected' : '' }}>ลงทุนในธุรกิจ</option>
-                                        <option value="ขยายกิจการ" {{ ($data->Objective_car === 'ขยายกิจการ') ? 'selected' : '' }}>ขยายกิจการ</option>
-                                        <option value="ซื้อรถยนต์" {{ ($data->Objective_car === 'ซื้อรถยนต์') ? 'selected' : '' }}>ซื้อรถยนต์</option>
-                                        <option value="ใช้หนี้นอกระบบ" {{ ($data->Objective_car === 'ใช้หนี้นอกระบบ') ? 'selected' : '' }}>ใช้หนี้นอกระบบ</option>
-                                        <option value="จ่ายค่าเทอม" {{ ($data->Objective_car === 'จ่ายค่าเทอม') ? 'selected' : '' }}>จ่ายค่าเทอม</option>
-                                        <option value="ซื้อของใช้ภายในบ้าน" {{ ($data->Objective_car === 'ซื้อของใช้ภายในบ้าน') ? 'selected' : '' }}>ซื้อของใช้ภายในบ้าน</option>
-                                        <option value="ซื้อวัว" {{ ($data->Objective_car === 'ซื้อวัว') ? 'selected' : '' }}>ซื้อวัว</option>
-                                        <option value="ซื้อที่ดิน" {{ ($data->Objective_car === 'ซื้อที่ดิน') ? 'selected' : '' }}>ซื้อที่ดิน</option>
-                                        <option value="ซ่อมบ้าน" {{ ($data->Objective_car === 'ซ่อมบ้าน') ? 'selected' : '' }}>ซ่อมบ้าน</option>
-                                        <option value="ลดค่าธรรมเนียม" {{ ($data->Objective_car === 'ลดค่าธรรมเนียม') ? 'selected' : '' }}>ลดค่าธรรมเนียม</option>
-                                        <option value="ลดดอกเบี้ย สูงสุด 100 %" {{ ($data->Objective_car === 'ลดดอกเบี้ย สูงสุด 100 %') ? 'selected' : '' }}>ลดดอกเบี้ย สูงสุด 100 %</option>
-                                        <option value="พักชำระเงินต้น 3 เดือน" {{ ($data->Objective_car === 'พักชำระเงินต้น 3 เดือน') ? 'selected' : '' }}>พักชำระเงินต้น 3 เดือน</option>
-                                        <option value="พักชำระหนี้ 3 เดือน" {{ ($data->Objective_car === 'พักชำระหนี้ 3 เดือน') ? 'selected' : '' }}>พักชำระหนี้ 3 เดือน</option>
-                                        <option value="ขยายระยะเวลาชำระหนี้" {{ ($data->Objective_car === 'ขยายระยะเวลาชำระหนี้') ? 'selected' : '' }}>ขยายระยะเวลาชำระหนี้</option>
-                                      </select>
-                                    @else
-                                      @if($GetDocComplete != Null)
-                                        <input type="text" name="objectivecar" value="{{ $data->Objective_car }}" class="form-control form-control-sm"  placeholder="เลือกวัตถุประสงค์ของสินเชื่อ" readonly/>
-                                      @else
-                                        <select name="objectivecar" class="form-control form-control-sm" >
-                                          <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
-                                          <option value="ลงทุนในธุรกิจ" {{ ($data->Objective_car === 'ลงทุนในธุรกิจ') ? 'selected' : '' }}>ลงทุนในธุรกิจ</option>
-                                          <option value="ขยายกิจการ" {{ ($data->Objective_car === 'ขยายกิจการ') ? 'selected' : '' }}>ขยายกิจการ</option>
-                                          <option value="ซื้อรถยนต์" {{ ($data->Objective_car === 'ซื้อรถยนต์') ? 'selected' : '' }}>ซื้อรถยนต์</option>
-                                          <option value="ใช้หนี้นอกระบบ" {{ ($data->Objective_car === 'ใช้หนี้นอกระบบ') ? 'selected' : '' }}>ใช้หนี้นอกระบบ</option>
-                                          <option value="จ่ายค่าเทอม" {{ ($data->Objective_car === 'จ่ายค่าเทอม') ? 'selected' : '' }}>จ่ายค่าเทอม</option>
-                                          <option value="ซื้อของใช้ภายในบ้าน" {{ ($data->Objective_car === 'ซื้อของใช้ภายในบ้าน') ? 'selected' : '' }}>ซื้อของใช้ภายในบ้าน</option>
-                                          <option value="ซื้อวัว" {{ ($data->Objective_car === 'ซื้อวัว') ? 'selected' : '' }}>ซื้อวัว</option>
-                                          <option value="ซื้อที่ดิน" {{ ($data->Objective_car === 'ซื้อที่ดิน') ? 'selected' : '' }}>ซื้อที่ดิน</option>
-                                          <option value="ซ่อมบ้าน" {{ ($data->Objective_car === 'ซ่อมบ้าน') ? 'selected' : '' }}>ซ่อมบ้าน</option>
-                                          <option value="ลดค่าธรรมเนียม" {{ ($data->Objective_car === 'ลดค่าธรรมเนียม') ? 'selected' : '' }}>ลดค่าธรรมเนียม</option>
-                                          <option value="ลดดอกเบี้ย สูงสุด 100 %" {{ ($data->Objective_car === 'ลดดอกเบี้ย สูงสุด 100 %') ? 'selected' : '' }}>ลดดอกเบี้ย สูงสุด 100 %</option>
-                                          <option value="พักชำระเงินต้น 3 เดือน" {{ ($data->Objective_car === 'พักชำระเงินต้น 3 เดือน') ? 'selected' : '' }}>พักชำระเงินต้น 3 เดือน</option>
-                                          <option value="พักชำระหนี้ 3 เดือน" {{ ($data->Objective_car === 'พักชำระหนี้ 3 เดือน') ? 'selected' : '' }}>พักชำระหนี้ 3 เดือน</option>
-                                          <option value="ขยายระยะเวลาชำระหนี้" {{ ($data->Objective_car === 'ขยายระยะเวลาชำระหนี้') ? 'selected' : '' }}>ขยายระยะเวลาชำระหนี้</option>
-                                        </select>
-                                      @endif
-                                    @endif
+                                    <input type="text" class="form-control" value="{{$data->SendUse_Walkin}}" readonly/>
                                   </div>
                                 </div>
                               </div>
                               <div class="col-6">
                                 <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">สาขาที่รับลูกค้า : </label>
-                                  <div class="col-sm-3">
-                                  <input type="text" class="form-control" value="{{$data->SendUse_Walkin}}" readonly/>
-                                  </div>
-                                  <label class="col-sm-2 col-form-label text-right">ที่มาของลูกค้า : </label>
-                                  <div class="col-sm-3">
-                                  <input type="text" class="form-control" value="{{$data->Resource_news}}" readonly/>
+                                  <label class="col-sm-3 col-form-label text-right">ที่มาของลูกค้า : </label>
+                                  <div class="col-sm-8">
+                                    <input type="text" class="form-control" value="{{$data->Resource_news}}" readonly/>
                                   </div>
                                 </div>
                               </div>
@@ -2962,11 +2864,111 @@
                                   <h3 class="card-title">รายได้ผู้เช่าซื้อ</h3>
                   
                                   <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                                    <!-- <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button> -->
                                   </div>
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group">
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">อาชีพ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <input type="text" name="Careerbuyer" value="{{ $data->Career_buyer }}" class="form-control form-control-sm"  placeholder="เลือกอาชีพ"/>
+                                        @else
+                                          <input type="text" name="Careerbuyer" value="{{ $data->Career_buyer }}" class="form-control form-control-sm"  placeholder="เลือกอาชีพ" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">รายได้ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ $data->Income_buyer }}" class="form-control form-control-sm"  placeholder="เลือกรายได้" />
+                                        @else
+                                          <input type="text" id="Incomebuyer" name="Incomebuyer" value="{{ $data->Income_buyer }}" class="form-control form-control-sm"  placeholder="เลือกรายได้"  {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">หักค่าใช้จ่าย : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <input type="text" id="Beforeincome" name="Beforeincome" value="{{ number_format($data->BeforeIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" />
+                                        @else
+                                          <input type="text" id="Beforeincome" name="Beforeincome" value="{{ number_format($data->BeforeIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }} />
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">รายได้หลังหักค่าใช้จ่าย : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <input type="text" id="Afterincome" name="Afterincome" value="{{ number_format($data->AfterIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" />
+                                        @else
+                                          <input type="text" id="Afterincome" name="Afterincome" value="{{ number_format($data->AfterIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }} />
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">วัตถุประสงค์ของสินเชื่อ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <select name="objectivecar" class="form-control form-control-sm" >
+                                            <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
+                                            <option value="ลงทุนในธุรกิจ" {{ ($data->Objective_car === 'ลงทุนในธุรกิจ') ? 'selected' : '' }}>ลงทุนในธุรกิจ</option>
+                                            <option value="ขยายกิจการ" {{ ($data->Objective_car === 'ขยายกิจการ') ? 'selected' : '' }}>ขยายกิจการ</option>
+                                            <option value="ซื้อรถยนต์" {{ ($data->Objective_car === 'ซื้อรถยนต์') ? 'selected' : '' }}>ซื้อรถยนต์</option>
+                                            <option value="ใช้หนี้นอกระบบ" {{ ($data->Objective_car === 'ใช้หนี้นอกระบบ') ? 'selected' : '' }}>ใช้หนี้นอกระบบ</option>
+                                            <option value="จ่ายค่าเทอม" {{ ($data->Objective_car === 'จ่ายค่าเทอม') ? 'selected' : '' }}>จ่ายค่าเทอม</option>
+                                            <option value="ซื้อของใช้ภายในบ้าน" {{ ($data->Objective_car === 'ซื้อของใช้ภายในบ้าน') ? 'selected' : '' }}>ซื้อของใช้ภายในบ้าน</option>
+                                            <option value="ซื้อวัว" {{ ($data->Objective_car === 'ซื้อวัว') ? 'selected' : '' }}>ซื้อวัว</option>
+                                            <option value="ซื้อที่ดิน" {{ ($data->Objective_car === 'ซื้อที่ดิน') ? 'selected' : '' }}>ซื้อที่ดิน</option>
+                                            <option value="ซ่อมบ้าน" {{ ($data->Objective_car === 'ซ่อมบ้าน') ? 'selected' : '' }}>ซ่อมบ้าน</option>
+                                            <option value="ลดค่าธรรมเนียม" {{ ($data->Objective_car === 'ลดค่าธรรมเนียม') ? 'selected' : '' }}>ลดค่าธรรมเนียม</option>
+                                            <option value="ลดดอกเบี้ย สูงสุด 100 %" {{ ($data->Objective_car === 'ลดดอกเบี้ย สูงสุด 100 %') ? 'selected' : '' }}>ลดดอกเบี้ย สูงสุด 100 %</option>
+                                            <option value="พักชำระเงินต้น 3 เดือน" {{ ($data->Objective_car === 'พักชำระเงินต้น 3 เดือน') ? 'selected' : '' }}>พักชำระเงินต้น 3 เดือน</option>
+                                            <option value="พักชำระหนี้ 3 เดือน" {{ ($data->Objective_car === 'พักชำระหนี้ 3 เดือน') ? 'selected' : '' }}>พักชำระหนี้ 3 เดือน</option>
+                                            <option value="ขยายระยะเวลาชำระหนี้" {{ ($data->Objective_car === 'ขยายระยะเวลาชำระหนี้') ? 'selected' : '' }}>ขยายระยะเวลาชำระหนี้</option>
+                                          </select>
+                                        @else
+                                          @if($GetDocComplete != Null)
+                                            <input type="text" name="objectivecar" value="{{ $data->Objective_car }}" class="form-control form-control-sm"  placeholder="เลือกวัตถุประสงค์ของสินเชื่อ" readonly/>
+                                          @else
+                                            <select name="objectivecar" class="form-control form-control-sm" >
+                                              <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
+                                              <option value="ลงทุนในธุรกิจ" {{ ($data->Objective_car === 'ลงทุนในธุรกิจ') ? 'selected' : '' }}>ลงทุนในธุรกิจ</option>
+                                              <option value="ขยายกิจการ" {{ ($data->Objective_car === 'ขยายกิจการ') ? 'selected' : '' }}>ขยายกิจการ</option>
+                                              <option value="ซื้อรถยนต์" {{ ($data->Objective_car === 'ซื้อรถยนต์') ? 'selected' : '' }}>ซื้อรถยนต์</option>
+                                              <option value="ใช้หนี้นอกระบบ" {{ ($data->Objective_car === 'ใช้หนี้นอกระบบ') ? 'selected' : '' }}>ใช้หนี้นอกระบบ</option>
+                                              <option value="จ่ายค่าเทอม" {{ ($data->Objective_car === 'จ่ายค่าเทอม') ? 'selected' : '' }}>จ่ายค่าเทอม</option>
+                                              <option value="ซื้อของใช้ภายในบ้าน" {{ ($data->Objective_car === 'ซื้อของใช้ภายในบ้าน') ? 'selected' : '' }}>ซื้อของใช้ภายในบ้าน</option>
+                                              <option value="ซื้อวัว" {{ ($data->Objective_car === 'ซื้อวัว') ? 'selected' : '' }}>ซื้อวัว</option>
+                                              <option value="ซื้อที่ดิน" {{ ($data->Objective_car === 'ซื้อที่ดิน') ? 'selected' : '' }}>ซื้อที่ดิน</option>
+                                              <option value="ซ่อมบ้าน" {{ ($data->Objective_car === 'ซ่อมบ้าน') ? 'selected' : '' }}>ซ่อมบ้าน</option>
+                                              <option value="ลดค่าธรรมเนียม" {{ ($data->Objective_car === 'ลดค่าธรรมเนียม') ? 'selected' : '' }}>ลดค่าธรรมเนียม</option>
+                                              <option value="ลดดอกเบี้ย สูงสุด 100 %" {{ ($data->Objective_car === 'ลดดอกเบี้ย สูงสุด 100 %') ? 'selected' : '' }}>ลดดอกเบี้ย สูงสุด 100 %</option>
+                                              <option value="พักชำระเงินต้น 3 เดือน" {{ ($data->Objective_car === 'พักชำระเงินต้น 3 เดือน') ? 'selected' : '' }}>พักชำระเงินต้น 3 เดือน</option>
+                                              <option value="พักชำระหนี้ 3 เดือน" {{ ($data->Objective_car === 'พักชำระหนี้ 3 เดือน') ? 'selected' : '' }}>พักชำระหนี้ 3 เดือน</option>
+                                              <option value="ขยายระยะเวลาชำระหนี้" {{ ($data->Objective_car === 'ขยายระยะเวลาชำระหนี้') ? 'selected' : '' }}>ขยายระยะเวลาชำระหนี้</option>
+                                            </select>
+                                          @endif
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                      <label class="col-sm-4 col-form-label text-right">หมายเหตุ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <textarea class="form-control form-control-sm" name="BuyerIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_buyer}}</textarea>
+                                        @else
+                                          @if($GetDocComplete != Null)
+                                            <textarea class="form-control form-control-sm" name="BuyerIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ..." readonly>{{$data->MemoIncome_buyer}}</textarea>
+                                          @else
+                                            <textarea class="form-control form-control-sm" name="BuyerIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_buyer}}</textarea>
+                                          @endif
+                                        @endif
+                                      </div>
+                                    </div>
                                     <div class="file-loading">
                                       <input id="image_income_1" type="file" name="image_income_1[]" accept="image/*" data-min-file-count="1" multiple>
                                     </div>
@@ -3006,26 +3008,6 @@
                                     </div>
                                   </div>
 
-                                  <div class="card card-danger">
-                                    <div class="card-header">
-                                      <h3 class="card-title">หมายเหตุรายได้ผู้เช่าซื้อ</h3>
-                      
-                                      <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                                      </div>
-                                    </div>
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <textarea class="form-control form-control-sm" name="BuyerIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_buyer}}</textarea>
-                                    @else
-                                      @if($GetDocComplete != Null)
-                                        <textarea class="form-control form-control-sm" name="BuyerIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ..." readonly>{{$data->MemoIncome_buyer}}</textarea>
-                                      @else
-                                        <textarea class="form-control form-control-sm" name="BuyerIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_buyer}}</textarea>
-                                      @endif
-                                    @endif
-                                  </div>
-
                                 </div> 
                                  
                               </div>
@@ -3037,11 +3019,46 @@
                                   <h3 class="card-title">รายได้ผู้ค้ำ</h3>
                   
                                   <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                                    <!-- <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button> -->
                                   </div>
                                 </div>
                                 <div class="card-body">
                                   <div class="form-group">
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">อาชีพ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <input type="text" name="careerSP" value="{{$data->career_SP}}" class="form-control form-control-sm" placeholder="อาชีพ"/>
+                                        @else
+                                          <input type="text" name="careerSP" value="{{$data->career_SP}}" class="form-control form-control-sm" placeholder="อาชีพ" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                      <label class="col-sm-4 col-form-label text-right">รายได้ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <input type="text" id="incomeSP" name="incomeSP" value="{{ $data->income_SP }}" class="form-control form-control-sm" placeholder="รายได้" />
+                                        @else
+                                          <input type="text" id="incomeSP" name="incomeSP" value="{{ $data->income_SP }}" class="form-control form-control-sm" placeholder="รายได้"  {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <div class="form-group row mb-3">
+                                      <label class="col-sm-4 col-form-label text-right">หมายเหตุ : </label>
+                                      <div class="col-sm-8">
+                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                          <textarea class="form-control form-control-sm" name="SupportIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_SP}}</textarea>
+                                        @else
+                                          @if($GetDocComplete != Null)
+                                            <textarea class="form-control form-control-sm" name="SupportIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ..." readonly>{{$data->MemoIncome_SP}}</textarea>
+                                          @else
+                                            <textarea class="form-control form-control-sm" name="SupportIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_SP}}</textarea>
+                                          @endif
+                                        @endif
+                                      </div>
+                                    </div>
+                                    <br><br><br><br><br>
                                     <div class="file-loading">
                                       <input id="image_income_2" type="file" name="image_income_2[]" accept="image/*" data-min-file-count="1" multiple>
                                     </div>
@@ -3079,26 +3096,6 @@
                                         @endforeach
                                       </div>
                                     </div>
-                                  </div>
-
-                                  <div class="card card-danger">
-                                    <div class="card-header">
-                                      <h3 class="card-title">หมายเหตุรายได้ผู้ค้ำ</h3>
-                      
-                                      <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
-                                      </div>
-                                    </div>
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <textarea class="form-control form-control-sm" name="SupportIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_SP}}</textarea>
-                                    @else
-                                      @if($GetDocComplete != Null)
-                                        <textarea class="form-control form-control-sm" name="SupportIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ..." readonly>{{$data->MemoIncome_SP}}</textarea>
-                                      @else
-                                        <textarea class="form-control form-control-sm" name="SupportIncomeNote" rows="3" placeholder="ป้อนหมายเหตุ...">{{$data->MemoIncome_SP}}</textarea>
-                                      @endif
-                                    @endif
                                   </div>
 
                                 </div>  
