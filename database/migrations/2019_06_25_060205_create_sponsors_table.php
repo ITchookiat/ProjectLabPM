@@ -37,6 +37,7 @@ class CreateSponsorsTable extends Migration
             $table->string('puchase_SP')->nullable();
             $table->string('support_SP')->nullable();
             $table->string('securities_SP')->nullable();
+            $table->string('MemoIncome_SP')->nullable();
             $table->timestamps();
         });
     }

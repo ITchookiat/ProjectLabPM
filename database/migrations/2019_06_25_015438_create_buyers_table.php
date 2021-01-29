@@ -53,6 +53,7 @@ class CreateBuyersTable extends Migration
             $table->string('Prefer_buyer', "MAX")->nullable();
             $table->string('Memo_broker', "MAX")->nullable();
             $table->string('Prefer_broker', "MAX")->nullable();
+            $table->string('MemoIncome_buyer', "MAX")->nullable();
             $table->timestamps();
         });
     }
