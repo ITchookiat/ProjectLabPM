@@ -194,6 +194,17 @@
           }
     }
 
+    function commission_P04(){
+      var num11 = document.getElementById('Commissioncar').value;
+      var input = document.getElementById('Agentcar').value;
+      var Subtstr = input.split("");
+      var Setstr = Subtstr[0];
+        if(input != ''){
+          var result = 200;
+        }
+      document.form1.Commissioncar.value = addCommas(result);
+    }
+
     function balance2(){
           var Settopcar = document.getElementById('Topcar').value;
           var Topcar = Settopcar.replace(",","");

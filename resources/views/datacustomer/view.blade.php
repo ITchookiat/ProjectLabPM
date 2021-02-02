@@ -392,7 +392,7 @@
                             <option value="โคกโพธิ์" {{ (auth::user()->branch == 56) ? 'selected' : '' }}>โคกโพธิ์(56)</option>
                             <option value="ตันหยงมัส" {{ (auth::user()->branch == 57) ? 'selected' : '' }}>ตันหยงมัส(57)</option>
                             <option value="รือเสาะ" {{ (auth::user()->branch == 58) ? 'selected' : '' }}>รือเสาะ(58)</option>
-                            <option value="บังนังสตา" {{ (auth::user()->branch == 59) ? 'selected' : '' }}>บังนังสตา(59)</option>
+                            <option value="บันนังสตา" {{ (auth::user()->branch == 59) ? 'selected' : '' }}>บันนังสตา(59)</option>
                             <option value="ยะหา" {{ (auth::user()->branch == 60) ? 'selected' : '' }}>ยะหา(60)</option>
                           </select>
                         </div>
@@ -473,6 +473,4 @@
       document.form2.topcar.value = addCommas(num1);
     }
   </script>
-
-
 @endsection

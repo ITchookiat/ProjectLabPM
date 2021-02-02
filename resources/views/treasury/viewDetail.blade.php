@@ -169,7 +169,7 @@
         @if ($GetType == 1)
           <i class="fas fa-search-dollar"></i>&nbsp;
           รายละเอียดค่าใช้จ่าย
-        @elseif ($GetType == 2)
+        @elseif ($GetType == 2 or $GetType == 4)
           <i class="far fa-address-card"></i>&nbsp;
           ตรวจสอบบัญชีหน้าเล่ม
         @endif
@@ -472,7 +472,181 @@
           </div>
           <input type="hidden" name="_method" value="PATCH"/>
         </form>
+      @elseif ($GetType == 4)
+        <form name="form1" action="{{ route('MasterTreasury.update' ,[$data->id]) }}" method="post" id="formimage" enctype="multipart/form-data">
+          @csrf
+          @method('put')
+          <input type="hidden" name="type" value="1" />
 
+          <div class="row">
+            <div class="col-12">
+              <div class="form-inline">
+                <div class="col-sm-6">
+                  <div class="card card-warning">
+                    <div class="card-header">
+                      <h3 class="card-title">ผู้รับเงิน</h3>
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>ชื่อ : </label>
+                            <input type="text" class="form-control text-right" style="width: 220px;" value="{{$data->Payee_car}}" readonly/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>บัญชี : </label>
+                            <input type="text" class="form-control text-right" style="width: 220px;" value="{{$SetAccount}}" readonly/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>สาขา : </label>
+                          <input type="text" class="form-control text-right" style="width: 220px;" value="{{$data->branchbrance_car}}" readonly/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>โทรศัพท์ : </label>
+                            <input type="text" class="form-control text-right" style="width: 220px;" value="{{$SetTell}}" readonly/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            @if($data->Payee_car == $data->Agent_car and $data->Accountbrance_car == $data->Accountagent_car)
+                              <label>ยอดรถ : </label>
+                            @else
+                              <label><font color="red">ยอดโอนรถ : </font></label>
+                            @endif
+                          <input type="text" class="form-control text-right" style="width: 220px; background-color: red; color: white" value="{{number_format($data->Top_car, 2)}}" readonly/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-sm-6">
+                  <div class="card card-warning">
+                    <div class="card-header">
+                      <h3 class="card-title">ผู้รับค่าคอม</h3>
+      
+                      <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>ชื่อ : </label>
+                            <input type="text" class="form-control text-right" style="width: 220px;" value="{{$data->Agent_car}}" readonly/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>บัญชี : </label>
+                            <input type="text" class="form-control text-right" style="width: 220px;" value="{{$SetAccountGT}}" readonly/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>สาขา : </label>
+                          <input type="text" class="form-control text-right" style="width: 220px;" value="{{$data->branchAgent_car}}" readonly/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label>โทรศัพท์ : </label>
+                            <input type="text" class="form-control text-right" style="width: 220px;" value="{{$SetTellGT}}" readonly/>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            @if($data->Payee_car == $data->Agent_car and $data->Accountbrance_car == $data->Accountagent_car)
+                            <label>ยอดค่าคอม : </label>
+                          @else
+                            <label><font color="red">ยอดโอนค่าคอม : </font></label>
+                          @endif
+                          <input type="text" class="form-control text-right" style="width: 220px; background-color: red; color: white" value="{{number_format($data->Commission_car, 2)}}" readonly/>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          @php
+            $sumArcsum = 0;
+          @endphp
+          @if($data->Payee_car == $data->Agent_car and $data->Accountbrance_car == $data->Accountagent_car)
+            @php
+              $sumArcsum = $data->Top_car + $data->Commission_car;
+            @endphp
+          @endif
+
+          <div class="row">
+            <div class="col-5">
+              @if($data->Payee_car == $data->Agent_car and $data->Accountbrance_car == $data->Accountagent_car)
+                <div class="float-right form-inline">
+                  <label><font color="red">* ยอดโอนรวม : </font></label>
+                  <input type="text" class="form-control text-right" style="width: 220px; background-color: red; color: white" value="{{ number_format($sumArcsum, 2) }}" readonly/>
+                </div>
+              @endif
+            </div>
+            <div class="col-5">
+              <div class="float-right form-inline">
+                <i class="fas fa-grip-vertical"></i>
+                <span class="todo-wrap">
+                  <input type="checkbox" id="1" class="checkbox" name="checkAccount" value="{{ auth::user()->name }}" {{ ($data->UserCheckAc_car !== NULL) ? 'checked' : '' }}> <!-- checked="checked"  -->
+                  <label for="1" class="todo">
+                    <i class="fa fa-check"></i>
+                    <span class="text"><font color="red">ข้อมูลถูกต้อง</font></span>
+                  </label>
+                </span>
+              </div>
+            </div>
+            @if($data->UserCheckAc_car == NULL)
+              <div class="col-2">
+                <div class="card-tools d-inline float-right">
+                  <button type="submit" class="delete-modal btn btn-success">
+                    <i class="fas fa-save"></i> บันทึก
+                  </button>
+                  <a class="delete-modal btn btn-danger" href="{{ URL::previous() }}">
+                    <i class="far fa-window-close"></i> ยกเลิก
+                  </a>
+                </div>
+              </div>
+            @endif
+          </div>
+          <input type="hidden" name="_method" value="PATCH"/>
+        </form>
       @endif
 
     </div>

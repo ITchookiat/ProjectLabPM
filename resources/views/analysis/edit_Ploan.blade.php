@@ -199,25 +199,9 @@
                     <div class="col-4">
                       <div class="form-inline">
                         @if($data->StatusApp_car != 'อนุมัติ')
-                          <h5><i class="fas fa-car pr-1"></i>
-                            @if($type == 1)
-                              แก้ไขสัญญา (Edit P03 Loan Agreement)
-                            @elseif($type == 4)
-                              แก้ไขสัญญา (Edit P07 Loan Agreement)
-                            @elseif($type == 5)
-                              แก้ไขสัญญา (Edit P06 Micro Agreement)
-                            @endif
-                          </h5>
+                          <h5><i class="fas fa-biking pr-1"></i>แก้ไขสัญญา (Edit P04 Loan Agreement)</h5>
                         @else
-                          <h5><i class="fas fa-car pr-1"></i>
-                            @if($type == 1)
-                              รายละเอียดสัญญา (Details PLoan Agreement)
-                            @elseif($type == 4)
-                              รายละเอียดสัญญา (Details PLoan Agreement)
-                            @elseif($type == 5)
-                              รายละเอียดสัญญา (Details Micro Agreement)
-                            @endif
-                          </h5>
+                          <h5><i class="fas fa-biking pr-1"></i>รายละเอียดสัญญา (Details PLoan-Micro P04)</h5>
                         @endif
                       </div>
                     </div>
@@ -228,7 +212,7 @@
                             <button type="submit" class="delete-modal btn btn-success btn-sm">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{$type}}&Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
+                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{3}}&Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @elseif(auth::user()->type == "แผนก วิเคราะห์")
@@ -236,7 +220,7 @@
                               <button type="submit" class="delete-modal btn btn-success btn-sm">
                                 <i class="fas fa-save"></i> Update
                               </button>
-                              <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{$type}}&Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
+                              <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{3}}&Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                                 <i class="far fa-window-close"></i> Close
                               </a>
                             @else
@@ -250,7 +234,7 @@
                             <button type="submit" class="delete-modal btn btn-success btn-sm">
                               <i class="fas fa-save"></i> Update
                             </button>
-                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{$type}}&Fromdate={{$fdate}}&Todate={{$tdate}}&branch={{$branch}}&status={{$status}}">
+                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{3}}&Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @else
@@ -404,9 +388,6 @@
                           <a class="nav-link" id="Sub-custom-tab3" data-toggle="pill" href="#Sub-tab3" role="tab" aria-controls="Sub-tab3" aria-selected="false">แบบฟอร์มรถยนต์</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" id="Sub-custom-tab4" data-toggle="pill" href="#Sub-tab4" role="tab" aria-controls="Sub-tab4" aria-selected="false">แบบฟอร์มค่าใช้จ่าย</a>
-                        </li>
-                        <li class="nav-item">
                           <a class="nav-link" id="Sub-custom-tab5" data-toggle="pill" href="#Sub-tab5" role="tab" aria-controls="Sub-tab5" aria-selected="false">Checker</a>
                         </li>
                         <li class="nav-item">
@@ -437,6 +418,7 @@
                                     <select name="TypeContract" class="form-control form-control-sm" required>
                                       <option value="" selected>--- เลือกสัญญา ---</option>
                                       <option value="P03" {{ ($SubStr === 'P03') ? 'selected' : '' }}>สัญญาเงินกู้รถยนต์ (PLoan)</option>
+                                      <option value="P04" {{ ($SubStr === 'P04') ? 'selected' : '' }}>สัญญาเงินกู้รถจักรยานยนต์ (P04)</option>
                                       <option value="P06" {{ ($SubStr === 'P06') ? 'selected' : '' }}>สัญญาเงินกู้ส่วนบุคคล (Micro)</option>
                                       <option value="P07" {{ ($SubStr === 'P07') ? 'selected' : '' }}>สัญญาเงินกู้พนักงาน (P07)</option>
                                     </select>
@@ -462,6 +444,8 @@
                                       <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                       <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
                                       <option value="58" {{ ($data->branch_car === 'รือเสาะ') ? 'selected' : '' }}>รือเสาะ (58)</option>
+                                      <option value="59" {{ ($data->branch_car === 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา (59)</option>
+                                      <option value="60" {{ ($data->branch_car === 'ยะหา') ? 'selected' : '' }}>ยะหา (60)</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -478,6 +462,8 @@
                                         <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                         <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
                                         <option value="58" {{ ($data->branch_car === 'รือเสาะ') ? 'selected' : '' }}>รือเสาะ (58)</option>
+                                        <option value="59" {{ ($data->branch_car === 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา (59)</option>
+                                        <option value="60" {{ ($data->branch_car === 'ยะหา') ? 'selected' : '' }}>ยะหา (60)</option>
                                       </select>
                                     @endif
                                   @endif
@@ -719,66 +705,6 @@
                               </div>
                               <div class="col-6">
                                 <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">ประเภทหลักทรัพย์ : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <select name="securitiesbuyer" class="form-control form-control-sm" >
-                                        <option value="" selected>--- ประเภทหลักทรัพย์ ---</option>
-                                        <option value="โฉนด" {{ ($data->securities_buyer === 'โฉนด') ? 'selected' : '' }}>โฉนด</option>
-                                        <option value="นส.3" {{ ($data->securities_buyer === 'นส.3') ? 'selected' : '' }}>นส.3</option>
-                                        <option value="นส.3 ก" {{ ($data->securities_buyer === 'นส.3 ก') ? 'selected' : '' }}>นส.3 ก</option>
-                                        <option value="นส.4" {{ ($data->securities_buyer === 'นส.4') ? 'selected' : '' }}>นส.4</option>
-                                        <option value="นส.4 จ" {{ ($data->securities_buyer === 'นส.4 จ') ? 'selected' : '' }}>นส.4 จ</option>
-                                      </select>
-                                    @else
-                                      @if($GetDocComplete != Null)
-                                        <input type="text" name="securitiesbuyer" value="{{ $data->securities_buyer }}" class="form-control form-control-sm"  placeholder="ประเภทหลักทรัพย์" readonly/>
-                                      @else
-                                        <select name="securitiesbuyer" class="form-control form-control-sm" >
-                                          <option value="" selected>--- ประเภทหลักทรัพย์ ---</option>
-                                          <option value="โฉนด" {{ ($data->securities_buyer === 'โฉนด') ? 'selected' : '' }}>โฉนด</option>
-                                          <option value="นส.3" {{ ($data->securities_buyer === 'นส.3') ? 'selected' : '' }}>นส.3</option>
-                                          <option value="นส.3 ก" {{ ($data->securities_buyer === 'นส.3 ก') ? 'selected' : '' }}>นส.3 ก</option>
-                                          <option value="นส.4" {{ ($data->securities_buyer === 'นส.4') ? 'selected' : '' }}>นส.4</option>
-                                          <option value="นส.4 จ" {{ ($data->securities_buyer === 'นส.4 จ') ? 'selected' : '' }}>นส.4 จ</option>
-                                        </select>
-                                      @endif
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">เลขที่โฉนด : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" name="deednumberbuyer" value="{{$data->deednumber_buyer}}" class="form-control form-control-sm"  placeholder="เลขที่โฉนด" />
-                                    @else
-                                      <input type="text" name="deednumberbuyer" value="{{$data->deednumber_buyer}}" class="form-control form-control-sm"  placeholder="เลขที่โฉนด" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">เนื่อที่ : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" name="areabuyer" value="{{$data->area_buyer}}" class="form-control form-control-sm"  placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
-                                    @else
-                                      <input type="text" name="areabuyer" value="{{$data->area_buyer}}" class="form-control form-control-sm"  placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                    @endif
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-
-                            <div class="row">
-                              <div class="col-6">
-                                <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ประเภทบ้าน : </label>
                                   <div class="col-sm-8">
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
@@ -807,6 +733,9 @@
                                   </div>
                                 </div>
                               </div>
+                            </div>
+
+                            <div class="row">
                               <div class="col-6">
                                 <div class="form-group row mb-0">
                                   <label class="col-sm-3 col-form-label text-right">ใบขับขี่ : </label>
@@ -825,6 +754,38 @@
                                           <option value="" selected>--- เลือกใบขับขี่ ---</option>
                                           <option value="มี" {{ ($data->Driver_buyer === 'มี') ? 'selected' : '' }}>มี</option>
                                           <option value="ไม่มี" {{ ($data->Driver_buyer === 'ไม่มี') ? 'selected' : '' }}>ไม่มี</option>
+                                        </select>
+                                      @endif
+                                    @endif
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col-6">
+                                <div class="form-group row mb-0">
+                                  <label class="col-sm-3 col-form-label text-right">สถานะผู้เช่าซื้อ : </label>
+                                  <div class="col-sm-8">
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                      <select name="Gradebuyer" class="form-control form-control-sm" >
+                                        <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
+                                        <option value="ลูกค้าเก่าผ่อนดี" {{ ($data->Gradebuyer_car === 'ลูกค้าเก่าผ่อนดี') ? 'selected' : '' }}>ลูกค้าเก่าผ่อนดี</option>
+                                        <option value="ลูกค้ามีงานตาม" {{ ($data->Gradebuyer_car === 'ลูกค้ามีงานตาม') ? 'selected' : '' }}>ลูกค้ามีงานตาม</option>
+                                        <option value="ลูกค้าใหม่" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่') ? 'selected' : '' }}>ลูกค้าใหม่</option>
+                                        <option value="ลูกค้าใหม่(ปิดธนาคาร)" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่(ปิดธนาคาร)') ? 'selected' : '' }}>ลูกค้าใหม่(ปิดธนาคาร)</option>
+                                        <option value="ปิดจัดใหม่(งานตาม)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(งานตาม)') ? 'selected' : '' }}>ปิดจัดใหม่(งานตาม)</option>
+                                        <option value="ปิดจัดใหม่(ผ่อนดี)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(ผ่อนดี)') ? 'selected' : '' }}>ปิดจัดใหม่(ผ่อนดี)</option>
+                                      </select>
+                                    @else
+                                      @if($GetDocComplete != Null)
+                                        <input type="text" name="Gradebuyer" value="{{ $data->Gradebuyer_car }}" class="form-control form-control-sm"  placeholder="เลือกสถานะผู้เช่าซื้อ" readonly/>
+                                      @else
+                                        <select name="Gradebuyer" class="form-control form-control-sm" >
+                                          <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
+                                          <option value="ลูกค้าเก่าผ่อนดี" {{ ($data->Gradebuyer_car === 'ลูกค้าเก่าผ่อนดี') ? 'selected' : '' }}>ลูกค้าเก่าผ่อนดี</option>
+                                          <option value="ลูกค้ามีงานตาม" {{ ($data->Gradebuyer_car === 'ลูกค้ามีงานตาม') ? 'selected' : '' }}>ลูกค้ามีงานตาม</option>
+                                          <option value="ลูกค้าใหม่" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่') ? 'selected' : '' }}>ลูกค้าใหม่</option>
+                                          <option value="ลูกค้าใหม่(ปิดธนาคาร)" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่(ปิดธนาคาร)') ? 'selected' : '' }}>ลูกค้าใหม่(ปิดธนาคาร)</option>
+                                          <option value="ปิดจัดใหม่(งานตาม)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(งานตาม)') ? 'selected' : '' }}>ปิดจัดใหม่(งานตาม)</option>
+                                          <option value="ปิดจัดใหม่(ผ่อนดี)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(ผ่อนดี)') ? 'selected' : '' }}>ปิดจัดใหม่(ผ่อนดี)</option>
                                         </select>
                                       @endif
                                     @endif
@@ -954,36 +915,6 @@
                                 </div>
                               </div>
                               <div class="col-6">
-                                <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">สถานะผู้เช่าซื้อ : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <select name="Gradebuyer" class="form-control form-control-sm" >
-                                        <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
-                                        <option value="ลูกค้าเก่าผ่อนดี" {{ ($data->Gradebuyer_car === 'ลูกค้าเก่าผ่อนดี') ? 'selected' : '' }}>ลูกค้าเก่าผ่อนดี</option>
-                                        <option value="ลูกค้ามีงานตาม" {{ ($data->Gradebuyer_car === 'ลูกค้ามีงานตาม') ? 'selected' : '' }}>ลูกค้ามีงานตาม</option>
-                                        <option value="ลูกค้าใหม่" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่') ? 'selected' : '' }}>ลูกค้าใหม่</option>
-                                        <option value="ลูกค้าใหม่(ปิดธนาคาร)" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่(ปิดธนาคาร)') ? 'selected' : '' }}>ลูกค้าใหม่(ปิดธนาคาร)</option>
-                                        <option value="ปิดจัดใหม่(งานตาม)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(งานตาม)') ? 'selected' : '' }}>ปิดจัดใหม่(งานตาม)</option>
-                                        <option value="ปิดจัดใหม่(ผ่อนดี)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(ผ่อนดี)') ? 'selected' : '' }}>ปิดจัดใหม่(ผ่อนดี)</option>
-                                      </select>
-                                    @else
-                                      @if($GetDocComplete != Null)
-                                        <input type="text" name="Gradebuyer" value="{{ $data->Gradebuyer_car }}" class="form-control form-control-sm"  placeholder="เลือกสถานะผู้เช่าซื้อ" readonly/>
-                                      @else
-                                        <select name="Gradebuyer" class="form-control form-control-sm" >
-                                          <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
-                                          <option value="ลูกค้าเก่าผ่อนดี" {{ ($data->Gradebuyer_car === 'ลูกค้าเก่าผ่อนดี') ? 'selected' : '' }}>ลูกค้าเก่าผ่อนดี</option>
-                                          <option value="ลูกค้ามีงานตาม" {{ ($data->Gradebuyer_car === 'ลูกค้ามีงานตาม') ? 'selected' : '' }}>ลูกค้ามีงานตาม</option>
-                                          <option value="ลูกค้าใหม่" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่') ? 'selected' : '' }}>ลูกค้าใหม่</option>
-                                          <option value="ลูกค้าใหม่(ปิดธนาคาร)" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่(ปิดธนาคาร)') ? 'selected' : '' }}>ลูกค้าใหม่(ปิดธนาคาร)</option>
-                                          <option value="ปิดจัดใหม่(งานตาม)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(งานตาม)') ? 'selected' : '' }}>ปิดจัดใหม่(งานตาม)</option>
-                                          <option value="ปิดจัดใหม่(ผ่อนดี)" {{ ($data->Gradebuyer_car === 'ปิดจัดใหม่(ผ่อนดี)') ? 'selected' : '' }}>ปิดจัดใหม่(ผ่อนดี)</option>
-                                        </select>
-                                      @endif
-                                    @endif
-                                  </div>
-                                </div>
                               </div>
                             </div>
 
@@ -1504,66 +1435,6 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ประเภทหลักทรัพย์ : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <select name="securitiesSP" class="form-control form-control-sm">
-                                      <option value="" selected>--- ประเภทหลักทรัพย์ ---</option>
-                                      <option value="โฉนด" {{ ($data->securities_SP === 'โฉนด') ? 'selected' : '' }}>โฉนด</option>
-                                      <option value="นส.3" {{ ($data->securities_SP === 'นส.3') ? 'selected' : '' }}>นส.3</option>
-                                      <option value="นส.3 ก" {{ ($data->securities_SP === 'นส.3 ก') ? 'selected' : '' }}>นส.3 ก</option>
-                                      <option value="นส.4" {{ ($data->securities_SP === 'นส.4') ? 'selected' : '' }}>นส.4</option>
-                                      <option value="นส.4 จ" {{ ($data->securities_SP === 'นส.4 จ') ? 'selected' : '' }}>นส.4 จ</option>
-                                    </select>
-                                  @else
-                                    @if($GetDocComplete != Null)
-                                      <input type="text" name="securitiesSP" value="{{$data->securities_SP}}" class="form-control form-control-sm" placeholder="ประเภทหลักทรัพย์" readonly/>
-                                    @else
-                                      <select name="securitiesSP" class="form-control form-control-sm">
-                                        <option value="" selected>--- ประเภทหลักทรัพย์ ---</option>
-                                        <option value="โฉนด" {{ ($data->securities_SP === 'โฉนด') ? 'selected' : '' }}>โฉนด</option>
-                                        <option value="นส.3" {{ ($data->securities_SP === 'นส.3') ? 'selected' : '' }}>นส.3</option>
-                                        <option value="นส.3 ก" {{ ($data->securities_SP === 'นส.3 ก') ? 'selected' : '' }}>นส.3 ก</option>
-                                        <option value="นส.4" {{ ($data->securities_SP === 'นส.4') ? 'selected' : '' }}>นส.4</option>
-                                        <option value="นส.4 จ" {{ ($data->securities_SP === 'นส.4 จ') ? 'selected' : '' }}>นส.4 จ</option>
-                                      </select>
-                                    @endif
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">เลขที่โฉนด : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" name="deednumberSP" value="{{$data->deednumber_SP}}" class="form-control form-control-sm" placeholder="เลขที่โฉนด" />
-                                  @else
-                                    <input type="text" name="deednumberSP" value="{{$data->deednumber_SP}}" class="form-control form-control-sm" placeholder="เลขที่โฉนด" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">เนื้อที่ : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" name="areaSP" value="{{$data->area_SP}}" class="form-control form-control-sm" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask=""/>
-                                  @else
-                                    <input type="text" name="areaSP" value="{{$data->area_SP}}" class="form-control form-control-sm" placeholder="เนื้อที่" data-inputmask="&quot;mask&quot;:&quot;99-9-99&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประเภทบ้าน : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
@@ -1592,6 +1463,9 @@
                                 </div>
                               </div>
                             </div>
+                          </div>
+
+                          <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">อาชีพ : </label>
@@ -1604,9 +1478,6 @@
                                 </div>
                               </div>
                             </div>
-                          </div>
-
-                          <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รายได้ : </label>
@@ -1619,6 +1490,9 @@
                                 </div>
                               </div>
                             </div>
+                          </div>
+
+                          <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประวัติซื้อ/ค้ำ  : </label>
@@ -1738,6 +1612,8 @@
                                 </div>
                               </div>
                             </div>
+                            <div class="col-6">
+                            </div>
                           </div>
 
                         </div>
@@ -1753,16 +1629,9 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <select name="Brandcar" class="form-control form-control-sm" >
                                       <option value="" selected>--- ยี่ห้อ ---</option>
-                                      <option value="ISUZU" {{ ($data->Brand_car === 'ISUZU') ? 'selected' : '' }}>ISUZU</option>
-                                      <option value="MITSUBISHI" {{ ($data->Brand_car === 'MITSUBISHI') ? 'selected' : '' }}>MITSUBISHI</option>
-                                      <option value="TOYOTA" {{ ($data->Brand_car === 'TOYOTA') ? 'selected' : '' }}>TOYOTA</option>
-                                      <option value="MAZDA" {{ ($data->Brand_car === 'MAZDA') ? 'selected' : '' }}>MAZDA</option>
-                                      <option value="FORD" {{ ($data->Brand_car === 'FORD') ? 'selected' : '' }}>FORD</option>
-                                      <option value="NISSAN" {{ ($data->Brand_car === 'NISSAN') ? 'selected' : '' }}>NISSAN</option>
                                       <option value="HONDA" {{ ($data->Brand_car === 'HONDA') ? 'selected' : '' }}>HONDA</option>
-                                      <option value="CHEVROLET" {{ ($data->Brand_car === 'CHEVROLET') ? 'selected' : '' }}>CHEVROLET</option>
-                                      <option value="MG" {{ ($data->Brand_car === 'MG') ? 'selected' : '' }}>MG</option>
-                                      <option value="SUZUKI" {{ ($data->Brand_car === 'SUZUKI') ? 'selected' : '' }}>SUZUKI</option>
+                                      <option value="YAMAHA" {{ ($data->Brand_car === 'YAMAHA') ? 'selected' : '' }}>YAMAHA</option>
+                                      <option value="KAWASAKI" {{ ($data->Brand_car === 'KAWASAKI') ? 'selected' : '' }}>KAWASAKI</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -1770,16 +1639,9 @@
                                     @else
                                       <select name="Brandcar" class="form-control form-control-sm" >
                                         <option value="" selected>--- ยี่ห้อ ---</option>
-                                        <option value="ISUZU" {{ ($data->Brand_car === 'ISUZU') ? 'selected' : '' }}>ISUZU</option>
-                                        <option value="MITSUBISHI" {{ ($data->Brand_car === 'MITSUBISHI') ? 'selected' : '' }}>MITSUBISHI</option>
-                                        <option value="TOYOTA" {{ ($data->Brand_car === 'TOYOTA') ? 'selected' : '' }}>TOYOTA</option>
-                                        <option value="MAZDA" {{ ($data->Brand_car === 'MAZDA') ? 'selected' : '' }}>MAZDA</option>
-                                        <option value="FORD" {{ ($data->Brand_car === 'FORD') ? 'selected' : '' }}>FORD</option>
-                                        <option value="NISSAN" {{ ($data->Brand_car === 'NISSAN') ? 'selected' : '' }}>NISSAN</option>
                                         <option value="HONDA" {{ ($data->Brand_car === 'HONDA') ? 'selected' : '' }}>HONDA</option>
-                                        <option value="CHEVROLET" {{ ($data->Brand_car === 'CHEVROLET') ? 'selected' : '' }}>CHEVROLET</option>
-                                        <option value="MG" {{ ($data->Brand_car === 'MG') ? 'selected' : '' }}>MG</option>
-                                        <option value="SUZUKI" {{ ($data->Brand_car === 'SUZUKI') ? 'selected' : '' }}>SUZUKI</option>
+                                        <option value="YAMAHA" {{ ($data->Brand_car === 'YAMAHA') ? 'selected' : '' }}>YAMAHA</option>
+                                        <option value="KAWASAKI" {{ ($data->Brand_car === 'KAWASAKI') ? 'selected' : '' }}>KAWASAKI</option>
                                       </select>
                                     @endif
                                   @endif
@@ -1793,9 +1655,9 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <select id="Typecardetail" name="Typecardetail" class="form-control form-control-sm"  onchange="calculate();">
                                       <option value="" selected>--- ประเภทรถ ---</option>
-                                      <option value="รถกระบะ" {{ ($data->Typecardetails === 'รถกระบะ') ? 'selected' : '' }}>รถกระบะ</option>
-                                      <option value="รถตอนเดียว" {{ ($data->Typecardetails === 'รถตอนเดียว') ? 'selected' : '' }}>รถตอนเดียว</option>
-                                      <option value="รถเก๋ง/7ที่นั่ง" {{ ($data->Typecardetails === 'รถเก๋ง/7ที่นั่ง') ? 'selected' : '' }}>รถเก๋ง/7ที่นั่ง</option>
+                                      <option value="เกียร์ธรรมดา" {{ ($data->Typecardetails === 'เกียร์ธรรมดา') ? 'selected' : '' }}>เกียร์ธรรมดา</option>
+                                      <option value="รถออโตเมติก" {{ ($data->Typecardetails === 'รถออโตเมติก') ? 'selected' : '' }}>รถออโตเมติก</option>
+                                      <option value="BigBike" {{ ($data->Typecardetails === 'BigBike') ? 'selected' : '' }}>BigBike</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -1803,9 +1665,9 @@
                                     @else
                                       <select id="Typecardetail" name="Typecardetail" class="form-control form-control-sm"  onchange="calculate();">
                                         <option value="" selected>--- ประเภทรถ ---</option>
-                                        <option value="รถกระบะ" {{ ($data->Typecardetails === 'รถกระบะ') ? 'selected' : '' }}>รถกระบะ</option>
-                                        <option value="รถตอนเดียว" {{ ($data->Typecardetails === 'รถตอนเดียว') ? 'selected' : '' }}>รถตอนเดียว</option>
-                                        <option value="รถเก๋ง/7ที่นั่ง" {{ ($data->Typecardetails === 'รถเก๋ง/7ที่นั่ง') ? 'selected' : '' }}>รถเก๋ง/7ที่นั่ง</option>
+                                        <option value="เกียร์ธรรมดา" {{ ($data->Typecardetails === 'เกียร์ธรรมดา') ? 'selected' : '' }}>เกียร์ธรรมดา</option>
+                                        <option value="รถออโตเมติก" {{ ($data->Typecardetails === 'รถออโตเมติก') ? 'selected' : '' }}>รถออโตเมติก</option>
+                                        <option value="BigBike" {{ ($data->Typecardetails === 'BigBike') ? 'selected' : '' }}>BigBike</option>
                                       </select>
                                     @endif
                                   @endif
@@ -1872,7 +1734,7 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ป้ายเดิม : </label>
+                                <label class="col-sm-3 col-form-label text-right">ป้ายทะเบียน : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin")
                                     <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control form-control-sm"  placeholder="ป้ายเดิม"/>
@@ -1884,31 +1746,12 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">กลุ่มปีรถยนต์ : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="Groupyearcar" name="Groupyearcar" class="form-control form-control-sm"  value="{{ $data->Groupyear_car}}" readonly onchange="newformula();"/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ป้ายใหม่ : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" name="Nowlicensecar" value="{{$data->Nowlicense_car}}" class="form-control form-control-sm"  placeholder="ป้ายใหม่" />
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">เลขไมล์ : </label>
+                                <label class="col-sm-3 col-form-label text-right">รุ่น : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="Milecar" name="Milecar" value="{{$data->Mile_car}}" class="form-control form-control-sm"  placeholder="เลขไมล์" onchange="mile();" />
+                                    <input type="text" name="Modelcar" value="{{$data->Model_car}}" class="form-control form-control-sm"  placeholder="รุ่น" />
                                   @else
-                                    <input type="text" id="Milecar" name="Milecar" value="{{$data->Mile_car}}" class="form-control form-control-sm"  placeholder="เลขไมล์" onchange="mile();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" name="Modelcar" value="{{$data->Model_car}}" class="form-control form-control-sm"  placeholder="รุ่น" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
                               </div>
@@ -1918,12 +1761,12 @@
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">รุ่น : </label>
+                                <label class="col-sm-3 col-form-label text-right">เลขไมล์ : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" name="Modelcar" value="{{$data->Model_car}}" class="form-control form-control-sm"  placeholder="รุ่น" />
+                                    <input type="text" id="Milecar" name="Milecar" value="{{$data->Mile_car}}" class="form-control form-control-sm"  placeholder="เลขไมล์" onchange="mile();" />
                                   @else
-                                    <input type="text" name="Modelcar" value="{{$data->Model_car}}" class="form-control form-control-sm"  placeholder="รุ่น" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="Milecar" name="Milecar" value="{{$data->Mile_car}}" class="form-control form-control-sm"  placeholder="เลขไมล์" onchange="mile();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
                               </div>
@@ -1942,13 +1785,16 @@
                             </div>
                           </div>
 
+                          {{-- กลุ่มปีรถยนต์ --}}
+                          <input type="hidden" id="Groupyearcar" name="Groupyearcar" class="form-control form-control-sm"  value="{{ $data->Groupyear_car}}" readonly onchange="newformula();" disabled/>
+                          
                           <hr />
                           @include('analysis.script')
 
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">เงินต้น : </label>
+                                <label class="col-sm-3 col-form-label text-right"><font color="red">เงินต้น :</font></label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <input type="text" id="Topcar" name="Topcar" value="{{number_format($data->Top_car)}}" class="form-control form-control-sm"  placeholder="ป้อนเงินต้น" oninput="calculate2();balance2();" />
@@ -1964,7 +1810,6 @@
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
-                                <!-- <label class="col-sm-3 col-form-label text-right">เงินต้น+ค่าดำเนินการ : </label> -->
                                 <div class="col-sm-8">
                                   <input type="hidden" id="Totalfee" name="Paymemtcar" class="form-control form-control-sm" value="{{$data->Paymemt_car}}" placeholder="-" readonly/>
                                 </div>
@@ -2041,17 +1886,10 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <select id="Timeslackencar" name="Timeslackencar" class="form-control form-control-sm"  oninput="calculate();calculate2();balance2();">
                                       <option value="" selected>--- ระยะเวลาผ่อน ---</option>
+                                      <option value="6" {{ ($data->Timeslacken_car === '6') ? 'selected' : '' }}>6</option>
                                       <option value="12" {{ ($data->Timeslacken_car === '12') ? 'selected' : '' }}>12</option>
                                       <option value="18" {{ ($data->Timeslacken_car === '18') ? 'selected' : '' }}>18</option>
                                       <option value="24" {{ ($data->Timeslacken_car === '24') ? 'selected' : '' }}>24</option>
-                                      <option value="30" {{ ($data->Timeslacken_car === '30') ? 'selected' : '' }}>30</option>
-                                      <option value="36" {{ ($data->Timeslacken_car === '36') ? 'selected' : '' }}>36</option>
-                                      <option value="42" {{ ($data->Timeslacken_car === '42') ? 'selected' : '' }}>42</option>
-                                      <option value="48" {{ ($data->Timeslacken_car === '48') ? 'selected' : '' }}>48</option>
-                                      <option value="54" {{ ($data->Timeslacken_car === '54') ? 'selected' : '' }}>54</option>
-                                      <option value="60" {{ ($data->Timeslacken_car === '60') ? 'selected' : '' }}>60</option>
-                                      <option value="66" {{ ($data->Timeslacken_car === '66') ? 'selected' : '' }}>66</option>
-                                      <option value="72" {{ ($data->Timeslacken_car === '72') ? 'selected' : '' }}>72</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -2059,17 +1897,10 @@
                                     @else
                                       <select id="Timeslackencar" name="Timeslackencar" class="form-control form-control-sm"  oninput="calculate();calculate2();balance2();">
                                         <option value="" selected>--- ระยะเวลาผ่อน ---</option>
+                                        <option value="6" {{ ($data->Timeslacken_car === '6') ? 'selected' : '' }}>6</option>
                                         <option value="12" {{ ($data->Timeslacken_car === '12') ? 'selected' : '' }}>12</option>
                                         <option value="18" {{ ($data->Timeslacken_car === '18') ? 'selected' : '' }}>18</option>
                                         <option value="24" {{ ($data->Timeslacken_car === '24') ? 'selected' : '' }}>24</option>
-                                        <option value="30" {{ ($data->Timeslacken_car === '30') ? 'selected' : '' }}>30</option>
-                                        <option value="36" {{ ($data->Timeslacken_car === '36') ? 'selected' : '' }}>36</option>
-                                        <option value="42" {{ ($data->Timeslacken_car === '42') ? 'selected' : '' }}>42</option>
-                                        <option value="48" {{ ($data->Timeslacken_car === '48') ? 'selected' : '' }}>48</option>
-                                        <option value="54" {{ ($data->Timeslacken_car === '54') ? 'selected' : '' }}>54</option>
-                                        <option value="60" {{ ($data->Timeslacken_car === '60') ? 'selected' : '' }}>60</option>
-                                        <option value="66" {{ ($data->Timeslacken_car === '66') ? 'selected' : '' }}>66</option>
-                                        <option value="72" {{ ($data->Timeslacken_car === '72') ? 'selected' : '' }}>72</option>
                                       </select>
                                     @endif
                                   @endif
@@ -2085,55 +1916,6 @@
                               </div>
                             </div>
                           </div>
-                          <hr>
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ประกันภัย : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <select id="Insurancecar" name="Insurancecar" class="form-control form-control-sm"  onchange="">
-                                      <option value="" selected>--- ประกันภัย ---</option>
-                                      <option value="แถม ป2+ 1ปี" {{ ($data->Insurance_car === 'แถม ป2+ 1ปี') ? 'selected' : '' }}>แถม ป2+ 1ปี</option>
-                                      <option value="มี ป2+ อยู่แล้ว" {{ ($data->Insurance_car === 'มี ป2+ อยู่แล้ว') ? 'selected' : '' }}>มี ป2+ อยู่แล้ว</option>
-                                      <option value="ไม่แถม" {{ ($data->Insurance_car === 'ไม่แถม') ? 'selected' : '' }}>ไม่แถม</option>
-                                      <option value="ไม่ซื้อ" {{ ($data->Insurance_car === 'ไม่ซื้อ') ? 'selected' : '' }}>ไม่ซื้อ</option>
-                                      <option value="ซื้อ ป2+ 1ปี" {{ ($data->Insurance_car === 'ซื้อ ป2+ 1ปี') ? 'selected' : '' }}>ซื้อ ป2+ 1ปี</option>
-                                      <option value="ซื้อ ป1 1ปี" {{ ($data->Insurance_car === 'ซื้อ ป1 1ปี') ? 'selected' : '' }}>ซื้อ ป1 1ปี</option>
-                                      <option value="มี ป1 อยู่แล้ว" {{ ($data->Insurance_car === 'มี ป1 อยู่แล้ว') ? 'selected' : '' }}>มี ป1 อยู่แล้ว</option>
-                                    </select>
-                                  @else
-                                    @if($GetDocComplete != Null)
-                                      <input type="text" id="Insurancecar" name="Insurancecar" value="{{$data->Insurance_car}}" class="form-control form-control-sm"  placeholder="ประกันภัย" readonly />
-                                    @else
-                                      <select id="Insurancecar" name="Insurancecar" class="form-control form-control-sm"  onchange="">
-                                        <option value="" selected>--- ประกันภัย ---</option>
-                                        <option value="แถม ป2+ 1ปี" {{ ($data->Insurance_car === 'แถม ป2+ 1ปี') ? 'selected' : '' }}>แถม ป2+ 1ปี</option>
-                                        <option value="มี ป2+ อยู่แล้ว" {{ ($data->Insurance_car === 'มี ป2+ อยู่แล้ว') ? 'selected' : '' }}>มี ป2+ อยู่แล้ว</option>
-                                        <option value="ไม่แถม" {{ ($data->Insurance_car === 'ไม่แถม') ? 'selected' : '' }}>ไม่แถม</option>
-                                        <option value="ไม่ซื้อ" {{ ($data->Insurance_car === 'ไม่ซื้อ') ? 'selected' : '' }}>ไม่ซื้อ</option>
-                                        <option value="ซื้อ ป2+ 1ปี" {{ ($data->Insurance_car === 'ซื้อ ป2+ 1ปี') ? 'selected' : '' }}>ซื้อ ป2+ 1ปี</option>
-                                        <option value="ซื้อ ป1 1ปี" {{ ($data->Insurance_car === 'ซื้อ ป1 1ปี') ? 'selected' : '' }}>ซื้อ ป1 1ปี</option>
-                                        <option value="มี ป1 อยู่แล้ว" {{ ($data->Insurance_car === 'มี ป1 อยู่แล้ว') ? 'selected' : '' }}>มี ป1 อยู่แล้ว</option>
-                                      </select>
-                                    @endif
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">เปอร์เซ็นจัดไฟแนนซ์ : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" name="Percentcar" value="{{$data->Percent_car}}" class="form-control form-control-sm int"  placeholder="เปอร์เซ็นจัดไฟแนนซ์" readonly/>
-                                  @else
-                                    <input type="text" name="Percentcar" value="{{$data->Percent_car}}" class="form-control form-control-sm int"  placeholder="เปอร์เซ็นจัดไฟแนนซ์" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                          </div>
 
                           <div class="row">
                             <div class="col-6">
@@ -2143,10 +1925,8 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                     <select id="statuscar" name="statuscar" class="form-control form-control-sm" >
                                       <option value="" selected>--- เลือกแบบ ---</option>
-                                      <option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>
                                       <option value="กส.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำไม่มีหลักทรัพย์</option>
                                       <option value="กส.ไม่ค้ำประกัน" {{ ($data->status_car === 'กส.ไม่ค้ำประกัน') ? 'selected' : '' }}>กส.ไม่ค้ำประกัน</option>
-                                      <option value="VIP.กรรมสิทธิ์" {{ ($data->status_car === 'VIP.กรรมสิทธิ์') ? 'selected' : '' }}>VIP.กรรมสิทธิ์</option>
                                     </select>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -2154,10 +1934,8 @@
                                     @else
                                       <select id="statuscar" name="statuscar" class="form-control form-control-sm" >
                                         <option value="" selected>--- เลือกแบบ ---</option>
-                                        <option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>
                                         <option value="กส.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำไม่มีหลักทรัพย์</option>
                                         <option value="กส.ไม่ค้ำประกัน" {{ ($data->status_car === 'กส.ไม่ค้ำประกัน') ? 'selected' : '' }}>กส.ไม่ค้ำประกัน</option>
-                                        <option value="VIP.กรรมสิทธิ์" {{ ($data->status_car === 'VIP.กรรมสิทธิ์') ? 'selected' : '' }}>VIP.กรรมสิทธิ์</option>
                                       </select>
                                     @endif
                                   @endif
@@ -2292,17 +2070,17 @@
                               </div>
                             </div>
                           </div>
+
                           <hr>
-                          <font color="red" class="col-sm-2 text-sm">( * กรณีเป็นพนักงาน) </font>
                           <div class="row">
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">แนะนำ/นายหน้า : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="Agentcar" name="Agentcar" value="{{$data->Agent_car}}" class="form-control form-control-sm"  placeholder="แนะนำ/นายหน้า" />
+                                    <input type="text" id="Agentcar" name="Agentcar" value="{{$data->Agent_car}}" class="form-control form-control-sm"  placeholder="แนะนำ/นายหน้า" oninput="commission_P04();"/>
                                   @else
-                                    <input type="text" id="Agentcar" name="Agentcar" value="{{$data->Agent_car}}" class="form-control form-control-sm"  placeholder="แนะนำ/นายหน้า" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    <input type="text" id="Agentcar" name="Agentcar" value="{{$data->Agent_car}}" class="form-control form-control-sm"  placeholder="แนะนำ/นายหน้า" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }} oninput="commission_P04();"/>
                                   @endif
                                 </div>
                               </div>
@@ -2324,14 +2102,14 @@
                           <div class="row">
                             <div class="col-6">
                             <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">ปชช.ผู้แนะนำ/นายหน้า : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask=""/>
-                                    @else
-                                      <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                    @endif
-                                  </div>
+                                <label class="col-sm-3 col-form-label text-right">ปชช.ผู้แนะนำ/นายหน้า : </label>
+                                <div class="col-sm-8">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask=""/>
+                                  @else
+                                    <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                  @endif
+                                </div>
                               </div>
                             </div>
                             <div class="col-6">
@@ -2350,15 +2128,19 @@
 
                           <div class="row">
                             <div class="col-6">
-                              <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">ค่าคอม : </label>
-                                  <div class="col-sm-8">
-                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm"  placeholder="ค่าคอม" oninput="commission()"/>
-                                    @else
-                                      <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm"  placeholder="ค่าคอม" oninput="commission()" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                    @endif
-                                  </div>
+                              @if($data->Agent_car != NULL)
+                                <div class="form-group row mb-0" id="ShowCom">
+                              @else
+                                <div class="form-group row mb-0" id="ShowCom" style="display:none;">
+                              @endif
+                                <label class="col-sm-3 col-form-label text-right">ค่าคอม : </label>
+                                <div class="col-sm-8">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm" placeholder="ค่าคอม" readonly/>
+                                  @else
+                                    <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm"  placeholder="ค่าคอม" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                  @endif
+                                </div>
                               </div>
                             </div>
                             <div class="col-6">
@@ -2374,6 +2156,18 @@
                               </div>
                             </div>
                           </div>
+
+                          <script>
+                            $('#Agentcar').change(function(){
+                              var value = document.getElementById('Agentcar').value;
+                                if(value == ''){
+                                  $('#ShowCom').hide();
+                                }
+                                else{
+                                  $('#ShowCom').show();
+                                }
+                            });
+                          </script>
 
                           <div class="row">
                             <div class="col-6">
@@ -2496,24 +2290,8 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              
                             </div>
                           </div>
-
-                          {{--<div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">หมายเหตุ : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" name="Notecar" value="{{$data->Note_car}}" class="form-control form-control-sm"  placeholder="หมายเหตุ"/>
-                                  @else
-                                    <input type="text" name="Notecar" value="{{$data->Note_car}}" class="form-control form-control-sm" placeholder="หมายเหตุ" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                          </div>--}}
 
                           <hr>
                           <div class="row">
@@ -2572,101 +2350,6 @@
                             </div>
                           </div>
                         </div>
-                        <div class="tab-pane fade" id="Sub-tab4" role="tabpanel" aria-labelledby="Sub-custom-tab4">
-                          <h5 class="text-center"><b>แบบฟอร์มรายละเอียดค่าใช้จ่าย</b></h5>
-                          <p></p>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">พรบ. : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="actPrice" name="actPrice" value="{{number_format($data->act_Price)}}" class="form-control form-control-sm" placeholder="พรบ." oninput="balance2();"/>
-                                  @else
-                                    <input type="text" id="actPrice" name="actPrice" value="{{number_format($data->act_Price)}}" class="form-control form-control-sm" placeholder="พรบ." oninput="balance2();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ซื้อ ป2+/ป1 : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="P2Price" name="P2Price" value="{{number_format($data->P2_Price)}}" class="form-control form-control-sm" placeholder="ซื้อ ป2+" oninput="balance2();"/>
-                                  @else
-                                    <input type="text" id="P2Price" name="P2Price" value="{{number_format($data->P2_Price)}}" class="form-control form-control-sm" placeholder="ซื้อ ป2+" oninput="balance2();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ยอดปิดบัญชี : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="closeAccountPrice" name="closeAccountPrice" value="{{number_format($data->closeAccount_Price)}}" class="form-control form-control-sm" placeholder="ยอดปิดบัญชี" oninput="balance2()"/>
-                                  @else
-                                    <input type="text" id="closeAccountPrice" name="closeAccountPrice" value="{{number_format($data->closeAccount_Price)}}" class="form-control form-control-sm" placeholder="ยอดปิดบัญชี" oninput="balance2()" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">รวมค่าดำเนินการ : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{number_format($data->totalk_Price, 2)}}" class="form-control form-control-sm" placeholder="รวมค่าดำเนินการ" readonly/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                         
-                          <hr>
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">คงเหลือ : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="balancePrice" name="balancePrice" value="{{number_format($data->balance_Price,2)}}" class="form-control form-control-sm" placeholder="คงเหลือ" readonly/>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ค่าคอมหลังหัก 3%  : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" id="commitPrice" name="commitPrice" value="{{$data->commit_Price}}" class="form-control form-control-sm" placeholder="ค่าคอมหลังหัก" readonly/>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div class="row">
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">หมายเหตุ : </label>
-                                <div class="col-sm-8">
-                                  <input type="text" name="notePrice" value="{{ $data->note_Price }}" class="form-control form-control-sm" placeholder="หมายเหตุ" />
-                                </div>
-                              </div>
-                            </div>
-                          @if($data->Payee_car == $data->Agent_car)
-                            <div class="col-6">
-                              <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right"><font color="red">รวมยอดโอน :</font> </label>
-                                <div class="col-sm-8">
-                                  <input type="text" value="{{ number_format($data->balance_Price+$data->commit_Price,2)}}" style="font-weight:bold;" class="form-control form-control-sm" readonly />
-                                </div>
-                              </div>
-                            </div>
-                          @endif
-                          </div>
-                        </div>
                         <div class="tab-pane fade" id="Sub-tab5" role="tabpanel" aria-labelledby="Sub-custom-tab5">
                           <h5 class="text-center"><b>ข้อมูลลงพื้นที ตรวจสอบ</b></h5>
                           <p></p>
@@ -2676,9 +2359,10 @@
                               <div class="card card-danger">
                                 <div class="card-header">
                                   <h3 class="card-title">รูปภาพผู้เช่าซื้อ</h3>
-                  
                                   <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="maximize"><i class="fas fa-expand"></i></button>
+                                    <button type="button" class="btn btn-tool" data-card-widget="maximize" title="ขยาย">
+                                      <i class="fas fa-expand"></i>
+                                    </button>
                                   </div>
                                 </div>
                                 <div class="card-body">
@@ -3122,8 +2806,6 @@
                         </div>
                       </div>
                     </div>
-
-                    <input type="hidden" name="_method" value="PATCH"/>
 
                     <!-- แบบฟอร์มผู้ค้ำ 2 -->
                     <div class="modal fade" id="modal-default">
@@ -3626,12 +3308,13 @@
                         </div>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
             </div>
           </div>
+
+          <input type="hidden" name="_method" value="PATCH"/>
         </form>
       </section>
     </div>
@@ -3696,31 +3379,31 @@
   @endif
 
   <script>
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 9,
-          center: {lat: 6.6637053, lng: 101.2183787}
-        });
-        var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        // var labels = 'BA';
+    function initMap() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 9,
+        center: {lat: 6.6637053, lng: 101.2183787}
+      });
+      var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      // var labels = 'BA';
 
-        var markers = locations.map(function(location, i) {
-          return new google.maps.Marker({
-            position: location,
-            label: labels[i],
-            // title: 'ตำแหน่งที่ตั้ง'
-          });
+      var markers = locations.map(function(location, i) {
+        return new google.maps.Marker({
+          position: location,
+          label: labels[i],
+          // title: 'ตำแหน่งที่ตั้ง'
         });
-        
+      });
+      
 
-        // Add a marker clusterer to manage the markers.
-        var markerCluster = new MarkerClusterer(map, markers,
-            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
-        }
-        var locations = [
-        {lat: {{ $Buyerlat }}, lng: {{ $Buyerlong }} },
-        {lat: {{ $Supportlat }}, lng: {{ $Supportlong }} }
-        ]
+      // Add a marker clusterer to manage the markers.
+      var markerCluster = new MarkerClusterer(map, markers,
+          {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+    }
+    var locations = [
+      {lat: {{ $Buyerlat }}, lng: {{ $Buyerlong }} },
+      {lat: {{ $Supportlat }}, lng: {{ $Supportlong }} }
+    ]
   </script>
 
   <script src="https://unpkg.com/@google/markerclustererplus@4.0.1/dist/markerclustererplus.min.js"></script>
