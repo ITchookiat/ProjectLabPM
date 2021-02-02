@@ -280,8 +280,9 @@
                                   <div class="col-sm-8">
                                     <select name="TypeContract" class="form-control form-control-sm" required>
                                       <option value="" selected>--- เลือกสัญญา ---</option>
-                                      <option value="P03">สัญญาเงินกู้รถยนต์ (PLoan)</option>
-                                      <option value="P06">สัญญาเงินกู้ส่วนบุคคล (Micro)</option>
+                                      <option value="P03">สัญญาเงินกู้รถยนต์ (PLoan P03)</option>
+                                      <option value="P04">สัญญาเงินกู้รถจักรยานยนต์ (P04)</option>
+                                      <option value="P06">สัญญาเงินกู้ส่วนบุคคล (Micro P06)</option>
                                       <option value="P07">สัญญาเงินกู้พนักงาน (P07)</option>
                                     </select>
                                   </div>
@@ -305,6 +306,8 @@
                                       <option value="56">โคกโพธิ์ (56)</option>
                                       <option value="57">ตันหยงมัส (57)</option>
                                       <option value="58">รือเสาะ (58)</option>
+                                      <option value="59">บันนังสตา (59)</option>
+                                      <option value="60">ยะหา (60)</option>
                                     </select>
                                   </div>
                                 </div>

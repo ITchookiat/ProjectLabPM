@@ -42,35 +42,75 @@
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            
+
+            @php
+              if (isset($_GET['type'])) {
+                if ($_GET['type'] == 1) {
+                  $SetActiveP = true;
+                  $SetActiveP03 = true;
+                }elseif ($_GET['type'] == 3) {
+                  $SetActiveP = true;
+                  $SetActiveP04 = true;
+                }elseif ($_GET['type'] == 4) {
+                  $SetActiveP = true;
+                  $SetActiveP07 = true;
+                }elseif ($_GET['type'] == 5) {
+                  $SetActiveM = true;
+                  $SetActiveP06 = true;
+                }
+              }
+            @endphp
             @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
               <ul class="nav nav-treeview">
-                <li class="nav-item has-treeview {{ Request::is('MasterAnalysis') ? 'menu-open' : '' }} {{ Request::is('Analysis/Home/7') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/1/*') ? 'menu-open' : '' }}
-                                                 {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/2') ? 'menu-open' : '' }}">
+                <li class="nav-item has-treeview @if(isset($SetActiveP)) {{($SetActiveP == true) ? 'menu-open' : '' }} @endif 
+                                                {{ Request::is('Analysis/edit/1/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/3/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/4/*') ? 'menu-open' : '' }}
+                                                {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }}">
                   <a href="#" class="nav-link">
                     <i class="far fa-window-restore text-red nav-icon"></i>
                     <p>
-                      PLoan - Micro
+                      สัญญาเงินกู้ PLoan
                       <i class="right fas fa-angle-left"></i>
                     </p>
                   </a>
                   <ul class="nav nav-treeview" style="margin-left: 15px;">
                       @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
                         <li class="nav-item">
-                          @php
-                            if (isset($_GET['type'])) {
-                              if ($_GET['type'] == 1 || $_GET['type'] == 2) {
-                                $SetActive1 = true;
-                              }
-                            }
-                          @endphp
-                          <a href="{{ route('MasterAnalysis.index') }}?type={{1}}" class="nav-link @if(isset($SetActive1)) {{($SetActive1 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/Home/1') ? 'active' : '' }} {{ Request::is('Analysis/Home/2') ? 'active' : '' }} {{ Request::is('Analysis/edit/1/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>เงินกู้รถยนต์</p>
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{1}}" class="nav-link @if(isset($SetActiveP03)) {{($SetActiveP03 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/1/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
+                            <i class="fas fa-car nav-icon"></i>
+                            <p>เงินกู้รถยนต์ (P03)</p>
                           </a>
-                          <a href="{{ route('MasterAnalysis.index') }}?type={{3}}" class="nav-link">
-                            <i class="far fa-dot-circle nav-icon"></i>
-                            <p>เงินกู้จักรยานยนต์</p>
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{3}}" class="nav-link  @if(isset($SetActiveP04)) {{($SetActiveP04 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/3/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
+                            <i class="fas fa-biking nav-icon"></i>
+                            <p>เงินกู้จักรยานยนต์ (P04)</p>
+                          </a>
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{4}}" class="nav-link @if(isset($SetActiveP07)) {{($SetActiveP07 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/4/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
+                            <i class="fas fa-user nav-icon"></i>
+                            <p>เงินกู้พนักงาน (P07)</p>
+                          </a>
+                        </li>
+                      @endif
+                  </ul>
+                </li>
+              </ul>
+            @endif
+         
+            @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
+              <ul class="nav nav-treeview">
+                <li class="nav-item has-treeview @if(isset($SetActiveM)) {{($SetActiveM == true) ? 'menu-open' : '' }} @endif 
+                                                {{ Request::is('Analysis/edit/5/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }}">
+                  <a href="#" class="nav-link">
+                    <i class="far fa-window-restore text-red nav-icon"></i>
+                    <p>
+                      สัญญาเงินกู้ Micro
+                      <i class="right fas fa-angle-left"></i>
+                    </p>
+                  </a>
+                  <ul class="nav nav-treeview" style="margin-left: 15px;">
+                      @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
+                        <li class="nav-item">
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{5}}" class="nav-link @if(isset($SetActiveP06)) {{($SetActiveP06 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/5/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
+                            <i class="fas fa-car nav-icon"></i>
+                            <p>เงินกู้รถยนต์ (P06)</p>
                           </a>
                         </li>
                       @endif
@@ -175,6 +215,7 @@
     </div>
   </aside>
 
+  {{-- รายการอนุมัติโอนเงิน --}}
   <script type="text/javascript">
     SearchData(); //เรียกใช้งานทันที
     var Data = setInterval(() => {SearchData()}, 10000);

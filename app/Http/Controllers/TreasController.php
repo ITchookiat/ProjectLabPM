@@ -17,8 +17,7 @@ class TreasController extends Controller
     public function index(Request $request)
     {
         $date = date('Y-m-d');
-
-        if ($request->type == 1) {
+        if ($request->type == 1) {  //index
             $newfdate = '';
             $newtdate = '';
 
@@ -49,20 +48,20 @@ class TreasController extends Controller
                     ->orderBy('buyers.Contract_buyer', 'ASC')
                     ->get();
             }
-            
-            $CountP03 = 0;
-            $CountP06 = 0;
-            $CountP07 = 0;
+
+            $CountP = 0;
+            $CountM = 0;
+            $SumAll = 0;
+
             if ($data != NULL) {
                 foreach ($data as $key => $value) {
-                    if ($value->Type_Con == 'P03' and $value->UserCheckAc_car == NULL) {
-                        $CountP03 += 1;
-                    }elseif ($value->Type_Con == 'P06' and $value->UserCheckAc_car == NULL) {
-                        $CountP06 += 1;
-                    }elseif ($value->Type_Con == 'P07' and $value->UserCheckAc_car == NULL) {
-                        $CountP07 += 1;
+                    if ($value->Type_Con == 'P03' or $value->Type_Con == 'P04' or $value->Type_Con == 'P07') {
+                        $CountP += 1;
+                    }elseif ($value->Type_Con == 'P06') {
+                        $CountM += 1;
                     }
                 }
+                $SumAll = $CountP + $CountM;
             }
             
             if ($newfdate == false and $newtdate == false) {
@@ -76,22 +75,30 @@ class TreasController extends Controller
                 ->join('expenses','buyers.id','=','expenses.Buyerexpenses_id')
                 ->whereBetween('buyers.Date_Due',[$newfdate,$newtdate])
                 ->get();
+
             $count = count($topcar);
-  
+            $SumTopcarP = 0;
+            $SumCommissioncar = 0;
+            $SumCommitP = 0;
+
+            $SumTopcarM = 0;
+            $SumCommitM = 0;
             if($count != 0){
                 for ($i=0; $i < $count; $i++) {
-                @$SumTopcar += $topcar[$i]->Top_car; //รวมยอดจัดวันปัจจุบัน
-                @$SumCommissioncar += $topcar[$i]->Commission_car; //รวมค่าคอมก่อนหักวันปัจจุบัน
-                @$SumCommitprice += $topcar[$i]->commit_Price; //รวมค่าคอมหลังหักวันปัจจุบัน
+                    if ($topcar[$i]->Type_Con == 'P03' or $topcar[$i]->Type_Con == 'P04' or $topcar[$i]->Type_Con == 'P07') {
+                        @$SumTopcarP += $topcar[$i]->Top_car; //รวมยอดจัดวันปัจจุบัน
+                        @$SumCommissioncar += $topcar[$i]->Commission_car; //รวมค่าคอมก่อนหักวันปัจจุบัน
+                        @$SumCommitP += $topcar[$i]->commit_Price; //รวมค่าคอมหลังหักวันปัจจุบัน
+                    }else {
+                        @$SumTopcarM += $topcar[$i]->Top_car;
+                        @$SumCommitM += $topcar[$i]->Commission_car;
+                    }
                 }
-            }else{
-                $SumTopcar = 0;
-                $SumCommissioncar = 0;
-                $SumCommitprice = 0;
             }
 
-            return view('treasury.view', compact('data','newfdate','newtdate','SumTopcar','SumCommissioncar','SumCommitprice',
-                                                 'CountP03','CountP06','CountP07'));
+            return view('treasury.view', compact('data','newfdate','newtdate','SumTopcarP','SumCommissioncar','SumCommitP',
+                                                 'SumTopcarM','SumCommitM', 'SumAll',
+                                                 'CountP','CountM'));
         }
         elseif ($request->type == 2) {
             $type = $request->type;
@@ -107,16 +114,14 @@ class TreasController extends Controller
 
     public function SearchData(Request $request, $type, $id)
     {
-        if ($type == 1 or $type == 2) {
+        if ($type == 1 or $type == 2 or $type == 4) {
             $data = DB::table('buyers')
-                    ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
-                    ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                    ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-                    ->select('buyers.*','sponsors.*','cardetails.*','Expenses.*','buyers.created_at AS createdBuyers_at')
-                    ->where('buyers.id', $id)
-                    ->first();
-
-                    // dd($data);
+                ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+                ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+                ->select('buyers.*','sponsors.*','cardetails.*','Expenses.*','buyers.created_at AS createdBuyers_at')
+                ->where('buyers.id', $id)
+                ->first();
 
             if ($data->Payee_car != NULL) {
                 $SetAccount = str_replace ("-","",$data->Accountbrance_car);

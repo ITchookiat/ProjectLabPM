@@ -135,6 +135,7 @@ class ReportAnalysController extends Controller
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
             ->where('cardetails.Date_Appcar',$date)
+            ->where('buyers.Type_Con','!=','P04')
             ->where('cardetails.Approvers_car','<>','')
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
@@ -143,7 +144,7 @@ class ReportAnalysController extends Controller
         $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
         $html = $view->render();
         $pdf = new PDF();
-        $pdf::SetTitle('รายงานขออนุมัติประจำวัน');
+        $pdf::SetTitle('รายงานขออนุมัติประจำวัน P03-P06');
         $pdf::AddPage('L', 'A4');
         $pdf::SetMargins(5, 5, 5, 0);
         $pdf::SetFont('freeserif', '', 8, '', true);
@@ -152,12 +153,13 @@ class ReportAnalysController extends Controller
         $pdf::WriteHTML($html,true,false,true,false,'');
         $pdf::Output('report.pdf');
       }
-      elseif ($request->type == 2) {  //รายงาน เงินกู้รถยนต์ทั้งหมด
+      elseif ($request->type == 2) {  //Excel P03-P06-P07
         $data = DB::table('buyers')
           ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
           ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
           ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
           ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+          ->where('buyers.Type_Con','!=','P04')
           ->where('cardetails.Approvers_car','!=',Null)
           ->orderBy('buyers.Contract_buyer', 'ASC')
           ->get();
@@ -231,25 +233,46 @@ class ReportAnalysController extends Controller
         })->export('xlsx');
       }
       elseif($request->type == 8){  //รายงานขอเบิกเงินประจำวัน
-        $dataReport = DB::table('buyers')
+        if ($request->Flag == 1) {
+          $dataReport = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
             ->where('buyers.Date_Due',$date)
+            ->where('buyers.Type_Con','!=','P04')
             ->where('cardetails.Approvers_car','=',NULL)
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
 
-        $type = $request->type;
-        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
-        $html = $view->render();
-        $pdf = new PDF();
-        $pdf::SetTitle('รายงานขอเบิกเงินประจำวัน');
+            $type = 8;
+            $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+            $html = $view->render();
+            $pdf = new PDF();
+            $pdf::SetTitle('รายงานขอเบิกเงินประจำวัน P03-P06');
+          
+        }
+        elseif ($request->Flag == 2) {
+          $dataReport = DB::table('buyers')
+            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+            ->where('buyers.Date_Due',$date)
+            ->where('buyers.Type_Con','=','P04')
+            ->where('cardetails.Approvers_car','=',NULL)
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+            $type = 9;
+            $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+            $html = $view->render();
+            $pdf = new PDF();
+            $pdf::SetTitle('รายงานขอเบิกเงินประจำวัน P04');
+        }
+       
         $pdf::AddPage('L', 'A4');
         $pdf::SetMargins(5, 5, 5, 0);
         $pdf::SetFont('freeserif', '', 8, '', true);
         $pdf::SetAutoPageBreak(TRUE, 25);
-  
         $pdf::WriteHTML($html,true,false,true,false,'');
         $pdf::Output('report.pdf');
       }
