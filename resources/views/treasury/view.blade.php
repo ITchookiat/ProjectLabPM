@@ -87,13 +87,13 @@
             <div class="card-body p-0">
               <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
                 <a class="nav-link active" id="vert-tabs-PLoan-tab" data-toggle="pill" href="#vert-tabs-PLoan" role="tab" aria-controls="vert-tabs-PLoan" aria-selected="true">
-                  <i class="fas fa-inbox"></i> PLoan (P03-P04-P07)
+                  <i class="fas fa-inbox"></i> PLoan (P03-P04)
                   @if($CountP != 0)
                     <span class="badge bg-primary float-right">{{$CountP}}</span>
                   @endif
                 </a>
                 <a class="nav-link" id="vert-tabs-Micro-tab" data-toggle="pill" href="#vert-tabs-Micro" role="tab" aria-controls="vert-tabs-Micro" aria-selected="false">
-                  <i class="fas fa-inbox"></i> Micro (P06)
+                  <i class="fas fa-inbox"></i> Micro (P06-P07)
                   @if($CountM != 0)
                     <span class="badge bg-primary float-right">{{$CountM}}</span>
                   @endif
@@ -140,7 +140,7 @@
                   <div class="tab-content" id="vert-tabs-tabContent">
                     <div class="tab-pane text-left fade active show" id="vert-tabs-PLoan" role="tabpanel" aria-labelledby="vert-tabs-PLoan-tab">
                       <div class="card-header">
-                        <h3 class="card-title">รายการอนุมัติ PLoan (P03-P04-P07)</h3>
+                        <h3 class="card-title">รายการอนุมัติ PLoan (P03-P04)</h3>
                       </div>
                       <div class="table-responsive">
                         <table class="table table-striped table-valign-middle" id="table1">
@@ -157,7 +157,7 @@
                           </thead>
                           <tbody>
                             @foreach($data as $key => $row)
-                              @if($row->Type_Con == "P03" or $row->Type_Con == "P04" or $row->Type_Con == "P07")
+                              @if($row->Type_Con == "P03" or $row->Type_Con == "P04")
                                 <tr>
                                   <td class="text-center"> {{$key+1}} </td>
                                   <td class="text-left"> {{$row->branch_car}} </td>
@@ -201,7 +201,7 @@
                     </div>
                     <div class="tab-pane fade" id="vert-tabs-Micro" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
                       <div class="card-header">
-                        <h3 class="card-title">รายการอนุมัติ Micro (P06)</h3>
+                        <h3 class="card-title">รายการอนุมัติ Micro (P06-P07)</h3>
                       </div>
                       <div class="table-responsive">
                         <table class="table table-striped table-valign-middle" id="table2">
@@ -219,7 +219,7 @@
                           <tbody>
                             @php $Count = 0; @endphp
                             @foreach($data as $key => $row)
-                              @if($row->Type_Con == "P06")   
+                              @if($row->Type_Con == "P06" or $row->Type_Con == "P07")   
                                 @php $Count += 1; @endphp
                                 <tr>
                                   <td class="text-center"> {{$Count}} </td>

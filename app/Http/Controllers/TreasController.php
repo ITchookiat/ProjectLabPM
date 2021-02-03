@@ -55,9 +55,9 @@ class TreasController extends Controller
 
             if ($data != NULL) {
                 foreach ($data as $key => $value) {
-                    if ($value->Type_Con == 'P03' or $value->Type_Con == 'P04' or $value->Type_Con == 'P07') {
+                    if ($value->Type_Con == 'P03' or $value->Type_Con == 'P04') {
                         $CountP += 1;
-                    }elseif ($value->Type_Con == 'P06') {
+                    }elseif ($value->Type_Con == 'P06' or $value->Type_Con == 'P07') {
                         $CountM += 1;
                     }
                 }
@@ -85,11 +85,12 @@ class TreasController extends Controller
             $SumCommitM = 0;
             if($count != 0){
                 for ($i=0; $i < $count; $i++) {
-                    if ($topcar[$i]->Type_Con == 'P03' or $topcar[$i]->Type_Con == 'P04' or $topcar[$i]->Type_Con == 'P07') {
+                    if ($topcar[$i]->Type_Con == 'P03' or $topcar[$i]->Type_Con == 'P04') {
                         @$SumTopcarP += $topcar[$i]->Top_car; //รวมยอดจัดวันปัจจุบัน
                         @$SumCommissioncar += $topcar[$i]->Commission_car; //รวมค่าคอมก่อนหักวันปัจจุบัน
                         @$SumCommitP += $topcar[$i]->commit_Price; //รวมค่าคอมหลังหักวันปัจจุบัน
-                    }else {
+                    }
+                    elseif ($topcar[$i]->Type_Con == 'P06' or $topcar[$i]->Type_Con == 'P007') {
                         @$SumTopcarM += $topcar[$i]->Top_car;
                         @$SumCommitM += $topcar[$i]->Commission_car;
                     }
@@ -97,8 +98,7 @@ class TreasController extends Controller
             }
 
             return view('treasury.view', compact('data','newfdate','newtdate','SumTopcarP','SumCommissioncar','SumCommitP',
-                                                 'SumTopcarM','SumCommitM', 'SumAll',
-                                                 'CountP','CountM'));
+                                                 'SumTopcarM','SumCommitM', 'SumAll','CountP','CountM'));
         }
         elseif ($request->type == 2) {
             $type = $request->type;

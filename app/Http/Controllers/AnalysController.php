@@ -168,7 +168,7 @@ class AnalysController extends Controller
       elseif ($request->type == 2){   //เพิ่มสินเชื่อ
         return view('analysis.createbuyer');
       }
-      elseif ($request->type == 3) {  //PLoan P04 
+      elseif ($request->type == 3) {  //PLoan P04
         if ($newfdate == '' and $newtdate == '') {
           $data = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
@@ -255,7 +255,7 @@ class AnalysController extends Controller
                                              'SumCommitprice','SumAll','contno','SetStrConn','SetStr1','SetStr2','Count50','Count51','Count52',
                                              'Count53','Count54','Count55','Count56','Count57','Count58','Count59','Count60'));
       }
-      elseif ($request->type == 4) {  //PLoan P07
+      elseif ($request->type == 4) {  //Micro P07  (พนักงาน)
         if ($newfdate == '' and $newtdate == '') {
           $data = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
@@ -339,7 +339,7 @@ class AnalysController extends Controller
           $SumCommitprice = 0;
         }
 
-        return view('analysis.view_PLoan', compact('type', 'data','newfdate','newtdate','status','Setdate','SumTopcar','SumCommissioncar',
+        return view('analysis.view_Micro', compact('type', 'data','newfdate','newtdate','status','Setdate','SumTopcar','SumCommissioncar',
                                              'SumCommitprice','SumAll','contno','SetStrConn','SetStr1','SetStr2','Count50','Count51','Count52',
                                              'Count53','Count54','Count55','Count56','Count57','Count58','Count59','Count60'));
       }
@@ -870,7 +870,7 @@ class AnalysController extends Controller
       if ($type == 1 or $type == 4 or $type == 5) {   //P03-P06-P07
         return view('Analysis.edit',
           compact('data','id','dataImage','newDateDue','GetDocComplete','fdate','tdate','branch','status','type','countImage','SubStr'));
-      }elseif ($type == 3) {  //P04
+      }elseif ($type == 3) {  //P04 (จักรยานยนต์)
         return view('Analysis.edit_Ploan',
           compact('data','id','dataImage','newDateDue','GetDocComplete','fdate','tdate','branch','status','type','countImage','SubStr'));
       }

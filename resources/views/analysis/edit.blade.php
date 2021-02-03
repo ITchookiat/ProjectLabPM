@@ -203,7 +203,7 @@
                             @if($type == 1)
                               แก้ไขสัญญา (Edit P03 Loan Agreement)
                             @elseif($type == 4)
-                              แก้ไขสัญญา (Edit P07 Loan Agreement)
+                              แก้ไขสัญญา (Edit P07 Micro Agreement)
                             @elseif($type == 5)
                               แก้ไขสัญญา (Edit P06 Micro Agreement)
                             @endif
@@ -213,7 +213,7 @@
                             @if($type == 1)
                               รายละเอียดสัญญา (Details PLoan Agreement)
                             @elseif($type == 4)
-                              รายละเอียดสัญญา (Details PLoan Agreement)
+                              รายละเอียดสัญญา (Details Micro Agreement)
                             @elseif($type == 5)
                               รายละเอียดสัญญา (Details Micro Agreement)
                             @endif

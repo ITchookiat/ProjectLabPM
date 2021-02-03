@@ -52,7 +52,7 @@
                   $SetActiveP = true;
                   $SetActiveP04 = true;
                 }elseif ($_GET['type'] == 4) {
-                  $SetActiveP = true;
+                  $SetActiveM = true;
                   $SetActiveP07 = true;
                 }elseif ($_GET['type'] == 5) {
                   $SetActiveM = true;
@@ -63,7 +63,7 @@
             @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
               <ul class="nav nav-treeview">
                 <li class="nav-item has-treeview @if(isset($SetActiveP)) {{($SetActiveP == true) ? 'menu-open' : '' }} @endif 
-                                                {{ Request::is('Analysis/edit/1/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/3/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/4/*') ? 'menu-open' : '' }}
+                                                {{ Request::is('Analysis/edit/1/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/3/*') ? 'menu-open' : '' }} 
                                                 {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }}">
                   <a href="#" class="nav-link">
                     <i class="far fa-window-restore text-red nav-icon"></i>
@@ -83,10 +83,6 @@
                             <i class="fas fa-biking nav-icon"></i>
                             <p>เงินกู้จักรยานยนต์ (P04)</p>
                           </a>
-                          <a href="{{ route('MasterAnalysis.index') }}?type={{4}}" class="nav-link @if(isset($SetActiveP07)) {{($SetActiveP07 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/4/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
-                            <i class="fas fa-user nav-icon"></i>
-                            <p>เงินกู้พนักงาน (P07)</p>
-                          </a>
                         </li>
                       @endif
                   </ul>
@@ -97,7 +93,8 @@
             @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก จัดไฟแนนท์" or auth::user()->type == "แผนก การเงินใน")
               <ul class="nav nav-treeview">
                 <li class="nav-item has-treeview @if(isset($SetActiveM)) {{($SetActiveM == true) ? 'menu-open' : '' }} @endif 
-                                                {{ Request::is('Analysis/edit/5/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }}">
+                                                {{ Request::is('Analysis/edit/5/*') ? 'menu-open' : '' }} {{ Request::is('Analysis/edit/4/*') ? 'menu-open' : '' }} 
+                                                {{ Request::is('Analysis/deleteImageEach/1/*/*/*/*/*/*') ? 'menu-open' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'menu-open' : '' }}">
                   <a href="#" class="nav-link">
                     <i class="far fa-window-restore text-red nav-icon"></i>
                     <p>
@@ -111,6 +108,10 @@
                           <a href="{{ route('MasterAnalysis.index') }}?type={{5}}" class="nav-link @if(isset($SetActiveP06)) {{($SetActiveP06 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/5/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
                             <i class="fas fa-car nav-icon"></i>
                             <p>เงินกู้รถยนต์ (P06)</p>
+                          </a>
+                          <a href="{{ route('MasterAnalysis.index') }}?type={{4}}" class="nav-link @if(isset($SetActiveP07)) {{($SetActiveP07 == true) ? 'active' : '' }} @endif {{ Request::is('Analysis/edit/4/*/*/*/*/*') ? 'active' : '' }} {{ Request::is('DataCustomer/Home/1') ? 'active' : '' }}">
+                            <i class="fas fa-user nav-icon"></i>
+                            <p>เงินกู้พนักงาน (P07)</p>
                           </a>
                         </li>
                       @endif
@@ -170,25 +171,25 @@
           </li>
 
           @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก ประกันภัย")
-          <li class="nav-item has-treeview {{ Request::is('Insure/*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link active">
-              <i class="nav-icon fa fa-gg-circle"></i>
-              <span id="ShowData"></span>
-              <p>
-                แผนกประกันภัย
-                <i class="right fas fa-angle-left"></i>
-              </p>
-            </a>
+            <li class="nav-item has-treeview {{ Request::is('Insure/*') ? 'menu-open' : '' }}">
+              <a href="#" class="nav-link active">
+                <i class="nav-icon fa fa-gg-circle"></i>
+                <span id="ShowData"></span>
+                <p>
+                  แผนกประกันภัย
+                  <i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
 
-              <ul class="nav nav-treeview" style="margin-left: 15px;">
-                <li class="nav-item">
-                  <a href="{{ route('Insure', 1) }}" class="nav-link {{ Request::is('Insure/Home/1') ? 'active' : '' }}">
-                    <i class="far fa-dot-circle nav-icon"></i>
-                    <p>สต็อกรถใช้งานบริษัท</p>
-                  </a>
-                </li>
-              </ul>
-          </li>
+                <ul class="nav nav-treeview" style="margin-left: 15px;">
+                  <li class="nav-item">
+                    <a href="{{ route('Insure', 1) }}" class="nav-link {{ Request::is('Insure/Home/1') ? 'active' : '' }}">
+                      <i class="far fa-dot-circle nav-icon"></i>
+                      <p>สต็อกรถใช้งานบริษัท</p>
+                    </a>
+                  </li>
+                </ul>
+            </li>
           @endif
 
           {{-- <li class="nav-header">Documents Part</li>
