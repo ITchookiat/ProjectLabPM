@@ -160,7 +160,6 @@
                     <ul>
                       <li><a href="{{ route('MasterAnalysis.index') }}?type={{1}}"><i class="fas fa-car fa-lg pr-2"></i>สัญญาเงินกู้รถยนต์ P03</a></li>
                       <li><a href="{{ route('MasterAnalysis.index') }}?type={{3}}"><i class="fas fa-biking fa-lg pr-2"></i>สัญญาเงินกู้รถจักรยานยนต์ P04</a></li>
-                      <li><a href="{{ route('MasterAnalysis.index') }}?type={{4}}"><i class="fas fa-user fa-lg pr-2"></i>สัญญาเงินกู้พนักงาน P07</a></li>
                     </ul>
                   </div>
                 </div>
@@ -182,7 +181,8 @@
                 <div class="card-body">
                   <ul>
                     <li><a href="{{ route('MasterAnalysis.index') }}?type={{5}}"><i class="fas fa-car fa-lg pr-2"></i>สัญญาเงินกู้รถยนต์ P06</a></li>
-                    <li><i aria-hidden="true"></i><br><br><br><br></li>
+                    <li><a href="{{ route('MasterAnalysis.index') }}?type={{4}}"><i class="fas fa-user fa-lg pr-2"></i>สัญญาเงินกู้พนักงาน P07</a></li>
+                    <li><i aria-hidden="true"></i></li>
                   </ul>
                 </div>
               </div>

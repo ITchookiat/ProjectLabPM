@@ -31,12 +31,10 @@
               <h5><i class="fas fa-car pr-1"></i>สัญญาเงินกู้รถยนต์ (P03 Loan Agreement)</h5>
             @elseif($type == 3)
               <h5><i class="fas fa-biking pr-1"></i> สัญญาเงินกู้รถจักรยานยนต์ (P04 Loan Agreement)</h5>
-            @elseif($type == 4)
-              <h5><i class="fas fa-user pr-1"></i> สัญญาเงินกู้พนักงาน (P07 Loan Agreement)</h5>
             @endif
           </div>
           <div class="col-sm-6">
-            @if($type == 1 or $type == 3 or $type == 4)
+            @if($type == 1 or $type == 3)
               @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก การเงินใน")
                 <button class="btn btn-gray float-right">
                   ค่าคอม: <font color="red">{{ number_format($SumCommitprice) }}</font> บาท
@@ -75,7 +73,7 @@
           <a href="{{ route('DataCustomer', 1) }}" class="btn btn-danger btn-block mb-3">New Walk-in</a>
         @endif
 
-        @if($type == 1 or $type == 3 or $type == 4)
+        @if($type == 1 or $type == 3)
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">List</h3>
@@ -171,11 +169,11 @@
                       <span class="fas fa-print"></span> ปริ้นรายงาน
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}?Flag={{1}}"> รายงาน ขอเบิกเงินประจำวัน (P03-P06)</a></li>
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}?Flag={{1}}"> รายงาน ขอเบิกเงินประจำวัน (P03)</a></li>
                       <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}"> รายงาน ขออนุมัติประจำวัน (P03-P06)</a></li>
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}"> รายงาน ขออนุมัติประจำวัน (P03)</a></li>
                       <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}"> รายงาน เงินกู้รถยนต์ (P03-P06)</a></li>
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}?Flag={{1}}"> รายงาน เงินกู้รถยนต์ (P03)</a></li>
                     </ul>
                   @endif
                   <button type="submit" class="btn bg-warning btn-app">
@@ -215,56 +213,7 @@
                       <span class="fas fa-print"></span> ปริ้นรายงาน
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      {{-- <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}?Flag={{2}}"> รายงาน ขอเบิกเงินประจำวัน (P04)</a></li>
-                      <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}"> รายงาน ขออนุมัติประจำวัน (P04)</a></li>
-                      <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}"> รายงาน เงินกู้รถยนต์ (P04)</a></li> --}}
-                    </ul>
-                  @endif
-                  <button type="submit" class="btn bg-warning btn-app">
-                    <span class="fas fa-search"></span> Search
-                  </button>
-                </div>
-                <div class="float-right form-inline">
-                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                    <label class="mr-sm-2">เลขที่สัญญา : </label>
-                    <input type="type" name="Contno" value="{{$contno}}" maxlength="13" class="form-control form-control-sm"/>
-                  @else
-                    <label class="mr-sm-2">เลขที่สัญญา : </label>
-                    <input type="type" name="Contno" value="{{$contno}}" maxlength="13" class="form-control form-control-sm"/>
-                  @endif
-
-                  <label for="text" class="mr-sm-2">สถานะ : </label>
-                  <select name="status" class="form-control form-control-sm">
-                    <option selected value="">---------สถานะ--------</option>
-                    <option value="อนุมัติ"{{ ($status == 'อนุมัติ') ? 'selected' : '' }}>อนุมัติ</option>
-                    <option value="รออนุมัติ"{{ ($status == 'รออนุมัติ') ? 'selected' : '' }}>รออนุมัติ</option>
-                  </select>
-                </div>
-                <br><br>
-                <div class="float-right form-inline">
-                  <label class="mr-sm-2">จากวันที่ : </label>
-                  <input type="date" name="Fromdate" value="{{ ($newfdate != '') ?$newfdate: date('Y-m-d') }}" class="form-control form-control-sm" />
-
-                  <label class="mr-sm-2">ถึงวันที่ : </label>
-                  <input type="date" name="Todate" value="{{ ($newtdate != '') ?$newtdate: date('Y-m-d') }}" class="form-control form-control-sm" />
-                </div>
-              </form>
-            @elseif($type == 4)
-              <form method="get" action="{{ route('MasterAnalysis.index') }}">
-                <input type="hidden" name="type" value="4">
-                <div class="float-right form-inline">
-                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                    <button type="button" class="btn bg-primary btn-app" data-toggle="dropdown">
-                      <span class="fas fa-print"></span> ปริ้นรายงาน
-                    </button>
-                    <ul class="dropdown-menu" role="menu">
-                      {{-- <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}?Flag={{2}}"> รายงาน ขอเบิกเงินประจำวัน (P04)</a></li>
-                      <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}"> รายงาน ขออนุมัติประจำวัน (P04)</a></li>
-                      <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}"> รายงาน เงินกู้รถยนต์ (P04)</a></li> --}}
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}?Flag={{2}}"> รายงาน เงินกู้รถจักรยานยนต์ (P04)</a></li>
                     </ul>
                   @endif
                   <button type="submit" class="btn bg-warning btn-app">
@@ -301,7 +250,7 @@
         </div>
 
         <div class="card card-primary card-outline">
-          @if($type == 1 or $type == 3 or $type == 4)
+          @if($type == 1 or $type == 3)
             <div class="card-body p-0 text-sm">
               <div class="row">
                 <div class="col-12 col-sm-12">

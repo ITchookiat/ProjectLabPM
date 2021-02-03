@@ -153,19 +153,60 @@ class ReportAnalysController extends Controller
         $pdf::WriteHTML($html,true,false,true,false,'');
         $pdf::Output('report.pdf');
       }
-      elseif ($request->type == 2) {  //Excel P03-P06-P07
-        $data = DB::table('buyers')
-          ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
-          ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
-          ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
-          ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
-          ->where('buyers.Type_Con','!=','P04')
-          ->where('cardetails.Approvers_car','!=',Null)
-          ->orderBy('buyers.Contract_buyer', 'ASC')
-          ->get();
+      elseif ($request->type == 2) {  //Excel P03
+        if ($request->Flag == 1) {
+          $data = DB::table('buyers')
+            ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
+            ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+            ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->where('buyers.Type_Con','=','P03')
+            ->where('cardetails.Approvers_car','!=',Null)
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
 
-        $status = 'สัญญาเงินกู้รถยนต์';
-        Excel::create('รายการสัญญาเงินกู้รถยนต์', function ($excel) use($data,$status) {
+          $status = 'สัญญาเงินกู้รถยนต์ P03';
+        }elseif ($request->Flag == 2) {
+          $data = DB::table('buyers')
+            ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
+            ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+            ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->where('buyers.Type_Con','=','P04')
+            ->where('cardetails.Approvers_car','!=',Null)
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+          $status = 'สัญญาเงินกู้รถจักรยานยนต์ P04';
+        }
+        elseif ($request->Flag == 3) {
+          $data = DB::table('buyers')
+            ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
+            ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+            ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->where('buyers.Type_Con','=','P06')
+            ->where('cardetails.Approvers_car','!=',Null)
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+          $status = 'สัญญาเงินกู้รถยนต์ P06';
+        }
+        elseif ($request->Flag == 4) {
+          $data = DB::table('buyers')
+            ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
+            ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
+            ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->where('buyers.Type_Con','=','P07')
+            ->where('cardetails.Approvers_car','!=',Null)
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+          $status = 'สัญญาเงินกู้พนักงาน P07';
+        }
+
+        Excel::create('รายการสัญญาเงินกู้ (PLoan - Micro)', function ($excel) use($data,$status) {
           $excel->sheet($status, function ($sheet) use($data,$status) {
               $sheet->prependRow(1, array("บริษัท ชูเกียรติลิสซิ่ง จำกัด"));
               $sheet->prependRow(2, array($status));
