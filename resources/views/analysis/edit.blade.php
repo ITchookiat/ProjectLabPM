@@ -395,7 +395,7 @@
                           <a class="nav-link MainPage" href="{{ route('MasterAnalysis.index') }}?type={{1}}">หน้าหลัก</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link active" id="Sub-custom-tab1" data-toggle="pill" href="#Sub-tab1" role="tab" aria-controls="Sub-tab1" aria-selected="false">แบบฟอร์มผู้เช่าซื้อ</a>
+                          <a class="nav-link active" id="Sub-custom-tab1" data-toggle="pill" href="#Sub-tab1" role="tab" aria-controls="Sub-tab1" aria-selected="false">แบบฟอร์มผู้กู้</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" id="Sub-custom-tab2" data-toggle="pill" href="#Sub-tab2" role="tab" aria-controls="Sub-tab2" aria-selected="false">แบบฟอร์มผู้ค้ำ</a>

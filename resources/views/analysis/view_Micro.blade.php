@@ -169,6 +169,8 @@
                       <span class="fas fa-print"></span> ปริ้นรายงาน
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}?Flag={{3}}"> รายงาน ขออนุมัติประจำวัน (P06)</a></li>
+                      <li class="dropdown-divider"></li>
                       <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}?Flag={{3}}"> รายงาน เงินกู้รถยนต์ (P06)</a></li>
                     </ul>
                   @endif
@@ -210,6 +212,8 @@
                       <span class="fas fa-print"></span> ปริ้นรายงาน
                     </button>
                     <ul class="dropdown-menu" role="menu">
+                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}?Flag={{4}}"> รายงาน ขออนุมัติประจำวัน (P07)</a></li>
+                      <li class="dropdown-divider"></li>
                       <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}?Flag={{4}}"> รายงาน เงินกู้พนักงาน (P07)</a></li>
                     </ul>
                   @endif
