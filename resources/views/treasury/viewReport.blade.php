@@ -16,7 +16,7 @@
 
     <div class="card-body text-sm">
       @if ($type == 2)
-        <form name="form1" action="{{ route('treasury.ReportDueDate' , 2) }}" target="_blank" method="get" id="formimage" enctype="multipart/form-data">
+        <form name="form1" action="{{ route('treasury.ReportDueDate' , 101) }}" target="_blank" method="get" id="formimage" enctype="multipart/form-data">
           @csrf
 
           <div class="row">
@@ -50,7 +50,7 @@
           <input type="hidden" name="_token" value="{{csrf_token()}}" />
         </form>
       @elseif ($type == 3)
-        <form name="form1" action="{{ route('treasury.ReportDueDate' , 3) }}" target="_blank" method="get" id="formimage" enctype="multipart/form-data">
+        <form name="form1" action="{{ route('treasury.ReportDueDate' , 102) }}" target="_blank" method="get" id="formimage" enctype="multipart/form-data">
           @csrf
 
           <div class="row">

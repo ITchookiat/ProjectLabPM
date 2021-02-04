@@ -51,18 +51,24 @@
 
   </head>
     <label align="right">วันที่ : <u>{{$date2}}</u></label>
-    @if($type == 8)
-      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขอเบิกเงินประจำวัน P03-P06</h2>
-    @elseif ($type == 9)
-      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขอเบิกเงินประจำวัน P04</h2>
-    @else
-      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน P03-P06</h2>
+    @if($type == 1)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน P03</h2>
+    @elseif($type == 2)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน P04</h2>
+    @elseif($type == 3)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน P06</h2>
+    @elseif ($type == 4)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน P07</h2>
+    @elseif ($type == 101)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน PLoan</h2>
+    @elseif ($type == 102)
+      <h2 class="card-title p-3" align="center" style="font-weight: bold;line-height:1px;">รายงานขออนุมัติโอนเงิน Micro</h2>
     @endif
     <h4 class="card-title p-3" align="center">บริษัท ชูเกียรติพร๊อพเพอร์ตี้ จำกัด</h4>
     <hr>
   <body>
     <br />
-    @if($type == 9)   <!-- P04 -->
+    @if($type == 2)   <!-- P04 -->
       <table border="1">
         <thead>
           <tr align="center" style="line-height: 250%;">

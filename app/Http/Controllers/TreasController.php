@@ -194,16 +194,17 @@ class TreasController extends Controller
             $newtdate = $request->get('Todate');
         }
 
-        if ($type == 2) {   //รายงานอนุมัติโอนเงินประจำวัน
+        if ($type == 101) {   //PLoan
             $dataReport = DB::table('buyers')
-                    ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-                    ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-                    ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
-                        return $q->whereBetween('cardetails.Date_Appcar',[$newfdate,$newtdate]);
-                    })
-                    ->where('cardetails.Approvers_car','<>','')
-                    ->orderBy('buyers.Contract_buyer', 'ASC')
-                    ->get();
+                ->leftjoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+                ->leftjoin('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+                ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+                    return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
+                })
+                ->where('buyers.Type_Con','not like','P06%')
+                ->where('buyers.Type_Con','not like','P07%')
+                ->orderBy('buyers.Contract_buyer', 'ASC')
+                ->get();
 
             $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
             $html = $view->render();
@@ -217,7 +218,31 @@ class TreasController extends Controller
             $pdf::WriteHTML($html,true,false,true,false,'');
             $pdf::Output('report.pdf');
         }
-        elseif ($type == 3) {
+        elseif ($type == 102) {   //Micro
+            $dataReport = DB::table('buyers')
+            ->leftjoin('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->leftjoin('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+                return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
+            })
+            ->where('buyers.Type_Con','not like','P03%')
+            ->where('buyers.Type_Con','not like','P04%')
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+        $html = $view->render();
+        $pdf = new PDF();
+        $pdf::SetTitle('รายงานนำเสนอ');
+        $pdf::AddPage('L', 'A4');
+        $pdf::SetMargins(5, 5, 5, 0);
+        $pdf::SetFont('freeserif', '', 8, '', true);
+        $pdf::SetAutoPageBreak(TRUE, 25);
+
+        $pdf::WriteHTML($html,true,false,true,false,'');
+        $pdf::Output('report.pdf');
+        }
+        elseif ($type == 999) {
             $dataReport = DB::table('buyers')
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')

@@ -130,21 +130,76 @@ class ReportAnalysController extends Controller
       $date2 = $d.'-'.$m.'-'.$Y2;
 
       if($request->type == 1){  //รายงานขออนุมัติประจำวัน
-        $dataReport = DB::table('buyers')
+        if ($request->Flag == 1) {  //P03
+          $dataReport = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-            ->where('cardetails.Date_Appcar',$date)
-            ->where('buyers.Type_Con','!=','P04')
-            ->where('cardetails.Approvers_car','<>','')
+            // ->where('cardetails.Date_Due',$date)
+            ->where('buyers.Date_Due',$date)
+            ->where('buyers.Type_Con','=','P03')
+            // ->where('cardetails.Approvers_car','<>','')
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
 
-        $type = $request->type;
-        $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
-        $html = $view->render();
-        $pdf = new PDF();
-        $pdf::SetTitle('รายงานขออนุมัติประจำวัน P03-P06');
+          $type = 1;
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $html = $view->render();
+          $pdf = new PDF();
+          $pdf::SetTitle('รายงานขออนุมัติประจำวัน P03');
+        }
+        elseif ($request->Flag == 2) {   ///P04
+          $dataReport = DB::table('buyers')
+          ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+          ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+          ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+          ->where('buyers.Date_Due',$date)
+          ->where('buyers.Type_Con','=','P04')
+          // ->where('cardetails.Approvers_car','<>','')
+          ->orderBy('buyers.Contract_buyer', 'ASC')
+          ->get();
+
+          $type = 2;
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $html = $view->render();
+          $pdf = new PDF();
+          $pdf::SetTitle('รายงานขออนุมัติประจำวัน P04');
+        }
+        elseif ($request->Flag == 3) {   ///P06
+          $dataReport = DB::table('buyers')
+            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+            ->where('buyers.Date_Due',$date)
+            ->where('buyers.Type_Con','=','P06')
+            // ->where('cardetails.Approvers_car','<>','')
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+          $type = 3;
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $html = $view->render();
+          $pdf = new PDF();
+          $pdf::SetTitle('รายงานขออนุมัติประจำวัน P06');
+        }
+        elseif ($request->Flag == 4) {   ///P07
+          $dataReport = DB::table('buyers')
+            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
+            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
+            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
+            ->where('buyers.Date_Due',$date)
+            ->where('buyers.Type_Con','=','P07')
+            // ->where('cardetails.Approvers_car','<>','')
+            ->orderBy('buyers.Contract_buyer', 'ASC')
+            ->get();
+
+          $type = 4;
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $html = $view->render();
+          $pdf = new PDF();
+          $pdf::SetTitle('รายงานขออนุมัติประจำวัน P07');
+        }
+        
         $pdf::AddPage('L', 'A4');
         $pdf::SetMargins(5, 5, 5, 0);
         $pdf::SetFont('freeserif', '', 8, '', true);
@@ -272,50 +327,6 @@ class ReportAnalysController extends Controller
               }
           });
         })->export('xlsx');
-      }
-      elseif($request->type == 8){  //รายงานขอเบิกเงินประจำวัน
-        if ($request->Flag == 1) {
-          $dataReport = DB::table('buyers')
-            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
-            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-            ->where('buyers.Date_Due',$date)
-            ->where('buyers.Type_Con','!=','P04')
-            ->where('cardetails.Approvers_car','=',NULL)
-            ->orderBy('buyers.Contract_buyer', 'ASC')
-            ->get();
-
-            $type = 8;
-            $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
-            $html = $view->render();
-            $pdf = new PDF();
-            $pdf::SetTitle('รายงานขอเบิกเงินประจำวัน P03-P06');
-          
-        }
-        elseif ($request->Flag == 2) {
-          $dataReport = DB::table('buyers')
-            ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
-            ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
-            ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-            ->where('buyers.Date_Due',$date)
-            ->where('buyers.Type_Con','=','P04')
-            ->where('cardetails.Approvers_car','=',NULL)
-            ->orderBy('buyers.Contract_buyer', 'ASC')
-            ->get();
-
-            $type = 9;
-            $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
-            $html = $view->render();
-            $pdf = new PDF();
-            $pdf::SetTitle('รายงานขอเบิกเงินประจำวัน P04');
-        }
-       
-        $pdf::AddPage('L', 'A4');
-        $pdf::SetMargins(5, 5, 5, 0);
-        $pdf::SetFont('freeserif', '', 8, '', true);
-        $pdf::SetAutoPageBreak(TRUE, 25);
-        $pdf::WriteHTML($html,true,false,true,false,'');
-        $pdf::Output('report.pdf');
       }
     }
 }

@@ -112,11 +112,9 @@
                       <span class="fas fa-print"></span> ปริ้นรายงาน
                     </button>
                     <ul class="dropdown-menu" role="menu">
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 8) }}?Flag={{1}}"> รายงาน ขอเบิกเงินประจำวัน (P03-P06)</a></li>
+                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-6" data-link="{{ route('treasury', 2) }}"> รายงาน ขออนุมัติประจำวัน (Ploan)</a></li>
                       <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-6" data-link="{{ route('treasury', 2) }}"> รายงาน ขออนุมัติประจำวัน (P03-P06)</a></li>
-                      <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-7" data-link="{{ route('treasury', 3) }}"> รายงาน โอนเงินประจำวัน</a></li>
+                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-7" data-link="{{ route('treasury', 3) }}"> รายงาน ขออนุมัติประจำวัน (Micro)</a></li>
                     </ul>
                   <button type="submit" class="btn bg-warning btn-app">
                     <span class="fas fa-search"></span> Search
