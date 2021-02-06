@@ -84,7 +84,8 @@
                               <option value="56" > สาขา โคกโพธิ์</option>
                               <option value="57" > สาขา ตันหยงมัส</option>
                               <option value="58" > สาขา รือเสาะ</option>
-                              {{-- <option value="58" > สาขา บังนังสตา</option> --}}
+                              <option value="59" > สาขา บันนังสตา</option>
+                              <option value="60" > สาขา ยะหา</option>
                               <option value="10" > สาขา รถบ้าน</option>
                             </select>
                           </div>
