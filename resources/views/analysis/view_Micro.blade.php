@@ -171,7 +171,7 @@
                     <ul class="dropdown-menu" role="menu">
                       <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}?Flag={{3}}"> รายงาน ขออนุมัติประจำวัน (P06)</a></li>
                       <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}?Flag={{3}}"> รายงาน เงินกู้รถยนต์ (P06)</a></li>
+                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-report"> รายงาน เงินกู้รถยนต์ (P06)</a></li>
                     </ul>
                   @endif
                   <button type="submit" class="btn bg-warning btn-app">
@@ -214,7 +214,7 @@
                     <ul class="dropdown-menu" role="menu">
                       <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 1) }}?Flag={{4}}"> รายงาน ขออนุมัติประจำวัน (P07)</a></li>
                       <li class="dropdown-divider"></li>
-                      <li><a target="_blank" class="dropdown-item" href="{{ action('ReportAnalysController@ReportDueDate', 2) }}?Flag={{4}}"> รายงาน เงินกู้พนักงาน (P07)</a></li>
+                      <li><a target="_blank" class="dropdown-item" data-toggle="modal" data-target="#modal-report"> รายงาน เงินกู้พนักงาน (P07)</a></li>
                     </ul>
                   @endif
                   <button type="submit" class="btn bg-warning btn-app">
@@ -1785,6 +1785,57 @@
 
     <a id="button"></a>
   </section>
+
+  @if($type == 5)
+    <form action="{{ action('ReportAnalysController@ReportDueDate', 2) }}" method="get">
+      @csrf
+      <input type="hidden" name="Flag" value="3">
+  @elseif($type == 4)
+    <form action="{{ action('ReportAnalysController@ReportDueDate', 2) }}" method="get">
+      @csrf
+      <input type="hidden" name="Flag" value="4">
+  @endif
+    <div class="modal fade show" id="modal-report" style="display: none;" aria-modal="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header bg-warning">
+            @if($type == 5)
+              <h5 class="modal-title">รายงาน สัญญาเงินกู้รถยนต์ (P06)</h5>
+            @elseif($type == 4)
+              <h5 class="modal-title">รายงาน สัญญาเงินกู้พนักงาน (P07)</h5>
+            @endif
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body text-sm">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group row mb-1">
+                  <label class="col-sm-4 col-form-label text-right">จากวันที่ :</label>
+                  <div class="col-sm-8">
+                    <input type="date" name="Fromdate" value="{{ date('Y-m-d') }}" class="form-control form-control-sm"/>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-group row mb-1">
+                  <label class="col-sm-4 col-form-label text-right">ถึงวันที่ :</label>
+                  <div class="col-sm-8">
+                    <input type="date" name="Todate" value="{{ date('Y-m-d') }}" class="form-control form-control-sm"/>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary text-center">ปริ้น</button>
+            <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 
   {{-- button-to-top --}}
   <script>

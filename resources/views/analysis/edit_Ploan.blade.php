@@ -582,7 +582,7 @@
                             <div class="row">
                               <div class="col-6">
                                 <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">เลขบัตรปชช.ผู้ซื้อ : </label>
+                                  <label class="col-sm-3 col-form-label text-right">เลขบัตรปชช.ผู้กู้ : </label>
                                   <div class="col-sm-8">
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                       <input type="text" name="Idcardbuyer" value="{{ $data->Idcard_buyer }}" class="form-control form-control-sm"  placeholder="ป้อนเลขประชาชนผู้ซื้อ" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask=""/>
@@ -762,11 +762,11 @@
                               </div>
                               <div class="col-6">
                                 <div class="form-group row mb-0">
-                                  <label class="col-sm-3 col-form-label text-right">สถานะผู้เช่าซื้อ : </label>
+                                  <label class="col-sm-3 col-form-label text-right">สถานะผู้กู้ : </label>
                                   <div class="col-sm-8">
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                       <select name="Gradebuyer" class="form-control form-control-sm" >
-                                        <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
+                                        <option value="" selected>--- สถานะผู้กู้ ---</option>
                                         <option value="ลูกค้าเก่าผ่อนดี" {{ ($data->Gradebuyer_car === 'ลูกค้าเก่าผ่อนดี') ? 'selected' : '' }}>ลูกค้าเก่าผ่อนดี</option>
                                         <option value="ลูกค้ามีงานตาม" {{ ($data->Gradebuyer_car === 'ลูกค้ามีงานตาม') ? 'selected' : '' }}>ลูกค้ามีงานตาม</option>
                                         <option value="ลูกค้าใหม่" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่') ? 'selected' : '' }}>ลูกค้าใหม่</option>
@@ -776,10 +776,10 @@
                                       </select>
                                     @else
                                       @if($GetDocComplete != Null)
-                                        <input type="text" name="Gradebuyer" value="{{ $data->Gradebuyer_car }}" class="form-control form-control-sm"  placeholder="เลือกสถานะผู้เช่าซื้อ" readonly/>
+                                        <input type="text" name="Gradebuyer" value="{{ $data->Gradebuyer_car }}" class="form-control form-control-sm"  placeholder="เลือกสถานะผู้กู้" readonly/>
                                       @else
                                         <select name="Gradebuyer" class="form-control form-control-sm" >
-                                          <option value="" selected>--- สถานะผู้เช่าซื้อ ---</option>
+                                          <option value="" selected>--- สถานะผู้กู้ ---</option>
                                           <option value="ลูกค้าเก่าผ่อนดี" {{ ($data->Gradebuyer_car === 'ลูกค้าเก่าผ่อนดี') ? 'selected' : '' }}>ลูกค้าเก่าผ่อนดี</option>
                                           <option value="ลูกค้ามีงานตาม" {{ ($data->Gradebuyer_car === 'ลูกค้ามีงานตาม') ? 'selected' : '' }}>ลูกค้ามีงานตาม</option>
                                           <option value="ลูกค้าใหม่" {{ ($data->Gradebuyer_car === 'ลูกค้าใหม่') ? 'selected' : '' }}>ลูกค้าใหม่</option>
