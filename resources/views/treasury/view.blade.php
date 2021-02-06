@@ -31,7 +31,7 @@
       <div class="container-fluid">
         <div class="row mb-0">
           <div class="col-sm-6">
-            <h4>รายการอนุมัติโอนเงิน (Approving transfers)</h4>
+            <h5>รายการอนุมัติโอนเงิน (Approving transfers)</h5>
           </div>
           <div class="col-sm-6">
             @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์" or auth::user()->type == "แผนก การเงินใน")
@@ -297,7 +297,7 @@
 
   <!-- Pop up รายละเอียดค่าใช้จ่าย -->
   <div class="modal fade" id="modal-6">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
           <p>One fine body…</p>
@@ -310,7 +310,7 @@
 
   <!-- Pop up รายละเอียดค่าใช้จ่าย -->
   <div class="modal fade" id="modal-7">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-body">
           <p>One fine body…</p>

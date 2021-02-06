@@ -130,12 +130,14 @@ class ReportAnalysController extends Controller
       $date2 = $d.'-'.$m.'-'.$Y2;
 
       if($request->type == 1){  //รายงานขออนุมัติประจำวัน
+        $newfdate = date('Y-m-d');
+        $newtdate = date('Y-m-d');
+
         if ($request->Flag == 1) {  //P03
           $dataReport = DB::table('buyers')
             ->join('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->join('cardetails','Buyers.id','=','cardetails.Buyercar_id')
             ->join('Expenses','Buyers.id','=','Expenses.Buyerexpenses_id')
-            // ->where('cardetails.Date_Due',$date)
             ->where('buyers.Date_Due',$date)
             ->where('buyers.Type_Con','=','P03')
             // ->where('cardetails.Approvers_car','<>','')
@@ -143,7 +145,7 @@ class ReportAnalysController extends Controller
             ->get();
 
           $type = 1;
-          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type','newfdate','newtdate'));
           $html = $view->render();
           $pdf = new PDF();
           $pdf::SetTitle('รายงานขออนุมัติประจำวัน P03');
@@ -160,7 +162,7 @@ class ReportAnalysController extends Controller
           ->get();
 
           $type = 2;
-          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type','newfdate','newtdate'));
           $html = $view->render();
           $pdf = new PDF();
           $pdf::SetTitle('รายงานขออนุมัติประจำวัน P04');
@@ -177,7 +179,7 @@ class ReportAnalysController extends Controller
             ->get();
 
           $type = 3;
-          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type','newfdate','newtdate'));
           $html = $view->render();
           $pdf = new PDF();
           $pdf::SetTitle('รายงานขออนุมัติประจำวัน P06');
@@ -194,7 +196,7 @@ class ReportAnalysController extends Controller
             ->get();
 
           $type = 4;
-          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type'));
+          $view = \View::make('analysis.ReportDueDate' ,compact('dataReport','date2','type','newfdate','newtdate'));
           $html = $view->render();
           $pdf = new PDF();
           $pdf::SetTitle('รายงานขออนุมัติประจำวัน P07');
@@ -209,24 +211,41 @@ class ReportAnalysController extends Controller
         $pdf::Output('report.pdf');
       }
       elseif ($request->type == 2) {  //Excel P03
+        $newfdate = '';
+        $newtdate = '';
+
+        if ($request->has('Fromdate')){
+            $newfdate = $request->get('Fromdate');
+        }
+        if ($request->has('Todate')){
+            $newtdate = $request->get('Todate');
+        }
+
         if ($request->Flag == 1) {
           $data = DB::table('buyers')
             ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
             ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
             ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+              return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
+            })
             ->where('buyers.Type_Con','=','P03')
             ->where('cardetails.Approvers_car','!=',Null)
             ->orderBy('buyers.Contract_buyer', 'ASC')
             ->get();
 
           $status = 'สัญญาเงินกู้รถยนต์ P03';
-        }elseif ($request->Flag == 2) {
+        }
+        elseif ($request->Flag == 2) {
           $data = DB::table('buyers')
             ->leftJoin('sponsors','buyers.id','=','sponsors.Buyer_id')
             ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
             ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
             ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+              return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
+            })
             ->where('buyers.Type_Con','=','P04')
             ->where('cardetails.Approvers_car','!=',Null)
             ->orderBy('buyers.Contract_buyer', 'ASC')
@@ -240,6 +259,9 @@ class ReportAnalysController extends Controller
             ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
             ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
             ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+              return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
+            })
             ->where('buyers.Type_Con','=','P06')
             ->where('cardetails.Approvers_car','!=',Null)
             ->orderBy('buyers.Contract_buyer', 'ASC')
@@ -253,6 +275,9 @@ class ReportAnalysController extends Controller
             ->leftJoin('cardetails','buyers.id','=','cardetails.Buyercar_id')
             ->leftJoin('expenses','buyers.id','=','expenses.Buyerexpenses_id')
             ->leftjoin('upload_lat_longs','buyers.id','=','upload_lat_longs.Use_id')
+            ->when(!empty($newfdate)  && !empty($newtdate), function($q) use ($newfdate, $newtdate) {
+              return $q->whereBetween('buyers.Date_Due',[$newfdate,$newtdate]);
+            })
             ->where('buyers.Type_Con','=','P07')
             ->where('cardetails.Approvers_car','!=',Null)
             ->orderBy('buyers.Contract_buyer', 'ASC')
@@ -271,7 +296,8 @@ class ReportAnalysController extends Controller
               $row = 3;
               $sheet->row($row, array('ลำดับ','ประเภท','เลขที่สัญญา', 'ชื่อ-สกุล','สาขา', 'วันที่โอน', 'สถานะ',
                 'ยี่ห้อ','รุ่น','ปี', 'ทะเบียนเดิม','ทะเบียนใหม่', 'ยอดจัด', 'ค่าดำเนินการ', 'ชำระต่องวด', 'กำไรดอกเบี้ย','ดอกเบี้ย/เดือน','งวดผ่อน(เดือน)',
-                'พรบ.','ยอดปิดบัญชี','ซื้อประกัน', '% ยอดจัด','รวม คชจ', 'คงเหลือ', 'ค่าคอมก่อนหัก 3%', 'ค่าคอมหลังหัก 3%', 
+                'พรบ.','ยอดปิดบัญชี','ซื้อประกัน', '% ยอดจัด','ค่าใช้จ่ายขนส่ง','อื่นๆ','ค่าประเมิน','ค่าการตลาด','อากร',
+                'รวม คชจ', 'คงเหลือ', 'ค่าคอมก่อนหัก 3%', 'ค่าคอมหลังหัก 3%', 
                 'เลขที่โฉนดผู้ค่ำ', 'ผู้รับเงิน','เลขบัญชี','เบอร์โทรผู้รับเงิน', 'ผู้รับค่าคอม','เลขบัญชี','เบอร์โทรผู้แนะนำ', 
                 'ใบขับขี่','ประกันภัย','สถานะผู้เช่าซื้อ','ตำแหน่งที่อยู่ผู้เช่าซื้อ', 'ตำแหน่งที่อยู่ผู้ค่ำ','รายละเอียดอาชีพ','ผลการประเมินลูกค้า', 'ผลการตรวจสอบลูกค้า','ความพึงพอใจลูกค้า','ผลการตรวจสอบนายหน้า','ความพึงพอใจนายหน้า'));
 
@@ -300,6 +326,11 @@ class ReportAnalysController extends Controller
                   $value->closeAccount_Price,
                   $value->P2_Price,
                   $value->Percent_car,
+                  'NULL',
+                  'NULL',
+                  'NULL',
+                  'NULL',
+                  'NULL',
                   $value->totalk_Price,
                   $value->balance_Price,
                   $value->Commission_car,
