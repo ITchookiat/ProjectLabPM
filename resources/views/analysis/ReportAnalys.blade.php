@@ -201,7 +201,7 @@
     </table>
 
     <h4 align="left"><u>รายละเอียดรถยนต์</u></h4>
-    @if($type == 1)
+    @if($type == 1 or $type == 3 or $type == 5 or $type == 4)
       <table border="1">
         <thead>
           <tr align="center">
