@@ -944,7 +944,7 @@
                             <input type="hidden" name="status" value="{{ $status }}" />
 
                             <div class="row">
-                              <div class="col-md-3">
+                              <div class="col-md-4">
                                 <h5 class="text-center"><b>รูปภาพประกอบ</b></h5>
                                 @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
                                   <div class="file-loading">
@@ -980,138 +980,147 @@
                                   @endif
                                 </div> -->
                               </div>
-                              <div class="col-md-7">
+                              <div class="col-md-8">
                                 <div class="row">
                                   <div class="col-md-6">
                                     <h5 class="text-center"><b>รายละเอียดอาชีพ</b></h5>
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <textarea class="form-control" name="CareerDetail" rows="3" placeholder="ป้อนรายละเอียด">{{$data->CareerDetail_buyer}}</textarea>
+                                      <textarea class="form-control" name="CareerDetail" rows="5" placeholder="ป้อนรายละเอียด">{{$data->CareerDetail_buyer}}</textarea>
                                     @else
                                         @if($GetDocComplete != Null)
-                                          <textarea class="form-control" name="CareerDetail" rows="10" placeholder="ป้อนรายละเอียด" readonly>{{$data->CareerDetail_buyer}}</textarea>
+                                          <textarea class="form-control" name="CareerDetail" rows="5" placeholder="ป้อนรายละเอียด" readonly>{{$data->CareerDetail_buyer}}</textarea>
                                         @else
-                                          <textarea class="form-control" name="CareerDetail" rows="10" placeholder="ป้อนรายละเอียด">{{$data->CareerDetail_buyer}}</textarea>
+                                          <textarea class="form-control" name="CareerDetail" rows="5" placeholder="ป้อนรายละเอียด">{{$data->CareerDetail_buyer}}</textarea>
+                                        @endif
+                                    @endif
+                                    <h5 class="text-center"><b>วัตถุประสงค์สินเชื่อ</b></h5>
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                        <textarea class="form-control" name="objectivecar" rows="5" placeholder="ป้อนวัตถุประสงค์สินเชื่อ">{{$data->Objective_car}}</textarea>
+                                    @else
+                                        @if($GetDocComplete != Null)
+                                          <textarea class="form-control" name="objectivecar" rows="5" placeholder="ป้อนวัตถุประสงค์สินเชื่อ" readonly>{{$data->Objective_car}}</textarea>
+                                        @else
+                                          <textarea class="form-control" name="objectivecar" rows="5" placeholder="ป้อนวัตถุประสงค์สินเชื่อ">{{$data->Objective_car}}</textarea>
                                         @endif
                                     @endif
                                   </div>
                                   <div class="col-md-6">
                                     <h5 class="text-center"><b>เหตุผลในการขออนุมัติ</b></h5>
                                     @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                      <textarea class="form-control" name="ApproveDetail" rows="3" placeholder="ป้อนเหตุผล">{{$data->ApproveDetail_buyer}}</textarea>
+                                      <textarea class="form-control" name="ApproveDetail" rows="5" placeholder="ป้อนเหตุผล">{{$data->ApproveDetail_buyer}}</textarea>
                                     @else
                                         @if($GetDocComplete != Null)
-                                          <textarea class="form-control" name="ApproveDetail" rows="10" placeholder="ป้อนเหตุผล" readonly>{{$data->ApproveDetail_buyer}}</textarea>
+                                          <textarea class="form-control" name="ApproveDetail" rows="5" placeholder="ป้อนเหตุผล" readonly>{{$data->ApproveDetail_buyer}}</textarea>
                                         @else
-                                          <textarea class="form-control" name="ApproveDetail" rows="10" placeholder="ป้อนเหตุผล">{{$data->ApproveDetail_buyer}}</textarea>
+                                          <textarea class="form-control" name="ApproveDetail" rows="5" placeholder="ป้อนเหตุผล">{{$data->ApproveDetail_buyer}}</textarea>
+                                        @endif
+                                    @endif
+                                    <h5 class="text-center text-red"><b>หมายเหตุ / กรณีพิเศษ</b></h5>
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                        <textarea class="form-control" name="Notecar" rows="5" placeholder="ป้อนหมายเหตุ">{{$data->Note_car}}</textarea>
+                                    @else
+                                        @if($GetDocComplete != Null)
+                                          <textarea class="form-control" name="Notecar" rows="5" placeholder="ป้อนหมายเหตุ" readonly>{{$data->Note_car}}</textarea>
+                                        @else
+                                          <textarea class="form-control" name="Notecar" rows="5" placeholder="ป้อนหมายเหตุ">{{$data->Note_car}}</textarea>
                                         @endif
                                     @endif
                                   </div>
                                 </div>
-                                @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                <br>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <h5 class="text-center"><b>ผลการตรวจสอบลูกค้า</b></h5>
-                                      <textarea class="form-control" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <h5 class="text-center"><b>ผลการตรวจสอบนายหน้า</b></h5>
-                                      <textarea class="form-control" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
-                                  </div>
-                                </div>
-                                <br>
-                                <div class="row">
-                                  <div class="col-md-6 card">
-                                    <h5 class="text-center"><b>ความพึงพอใจลูกค้า</b></h5>
-                                    <div class="form-group clearfix">
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary1" name="Buyerprefer" value="ปรับปรุง" {{ ($data->Prefer_buyer == 'ปรับปรุง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary1" style="font-size: 8px;">
-                                        ปรับปรุง&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary2" name="Buyerprefer" value="พอใช้" {{ ($data->Prefer_buyer == 'พอใช้') ? 'checked' : '' }}>
-                                        <label for="radioPrimary2" style="font-size: 8px;">
-                                        พอใช้&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary3" name="Buyerprefer" value="ปานกลาง" {{ ($data->Prefer_buyer == 'ปานกลาง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary3" style="font-size: 8px;">
-                                        ปานกลาง&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary4" name="Buyerprefer" value="ดี" {{ ($data->Prefer_buyer == 'ดี') ? 'checked' : '' }}>
-                                        <label for="radioPrimary4" style="font-size: 8px;">
-                                        ดี&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary5" name="Buyerprefer" value="ดีมาก" {{ ($data->Prefer_buyer == 'ดีมาก') ? 'checked' : '' }}>
-                                        <label for="radioPrimary5" style="font-size: 8px;">
-                                        ดีมาก&nbsp;
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6 card">
-                                    <h5 class="text-center"><b>ความพึงพอใจนายหน้า</b></h5>
-                                    <div class="form-group clearfix">
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary11" name="Brokerprefer" value="ปรับปรุง" {{ ($data->Prefer_broker == 'ปรับปรุง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary11" style="font-size: 8px;">
-                                        ปรับปรุง&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary22" name="Brokerprefer" value="พอใช้" {{ ($data->Prefer_broker == 'พอใช้') ? 'checked' : '' }}>
-                                        <label for="radioPrimary22" style="font-size: 8px;">
-                                        พอใช้&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary33" name="Brokerprefer" value="ปานกลาง" {{ ($data->Prefer_broker == 'ปานกลาง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary33" style="font-size: 8px;">
-                                        ปานกลาง&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary44" name="Brokerprefer" value="ดี" {{ ($data->Prefer_broker == 'ดี') ? 'checked' : '' }}>
-                                        <label for="radioPrimary44" style="font-size: 8px;">
-                                        ดี&nbsp;
-                                        </label>
-                                      </div>
-                                      <div class="icheck-primary d-inline">
-                                        <input type="radio" id="radioPrimary55" name="Brokerprefer" value="ดีมาก" {{ ($data->Prefer_broker == 'ดีมาก') ? 'checked' : '' }}>
-                                        <label for="radioPrimary55" style="font-size: 8px;">
-                                        ดีมาก&nbsp;
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                @else
-                                  <input type="hidden" name="Memo" value="{{$data->Memo_buyer}}" />
-                                  <input type="hidden" name="Buyerprefer" value="{{$data->Prefer_buyer}}" />
-                                  <input type="hidden" name="Memobroker" value="{{$data->Memo_broker}}" />
-                                  <input type="hidden" name="Brokerprefer" value="{{$data->Prefer_broker}}" />
-                                @endif
-                              </div>
-                              <div class="col-md-2">
-                                <h5 class="text-center text-red"><b>หมายเหตุ / กรณีพิเศษ</b></h5>
-                                @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <textarea class="form-control" name="Notecar" rows="12" placeholder="ป้อนหมายเหตุ">{{$data->Note_car}}</textarea>
-                                @else
-                                    @if($GetDocComplete != Null)
-                                      <textarea class="form-control" name="Notecar" rows="10" placeholder="ป้อนหมายเหตุ" readonly>{{$data->Note_car}}</textarea>
-                                    @else
-                                      <textarea class="form-control" name="Notecar" rows="10" placeholder="ป้อนหมายเหตุ">{{$data->Note_car}}</textarea>
-                                    @endif
-                                @endif
                               </div>
                             </div>
+                          <hr>
+                          @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                            <div class="row">
+                              <div class="col-md-4"></div>
+                              <div class="col-md-4">
+                                <h5 class="text-center"><b>ผลการตรวจสอบลูกค้า</b></h5>
+                                  <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
+                                  <div class="card">
+                                    <h5 class="text-center"><b>ความพึงพอใจลูกค้า</b></h5>
+                                    <div class="form-group clearfix">
+                                      &nbsp;
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary1" name="Buyerprefer" value="ปรับปรุง" {{ ($data->Prefer_buyer == 'ปรับปรุง') ? 'checked' : '' }}>
+                                        <label for="radioPrimary1" style="font-size: 14px;">
+                                        ปรับปรุง
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary2" name="Buyerprefer" value="พอใช้" {{ ($data->Prefer_buyer == 'พอใช้') ? 'checked' : '' }}>
+                                        <label for="radioPrimary2" style="font-size: 14px;">
+                                        พอใช้
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary3" name="Buyerprefer" value="ปานกลาง" {{ ($data->Prefer_buyer == 'ปานกลาง') ? 'checked' : '' }}>
+                                        <label for="radioPrimary3" style="font-size: 14px;">
+                                        ปานกลาง
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary4" name="Buyerprefer" value="ดี" {{ ($data->Prefer_buyer == 'ดี') ? 'checked' : '' }}>
+                                        <label for="radioPrimary4" style="font-size: 14px;">
+                                        ดี
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary5" name="Buyerprefer" value="ดีมาก" {{ ($data->Prefer_buyer == 'ดีมาก') ? 'checked' : '' }}>
+                                        <label for="radioPrimary5" style="font-size: 14px;">
+                                        ดีมาก
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                              <div class="col-md-4">
+                                <h5 class="text-center"><b>ผลการตรวจสอบนายหน้า</b></h5>
+                                  <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
+                                  <div class="card">
+                                    <h5 class="text-center"><b>ความพึงพอใจนายหน้า</b></h5>
+                                    <div class="form-group clearfix">
+                                      &nbsp;
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary11" name="Brokerprefer" value="ปรับปรุง" {{ ($data->Prefer_broker == 'ปรับปรุง') ? 'checked' : '' }}>
+                                        <label for="radioPrimary11" style="font-size: 14px;">
+                                        ปรับปรุง
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary22" name="Brokerprefer" value="พอใช้" {{ ($data->Prefer_broker == 'พอใช้') ? 'checked' : '' }}>
+                                        <label for="radioPrimary22" style="font-size: 14px;">
+                                        พอใช้
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary33" name="Brokerprefer" value="ปานกลาง" {{ ($data->Prefer_broker == 'ปานกลาง') ? 'checked' : '' }}>
+                                        <label for="radioPrimary33" style="font-size: 14px;">
+                                        ปานกลาง
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary44" name="Brokerprefer" value="ดี" {{ ($data->Prefer_broker == 'ดี') ? 'checked' : '' }}>
+                                        <label for="radioPrimary44" style="font-size: 14px;">
+                                        ดี
+                                        </label>
+                                      </div>
+                                      <div class="icheck-primary d-inline pr-3">
+                                        <input type="radio" id="radioPrimary55" name="Brokerprefer" value="ดีมาก" {{ ($data->Prefer_broker == 'ดีมาก') ? 'checked' : '' }}>
+                                        <label for="radioPrimary55" style="font-size: 14px;">
+                                        ดีมาก
+                                        </label>
+                                      </div>
+                                    </div>
+                                  </div>
+                              </div>
+                            </div>
+                          @else
+                            <input type="hidden" name="Memo" value="{{$data->Memo_buyer}}" />
+                            <input type="hidden" name="Buyerprefer" value="{{$data->Prefer_buyer}}" />
+                            <input type="hidden" name="Memobroker" value="{{$data->Memo_broker}}" />
+                            <input type="hidden" name="Brokerprefer" value="{{$data->Prefer_broker}}" />
+                          @endif
+                            
                             <div class="row">
                               <div class="col-md-12">
                                 <div class="form-group">
@@ -2606,52 +2615,6 @@
                                           <input type="text" id="Afterincome" name="Afterincome" value="{{ number_format($data->AfterIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" />
                                         @else
                                           <input type="text" id="Afterincome" name="Afterincome" value="{{ number_format($data->AfterIncome_buyer,0) }}" class="form-control form-control-sm"  placeholder="ก่อนหักค่าใช้จ่าย" onchange="income();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }} />
-                                        @endif
-                                      </div>
-                                    </div>
-                                    <div class="form-group row mb-0">
-                                      <label class="col-sm-4 col-form-label text-right">วัตถุประสงค์ของสินเชื่อ : </label>
-                                      <div class="col-sm-8">
-                                        @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                          <select name="objectivecar" class="form-control form-control-sm" >
-                                            <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
-                                            <option value="ลงทุนในธุรกิจ" {{ ($data->Objective_car === 'ลงทุนในธุรกิจ') ? 'selected' : '' }}>ลงทุนในธุรกิจ</option>
-                                            <option value="ขยายกิจการ" {{ ($data->Objective_car === 'ขยายกิจการ') ? 'selected' : '' }}>ขยายกิจการ</option>
-                                            <option value="ซื้อรถยนต์" {{ ($data->Objective_car === 'ซื้อรถยนต์') ? 'selected' : '' }}>ซื้อรถยนต์</option>
-                                            <option value="ใช้หนี้นอกระบบ" {{ ($data->Objective_car === 'ใช้หนี้นอกระบบ') ? 'selected' : '' }}>ใช้หนี้นอกระบบ</option>
-                                            <option value="จ่ายค่าเทอม" {{ ($data->Objective_car === 'จ่ายค่าเทอม') ? 'selected' : '' }}>จ่ายค่าเทอม</option>
-                                            <option value="ซื้อของใช้ภายในบ้าน" {{ ($data->Objective_car === 'ซื้อของใช้ภายในบ้าน') ? 'selected' : '' }}>ซื้อของใช้ภายในบ้าน</option>
-                                            <option value="ซื้อวัว" {{ ($data->Objective_car === 'ซื้อวัว') ? 'selected' : '' }}>ซื้อวัว</option>
-                                            <option value="ซื้อที่ดิน" {{ ($data->Objective_car === 'ซื้อที่ดิน') ? 'selected' : '' }}>ซื้อที่ดิน</option>
-                                            <option value="ซ่อมบ้าน" {{ ($data->Objective_car === 'ซ่อมบ้าน') ? 'selected' : '' }}>ซ่อมบ้าน</option>
-                                            <option value="ลดค่าธรรมเนียม" {{ ($data->Objective_car === 'ลดค่าธรรมเนียม') ? 'selected' : '' }}>ลดค่าธรรมเนียม</option>
-                                            <option value="ลดดอกเบี้ย สูงสุด 100 %" {{ ($data->Objective_car === 'ลดดอกเบี้ย สูงสุด 100 %') ? 'selected' : '' }}>ลดดอกเบี้ย สูงสุด 100 %</option>
-                                            <option value="พักชำระเงินต้น 3 เดือน" {{ ($data->Objective_car === 'พักชำระเงินต้น 3 เดือน') ? 'selected' : '' }}>พักชำระเงินต้น 3 เดือน</option>
-                                            <option value="พักชำระหนี้ 3 เดือน" {{ ($data->Objective_car === 'พักชำระหนี้ 3 เดือน') ? 'selected' : '' }}>พักชำระหนี้ 3 เดือน</option>
-                                            <option value="ขยายระยะเวลาชำระหนี้" {{ ($data->Objective_car === 'ขยายระยะเวลาชำระหนี้') ? 'selected' : '' }}>ขยายระยะเวลาชำระหนี้</option>
-                                          </select>
-                                        @else
-                                          @if($GetDocComplete != Null)
-                                            <input type="text" name="objectivecar" value="{{ $data->Objective_car }}" class="form-control form-control-sm"  placeholder="เลือกวัตถุประสงค์ของสินเชื่อ" readonly/>
-                                          @else
-                                            <select name="objectivecar" class="form-control form-control-sm" >
-                                              <option value="" selected>--- วัตถุประสงค์ของสินเชื่อ ---</option>
-                                              <option value="ลงทุนในธุรกิจ" {{ ($data->Objective_car === 'ลงทุนในธุรกิจ') ? 'selected' : '' }}>ลงทุนในธุรกิจ</option>
-                                              <option value="ขยายกิจการ" {{ ($data->Objective_car === 'ขยายกิจการ') ? 'selected' : '' }}>ขยายกิจการ</option>
-                                              <option value="ซื้อรถยนต์" {{ ($data->Objective_car === 'ซื้อรถยนต์') ? 'selected' : '' }}>ซื้อรถยนต์</option>
-                                              <option value="ใช้หนี้นอกระบบ" {{ ($data->Objective_car === 'ใช้หนี้นอกระบบ') ? 'selected' : '' }}>ใช้หนี้นอกระบบ</option>
-                                              <option value="จ่ายค่าเทอม" {{ ($data->Objective_car === 'จ่ายค่าเทอม') ? 'selected' : '' }}>จ่ายค่าเทอม</option>
-                                              <option value="ซื้อของใช้ภายในบ้าน" {{ ($data->Objective_car === 'ซื้อของใช้ภายในบ้าน') ? 'selected' : '' }}>ซื้อของใช้ภายในบ้าน</option>
-                                              <option value="ซื้อวัว" {{ ($data->Objective_car === 'ซื้อวัว') ? 'selected' : '' }}>ซื้อวัว</option>
-                                              <option value="ซื้อที่ดิน" {{ ($data->Objective_car === 'ซื้อที่ดิน') ? 'selected' : '' }}>ซื้อที่ดิน</option>
-                                              <option value="ซ่อมบ้าน" {{ ($data->Objective_car === 'ซ่อมบ้าน') ? 'selected' : '' }}>ซ่อมบ้าน</option>
-                                              <option value="ลดค่าธรรมเนียม" {{ ($data->Objective_car === 'ลดค่าธรรมเนียม') ? 'selected' : '' }}>ลดค่าธรรมเนียม</option>
-                                              <option value="ลดดอกเบี้ย สูงสุด 100 %" {{ ($data->Objective_car === 'ลดดอกเบี้ย สูงสุด 100 %') ? 'selected' : '' }}>ลดดอกเบี้ย สูงสุด 100 %</option>
-                                              <option value="พักชำระเงินต้น 3 เดือน" {{ ($data->Objective_car === 'พักชำระเงินต้น 3 เดือน') ? 'selected' : '' }}>พักชำระเงินต้น 3 เดือน</option>
-                                              <option value="พักชำระหนี้ 3 เดือน" {{ ($data->Objective_car === 'พักชำระหนี้ 3 เดือน') ? 'selected' : '' }}>พักชำระหนี้ 3 เดือน</option>
-                                              <option value="ขยายระยะเวลาชำระหนี้" {{ ($data->Objective_car === 'ขยายระยะเวลาชำระหนี้') ? 'selected' : '' }}>ขยายระยะเวลาชำระหนี้</option>
-                                            </select>
-                                          @endif
                                         @endif
                                       </div>
                                     </div>
