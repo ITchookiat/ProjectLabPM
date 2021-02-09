@@ -1042,31 +1042,31 @@
                                       &nbsp;
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary1" name="Buyerprefer" value="ปรับปรุง" {{ ($data->Prefer_buyer == 'ปรับปรุง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary1" style="font-size: 14px;">
+                                        <label for="radioPrimary1" style="font-size: 10px;">
                                         ปรับปรุง
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary2" name="Buyerprefer" value="พอใช้" {{ ($data->Prefer_buyer == 'พอใช้') ? 'checked' : '' }}>
-                                        <label for="radioPrimary2" style="font-size: 14px;">
+                                        <label for="radioPrimary2" style="font-size: 10px;">
                                         พอใช้
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary3" name="Buyerprefer" value="ปานกลาง" {{ ($data->Prefer_buyer == 'ปานกลาง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary3" style="font-size: 14px;">
+                                        <label for="radioPrimary3" style="font-size: 10px;">
                                         ปานกลาง
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary4" name="Buyerprefer" value="ดี" {{ ($data->Prefer_buyer == 'ดี') ? 'checked' : '' }}>
-                                        <label for="radioPrimary4" style="font-size: 14px;">
+                                        <label for="radioPrimary4" style="font-size: 10px;">
                                         ดี
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary5" name="Buyerprefer" value="ดีมาก" {{ ($data->Prefer_buyer == 'ดีมาก') ? 'checked' : '' }}>
-                                        <label for="radioPrimary5" style="font-size: 14px;">
+                                        <label for="radioPrimary5" style="font-size: 10px;">
                                         ดีมาก
                                         </label>
                                       </div>
@@ -1082,31 +1082,31 @@
                                       &nbsp;
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary11" name="Brokerprefer" value="ปรับปรุง" {{ ($data->Prefer_broker == 'ปรับปรุง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary11" style="font-size: 14px;">
+                                        <label for="radioPrimary11" style="font-size: 10px;">
                                         ปรับปรุง
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary22" name="Brokerprefer" value="พอใช้" {{ ($data->Prefer_broker == 'พอใช้') ? 'checked' : '' }}>
-                                        <label for="radioPrimary22" style="font-size: 14px;">
+                                        <label for="radioPrimary22" style="font-size: 10px;">
                                         พอใช้
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary33" name="Brokerprefer" value="ปานกลาง" {{ ($data->Prefer_broker == 'ปานกลาง') ? 'checked' : '' }}>
-                                        <label for="radioPrimary33" style="font-size: 14px;">
+                                        <label for="radioPrimary33" style="font-size: 10px;">
                                         ปานกลาง
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary44" name="Brokerprefer" value="ดี" {{ ($data->Prefer_broker == 'ดี') ? 'checked' : '' }}>
-                                        <label for="radioPrimary44" style="font-size: 14px;">
+                                        <label for="radioPrimary44" style="font-size: 10px;">
                                         ดี
                                         </label>
                                       </div>
                                       <div class="icheck-primary d-inline pr-3">
                                         <input type="radio" id="radioPrimary55" name="Brokerprefer" value="ดีมาก" {{ ($data->Prefer_broker == 'ดีมาก') ? 'checked' : '' }}>
-                                        <label for="radioPrimary55" style="font-size: 14px;">
+                                        <label for="radioPrimary55" style="font-size: 10px;">
                                         ดีมาก
                                         </label>
                                       </div>
@@ -1627,7 +1627,7 @@
 
                         </div>
                         <div class="tab-pane fade" id="Sub-tab3" role="tabpanel" aria-labelledby="Sub-custom-tab3">
-                          <h5 class="text-center"><b>แบบฟอร์มรายละเอียดรถยนต์</b></h5>
+                          <h5 class="text-center"><b>แบบฟอร์มรายละเอียดรถจักรยานยนต์</b></h5>
                           <p></p>
 
                           <div class="row">
@@ -1761,6 +1761,33 @@
                                     <input type="text" name="Modelcar" value="{{$data->Model_car}}" class="form-control form-control-sm"  placeholder="รุ่น" />
                                   @else
                                     <input type="text" name="Modelcar" value="{{$data->Model_car}}" class="form-control form-control-sm"  placeholder="รุ่น" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                  @endif
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label text-right">เลขตัวถัง : </label>
+                                <div class="col-sm-8">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" name="IDTankcar" value="{{$data->IDTank_car}}" class="form-control form-control-sm"  placeholder="เลขตัวถัง" />
+                                  @else
+                                    <input type="text" name="IDTankcar" value="{{$data->IDTank_car}}" class="form-control form-control-sm"  placeholder="เลขตัวถัง" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                  @endif
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="form-group row mb-0">
+                                <label class="col-sm-3 col-form-label text-right">เลขเครื่อง : </label>
+                                <div class="col-sm-8">
+                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                    <input type="text" name="IDMachinecar" value="{{$data->IDMachine_car}}" class="form-control form-control-sm"  placeholder="เลขเครื่อง"/>
+                                  @else
+                                    <input type="text" name="IDMachinecar" value="{{$data->IDMachine_car}}" class="form-control form-control-sm"  placeholder="เลขเครื่อง" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
                               </div>

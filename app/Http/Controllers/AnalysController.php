@@ -1098,6 +1098,8 @@ class AnalysController extends Controller
           $cardetail->Typecardetails = $request->get('Typecardetail');
           $cardetail->Groupyear_car = $request->get('Groupyearcar');
           $cardetail->Colour_car = $request->get('Colourcar');
+          $cardetail->IDTank_car = $request->get('IDTankcar');
+          $cardetail->IDMachine_car = $request->get('IDMachinecar');
           $cardetail->License_car = $request->get('Licensecar');
           $cardetail->Nowlicense_car = $request->get('Nowlicensecar');
           $cardetail->Mile_car = $request->get('Milecar');
