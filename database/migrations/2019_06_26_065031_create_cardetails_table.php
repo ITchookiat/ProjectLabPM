@@ -22,6 +22,7 @@ class CreateCardetailsTable extends Migration
             $table->string('Year_car')->nullable();
             $table->string('Colour_car')->nullable();
             $table->string('IDTank_car')->nullable();
+            $table->string('IDMachine_car')->nullable();
             $table->string('License_car')->nullable();
             $table->string('Nowlicense_car')->nullable();
             $table->string('Mile_car')->nullable();
