@@ -2385,6 +2385,7 @@
                               </div>
                             </div>
                           </div>
+                          <input type="hidden" id="balancePrice" name="balancePrice" value="{{number_format($data->Top_car,2)}}" class="form-control form-control-sm" placeholder="คงเหลือ" readonly/>
                         </div>
                         <div class="tab-pane fade" id="Sub-tab5" role="tabpanel" aria-labelledby="Sub-custom-tab5">
                           <h5 class="text-center"><b>ข้อมูลลงพื้นที ตรวจสอบ</b></h5>
