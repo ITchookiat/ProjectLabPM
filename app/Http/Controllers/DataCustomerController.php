@@ -234,6 +234,8 @@ class DataCustomerController extends Controller
 
           $Expensesdb = new Expenses([
             'Buyerexpenses_id' => $Buyerdb->id,
+            'balance_Price' => 0,
+            'commit_Price' => 0,
           ]);
           $Expensesdb ->save();
 
