@@ -1035,7 +1035,7 @@
                               <div class="col-md-4"></div>
                               <div class="col-md-4">
                                 <h5 class="text-center"><b>ผลการตรวจสอบลูกค้า</b></h5>
-                                  @if(auth::user()->type == "Admin"
+                                  @if(auth::user()->type == "Admin")
                                     <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
                                   @else
                                     @if($GetDocComplete != Null)
@@ -1083,7 +1083,7 @@
                               </div>
                               <div class="col-md-4">
                                 <h5 class="text-center"><b>ผลการตรวจสอบนายหน้า</b></h5>
-                                  @if(auth::user()->type == "Admin"
+                                  @if(auth::user()->type == "Admin")
                                     <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
                                   @else
                                     @if($GetDocComplete != Null)
