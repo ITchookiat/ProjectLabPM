@@ -1808,7 +1808,7 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              <div class="form-group row mb-0">
+                              {{--<div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ราคากลาง : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
@@ -1817,7 +1817,7 @@
                                     <input type="text" id="Midpricecar" name="Midpricecar" value="{{$data->Midprice_car}}" class="form-control form-control-sm"  placeholder="ราคากลาง" oninput="mile();percent();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
-                              </div>
+                              </div>--}}
                             </div>
                           </div>
 
@@ -2137,15 +2137,15 @@
 
                           <div class="row">
                             <div class="col-6">
-                            <div class="form-group row mb-0">
-                                <label class="col-sm-3 col-form-label text-right">ปชช.ผู้แนะนำ/นายหน้า : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask=""/>
-                                  @else
-                                    <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
-                                </div>
+                              <div class="form-group row mb-0">
+                                  <label class="col-sm-3 col-form-label text-right text-xs">ปชช.ผู้แนะนำ/นายหน้า : </label>
+                                  <div class="col-sm-8">
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                      <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask=""/>
+                                    @else
+                                      <input type="text" id="IDAgentcar" name="IDAgentcar" value="{{$data->IDcardAgent_car}}" class="form-control form-control-sm"  placeholder="เลขบัตรประชาชน" data-inputmask="&quot;mask&quot;:&quot;9-9999-99999-99-9&quot;" data-mask="" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    @endif
+                                  </div>
                               </div>
                             </div>
                             <div class="col-6">
@@ -2169,15 +2169,15 @@
                               @else
                                 <div class="form-group row mb-0" id="ShowCom" style="display:none;">
                               @endif
-                                <label class="col-sm-3 col-form-label text-right">ค่าคอม : </label>
-                                <div class="col-sm-8">
-                                  @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
-                                    <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm" placeholder="ค่าคอม" readonly/>
-                                  @else
-                                    <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm"  placeholder="ค่าคอม" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
-                                  @endif
+                                  <label class="col-sm-3 col-form-label text-right">ค่าคอม : </label>
+                                  <div class="col-sm-8">
+                                    @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
+                                      <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm" placeholder="ค่าคอม" readonly/>
+                                    @else
+                                      <input type="text" id="Commissioncar" name="Commissioncar" value="{{number_format($data->Commission_car, 2)}}" class="form-control form-control-sm"  placeholder="ค่าคอม" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
+                                    @endif
+                                  </div>
                                 </div>
-                              </div>
                             </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
@@ -2206,6 +2206,8 @@
                           </script>
 
                           <div class="row">
+                            <div class="col-6">
+                            </div>
                             <div class="col-6">
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ประวัติการซื้อ/ค้ำ : </label>
@@ -2324,8 +2326,6 @@
                                   @endif
                                 </div>
                               </div>
-                            </div>
-                            <div class="col-6">
                             </div>
                           </div>
 
@@ -2749,7 +2749,7 @@
                                         @endif
                                       </div>
                                     </div>
-                                    <br><br><br><br><br>
+                                    <br><br><br>
                                     <div class="file-loading">
                                       <input id="image_income_2" type="file" name="image_income_2[]" accept="image/*" data-min-file-count="1" multiple>
                                     </div>
