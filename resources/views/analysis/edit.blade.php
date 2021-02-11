@@ -2672,7 +2672,7 @@
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right"><font color="red">รวมยอดโอน :</font> </label>
                                 <div class="col-sm-8">
-                                  <input type="text" value="{{ number_format($data->balance_Price+$data->commit_Price,2)}}" style="font-weight:bold;" class="form-control form-control-sm" readonly />
+                                  <input type="text" value="{{number_format($data->balance_Price + $data->commit_Price,2) }}" style="font-weight:bold;" class="form-control form-control-sm" readonly />
                                 </div>
                               </div>
                             </div>
@@ -3683,9 +3683,9 @@
 
   @if($data->Buyer_latlong != NULL)
     @php
-      $SetBuyerlatlong = explode(",",$data->Buyer_latlong);
-      $Buyerlat = $SetBuyerlatlong[0];
-      $Buyerlong = $SetBuyerlatlong[1];
+      @$SetBuyerlatlong = explode(",",$data->Buyer_latlong);
+      @$Buyerlat = $SetBuyerlatlong[0];
+      @$Buyerlong = $SetBuyerlatlong[1];
     @endphp
   @else 
     @php
@@ -3696,9 +3696,9 @@
 
   @if($data->Support_latlong != NULL)
    @php
-      $SetSupportlatlong = explode(",",$data->Support_latlong);
-      $Supportlat = $SetSupportlatlong[0];
-      $Supportlong = $SetSupportlatlong[1];
+      @$SetSupportlatlong = explode(",",$data->Support_latlong);
+      @$Supportlat = $SetSupportlatlong[0];
+      @$Supportlong = $SetSupportlatlong[1];
     @endphp
   @else 
     @php
