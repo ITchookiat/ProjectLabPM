@@ -209,7 +209,11 @@
           var Settopcar = document.getElementById('Topcar').value;
           var Topcar = Settopcar.replace(",","");
           var Setfee = document.getElementById('Processfee').value;
-          var fee = Setfee.replace(",","");
+            if(Setfee == ''){
+              var fee = 0;
+            }else{
+              var fee = Setfee.replace(",","");
+            }
           var SetactPrice = document.getElementById('actPrice').value;
           var actPrice = SetactPrice.replace(",","");
           var SetcloseAccountPrice = document.getElementById('closeAccountPrice').value;
