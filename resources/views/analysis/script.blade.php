@@ -129,7 +129,11 @@
         var Topcar = Settopcar.replace(",","");
         var Setinterest = document.getElementById('Interestcar').value;
         var Setfee = document.getElementById('Processfee').value;
-        var fee = Setfee.replace(",","");
+            if(Setfee == ''){
+              var fee = 0;
+            }else{
+              var fee = Setfee.replace(",","");
+            }
         var Timelack = document.getElementById('Timeslackencar').value;
 
           // var fee = (Setfee/100)/1;
