@@ -2648,7 +2648,7 @@
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รวมค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{number_format($data->totalk_Price, 2)}}" class="form-control form-control-sm" placeholder="รวมค่าดำเนินการ" readonly/>
+                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{$data->totalk_Price)}}" class="form-control form-control-sm" placeholder="รวมค่าดำเนินการ" readonly/>
                                 </div>
                               </div>
                             </div>
