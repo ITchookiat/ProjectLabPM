@@ -1111,7 +1111,7 @@
                                   @if(auth::user()->type == "Admin")
                                     <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
                                   @else
-                                    @if($GetDocComplete != Null)
+                                    @if($data->ManagerApp_car != Null)
                                       <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล" readonly>{{$data->Memo_buyer}}</textarea>
                                     @else 
                                       <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
@@ -1159,7 +1159,7 @@
                                   @if(auth::user()->type == "Admin")
                                     <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
                                   @else
-                                    @if($GetDocComplete != Null)
+                                    @if($data->ManagerApp_car != Null)
                                       <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล" readonly>{{$data->Memo_broker}}</textarea>
                                     @else
                                       <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
