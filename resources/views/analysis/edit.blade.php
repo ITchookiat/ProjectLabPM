@@ -2660,7 +2660,7 @@
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">คงเหลือ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="balancePrice" name="balancePrice" value="{{number_format($data->balance_Price,2)}}" class="form-control form-control-sm" placeholder="คงเหลือ" readonly/>
+                                  <input type="text" id="balancePrice" name="balancePrice" value="{{$data->balance_Price}}" class="form-control form-control-sm" placeholder="คงเหลือ" readonly/>
                                 </div>
                               </div>
                             </div>
