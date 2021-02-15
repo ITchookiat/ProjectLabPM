@@ -1824,7 +1824,7 @@
                               </div>
                             </div>
                             <div class="col-6">
-                              {{--<div class="form-group row mb-0">
+                              <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">ราคากลาง : </label>
                                 <div class="col-sm-8">
                                   @if(auth::user()->type == "Admin" or auth::user()->type == "แผนก วิเคราะห์")
@@ -1833,7 +1833,7 @@
                                     <input type="text" id="Midpricecar" name="Midpricecar" value="{{$data->Midprice_car}}" class="form-control form-control-sm"  placeholder="ราคากลาง" oninput="mile();percent();" {{ ($GetDocComplete !== NULL) ? 'readonly' : '' }}/>
                                   @endif
                                 </div>
-                              </div>--}}
+                              </div>
                             </div>
                           </div>
 

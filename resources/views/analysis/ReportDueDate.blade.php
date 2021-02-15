@@ -385,8 +385,12 @@
                   คพ
                 @elseif($value->branch_car == 'ตันหยงมัส')
                   ตยม
+                @elseif($value->branch_car == 'รือเสาะ')
+                  รส
                 @elseif($value->branch_car == 'บังนังสตา')
                   บนต
+                @elseif($value->branch_car == 'ยะหา')
+                  ยห
                 @endif
               </td>
               @if($value->note_Price == Null)
