@@ -3025,9 +3025,9 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "4")
-                                            <div class="col-sm-2">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
-                                                <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                            <div class="col-sm-4">
+                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
+                                                <img id="ImgIncomeBuyer" src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}">
                                               </a>
                                             </div>
                                           @endif
@@ -3115,9 +3115,9 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "5")
-                                            <div class="col-sm-2">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้ค้ำ">
-                                                <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                            <div class="col-sm-4">
+                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
+                                                <img id="ImgIncomeSupport" src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}">
                                               </a>
                                             </div>
                                           @endif
