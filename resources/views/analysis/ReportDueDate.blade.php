@@ -387,7 +387,7 @@
                   ตยม
                 @elseif($value->branch_car == 'รือเสาะ')
                   รส
-                @elseif($value->branch_car == 'บังนังสตา')
+                @elseif($value->branch_car == 'บันนังสตา')
                   บนต
                 @elseif($value->branch_car == 'ยะหา')
                   ยห
