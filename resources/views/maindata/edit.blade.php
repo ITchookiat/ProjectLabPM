@@ -76,8 +76,8 @@
                               <option value="56" {{ ($user->branch === '56') ? 'selected' : '' }}>สาขา โคกโพธิ์</option>
                               <option value="57" {{ ($user->branch === '57') ? 'selected' : '' }}>สาขา ตันหยงมัส</option>
                               <option value="58" {{ ($user->branch === '58') ? 'selected' : '' }}>สาขา รือเสาะ</option>
-                              <option value="58" {{ ($user->branch === '59') ? 'selected' : '' }}>สาขา บันนังสตา</option>
-                              <option value="58" {{ ($user->branch === '60') ? 'selected' : '' }}>สาขา ยะหา</option>
+                              <option value="59" {{ ($user->branch === '59') ? 'selected' : '' }}>สาขา บันนังสตา</option>
+                              <option value="60" {{ ($user->branch === '60') ? 'selected' : '' }}>สาขา ยะหา</option>
                               <option value="10" {{ ($user->branch === '10') ? 'selected' : '' }}>สาขา รถบ้าน</option>
                             </select>
                           </div>
