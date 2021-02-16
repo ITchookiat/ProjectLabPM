@@ -2171,7 +2171,7 @@
                                   @if(auth::user()->type == "Admin" or auth::user()->position == "MANAGER")
                                     <select id="statuscar" name="statuscar" class="form-control form-control-sm" >
                                       <option value="" selected>--- เลือกแบบ ---</option>
-                                      <option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>
+                                      {{--<option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>--}}
                                       <option value="กส.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำไม่มีหลักทรัพย์</option>
                                       <option value="กส.ไม่ค้ำประกัน" {{ ($data->status_car === 'กส.ไม่ค้ำประกัน') ? 'selected' : '' }}>กส.ไม่ค้ำประกัน</option>
                                       <option value="VIP.กรรมสิทธิ์" {{ ($data->status_car === 'VIP.กรรมสิทธิ์') ? 'selected' : '' }}>VIP.กรรมสิทธิ์</option>
@@ -2182,7 +2182,7 @@
                                     @else
                                       <select id="statuscar" name="statuscar" class="form-control form-control-sm" >
                                         <option value="" selected>--- เลือกแบบ ---</option>
-                                        <option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>
+                                        {{--<option value="กส.ค้ำมีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำมีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำมีหลักทรัพย์</option>--}}
                                         <option value="กส.ค้ำไม่มีหลักทรัพย์" {{ ($data->status_car === 'กส.ค้ำไม่มีหลักทรัพย์') ? 'selected' : '' }}>กส.ค้ำไม่มีหลักทรัพย์</option>
                                         <option value="กส.ไม่ค้ำประกัน" {{ ($data->status_car === 'กส.ไม่ค้ำประกัน') ? 'selected' : '' }}>กส.ไม่ค้ำประกัน</option>
                                         <option value="VIP.กรรมสิทธิ์" {{ ($data->status_car === 'VIP.กรรมสิทธิ์') ? 'selected' : '' }}>VIP.กรรมสิทธิ์</option>
