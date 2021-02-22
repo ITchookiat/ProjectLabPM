@@ -224,7 +224,7 @@
                                 <i class="far fa-window-close"></i> Close
                               </a>
                             @else
-                              <a class="delete-modal btn btn-danger btn-sm" href="{{ URL::previous() }}">
+                              <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{3}}&Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                                 <i class="fas fa-undo"></i> ย้อนกลับ
                               </a>
                             @endif
@@ -238,7 +238,7 @@
                               <i class="far fa-window-close"></i> Close
                             </a>
                           @else
-                            <a class="delete-modal btn btn-danger btn-sm" href="{{ URL::previous() }}">
+                            <a class="delete-modal btn btn-danger btn-sm" href="{{ route('MasterAnalysis.index') }}?type={{3}}&Fromdate={{$fdate}}&Todate={{$tdate}}&status={{$status}}">
                               <i class="fas fa-undo"></i> Back
                             </a>
                           @endif
