@@ -1108,15 +1108,7 @@
                               <div class="col-md-4"></div>
                               <div class="col-md-4">
                                 <h5 class="text-center"><b>ผลการตรวจสอบลูกค้า</b></h5>
-                                  @if(auth::user()->type == "Admin")
-                                    <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
-                                  @else
-                                    @if($data->ManagerApp_car != Null)
-                                      <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล" readonly>{{$data->Memo_buyer}}</textarea>
-                                    @else 
-                                      <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
-                                    @endif 
-                                  @endif
+                                  <textarea class="form-control mb-3" name="Memo" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_buyer}}</textarea>
                                   <div class="card">
                                     <h5 class="text-center"><b>ความพึงพอใจลูกค้า</b></h5>
                                     <div class="form-group clearfix">
@@ -1156,15 +1148,7 @@
                               </div>
                               <div class="col-md-4">
                                 <h5 class="text-center"><b>ผลการตรวจสอบนายหน้า</b></h5>
-                                  @if(auth::user()->type == "Admin")
-                                    <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
-                                  @else
-                                    @if($data->ManagerApp_car != Null)
-                                      <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล" readonly>{{$data->Memo_broker}}</textarea>
-                                    @else
-                                      <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
-                                    @endif 
-                                  @endif
+                                  <textarea class="form-control mb-3" name="Memobroker" rows="3" placeholder="ป้อนเหตุผล">{{$data->Memo_broker}}</textarea>
                                   <div class="card">
                                     <h5 class="text-center"><b>ความพึงพอใจนายหน้า</b></h5>
                                     <div class="form-group clearfix">
@@ -2652,7 +2636,7 @@
                               <div class="form-group row mb-0">
                                 <label class="col-sm-3 col-form-label text-right">รวมค่าดำเนินการ : </label>
                                 <div class="col-sm-8">
-                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{$data->totalk_Price}}" class="form-control form-control-sm" placeholder="รวมค่าดำเนินการ" readonly/>
+                                  <input type="text" id="totalkPrice" name="totalkPrice" value="{{number_format($data->totalk_Price, 2)}}" class="form-control form-control-sm" placeholder="รวมค่าดำเนินการ" readonly/>
                                 </div>
                               </div>
                             </div>
