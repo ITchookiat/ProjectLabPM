@@ -1217,7 +1217,7 @@
                                         $path = $data->License_car;
                                       @endphp
                                       <p></p>
-                                      @if(auth::user()->type == "Admin" or auth::user()->position == "MANAGER")
+                                      @if(auth::user()->type == "Admin" or auth::user()->position == "MANAGER" or auth::user()->position == "AUDIT" or auth::user()->position == "MASTER" or auth::user()->position == "STAFF")
                                         <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
                                         <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                           <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
@@ -1905,7 +1905,11 @@
                                   @if(auth::user()->type == "Admin")
                                     <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control form-control-sm"  placeholder="ป้ายเดิม"/>
                                   @else
-                                    <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control form-control-sm"  readonly/>
+                                    @if($countImage == 0)
+                                      <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control form-control-sm"/>
+                                    @else
+                                      <input type="text" name="Licensecar"  value="{{ $data->License_car}}" class="form-control form-control-sm"  readonly/>
+                                    @endif
                                   @endif
                                 </div>
                               </div>

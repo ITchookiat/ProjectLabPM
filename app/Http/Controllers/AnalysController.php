@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Storage;
 use File;
+use Image;
 
 use App\Buyer;
 use App\Sponsor;
@@ -1295,9 +1296,17 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
+          // $path = public_path().'/upload-image/'.$SetLicense;
+          // Storage::makeDirectory($path, 0777, true, true);
+          // $image_array[$i]->move($path,$image_new_name);
+
           $path = public_path().'/upload-image/'.$SetLicense;
-          Storage::makeDirectory($path, 0777, true, true);
-          $image_array[$i]->move($path,$image_new_name);
+          File::makeDirectory($path, $mode = 0777, true, true);
+
+          //resize Image
+          $image_resize = Image::make($image_array[$i]->getRealPath());
+          $image_resize->resize(1000, 1000);
+          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1318,9 +1327,17 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
+          // $path = public_path().'/upload-image/'.$SetLicense;
+          // Storage::makeDirectory($path, 0777, true, true);
+          // $image_array[$i]->move($path,$image_new_name);
+
           $path = public_path().'/upload-image/'.$SetLicense;
-          Storage::makeDirectory($path, 0777, true, true);
-          $image_array[$i]->move($path,$image_new_name);
+          File::makeDirectory($path, $mode = 0777, true, true);
+
+          //resize Image
+          $image_resize = Image::make($image_array[$i]->getRealPath());
+          $image_resize->resize(1000, 1000);
+          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1341,9 +1358,17 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
+          // $path = public_path().'/upload-image/'.$SetLicense;
+          // Storage::makeDirectory($path, 0777, true, true);
+          // $image_array[$i]->move($path,$image_new_name);
+
           $path = public_path().'/upload-image/'.$SetLicense;
-          Storage::makeDirectory($path, 0777, true, true);
-          $image_array[$i]->move($path,$image_new_name);
+          File::makeDirectory($path, $mode = 0777, true, true);
+
+          //resize Image
+          $image_resize = Image::make($image_array[$i]->getRealPath());
+          $image_resize->resize(1000, 1000);
+          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1407,9 +1432,17 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
+          // $path = public_path().'/upload-image/'.$SetLicense;
+          // Storage::makeDirectory($path, 0777, true, true);
+          // $image_array[$i]->move($path,$image_new_name);
+
           $path = public_path().'/upload-image/'.$SetLicense;
-          Storage::makeDirectory($path, 0777, true, true);
-          $image_array[$i]->move($path,$image_new_name);
+          File::makeDirectory($path, $mode = 0777, true, true);
+
+          //resize Image
+          $image_resize = Image::make($image_array[$i]->getRealPath());
+          $image_resize->resize(1000, 1000);
+          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1430,9 +1463,16 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
+          // $path = public_path().'/upload-image/'.$SetLicense;
+          // Storage::makeDirectory($path, 0777, true, true);
+          // $image_array[$i]->move($path,$image_new_name);
           $path = public_path().'/upload-image/'.$SetLicense;
-          Storage::makeDirectory($path, 0777, true, true);
-          $image_array[$i]->move($path,$image_new_name);
+          File::makeDirectory($path, $mode = 0777, true, true);
+
+          //resize Image
+          $image_resize = Image::make($image_array[$i]->getRealPath());
+          $image_resize->resize(1000, 1000);
+          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1592,8 +1632,8 @@ class AnalysController extends Controller
 
         foreach ($item as $key => $value) {
           $itemID = $value->Buyerfileimage_id;
-          $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
-          File::delete($itemPath);
+          $itemPath = public_path().'/upload-image/'.$path;
+          File::deleteDirectory($itemPath);
         }
 
         $deleteItem = UploadfileImage::where('Buyerfileimage_id',$itemID);
