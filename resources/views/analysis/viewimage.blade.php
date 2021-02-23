@@ -5,7 +5,7 @@
   @php
     date_default_timezone_set('Asia/Bangkok');
     $date = date('Y-m-d', strtotime('-1 days'));
-    $Currdate = date('2020-06-02');
+    $Currdate = date('2021-01-01');
   @endphp
 
   @php
@@ -76,16 +76,16 @@
                     @foreach($data as $key => $row)
                       <div class="col-sm-2 ">
                         @if($created_at < $Currdate)
-                          <a href="{{ asset('upload-image/'.$row->Name_fileimage) }}" data-toggle="lightbox" data-title="รูปภาพประกอบ">
-                            <img src="{{ asset('upload-image/'.$row->Name_fileimage) }}" class="img-fluid mb-2 img-bordered" alt="white sample" style="width: 180px; height: 160px;" >
-                          </a>
-                        @else
                           <a href="{{ asset('upload-image/'.$path.'/'.$row->Name_fileimage) }}" data-toggle="lightbox" data-title="รูปภาพประกอบ">
                             <img src="{{ asset('upload-image/'.$path.'/'.$row->Name_fileimage) }}" class="img-fluid mb-2 img-bordered" alt="white sample" style="width: 180px; height: 160px;" >
                           </a>
+                        @else
+                          <a href="{{ asset('upload-image/'.$dataold->Type_Con.'/'.$path.'/'.$row->Name_fileimage) }}" data-toggle="lightbox" data-title="รูปภาพประกอบ">
+                            <img src="{{ asset('upload-image/'.$dataold->Type_Con.'/'.$path.'/'.$row->Name_fileimage) }}" class="img-fluid mb-2 img-bordered" alt="white sample" style="width: 180px; height: 160px;" >
+                          </a>
                         @endif
                         <div align="center">
-                          <a href="{{ action('AnalysController@destroyImage',[$type,$row->fileimage_id,$fdate,$tdate,$branch,$status,$path])}}?mainid={{$id}}" class="btn btn-danger btn-sm DeleteImage">
+                          <a href="{{ action('AnalysController@destroyImage',[$type,$row->fileimage_id,$fdate,$tdate,$branch,$status,$path])}}?mainid={{$id}}&TypeContract={{$dataold->Type_Con}}" class="btn btn-danger btn-sm DeleteImage">
                             <span class="glyphicon glyphicon-trash"></span> ลบ
                           </a>
                           <br><br>

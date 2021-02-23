@@ -8,7 +8,7 @@
   $Y2 = date('Y') + 531;
   $m = date('m');
   $d = date('d');
-  $Currdate = date('2020-06-02');
+  $Currdate = date('2021-02-22');
   $time = date('H:i');
   $date = $Y.'-'.$m.'-'.$d;
   $date2 = $Y2.'-'.'01'.'-'.'01';
@@ -1202,7 +1202,7 @@
                                       @endphp
                                       <p></p>
                                       @if(auth::user()->type == "Admin" or auth::user()->position == "MANAGER" or auth::user()->position == "AUDIT" or auth::user()->position == "MASTER" or auth::user()->position == "STAFF")
-                                        <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
+                                        <a href="{{ action('AnalysController@deleteImageAll',[$data->id,$path]) }}?Typecon={{$data->Type_Con}}" class="btn btn-danger pull-left DeleteImage" title="ลบรูปภาพทั้งหมด"> ลบรูปภาพทั้งหมด..</a>
                                         <a href="{{ action('AnalysController@deleteImageEach',[$type,$data->id,$fdate,$tdate,$branch,$status,$path]) }}" class="btn btn-danger pull-right" title="การจัดการรูป">
                                           <span class="glyphicon glyphicon-picture"></span> ลบรูปภาพ..
                                         </a>
@@ -1233,6 +1233,7 @@
                                     @if($data->License_car != NULL)
                                       @php
                                         $Setlisence = $data->License_car;
+                                        $SetTypecon = $data->Type_Con;
                                       @endphp
                                     @endif
                                     <div class="form-inline">
@@ -1240,8 +1241,8 @@
                                         @foreach($dataImage as $images)
                                           @if($images->Type_fileimage == "1")
                                             <div class="col-sm-3">
-                                              <a href="{{ asset('upload-image/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
-                                                <img src="{{ asset('upload-image/'.$images->Name_fileimage) }}" style="width: 300px; height: 280px;">
+                                              <a href="{{ asset('upload-image/'.$Setlisence .'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
+                                                <img src="{{ asset('upload-image/'.$Setlisence .'/'.$images->Name_fileimage) }}" style="width: 300px; height: 280px;">
                                               </a>
                                             </div>
                                           @endif
@@ -1250,8 +1251,8 @@
                                         @foreach($dataImage as $images)
                                           @if($images->Type_fileimage == "1")
                                             <div class="col-sm-3">
-                                              <a href="{{ asset('upload-image/'.$Setlisence .'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
-                                                <img src="{{ asset('upload-image/'.$Setlisence .'/'.$images->Name_fileimage) }}" style="width: 300px; height: 280px;">
+                                              <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence .'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
+                                                <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence .'/'.$images->Name_fileimage) }}" style="width: 300px; height: 280px;">
                                               </a>
                                             </div>
                                           @endif
@@ -2561,6 +2562,7 @@
                                   @if($data->License_car != NULL)
                                     @php
                                       $Setlisence = $data->License_car;
+                                      $SetTypecon = $data->Type_Con;
                                     @endphp
                                   @endif
 
@@ -2568,16 +2570,16 @@
                                     @if(substr($data->createdBuyers_at,0,10) < $Currdate)
                                       @if ($data->AccountImage_car != NULL)
                                         <div class="col-sm-2">
-                                          <a href="{{ asset('upload-image/'.$data->AccountImage_car) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true" style="width: 300px; height: auto;">
-                                            <img src="{{ asset('upload-image/'.$data->AccountImage_car) }}">
+                                          <a href="{{ asset('upload-image/'.$Setlisence.'/'.$data->AccountImage_car) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true" style="width: 300px; height: auto;">
+                                            <img src="{{ asset('upload-image/'.$Setlisence.'/'.$data->AccountImage_car) }}">
                                           </a>
                                         </div>
                                       @endif
                                     @else
                                       @if ($data->AccountImage_car != NULL)
                                         <div class="col-sm-2">
-                                          <a href="{{ asset('upload-image/'.$Setlisence.'/'.$data->AccountImage_car) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true" style="width: 300px; height: auto;">
-                                            <img src="{{ asset('upload-image/'.$Setlisence.'/'.$data->AccountImage_car) }}">
+                                          <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$data->AccountImage_car) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true" style="width: 300px; height: auto;">
+                                            <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$data->AccountImage_car) }}">
                                           </a>
                                         </div>
                                       @endif
@@ -2711,13 +2713,8 @@
                                       <div class="card-title">
                                         รูปภาพผู้เช่าซื้อ
                                       </div>
-                                      @if($data->License_car != NULL)
-                                        @php
-                                          $Setlisence = $data->License_car;
-                                        @endphp
-                                      @endif
                                       <div class="card-tools">
-                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=2" class="pull-left DeleteImage">
+                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=2&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
                                         </a>
                                       </div>
@@ -2727,11 +2724,19 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "2")
-                                            <div class="col-sm-2">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
-                                                <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
-                                              </a>
-                                            </div>
+                                            @if(substr($data->createdBuyers_at,0,10) < $Currdate)
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @else
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @endif
                                           @endif
                                         @endforeach
                                       </div>
@@ -2786,13 +2791,8 @@
                                       <div class="card-title">
                                         รูปภาพผู้ค้ำ
                                       </div>
-                                      @if($data->License_car != NULL)
-                                        @php
-                                          $Setlisence = $data->License_car;
-                                        @endphp
-                                      @endif
                                       <div class="card-tools">
-                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=3" class="pull-left DeleteImage">
+                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=3&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
                                         </a>
                                       </div>
@@ -2802,11 +2802,19 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "3")
-                                            <div class="col-sm-2">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้ค้ำ">
-                                                <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
-                                              </a>
-                                            </div>
+                                            @if(substr($data->createdBuyers_at,0,10) < $Currdate)
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @else
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @endif
                                           @endif
                                         @endforeach
                                       </div>
@@ -3019,7 +3027,7 @@
                                         @endphp
                                       @endif
                                       <div class="card-tools">
-                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=4" class="pull-left DeleteImage">
+                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=4&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
                                         </a>
                                       </div>
@@ -3029,11 +3037,19 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "4")
-                                            <div class="col-sm-4">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
-                                                <img id="ImgIncomeBuyer" src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}">
-                                              </a>
-                                            </div>
+                                            @if(substr($data->createdBuyers_at,0,10) < $Currdate)
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @else
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @endif
                                           @endif
                                         @endforeach
                                       </div>
@@ -3109,7 +3125,7 @@
                                         @endphp
                                       @endif
                                       <div class="card-tools">
-                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=5" class="pull-left DeleteImage">
+                                        <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=5&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
                                         </a>
                                       </div>
@@ -3119,11 +3135,19 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "5")
-                                            <div class="col-sm-4">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="MagicZoom" data-gallery="gallery" data-options="hint:true; zoomMode:magnifier; variableZoom: true">
-                                                <img id="ImgIncomeSupport" src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}">
-                                              </a>
-                                            </div>
+                                            @if(substr($data->createdBuyers_at,0,10) < $Currdate)
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @else
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @endif
                                           @endif
                                         @endforeach
                                       </div>

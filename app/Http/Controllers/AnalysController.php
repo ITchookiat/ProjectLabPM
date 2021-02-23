@@ -1296,17 +1296,22 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          // $path = public_path().'/upload-image/'.$SetLicense;
-          // Storage::makeDirectory($path, 0777, true, true);
-          // $image_array[$i]->move($path,$image_new_name);
-
-          $path = public_path().'/upload-image/'.$SetLicense;
-          File::makeDirectory($path, $mode = 0777, true, true);
-
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
           $image_resize->resize(1000, 1000);
-          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+
+          $Currdate = date('2021-01-01');
+          // dd($user->created_at);
+          if(substr($user->created_at,0,10) < $Currdate){
+            $path = public_path().'/upload-image/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+          }
+          else{
+            $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+          }
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1327,17 +1332,22 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          // $path = public_path().'/upload-image/'.$SetLicense;
-          // Storage::makeDirectory($path, 0777, true, true);
-          // $image_array[$i]->move($path,$image_new_name);
-
-          $path = public_path().'/upload-image/'.$SetLicense;
-          File::makeDirectory($path, $mode = 0777, true, true);
-
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
           $image_resize->resize(1000, 1000);
-          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+
+          $Currdate = date('2021-01-01');
+          // dd($user->created_at);
+          if(substr($user->created_at,0,10) < $Currdate){
+            $path = public_path().'/upload-image/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+          }
+          else{
+            $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+          }
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1358,17 +1368,22 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          // $path = public_path().'/upload-image/'.$SetLicense;
-          // Storage::makeDirectory($path, 0777, true, true);
-          // $image_array[$i]->move($path,$image_new_name);
-
-          $path = public_path().'/upload-image/'.$SetLicense;
-          File::makeDirectory($path, $mode = 0777, true, true);
-
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
           $image_resize->resize(1000, 1000);
-          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+
+          $Currdate = date('2021-01-01');
+          // dd($user->created_at);
+          if(substr($user->created_at,0,10) < $Currdate){
+            $path = public_path().'/upload-image/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+          }
+          else{
+            $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+          }
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1432,17 +1447,22 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          // $path = public_path().'/upload-image/'.$SetLicense;
-          // Storage::makeDirectory($path, 0777, true, true);
-          // $image_array[$i]->move($path,$image_new_name);
-
-          $path = public_path().'/upload-image/'.$SetLicense;
-          File::makeDirectory($path, $mode = 0777, true, true);
-
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
           $image_resize->resize(1000, 1000);
-          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+
+          $Currdate = date('2021-01-01');
+          // dd($user->created_at);
+          if(substr($user->created_at,0,10) < $Currdate){
+            $path = public_path().'/upload-image/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+          }
+          else{
+            $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+          }
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1463,16 +1483,22 @@ class AnalysController extends Controller
           $image_lastname = $image_array[$i]->getClientOriginalExtension();
           $image_new_name = str_random(10).time(). '.' .$image_array[$i]->getClientOriginalExtension();
 
-          // $path = public_path().'/upload-image/'.$SetLicense;
-          // Storage::makeDirectory($path, 0777, true, true);
-          // $image_array[$i]->move($path,$image_new_name);
-          $path = public_path().'/upload-image/'.$SetLicense;
-          File::makeDirectory($path, $mode = 0777, true, true);
-
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
           $image_resize->resize(1000, 1000);
-          $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+
+          $Currdate = date('2021-01-01');
+          // dd($user->created_at);
+          if(substr($user->created_at,0,10) < $Currdate){
+            $path = public_path().'/upload-image/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'.$image_new_name);
+          }
+          else{
+            $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
+            File::makeDirectory($path, $mode = 0777, true, true);
+            $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+          }
 
           $Uploaddb = new UploadfileImage([
             'Buyerfileimage_id' => $id,
@@ -1553,7 +1579,11 @@ class AnalysController extends Controller
 
     public function deleteImageAll($id,$path,Request $request)
     {
-      $created_at = '';
+      // $created_at = '';
+      $Currdate = date('2021-01-01');
+      $data = Buyer::find($id);
+      $created_at = substr($data->created_at,0,10);
+
       if ($request->type == 2) {
         $item = DB::table('uploadfile_images')
               ->where('Buyerfileimage_id','=',$id)
@@ -1562,7 +1592,13 @@ class AnalysController extends Controller
 
         if ($item != NULL) {
           foreach ($item as $key => $value) {
-            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+
+            if($created_at < $Currdate){
+              $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+            }
+            else{
+              $itemPath = public_path().'/upload-image/'.$request->Typecon.'/'.$path.'/'.$value->Name_fileimage;
+            }
             File::delete($itemPath);
 
             $deleteItem = UploadfileImage::where('fileimage_id',$value->fileimage_id);
@@ -1579,7 +1615,13 @@ class AnalysController extends Controller
 
         if ($item != NULL) {
           foreach ($item as $key => $value) {
-            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+
+            if($created_at < $Currdate){
+              $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+            }
+            else{
+              $itemPath = public_path().'/upload-image/'.$request->Typecon.'/'.$path.'/'.$value->Name_fileimage;
+            }
             File::delete($itemPath);
 
             $deleteItem = UploadfileImage::where('fileimage_id',$value->fileimage_id);
@@ -1596,7 +1638,13 @@ class AnalysController extends Controller
 
         if ($item != NULL) {
           foreach ($item as $key => $value) {
-            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+
+            if($created_at < $Currdate){
+              $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+            }
+            else{
+              $itemPath = public_path().'/upload-image/'.$request->Typecon.'/'.$path.'/'.$value->Name_fileimage;
+            }
             File::delete($itemPath);
 
             $deleteItem = UploadfileImage::where('fileimage_id',$value->fileimage_id);
@@ -1613,7 +1661,13 @@ class AnalysController extends Controller
 
         if ($item != NULL) {
           foreach ($item as $key => $value) {
-            $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+
+            if($created_at < $Currdate){
+              $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+            }
+            else{
+              $itemPath = public_path().'/upload-image/'.$request->Typecon.'/'.$path.'/'.$value->Name_fileimage;
+            }
             File::delete($itemPath);
 
             $deleteItem = UploadfileImage::where('fileimage_id',$value->fileimage_id);
@@ -1632,7 +1686,13 @@ class AnalysController extends Controller
 
         foreach ($item as $key => $value) {
           $itemID = $value->Buyerfileimage_id;
-          $itemPath = public_path().'/upload-image/'.$path;
+          // $itemPath = public_path().'/upload-image/'.$path;
+          if($created_at < $Currdate){
+            $itemPath = public_path().'/upload-image/'.$path;
+          }
+          else{
+            $itemPath = public_path().'/upload-image/'.$request->Typecon.'/'.$path;
+          }
           File::deleteDirectory($itemPath);
         }
 
@@ -1662,7 +1722,7 @@ class AnalysController extends Controller
         $created_at = substr($dataold->created_at,0,10);
       }
 
-      return view('analysis.viewimage', compact('data','countData','id','type','fdate','tdate','branch','status','path','created_at'));
+      return view('analysis.viewimage', compact('data','countData','id','type','fdate','tdate','branch','status','path','created_at','dataold'));
     }
 
     public function destroyImage($type,$id,$fdate,$tdate,$branch,$status,$path,Request $request)
@@ -1675,7 +1735,9 @@ class AnalysController extends Controller
       $status = $status;
       $path = $path;
       $mainid = $request->mainid;
+      $typeCon = $request->TypeContract;
       $created_at = '';
+      $Currdate = date('2021-01-01');
 
       $item1 = UploadfileImage::where('fileimage_id',$id);
       $data = UploadfileImage::where('fileimage_id','=',$id)->get();
@@ -1686,7 +1748,12 @@ class AnalysController extends Controller
       }
 
       foreach ($data as $key => $value) {
-        $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+        if($created_at < $Currdate){
+          $itemPath = public_path().'/upload-image/'.$path.'/'.$value->Name_fileimage;
+        }
+        else{
+          $itemPath = public_path().'/upload-image/'.$typeCon.'/'.$path.'/'.$value->Name_fileimage;
+        }
         File::delete($itemPath);
       }
       
