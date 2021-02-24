@@ -8,7 +8,7 @@
   $Y2 = date('Y') + 531;
   $m = date('m');
   $d = date('d');
-  $Currdate = date('2021-01-01');
+  $Currdate = date('2021-02-24');
   $time = date('H:i');
   $date = $Y.'-'.$m.'-'.$d;
   $date2 = $Y2.'-'.'01'.'-'.'01';
