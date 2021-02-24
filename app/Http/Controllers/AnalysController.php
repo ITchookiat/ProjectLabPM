@@ -1298,7 +1298,7 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1000, 1000);
+          $image_resize->resize(1500, 1000);
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1334,7 +1334,7 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1000, 1000);
+          $image_resize->resize(1500, 1000);
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1370,7 +1370,7 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1000, 1000);
+          $image_resize->resize(1500, 1000);
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1449,7 +1449,7 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1000, 1000);
+          $image_resize->resize(1500, 1000);
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1485,7 +1485,7 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1000, 1000);
+          $image_resize->resize(1500, 1000);
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
