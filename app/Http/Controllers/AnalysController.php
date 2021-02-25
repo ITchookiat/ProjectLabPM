@@ -1143,7 +1143,7 @@ class AnalysController extends Controller
             else{
               $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
               File::makeDirectory($path, $mode = 0777, true, true);
-              $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+              $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$NameImage);
               $cardetail->AccountImage_car = $NameImage;
             }
           }
