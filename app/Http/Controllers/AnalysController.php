@@ -1121,9 +1121,13 @@ class AnalysController extends Controller
 
           // รูปภาพหน้าบัญชี
           if ($request->hasFile('Account_image')) {
-            $Currdate = date('2021-01-01');
             $AccountImage = $request->file('Account_image');
             $NameImage = $AccountImage->getClientOriginalName();
+            
+            //resize Image
+            $Currdate = date('2021-01-01');
+            $image_resize = Image::make($image_array[$i]->getRealPath());
+            $image_resize->resize(1500, 1000);
 
             // $destination_path = public_path().'/upload-image/'.$SetLicense;
             // Storage::makeDirectory($destination_path, 0777, true, true);
