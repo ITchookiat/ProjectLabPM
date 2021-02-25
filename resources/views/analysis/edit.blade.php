@@ -2559,13 +2559,6 @@
                                 </div>
                                 <div class="card-body">
 
-                                  @if($data->License_car != NULL)
-                                    @php
-                                      $Setlisence = $data->License_car;
-                                      $SetTypecon = $data->Type_Con;
-                                    @endphp
-                                  @endif
-
                                   <div class="row">
                                     @if(substr($data->createdBuyers_at,0,10) < $Currdate)
                                       @if ($data->AccountImage_car != NULL)
