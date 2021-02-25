@@ -1126,7 +1126,7 @@ class AnalysController extends Controller
             
             //resize Image
             $Currdate = date('2021-01-01');
-            $image_resize = Image::make($image_array[$i]->getRealPath());
+            $image_resize = Image::make($AccountImage->getRealPath());
             $image_resize->resize(1500, 1000);
 
             // $destination_path = public_path().'/upload-image/'.$SetLicense;
