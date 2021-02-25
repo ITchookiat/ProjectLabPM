@@ -1121,13 +1121,27 @@ class AnalysController extends Controller
 
           // รูปภาพหน้าบัญชี
           if ($request->hasFile('Account_image')) {
+            $Currdate = date('2021-01-01');
             $AccountImage = $request->file('Account_image');
             $NameImage = $AccountImage->getClientOriginalName();
 
-            $destination_path = public_path().'/upload-image/'.$SetLicense;
-            Storage::makeDirectory($destination_path, 0777, true, true);
-            $AccountImage->move($destination_path,$NameImage);
-            $cardetail->AccountImage_car = $NameImage;
+            // $destination_path = public_path().'/upload-image/'.$SetLicense;
+            // Storage::makeDirectory($destination_path, 0777, true, true);
+            // $AccountImage->move($destination_path,$NameImage);
+            // $cardetail->AccountImage_car = $NameImage;
+
+            if(substr($user->created_at,0,10) < $Currdate){              
+              $path = public_path().'/upload-image/'.$SetLicense;
+              File::makeDirectory($path, $mode = 0777, true, true);
+              $image_resize->save(public_path().'/upload-image/'.$SetLicense.'/'. $NameImage);
+              $cardetail->AccountImage_car = $NameImage;
+            }
+            else{
+              $path = public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense;
+              File::makeDirectory($path, $mode = 0777, true, true);
+              $image_resize->save(public_path().'/upload-image/'.$request->TypeContract.'/'.$SetLicense.'/'.$image_new_name);
+              $cardetail->AccountImage_car = $NameImage;
+            }
           }
 
           if ($request->get('BrachUser') == "50" or $request->get('BrachUser') == "ปัตตานี") {
