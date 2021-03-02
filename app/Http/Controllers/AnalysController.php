@@ -1127,7 +1127,10 @@ class AnalysController extends Controller
             //resize Image
             $Currdate = date('2021-01-01');
             $image_resize = Image::make($AccountImage->getRealPath());
-            $image_resize->resize(1500, 1000);
+            // $image_resize->resize(1500, 1000);
+            $image_resize->resize(1200, null, function ($constraint) {
+              $constraint->aspectRatio();
+            });
 
             // $destination_path = public_path().'/upload-image/'.$SetLicense;
             // Storage::makeDirectory($destination_path, 0777, true, true);
@@ -1316,7 +1319,10 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1500, 1000);
+          // $image_resize->resize(1500, 1000);
+          $image_resize->resize(1200, null, function ($constraint) {
+            $constraint->aspectRatio();
+          });
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1352,7 +1358,10 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1500, 1000);
+          // $image_resize->resize(1500, 1000);
+          $image_resize->resize(1200, null, function ($constraint) {
+            $constraint->aspectRatio();
+          });
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1388,7 +1397,10 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1500, 1000);
+          // $image_resize->resize(1500, 1000);
+          $image_resize->resize(1200, null, function ($constraint) {
+            $constraint->aspectRatio();
+          });
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1467,7 +1479,10 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1500, 1000);
+          // $image_resize->resize(1500, 1000);
+          $image_resize->resize(1200, null, function ($constraint) {
+            $constraint->aspectRatio();
+          });
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
@@ -1503,7 +1518,10 @@ class AnalysController extends Controller
 
           //resize Image
           $image_resize = Image::make($image_array[$i]->getRealPath());
-          $image_resize->resize(1500, 1000);
+          // $image_resize->resize(1500, 1000);
+          $image_resize->resize(1200, null, function ($constraint) {
+            $constraint->aspectRatio();
+          });
 
           $Currdate = date('2021-01-01');
           // dd($user->created_at);
