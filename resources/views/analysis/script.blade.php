@@ -183,7 +183,7 @@
               if(num11 == ''){
                 var num11 = 0;
               }else{
-                var sumCom = (num1*0.0125);
+                var sumCom = (num1*0.03);
                 var result = num1 - sumCom;
               }
             }else{
