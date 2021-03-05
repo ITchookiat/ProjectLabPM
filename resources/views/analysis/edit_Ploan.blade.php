@@ -462,7 +462,7 @@
                                         <option value="56" {{ ($data->branch_car === 'โคกโพธิ์') ? 'selected' : '' }}>โคกโพธิ์ (56)</option>
                                         <option value="57" {{ ($data->branch_car === 'ตันหยงมัส') ? 'selected' : '' }}>ตันหยงมัส (57)</option>
                                         <option value="58" {{ ($data->branch_car === 'รือเสาะ') ? 'selected' : '' }}>รือเสาะ (58)</option>
-                                        <option value="59" {{ ($data->branch_car === 'บังนังสตา') ? 'selected' : '' }}>บังนังสตา (59)</option>
+                                        <option value="59" {{ ($data->branch_car === 'บันนังสตา') ? 'selected' : '' }}>บันนังสตา (59)</option>
                                         <option value="60" {{ ($data->branch_car === 'ยะหา') ? 'selected' : '' }}>ยะหา (60)</option>
                                       </select>
                                     @endif
