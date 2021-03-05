@@ -8,7 +8,7 @@
   $Y2 = date('Y') + 531;
   $m = date('m');
   $d = date('d');
-  $Currdate = date('2021-01-01');
+  $Currdate = date('2021-02-24');
   $time = date('H:i');
   $date = $Y.'-'.$m.'-'.$d;
   $date2 = $Y2.'-'.'01'.'-'.'01';
@@ -2697,11 +2697,6 @@
                                       <div class="card-title">
                                         รูปภาพรายได้ผู้เช่าซื้อ
                                       </div>
-                                      @if($data->License_car != NULL)
-                                        @php
-                                          $Setlisence = $data->License_car;
-                                        @endphp
-                                      @endif
                                       <div class="card-tools">
                                         <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=4&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
@@ -2713,11 +2708,19 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "4")
-                                            <div class="col-sm-2">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
-                                                <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
-                                              </a>
-                                            </div>
+                                            @if(substr($data->createdBuyers_at,0,10) < $Currdate)
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @else
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @endif
                                           @endif
                                         @endforeach
                                       </div>
@@ -2787,11 +2790,6 @@
                                       <div class="card-title">
                                         รูปภาพรายได้ผู้ค้ำ
                                       </div>
-                                      @if($data->License_car != NULL)
-                                        @php
-                                          $Setlisence = $data->License_car;
-                                        @endphp
-                                      @endif
                                       <div class="card-tools">
                                         <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=5&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
@@ -2803,11 +2801,19 @@
                                       <div class="row">
                                         @foreach($dataImage as $key => $images)
                                           @if($images->Type_fileimage == "5")
-                                            <div class="col-sm-2">
-                                              <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้ค้ำ">
-                                                <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
-                                              </a>
-                                            </div>
+                                            @if(substr($data->createdBuyers_at,0,10) < $Currdate)
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @else
+                                              <div class="col-sm-4">
+                                                <a href="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" data-toggle="lightbox" data-title="ภาพผู้เช่าซื้อ">
+                                                  <img src="{{ asset('upload-image/'.$SetTypecon.'/'.$Setlisence.'/'.$images->Name_fileimage) }}" class="img-fluid mb-2" alt="white sample">
+                                                </a>
+                                              </div>
+                                            @endif
                                           @endif
                                         @endforeach
                                       </div>

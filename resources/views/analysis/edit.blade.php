@@ -3014,11 +3014,6 @@
                                       <div class="card-title">
                                         รูปภาพรายได้ผู้เช่าซื้อ
                                       </div>
-                                      @if($data->License_car != NULL)
-                                        @php
-                                          $Setlisence = $data->License_car;
-                                        @endphp
-                                      @endif
                                       <div class="card-tools">
                                         <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=4&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
@@ -3112,11 +3107,6 @@
                                       <div class="card-title">
                                         รูปภาพรายได้ผู้ค้ำ
                                       </div>
-                                      @if($data->License_car != NULL)
-                                        @php
-                                          $Setlisence = $data->License_car;
-                                        @endphp
-                                      @endif
                                       <div class="card-tools">
                                         <a href="{{ action('AnalysController@deleteImageAll',[$id,$Setlisence]) }}?type=5&Typecon={{$SetTypecon}}" class="pull-left DeleteImage">
                                           <i class="far fa-trash-alt"></i>
